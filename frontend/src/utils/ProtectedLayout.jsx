@@ -7,7 +7,6 @@ import NavBar from '../components/NavBar';
 
 export default function DefaultLayout() {
 	const { user, setUser } = useAuth();
-	const location = useLocation();
 	
 	useEffect(() => {
 		(async () => {
@@ -30,7 +29,6 @@ export default function DefaultLayout() {
 		return <Navigate to="/dashboard" />;
 	}
 
-	
 	return (
 		<>
 		<NavBar />
