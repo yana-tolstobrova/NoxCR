@@ -1,9 +1,8 @@
-import React from 'react'
-import NavBar from '../components/NavBar'
+import React from 'react';
 
 function Main() {
   return (
-    <div> Soy Main</div>
+    <div>SOY MAIN</div>
   )
 }
 

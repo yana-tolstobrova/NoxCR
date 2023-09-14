@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar';
 
 export default function DefaultLayout() {
 	const { user, setUser } = useAuth();
-	
+    
 	useEffect(() => {
 		(async () => {
 			try {
@@ -26,7 +26,7 @@ export default function DefaultLayout() {
 
 	
 	if (!user) {
-		return <Navigate to="/dashboard" />;
+		return <Navigate to="/login" />;
 	}
 
 	return (
