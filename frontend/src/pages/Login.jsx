@@ -1,7 +1,32 @@
-import React from "react";
-import { useAuth } from "../contexts/AuthContext";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import axios from '../services/axios';
+import { useAuth } from '../contexts/AuthContext';
 
 function Login() {
+  const { setUser, csrfToken } = useAuth();
+	const [error, setError] = React.useState(null);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const { email, password } = e.target.elements;
+		const body = {
+			email: email.value,
+			password: password.value,
+		};
+		await csrfToken();
+		try {
+			const resp = await axios.post('/login', body);
+			if (resp.status === 200) {
+				setUser(resp.data.user);
+				return <Navigate to="/dashboard" />;
+			}
+		} catch (error) {
+			if (error.response.status === 401) {
+				setError(error.response.data.message);
+			}
+		}
+	};
   return (
     <>
         <div className="flex items-center justify-center h-screen">
@@ -12,7 +37,7 @@ function Login() {
               Por favor ingrese sus datos
             </p>
             <div className="mt-8">
-              <form action="https://www.google.com/search" method="get">
+              <form onSubmit={handleSubmit} method="POST" action="#">
                 <div>
                   <label className="text-lg font-medium" htmlFor="email">
                     Correo
