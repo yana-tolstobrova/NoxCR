@@ -36,10 +36,7 @@ class TestMail extends Mailable
     {
         return new Envelope(
 
-
-
-
-            
+    
             subject: 'Test Mail',
         );
     }
@@ -50,8 +47,12 @@ class TestMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.new_order',
         );
+
+    
+
+
     }
 
     /**
