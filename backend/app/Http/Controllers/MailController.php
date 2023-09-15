@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Mail\DemoMail;
 use App\Mail\orderConfirmation;
+use App\Models\User;
   
 class MailController extends Controller
 {
@@ -28,7 +29,14 @@ class MailController extends Controller
 
     public function orderConfirmation()
     {
-        $mailData = [
+      
+            /*$user = User::findOrFail(1);
+            $userName = $user->name;*/
+
+            $userMail = 'sylviall81@gmail.com';
+            $adminMail = 'noxcr.mailing@gmail.com';
+        
+        $orderData = [
             'pedido' => 'Tu Orden de compra No. xxxx se ha procesado exitosamente',
             'producto' => 'Lentillas Natural Zafiro Gris',
             'cantidad' => "1 par",
@@ -36,8 +44,12 @@ class MailController extends Controller
             'total' => "20$ + taxes = 22.50$"
         ];
          
-        Mail::to('sylviall81@gmail.com')->send(new orderConfirmation($mailData));
-           
+        //correo de aviso a comprador
+        Mail::to($userMail)->send(new orderConfirmation($orderData));
+        //correo de aviso a Admin
+        Mail::to($adminMail)->send(new orderConfirmation($orderData));
+        
+
         dd("Email is sent successfully.");
     }
 

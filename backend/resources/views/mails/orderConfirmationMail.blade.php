@@ -5,14 +5,16 @@
 </head>
 <body>
     <h1>Confirmación de orden de compra</h1>
-    <p>Tu compra se ha realizado exitosamente. Estos son los datos de tu transacción:</p>
+
+    <p></p>
+    <p> Tu compra se ha realizado exitosamente!. Estos son los datos de tu transacción:</p>
 
     <ul>
-        <li>{{ $mailData['pedido'] }} </li>
-        <li> {{ $mailData['producto'] }}</li>
-        <li> {{ $mailData['cantidad'] }}</li>
-        <li> {{ $mailData['precio'] }}</li>
-        <li> {{ $mailData['total'] }}</li>
+        <li>{{ $orderData['pedido'] }} </li>
+        <li> {{ $orderData['producto'] }}</li>
+        <li> {{ $orderData['cantidad'] }}</li>
+        <li> {{ $orderData['precio'] }}</li>
+        <li> {{ $orderData['total'] }}</li>
     </ul>
   
      
