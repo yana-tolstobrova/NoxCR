@@ -14,10 +14,11 @@ use App\Http\Controllers\MailController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+ Route::get('/', function () {
+     return view('welcome');
+ });
 
+  
 Route::get('send-mail', [MailController::class, 'index']);
 
 
