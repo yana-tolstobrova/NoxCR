@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> NoxCR| Confirmación de compra</title>
-    <link rel="stylesheet" href="backend/resources/css/orderConfirmation.css">
+    <!--<link rel="stylesheet" href="backend/resources/css/orderConfirmation.css">-->
 </head>
 
 <body>
