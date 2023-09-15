@@ -103,7 +103,7 @@ return [
         'name' => env('MAIL_FROM_NAME', 'NoxCR'),
     ],
 
-    'reply_to' => ['address' => 'noxcr.mailing@gmail.com', 'name' => 'App Name'],
+    'reply_to' => ['address' => 'noxcr.mailing@gmail.com', 'name' => 'NoxCR'],
 
     /*
     |--------------------------------------------------------------------------
