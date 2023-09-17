@@ -5,6 +5,10 @@ import Dashboard from '../pages/Dashboard';
 import ProtectedLayout from '../utils/ProtectedLayout';
 import GuestLayout from '../utils/GuestLayout';
 import Register from '../pages/Register';
+import ProductsPage from '../pages/ProductsPage';
+import NaturalProductsPage from '../pages/NaturalProductsPage';
+import CrazzyProductsPage from '../pages/CrazzyProductsPage';
+import EscleraProductsPage from '../pages/EscleraProductsPage';
 
 const router = createBrowserRouter([
 	{
@@ -23,6 +27,22 @@ const router = createBrowserRouter([
 				path: '/login',
 				element: <Login />,
 			},
+			{
+				path: '/products',
+				element: <ProductsPage />,
+			},
+			{
+				path: '/products/natural',
+				element: <NaturalProductsPage />,
+			},
+			{
+				path: '/products/crazzy',
+				element: <CrazzyProductsPage />,
+			},
+			{
+				path: '/products/esclera',
+				element: <EscleraProductsPage />,
+			},
 		],
 	},
 	{
@@ -32,6 +52,22 @@ const router = createBrowserRouter([
 			{
 				path: '/dashboard',
 				element: <Dashboard />,
+			},
+			{
+				path: '/products',
+				element: <ProductsPage />,
+			},
+			{
+				path: '/products/natural',
+				element: <NaturalProductsPage />,
+			},
+			{
+				path: '/products/crazzy',
+				element: <CrazzyProductsPage />,
+			},
+			{
+				path: '/products/esclera',
+				element: <EscleraProductsPage />,
 			},
 		],
 	},
