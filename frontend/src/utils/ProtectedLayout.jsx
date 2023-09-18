@@ -28,10 +28,21 @@ export default function DefaultLayout() {
 	if (!user) {
 		return <Navigate to="/login" />;
 	}
+    const handleLogout = async () => {
+		try {
+			const resp = await axios.post('/logout');
+			if (resp.status === 200) {
+				localStorage.removeItem('user');
+				window.location.href = '/';
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<>
-		<NavBar />
+		<NavBar onLogout={handleLogout}/>
 			<main>
                 <Outlet />
 			</main>
