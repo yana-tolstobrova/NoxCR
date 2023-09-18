@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'quantity', 'price', 'image', 'collection', 'color', 'description'];
+    protected $fillable = ['name', 'quantity', 'price', 'image', 'collection', 'color', 'detail'];
 
     static function search($query){
       $results = Product::where('name', 'LIKE', "%$query%")

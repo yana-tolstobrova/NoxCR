@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('collection');
             $table->string('color');
             $table->string('image');
-            $table->text('description');
+            $table->text('detail');
             $table->timestamps();
         });
     }

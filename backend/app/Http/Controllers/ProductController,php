@@ -25,7 +25,7 @@ class ProductController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'collection' => 'required',
                 'color' => 'required',
-                'description' => 'required',
+                'detail' => 'required',
             ]);
 
             $imagePath = null;
@@ -44,7 +44,7 @@ class ProductController extends Controller
                 'image' => $imagePath,
                 'collection' => $request->input('collection'),
                 'color' => $request->input('color'),
-                'description' => $request->input('description'),
+                'detail' => $request->input('detail'),
             ]);
 
             return response()->json(['success' => true, 'message' => '¡Producto agregado exitosamente!']);
@@ -75,7 +75,7 @@ class ProductController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
                 'collection' => 'required',
                 'color' => 'required',
-                'description' => 'required',
+                'detail' => 'required',
             ]);
 
             $imagePath = $product->image;
@@ -98,7 +98,7 @@ class ProductController extends Controller
                 'image' => $imagePath,
                 'collection' => $request->input('collection'),
                 'color' => $request->input('color'),
-                'description' => $request->input('description'),
+                'detail' => $request->input('detail'),
             ]);
 
             return response()->json(['success' => true, 'message' => '¡Producto actualizado exitosamente!']);
