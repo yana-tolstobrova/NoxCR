@@ -18,13 +18,15 @@ class AuthTest extends TestCase
 
     public function test_user_can_register(): void
     {
-        $this->postJson('api/register', [
+
+        $response = $this->postJson('api/register', [
             'name' => 'Elena',
             'email'=>'ele@mail.com',
-            'password' => 'Elena98*',
-            'password_confirmation' => 'Elena98*'
+            'password' => 'Elena1998*',
+            'password_confirmation' => 'Elena1998*'
         ]);
 
+        $response->assertStatus(200);
         $this->assertCount(1, User::all());
        
     }
