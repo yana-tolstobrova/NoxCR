@@ -43,14 +43,17 @@ class AuthTest extends TestCase
     public function test_user_can_login(): void
     {
 
-        $response = $this->postJson('api/login', [
-            'email'=>'ele@mail.com',
-            'password' => 'Elena1998*',
-            'password_confirmation' => 'Elena1998*'
+        $user = User::factory()->create([
+            'password' => Hash::make('Abcdefg1999*')
+
         ]);
 
-        $response->assertStatus(200);
-        
-        
+        $response = $this->postJson('api/login', [
+            'email' => $user->email,
+            'password' => 'Abcdefg1999*'
+        ]);
+
+        $response -> assertStatus(200);
+        $response -> assertJsonFragment(['message' => 'User succesfully logged In!']);
     }
 }
