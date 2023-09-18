@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import arrow from '../assets/arrow.svg';
 import FilterProducts from '../components/FilterProducts';
 import Carousel from '../components/Carousel';
+import Accordion from '../components/Accordion';
 
 
 function Main() {
@@ -24,6 +25,7 @@ function Main() {
       <div className="mb-4">
         <Card limit={visibleCards} />
       </div>
+      <Accordion />
     </div>
   );
 }
