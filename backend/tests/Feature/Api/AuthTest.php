@@ -28,6 +28,29 @@ class AuthTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertCount(1, User::all());
-       
+        $response->assertJsonStructure([
+            'user' => [
+                'id',
+                'name',
+                'email',
+                'created_at',
+                'updated_at'
+            ],
+        ]);
+        
+    }
+
+    public function test_user_can_login(): void
+    {
+
+        $response = $this->postJson('api/login', [
+            'email'=>'ele@mail.com',
+            'password' => 'Elena1998*',
+            'password_confirmation' => 'Elena1998*'
+        ]);
+
+        $response->assertStatus(200);
+        
+        
     }
 }
