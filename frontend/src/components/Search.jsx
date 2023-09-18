@@ -1,8 +1,6 @@
 import { useState } from "react"
 import search from "../assets/search.svg"
-import { Link } from "react-router-dom"
-
-
+// import { Link } from "react-router-dom"
 
 
 function Search() {
@@ -33,7 +31,7 @@ function Search() {
         <img
           src={search}
           alt="icon-search"
-          className="cursor-pointer"
+          className="cursor-pointer px-3"
           onClick={toggleInput}
         />
         {isInputVisible && (
