@@ -94,7 +94,6 @@ class AuthTest extends TestCase
 
         $user = User::factory()->create([
             'password' => Hash::make('Abcdefg1999*')
-
         ]);
 
         $response = $this->postJson('api/login', [
@@ -108,9 +107,4 @@ class AuthTest extends TestCase
     }
 
     
-
-
-
-
-
 }
