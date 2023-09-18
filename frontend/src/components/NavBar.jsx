@@ -10,7 +10,7 @@ function NavBar({onLogout}) {
   const { user, setUser } = useAuth();
 
   return (
-    <div className="flex w-full justify-between items-center">
+    <div className="flex w-full justify-between items-center px-6">
       <nav>
           <TwLink href="#productos">Productos</TwLink> 
           <TwLink href="#cuidados">Cuidados</TwLink> 
@@ -19,11 +19,11 @@ function NavBar({onLogout}) {
       </nav>
       <div className="flex">
           <Search />
-          <Link to="/register">
-            <img src={profile} alt="Profile-icon" /> 
-          </Link>
           <Link to="/cart">
-            <img src={cart} alt="Profile-icon" /> 
+            <img className='px-3'src={cart} alt="Profile-icon" /> 
+          </Link>
+          <Link to="/register">
+            <img className='px-3' src={profile} alt="Profile-icon" /> 
           </Link>
       </div>
 
