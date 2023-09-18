@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder
     {
         Product::create([
             'name' => 'Lente natural de cuarzo jade',
+            'category' => 'Lentes de Contacto',
             'quantity' => 10,
             'price' => 20000.00,
             'collection' => 'Natural',
@@ -24,6 +25,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente color azul',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 16000.00,
             'collection' => 'Natural',
@@ -33,6 +35,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente color gris',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 18000.00,
             'collection' => 'Natural',
@@ -42,6 +45,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente color gris claro',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 20000.00,
             'collection' => 'Natural',
@@ -51,6 +55,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente color azul oscuro',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 18000.00,
             'collection' => 'Natural',
@@ -60,6 +65,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente color verde',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 18000.00,
             'collection' => 'Natural',
@@ -69,6 +75,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección crazzy',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 25000.00,
             'collection' => 'Crazy',
@@ -78,6 +85,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección crazzy',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 25000.00,
             'collection' => 'Crazy',
@@ -87,6 +95,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección crazzy',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 35000.00,
             'collection' => 'Crazy',
@@ -96,6 +105,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección esclera',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 25000.00,
             'collection' => 'Sclera',
@@ -105,6 +115,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección esclera',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 25000.00,
             'collection' => 'Sclera',
@@ -114,6 +125,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección esclera',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 60000.00,
             'collection' => 'Sclera',
@@ -123,6 +135,7 @@ class ProductsTableSeeder extends Seeder
         ]);
         Product::create([
             'name' => 'Lente colección esclera',
+            'category' => 'Lentes de Contacto',
             'quantity' => 5,
             'price' => 50000.00,
             'collection' => 'Sclera',
