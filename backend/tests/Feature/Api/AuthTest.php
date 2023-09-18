@@ -3,10 +3,12 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+
 
 class AuthTest extends TestCase
 {
@@ -38,6 +40,53 @@ class AuthTest extends TestCase
             ],
         ]);
         
+    }
+
+    public function test_the_name_is_required_for_registration(): void
+    {
+        $response = $this->postJson('api/register',[
+            'name' => null,
+            'email' => 'zara@gmail.com',
+            'password'=> 'Zara123456*',
+            'password_confirmation'=> 'Zara123456*'
+        ]);
+
+        $response -> assertStatus(422);
+        $response -> assertJsonFragment(['message' => 'The name field is required.']);
+
+    }
+
+    public function test_the_email_is_required_for_registration(): void
+    {
+        $response = $this->postJson('api/register',[
+            'name' => 'Marina',
+            'email' => null,
+            'password'=> 'Mari123456*',
+            'password_confirmation'=> 'Mari123456*'
+        ]);
+
+        $response -> assertStatus(422);
+        $response -> assertJsonFragment(['message' => 'The email field is required.']);
+
+    }
+
+    public function test_the_email_is_unique(): void
+    {
+        $user = User::factory()->create([
+            'password' => Hash::make('Abcdefg1999*')
+
+        ]);
+
+        $response = $this->postJson('api/register',[
+            'name' => 'Marina',
+            'email' => $user->email,
+            'password'=> 'Mari123456*',
+            'password_confirmation'=> 'Mari123456*'
+        ]);
+
+        $response -> assertStatus(422);
+        $response -> assertJsonFragment(['message' => "The email has already been taken."]);
+
     }
 
     public function test_user_can_login(): void
@@ -109,7 +158,6 @@ class AuthTest extends TestCase
 
          $user = User::factory()->create([
             'password' => Hash::make('Abcdefg1999*')
-
         ]);
 
         $response = $this->postJson('api/login', [
@@ -117,16 +165,9 @@ class AuthTest extends TestCase
             'password' => 'Abcdefg1999*'
         ]);
 
-        // $user = User::factory()->create([
-        //     'password' => Hash::make('Abcdefg1999*')
-
-        // ]);
-
-        // $response = $this->postJson('api/login', [
-        //     'email' => $user->email,
-        //     'password' => 'Abcdefg1999*'
-        // ]);
-
+        Sanctum::actingAs($user, ['*']);
+       $response = $this->postJson('/api/logout');
+       $response -> assertJsonFragment([ 'message' => 'Logged out successfully!']);
         
                
     }
