@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import { Link } from 'react-router-dom';
 import arrow from '../assets/arrow.svg';
 import FilterProducts from '../components/FilterProducts';
+import Carousel from '../components/Carousel';
 
 
 function Main() {
@@ -10,6 +11,7 @@ function Main() {
 
   return (
     <div>
+      <Carousel />
       <h2 className="text-center mb-4 mt-4 text-2xl ml-4 font-bold" >Nuestros lentes de contacto</h2>
       <FilterProducts />
       <div className="flex justify-between items-center">
