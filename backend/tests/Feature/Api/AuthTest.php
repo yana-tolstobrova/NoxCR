@@ -42,7 +42,6 @@ class AuthTest extends TestCase
 
     public function test_user_can_login(): void
     {
-
         $user = User::factory()->create([
             'password' => Hash::make('Abcdefg1999*')
 
@@ -56,4 +55,62 @@ class AuthTest extends TestCase
         $response -> assertStatus(200);
         $response -> assertJsonFragment(['message' => 'User succesfully logged In!']);
     }
+
+    public function test_failed_login_invalid_password() {
+
+        $user = User::factory()->create([
+            'password' => Hash::make('Abcdefg1999*')
+
+        ]);
+
+        $response = $this->postJson('api/login', [
+            'email' => $user->email,
+            'password' => 'incorrectpassword'
+        ]);
+
+        $response -> assertStatus(401);
+        $response -> assertJsonFragment([ 'message' => 'Email or password is incorrect!']);
+
+    }
+
+    public function test_email_is_required_for_auth() {
+
+        $user = User::factory()->create([
+            'password' => Hash::make('Abcdefg1999*')
+
+        ]);
+
+        $response = $this->postJson('api/login', [
+            'email' => '',
+            'password' => 'Abcdefg1999*'
+        ]);
+
+        $response -> assertStatus(422);
+        $response -> assertJsonFragment([ 'message' => 'The email field is required.']);
+               
+    }
+
+    public function test_password_is_required_for_auth() {
+
+        $user = User::factory()->create([
+            'password' => Hash::make('Abcdefg1999*')
+
+        ]);
+
+        $response = $this->postJson('api/login', [
+            'email' => $user->email,
+            'password' => ''
+        ]);
+
+        $response -> assertStatus(422);
+        $response -> assertJsonFragment([ 'message' => 'The password field is required.']);
+               
+    }
+
+    
+
+
+
+
+
 }
