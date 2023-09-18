@@ -6,6 +6,7 @@ import FilterProducts from '../components/FilterProducts';
 import Carousel from '../components/Carousel';
 import Accordion from '../components/Accordion';
 import Care from '../components/Care';
+import SocialNetwork from '../components/SocialNetwork';
 
 
 function Main() {
@@ -28,6 +29,8 @@ function Main() {
       </div>
       <Care />
       <Accordion />
+      <h2 className="text-center mb-4 mt-14 text-2xl ml-4 font-bold" >¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
+      <SocialNetwork />
     </div>
   );
 }
