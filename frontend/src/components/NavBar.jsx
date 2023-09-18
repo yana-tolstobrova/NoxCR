@@ -20,10 +20,10 @@ function NavBar({onLogout}) {
       <div className="flex">
           <Search />
           <Link to="/cart">
-            <img className='px-3'src={cart} alt="Profile-icon" /> 
+            <img className='px-3 h-5'src={cart} alt="Profile-icon" /> 
           </Link>
           <Link to="/register">
-            <img className='px-3' src={profile} alt="Profile-icon" /> 
+            <img className='px-3 h-5' src={profile} alt="Profile-icon" /> 
           </Link>
       </div>
 

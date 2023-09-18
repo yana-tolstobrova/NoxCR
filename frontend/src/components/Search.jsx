@@ -31,7 +31,7 @@ function Search() {
         <img
           src={search}
           alt="icon-search"
-          className="cursor-pointer px-3"
+          className="cursor-pointer h-5 px-3"
           onClick={toggleInput}
         />
         {isInputVisible && (
