@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 function ProductList() {
     const navigate = useNavigate();
-
     const [products, setProducts] = useState([]);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 8;
+  
     useEffect(() => {
         axios.get('http://localhost:8000/api/products',)
         .then((response) => {
@@ -36,7 +37,19 @@ function ProductList() {
             console.error('Error deleting product:', error);
         }
     };
-
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+      };
+    
+      const indexOfLastProduct = currentPage * productsPerPage;
+      const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+      const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    
+      const totalPages = Math.ceil(products.length / productsPerPage);
+      const pageNumbers = [];
+      for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+      }
     return (
         <div className=''>
             <h1>Productos</h1>
@@ -45,7 +58,7 @@ function ProductList() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
+                        <th>Producto</th>
                         <th>Categoría</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
@@ -56,13 +69,13 @@ function ProductList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product, index) => (
+                    {currentProducts.map((product, index) => (
                         <tr key={product.id}>
-                            <td>{index + 1}</td>
+                            <td>{indexOfFirstProduct + index + 1}</td>                            
                             <td>{product.name}</td>
                             <td>{product.category}</td>
                             <td>{product.quantity}</td>
-                            <td>${product.price}</td>
+                            <td>₡{product.price}</td>
                             <td>{product.collection}</td>
                             <td>{product.color}</td>
                             <td>{product.detail}</td>
@@ -74,6 +87,23 @@ function ProductList() {
                     ))}
                 </tbody>
             </table>
+            <div>
+        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          Previous
+        </button>
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            onClick={() => handlePageChange(pageNumber)}
+            className={currentPage === pageNumber ? 'active' : ''}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        <button onClick={() => handlePageChange(currentPage + 1)} disabled={indexOfLastProduct >= products.length}>
+          Next
+        </button>
+      </div>
         </div>
     );
 }
