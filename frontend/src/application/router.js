@@ -7,8 +7,8 @@ import GuestLayout from '../utils/GuestLayout';
 import Register from '../pages/Register';
 import ProductsPage from '../pages/ProductsPage';
 import NaturalProductsPage from '../pages/NaturalProductsPage';
-import CrazzyProductsPage from '../pages/CrazzyProductsPage';
-import EscleraProductsPage from '../pages/EscleraProductsPage';
+import CrazyProductsPage from '../pages/CrazyProductsPage';
+import ScleraProductsPage from '../pages/ScleraProductsPage';
 
 const router = createBrowserRouter([
 	{
@@ -36,12 +36,12 @@ const router = createBrowserRouter([
 				element: <NaturalProductsPage />,
 			},
 			{
-				path: '/products/crazzy',
-				element: <CrazzyProductsPage />,
+				path: '/products/crazy',
+				element: <CrazyProductsPage />,
 			},
 			{
-				path: '/products/esclera',
-				element: <EscleraProductsPage />,
+				path: '/products/sclera',
+				element: <ScleraProductsPage />,
 			},
 		],
 	},
@@ -62,12 +62,12 @@ const router = createBrowserRouter([
 				element: <NaturalProductsPage />,
 			},
 			{
-				path: '/products/crazzy',
-				element: <CrazzyProductsPage />,
+				path: '/products/crazy',
+				element: <CrazyProductsPage />,
 			},
 			{
-				path: '/products/esclera',
-				element: <EscleraProductsPage />,
+				path: '/products/sclera',
+				element: <ScleraProductsPage />,
 			},
 		],
 	},

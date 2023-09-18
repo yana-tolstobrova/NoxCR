@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NaturalImage from '../assets/natural-image.svg'; 
-import CrazzyImage from '../assets/crazzy-image.svg';
-import EscleraImage from '../assets/esclera-image.svg';
+import CrazyImage from '../assets/crazy-image.svg';
+import ScleraImage from '../assets/sclera-image.svg';
 
 function FilterProducts() {
   return (
@@ -13,17 +13,17 @@ function FilterProducts() {
         </div>
         <div className="text-center text-lg font-bold">Natural</div>
       </Link>
-      <Link to="/products/crazzy" className="mx-4 text-center">
+      <Link to="/products/crazy" className="mx-4 text-center">
         <div className="w-44 h-44 rounded-full overflow-hidden bg-cover bg-center mb-2">
-          <img src={CrazzyImage} alt="Crazzy Products" className="w-full h-full object-cover" />
+          <img src={CrazyImage} alt="Crazzy Products" className="w-full h-full object-cover" />
         </div>
-        <div className="text-center text-lg font-bold">Crazzy</div>
+        <div className="text-center text-lg font-bold">Crazy</div>
       </Link>
-      <Link to="/products/esclera" className="mx-4 text-center">
+      <Link to="/products/sclera" className="mx-4 text-center">
         <div className="w-44 h-44 rounded-full overflow-hidden bg-cover bg-center mb-2">
-          <img src={EscleraImage} alt="Esclera Products" className="w-full h-full object-cover" />
+          <img src={ScleraImage} alt="Esclera Products" className="w-full h-full object-cover" />
         </div>
-        <div className="text-center text-lg font-bold">Esclera</div>
+        <div className="text-center text-lg font-bold">Sclera</div>
       </Link>
  
     </div>
