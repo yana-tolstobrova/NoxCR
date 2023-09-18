@@ -8,13 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'quantity',
-        'price',
-        'collection',
-        'color',
-        'image',
-        'detail',
-    ];
+
+    protected $table = 'products';
+
+    protected $fillable = ['name', 'quantity', 'price', 'collection', 'color', 'image', 'detail'];
+
+    static function search($query){
+      $results = Product::where('name', 'LIKE', "%$query%")
+                         ->orWhere('collection', 'LIKE', "%$query%")
+                         ->orWhere('color', 'LIKE', "%$query%")
+                         ->get();
+       return $results;
+                            }
 }
+
