@@ -156,10 +156,10 @@ class AuthTest extends TestCase
     }
     public function test_user_can_logout(){
 
-         $user = User::factory()->create([
+            $user = User::factory()->create([
             'password' => Hash::make('Abcdefg1999*')
         ]);
-
+        
         $response = $this->postJson('api/login', [
             'email' => $user->email,
             'password' => 'Abcdefg1999*'
