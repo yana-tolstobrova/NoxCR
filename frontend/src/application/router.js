@@ -14,6 +14,8 @@ import Admin from '../adminPages/AdminPage';
 import CreateProduct from '../adminPages/CreateProduct';
 import EditProduct from '../adminPages/EditProduct';
 import AdminPanel from '../adminPages/AdminPanel';
+import DetailProduct from '../pages/DetailProduct';
+
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
 			{
 				path: '/products',
 				element: <ProductsPage />,
+			},
+			{
+				path: '/product/:id',
+				element: <DetailProduct />,
 			},
 			{
 				path: '/products/natural',
@@ -65,6 +71,10 @@ const router = createBrowserRouter([
 			{
 				path: '/products',
 				element: <ProductsPage />,
+			},
+			{
+				path: '/product/:id',
+				element: <DetailProduct />,
 			},
 			{
 				path: '/products/natural',
