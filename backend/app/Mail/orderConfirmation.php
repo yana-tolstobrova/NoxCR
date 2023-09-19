@@ -8,11 +8,15 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Mail\Mailables\Attachment;
+
   
 class orderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
-  
+
+
     public $orderData;
   
     /**
@@ -21,6 +25,7 @@ class orderConfirmation extends Mailable
     public function __construct($orderData)
     {
         $this->orderData = $orderData;
+        
     }
   
     /**
@@ -51,6 +56,8 @@ class orderConfirmation extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromStorage('public', 'cuidados/Cuidados.pdf')
+        ];
     }
 }
