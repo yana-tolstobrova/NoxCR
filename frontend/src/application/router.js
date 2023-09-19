@@ -9,6 +9,7 @@ import ProductsPage from '../pages/ProductsPage';
 import NaturalProductsPage from '../pages/NaturalProductsPage';
 import CrazyProductsPage from '../pages/CrazyProductsPage';
 import ScleraProductsPage from '../pages/ScleraProductsPage';
+import Search from '../pages/Search';
 
 const router = createBrowserRouter([
 	{
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
 			{
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
+			},
+			{
+				path: '/search',
+				element: <Search />,
 			},
 		],
 	},
