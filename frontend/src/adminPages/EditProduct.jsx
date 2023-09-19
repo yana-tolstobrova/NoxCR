@@ -133,11 +133,17 @@ function EditProduct() {
                     >
                         <option value=''>Selecciona un color</option>
                         <option value='Red'>Rojo</option>
-                        <option value='Blue'>Azul</option>
+                        <option value='Orange'>Naranja</option>
+                        <option value='Yellow'>Amarillo</option>
+                        <option value='Blue'>Azul-Celeste</option>
                         <option value='Green'>Verde</option>
-                        <option value='Grey'>Gris</option>
-                        <option value='Brown'>Marron</option>
+                        <option value='Pink'>Rosa</option>
                         <option value='Black'>Negro</option>
+                        <option value='Purple'>Morado</option>
+                        <option value='Grey'>Gris</option>
+                        <option value='White'>Blanco</option>
+                        <option value='Naruto'>Naruto</option>
+                        <option value='UV Glow'>Brillan en luz negra</option>
                     </select>
                 </div>
                 <div>

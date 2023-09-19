@@ -13,6 +13,7 @@ import ProductList from '../adminPages/Products';
 import Admin from '../adminPages/AdminPage';
 import CreateProduct from '../adminPages/CreateProduct';
 import EditProduct from '../adminPages/EditProduct';
+import AdminPanel from '../adminPages/AdminPanel';
 
 const router = createBrowserRouter([
 	{
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
 			},
+			{
+				path: '/admin',
+				element: <Admin />,
+			},
 		],
 	},
 	{
@@ -62,10 +67,6 @@ const router = createBrowserRouter([
 				element: <ProductsPage />,
 			},
 			{
-				path: '/admin',
-				element: <Admin />,
-			},
-			{
 				path: '/products/natural',
 				element: <NaturalProductsPage />,
 			},
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
 			{
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
+			},
+			{
+				path: '/admin/adminPanel',
+				element: <AdminPanel />,
 			},
 			{
 				path: '/admin/products',
