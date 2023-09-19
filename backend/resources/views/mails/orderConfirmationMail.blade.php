@@ -28,12 +28,13 @@
     </tr>
    </table>
 
-   <h3>Adicionalmente, aprovechamos este correo para recordarte que tu salud 
+   <h4>Adicionalmente, aprovechamos este correo para recordarte que tu salud 
     y tu bienestar es lo mas importante para nosotros, por eso hemos incluido 
     un archivo adjunto con todas las normas de uso, higiene y cuidado para tus lentes noxCR.
     Por favor, descárgalo y leelo cuidadosamente antes de usar el producto y, si tienes cualquier pregunta, 
-    sugerencia o inquietud, no dudes en contactarnos por cualquiera de nuestras redes sociales, nuestro <a href="http://wa.me/50684993726">wasapp</a> o por correo a noxcrlentes@gmail.com
-    </h3>
+    sugerencia o inquietud, no dudes en contactarnos por cualquiera de 
+    nuestras redes sociales, nuestro <a href="http://wa.me/50684993726">wasapp</a> o por correo a noxcrlentes@gmail.com </h4>
+
 
    
 
