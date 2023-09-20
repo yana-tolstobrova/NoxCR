@@ -7,6 +7,8 @@ use Mail;
 use App\Mail\DemoMail;
 use App\Mail\orderConfirmation;
 use App\Models\User;
+use Symfony\Component\Mime\Part\TextPart;
+use Symfony\Component\Mime\Part\File;
   
 class MailController extends Controller
 {

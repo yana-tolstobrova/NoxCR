@@ -8,9 +8,12 @@
 </head>
 
 <body>
+
+
     <h1>Confirmación de orden de compra</h1>
 
-    <p></p>
+
+
     <p> Tu compra se ha realizado exitosamente!. Estos son los datos de tu transacción:</p>
 
    <table>

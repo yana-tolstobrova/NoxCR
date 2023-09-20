@@ -10,6 +10,8 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Mail\Mailables\Attachment;
+use Symfony\Component\Mime\Part\TextPart;
+use Symfony\Component\Mime\Part\File;
 
   
 class orderConfirmation extends Mailable
@@ -57,7 +59,10 @@ class orderConfirmation extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromStorage('public', 'cuidados/Cuidados.pdf')
+            // Attachment::fromPath('public_path(/))
+            //     ->as('cuidados-nox.pdf')
+            //     // ->withMime('application/pdf')
+
         ];
     }
 }
