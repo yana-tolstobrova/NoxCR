@@ -5,6 +5,7 @@ import { useAuth } from '../contexts/AuthContext';
 import NavBar from '../components/NavBar';
 
 
+
 export default function DefaultLayout() {
 	const { user, setUser } = useAuth();
     

@@ -13,6 +13,11 @@ import ProductList from '../adminPages/Products';
 import Admin from '../adminPages/AdminPage';
 import CreateProduct from '../adminPages/CreateProduct';
 import EditProduct from '../adminPages/EditProduct';
+import AdminPanel from '../adminPages/AdminPanel';
+import DetailProduct from '../pages/DetailProduct';
+import CartProducts from '../pages/CartProducts';
+
+import SearchCard from '../pages/SearchCard';
 
 const router = createBrowserRouter([
 	{
@@ -36,6 +41,14 @@ const router = createBrowserRouter([
 				element: <ProductsPage />,
 			},
 			{
+				path: '/product/:id',
+				element: <DetailProduct />,
+			},
+			{
+				path: '/add-to-cart',
+				element: <CartProducts />,
+			},
+			{
 				path: '/products/natural',
 				element: <NaturalProductsPage />,
 			},
@@ -46,6 +59,14 @@ const router = createBrowserRouter([
 			{
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
+			},
+			{
+				path: '/admin',
+				element: <Admin />,
+			},
+			{
+				path: '/search',
+				element: <SearchCard />,
 			},
 		],
 	},
@@ -62,8 +83,8 @@ const router = createBrowserRouter([
 				element: <ProductsPage />,
 			},
 			{
-				path: '/admin',
-				element: <Admin />,
+				path: '/product/:id',
+				element: <DetailProduct />,
 			},
 			{
 				path: '/products/natural',
@@ -76,6 +97,10 @@ const router = createBrowserRouter([
 			{
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
+			},
+			{
+				path: '/admin/adminPanel',
+				element: <AdminPanel />,
 			},
 			{
 				path: '/admin/products',
