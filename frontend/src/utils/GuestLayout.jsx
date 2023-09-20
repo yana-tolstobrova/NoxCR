@@ -5,10 +5,6 @@ import { Header } from '../components/Header';
 
 function GuestLayout() {
     const { user } = useAuth();
-	
-	if (user) {
-		return <Navigate to="/dashboard" />;
-	}
 
   return (
     <>

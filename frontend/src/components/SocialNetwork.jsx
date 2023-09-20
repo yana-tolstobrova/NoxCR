@@ -37,7 +37,7 @@ function SocialNetwork() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-1 lg:px-32 lg:pt-24 mt-[-100px]">
+    <div className="container mx-auto px-4 py-1 lg:px-32 lg:pt-24 mt-[-100px] mb-10">
       <div className="-m-1 flex flex-wrap ">
         <div className="flex w-1/2">
           {largeImages.map((image, index) => (

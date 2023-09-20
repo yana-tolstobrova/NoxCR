@@ -7,6 +7,7 @@ import Carousel from '../components/Carousel';
 import Accordion from '../components/Accordion';
 import Care from '../components/Care';
 import SocialNetwork from '../components/SocialNetwork';
+import Footer from '../components/Footer';
 
 
 function Main() {
@@ -27,10 +28,12 @@ function Main() {
       <div className="mb-4">
         <Card limit={visibleCards} />
       </div>
+      <h2 className="text-left mt-8 text-2xl ml-4  font-bold" style={{ marginLeft: '240px' }}>Cuidados</h2>
       <Care />
       <Accordion />
-      <h2 className="text-center mb-4 mt-14 text-2xl ml-4 font-bold" >¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
+      <h2 className="text-center mb-8 mt-14 text-2xl ml-4 font-bold" >¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
       <SocialNetwork />
+      <Footer />
     </div>
   );
 }
