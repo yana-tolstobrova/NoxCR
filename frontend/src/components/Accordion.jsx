@@ -1,41 +1,9 @@
 import React, { useState } from 'react';
 import arrowCarousel from '../assets/arrow-carousel.svg'
 import arrow from '../assets/arrow.svg'
+import accordionItems from '../data/dataAccordion';
 
 function Accordion() {
-  const accordionItems = [
-    {
-      title: 'Accordion Item #1',
-      content:
-        'This is the first item\'s accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-    },
-    {
-      title: 'Accordion Item #2',
-      content:
-        'This is the second item\'s accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-    },
-    {
-      title: 'Accordion Item #3',
-      content:
-        'This is the third item\'s accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-    },
-    {
-        title: 'Accordion Item #4',
-        content:
-          'This is the four item\'s accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-      },
-      {
-        title: 'Accordion Item #5',
-        content:
-          'This is the five item\'s accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-      },
-      {
-        title: 'Accordion Item #6',
-        content:
-          'This is the six item\'s accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions.',
-      },
-  ];
-
   const [openItemIndex, setOpenItemIndex] = useState(null);
 
   const toggleItem = (index) => {
@@ -49,7 +17,7 @@ function Accordion() {
   return (
     <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px' }}>
     <h1 className="text-2xl font-semibold mb-4">Preguntas frecuentes</h1>
-    <div className="space-y-2 bg-white text-black">
+    <div className="bg-white text-black">
       {accordionItems.map((item, index) => (
         <div
           key={index}
@@ -58,6 +26,10 @@ function Accordion() {
           <div
             className="p-3 cursor-pointer flex justify-between items-center"
             onClick={() => toggleItem(index)}
+            style={{
+              border: '8px solid black',
+              margin: '0', 
+            }}
           >
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <span className={`transform transition-transform ${index === openItemIndex ? 'rotate-180' : ''} `}>

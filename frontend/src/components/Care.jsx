@@ -16,9 +16,9 @@ function Care() {
 
   return (
     <div className="mx-auto max-w-screen-xl px-4">
-      <div className="flex justify-center space-x-4 m-10">
+      <div className="flex justify-center space-x-6 m-10">
         {careData.map((care, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg w-1/3">
+          <div key={index} className="bg-white p-4 pt-0 rounded-lg w-1/3">
             <div className="flex justify-center mb-4">
               <img
                 src={imgCare}
