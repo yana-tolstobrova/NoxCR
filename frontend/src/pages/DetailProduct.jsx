@@ -6,7 +6,7 @@ import { addToCart } from "../utils/ProductsToCart";
 function DetailProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
