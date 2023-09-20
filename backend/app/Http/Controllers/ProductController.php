@@ -29,13 +29,16 @@ class ProductController extends Controller
                 'detail' => 'required',
             ]);
 
-            $imagePath = null;
-
             if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('images'), $imageName);
-                $imagePath = 'images/' . $imageName;
+                // Upload the image to Cloudinary
+                $uploadedFile = $request->file('image')->getRealPath();
+                $cloudinaryUpload = \Cloudinary\Uploader::upload($uploadedFile);
+    
+                // Get the Cloudinary URL of the uploaded image
+                $imagePath = $cloudinaryUpload['secure_url'];
+            } else {
+                // No image was uploaded, set image path to null or any default value
+                $imagePath = null;
             }
 
             $product = Product::create([
