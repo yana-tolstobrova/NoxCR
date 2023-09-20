@@ -20,11 +20,12 @@ class ProductController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
+                'category' => 'required',
                 'quantity' => 'required|integer|min:0',
                 'price' => 'required|numeric|min:0',
+                'collection' => 'nullable',
+                'color' => 'nullable',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'collection' => 'required',
-                'color' => 'required',
                 'detail' => 'required',
             ]);
 
@@ -33,17 +34,18 @@ class ProductController extends Controller
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('public/images', $imageName);
+                $image->move(public_path('images'), $imageName);
                 $imagePath = 'images/' . $imageName;
             }
 
             $product = Product::create([
                 'name' => $request->input('name'),
+                'category' => $request->input('category'),
                 'quantity' => $request->input('quantity'),
                 'price' => $request->input('price'),
-                'image' => $imagePath,
                 'collection' => $request->input('collection'),
                 'color' => $request->input('color'),
+                'image' => $imagePath,
                 'detail' => $request->input('detail'),
             ]);
 
@@ -62,7 +64,16 @@ class ProductController extends Controller
             return response()->json(['error' => 'El producto no se encontró.'], 404);
         }
     }
-
+    public function edit($id): JsonResponse
+    {
+        try {
+            $product = Product::findOrFail($id);
+        
+            return response()->json($product);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'El producto no se encontró.'], 404);
+        }
+    }
     public function update(Request $request, $id): JsonResponse
     {
         try {
@@ -70,11 +81,12 @@ class ProductController extends Controller
 
             $request->validate([
                 'name' => 'required',
+                'category' => 'required',
                 'quantity' => 'required|integer|min:0',
                 'price' => 'required|numeric|min:0',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'collection' => 'required',
-                'color' => 'required',
+                'collection' => 'nullable',
+                'color' => 'nullable',
                 'detail' => 'required',
             ]);
 
@@ -93,6 +105,7 @@ class ProductController extends Controller
 
             $product->update([
                 'name' => $request->input('name'),
+                'category' => $request->input('category'),
                 'quantity' => $request->input('quantity'),
                 'price' => $request->input('price'),
                 'image' => $imagePath,
@@ -126,7 +139,7 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $searchTerm = $request->input('search');
+        $searchTerm = $request->input('term');
 
         $products = Product::where(function ($query) use ($searchTerm) {
             $query->where('name', 'LIKE', "%$searchTerm%")

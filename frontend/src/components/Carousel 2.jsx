@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import image1 from '../assets/img1-carousel-home.webp';
-import image2 from '../assets/img2-carousel-home.webp';
-import image3 from '../assets/img3-carousel-home.webp';
-import image4 from '../assets/img4-carousel-home.webp';
-
 function Carousel() {
-  const images = [image1, image2, image3, image4];
+  const images = [
+    'https://mdbcdn.b-cdn.net/img/new/slides/041.webp',
+    'https://mdbcdn.b-cdn.net/img/new/slides/042.webp',
+    'https://mdbcdn.b-cdn.net/img/new/slides/043.webp',
+  ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -23,8 +22,8 @@ function Carousel() {
   };
 
   return (
-    <div className="relative" style={{ height: '680px', marginBottom: '60px'}}>
-      <div className="w-full overflow-hidden" style={{ height: '100%' }}>
+    <div className="relative">
+      <div className="w-full overflow-hidden">
         <div
           className="flex transition-transform duration-300 ease-in-out"
           style={{
@@ -33,12 +32,8 @@ function Carousel() {
           }}
         >
           {images.map((image, index) => (
-            <div key={index} className="w-full" style={{ height: '100%' }}>
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="block w-full h-full object-cover"
-              />
+            <div key={index} className="w-full">
+              <img src={image} alt={`Slide ${index + 1}`} className="block w-full" />
             </div>
           ))}
         </div>
