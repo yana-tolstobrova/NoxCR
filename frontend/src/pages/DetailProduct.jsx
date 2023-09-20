@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProductDetails } from "../services/ApiGetProductDetails";
+import { addToCart } from "../utils/ProductsToCart";
 
 function DetailProduct() {
   const { id } = useParams();
@@ -23,15 +24,16 @@ function DetailProduct() {
   }, [id]);
 
   const handleAddToCart = () => {
-    const totalPrice = product.price * quantity;
-    setCartCount(cartCount + quantity);
+    const totalPrice = roundedPrice * quantity;
+    addToCart(product, quantity);
+    window.location.href = "/add-to-cart"; 
   };
 
   if (!product) {
     return <div>Cargando...</div>;
   }
 
-  const roundedPrice = Math.round(product.price);
+  const roundedPrice = Math.round(product.price).toLocaleString();
 
   return (
     <div className="p-4 space-y-4 md:w-3/4 md:mx-auto">
@@ -74,11 +76,10 @@ function DetailProduct() {
             Agregar al Carrito
           </button>
           </div>
-          <p className="text-gray-600">Total: ${roundedPrice * quantity}</p>
           <p className="text-2xl font-bold text-gray-800 text-right">
             ${roundedPrice}
             <span className="text-xl font-normal text-gray-600">
-              /por lentes
+              /por lentillas
             </span>
           </p>
         </div>

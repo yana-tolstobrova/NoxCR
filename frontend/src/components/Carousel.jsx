@@ -23,7 +23,7 @@ function Carousel() {
   };
 
   return (
-    <div className="relative" style={{ height: '800px', marginTop: '50px', marginBottom: '40px'}}>
+    <div className="relative" style={{ height: '680px', marginTop: '5px', marginBottom: '60px'}}>
       <div className="w-full overflow-hidden" style={{ height: '100%' }}>
         <div
           className="flex transition-transform duration-300 ease-in-out"
