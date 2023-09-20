@@ -22,7 +22,13 @@ function ProductList() {
 
     const deleteProduct = (id) => {
         try {
-            axios.delete(`http://localhost:8000/api/products/${id}`)
+            axios.delete(`http://localhost:8000/api/products/${id}`, {
+                withCredentials: true,
+                headers: {
+                  "Accept": "application/json",
+                  "Content-Type": "application/json",
+                },
+              })
             .then((response) => {
                 if (response.status === 200) {
                     setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
