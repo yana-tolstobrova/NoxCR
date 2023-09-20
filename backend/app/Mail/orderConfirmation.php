@@ -59,10 +59,8 @@ class orderConfirmation extends Mailable
     public function attachments(): array
     {
         return [
-            // Attachment::fromPath('public_path(/))
-            //     ->as('cuidados-nox.pdf')
-            //     // ->withMime('application/pdf')
-
+            Attachment::fromPath(public_path('uploads/cuidados-nox.pdf'))
+               
         ];
     }
 }
