@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Register() {
   const { setUser } = useAuth();
 	const [nameError, setNameError] = React.useState('');
 	const [emailError, setEmailError] = React.useState('');
 	const [passwordError, setPasswordError] = React.useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -21,7 +23,8 @@ function Register() {
 			const resp = await axios.post('/register', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				return <Navigate to="/dashboard" />;
+				// return <Navigate to="/dashboard" />;
+        navigate('/dashboard');
 			}
 		} catch (error) {
 			if (error.response.status === 422) {
