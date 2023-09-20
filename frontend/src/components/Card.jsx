@@ -34,6 +34,7 @@ function Card({ collection, limit }) {
               </div>
             </div>
           </div>
+          // <Card product={product} />
         ))}
       </div>
     </div>

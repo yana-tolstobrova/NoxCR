@@ -14,7 +14,7 @@ import Admin from '../adminPages/AdminPage';
 import CreateProduct from '../adminPages/CreateProduct';
 import EditProduct from '../adminPages/EditProduct';
 import AdminPanel from '../adminPages/AdminPanel';
-import Search from '../pages/Search';
+import SearchCard from '../pages/SearchCard';
 
 const router = createBrowserRouter([
 	{
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/search',
-				element: <Search />,
+				element: <SearchCard />,
 			},
 		],
 	},
