@@ -1,13 +1,15 @@
-import { useState } from "react"
-import search from "../assets/search.svg"
-// import { Link } from "react-router-dom"
-
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import searchService from '../services/searchService'; // Importa el servicio de búsqueda
+import search from '../assets/search.svg';
 
 function Search() {
     const [isInputVisible, setInputVisible] = useState(false);
+    const inputRef = useRef(null);
+    const navigate = useNavigate();
   
     const toggleInput = () => {
-      setInputVisible(!isInputVisible);
+        setInputVisible((prevValue) => !prevValue);
     };
   
     const handleMouseEnter = () => {
@@ -17,30 +19,70 @@ function Search() {
     };
   
     const handleMouseLeave = () => {
-      if (!isInputVisible) {
+      if (isInputVisible) {
         setInputVisible(false);
       }
     };
+
+    // const handleInputChange = (e) => {
+    //     setSearchTerm(e.target.value);
+    // };
+
+    const goToSearch = () => {
+        const inputValue = inputRef?.current?.value
+        if (inputValue && isInputVisible) {
+            navigate(`/search?query=${inputValue}`)
+        }
+    }
+    
+    const onClickHandler = (e) => {
+        e.preventDefault();
+        toggleInput();
+        goToSearch();
+    }
+
+    // const handleSearch = async () => {
+    //   try {
+    //     const results = await searchService.searchProducts(searchTerm);
+    //     setSearchResults(results);
+    //   } catch (error) {
+    //     console.error('Error en la solicitud de búsqueda:', error);
+    //   }
+    // };
+
+    // const handleSearch = (e) => {
+    //     e.preventDefault();
+    //     `/search?query=${searchTerm}`;
+    // };
+
+    const onKeyDownHandler = (event) => {
+        if(event.key === 'Enter'){
+            goToSearch();
+        }
+    }
   
     return (
       <div
-        className="relative"
+        className="flex items-center relative w-48"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <img
-          src={search}
-          alt="icon-search"
-          className="cursor-pointer h-5 px-3"
-          onClick={toggleInput}
-        />
         {isInputVisible && (
           <input
+            ref={inputRef}
             type="text"
-            className="border rounded-lg p-2 absolute top-0 right-0 mt-10"
+            className="border rounded-lg py-2 pr-7 pl-2 w-48"
             placeholder="Buscar..."
+            // onChange={handleInputChange}
+            onKeyDown={onKeyDownHandler}
           />
-        )}
+          )}
+          <img
+            src={search}
+            alt="icon-search"
+            className="cursor-pointer h-5 px-2 absolute right-0"
+            onClick={onClickHandler}
+          />
       </div>
     );
   }

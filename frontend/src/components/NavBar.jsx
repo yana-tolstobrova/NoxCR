@@ -17,7 +17,7 @@ function NavBar({onLogout}) {
           <TwLink href="#FaQ">FaQ</TwLink> 
           <TwLink href="#Contacto">Contacto</TwLink> 
       </nav>
-      <div className="flex">
+      <div className="flex items-center h-11">
           <Search />
           <Link to="/cart">
             <img className='px-3 h-5'src={cart} alt="Profile-icon" /> 

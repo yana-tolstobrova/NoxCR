@@ -35,10 +35,11 @@ return (
               </div>
             </Link>
           </div>
+        // <Card product={product} />
         </div>
-      ))}
+        ))}
+      </div>
     </div>
-  </div>
 );
 }
 

@@ -17,6 +17,7 @@ import AdminPanel from '../adminPages/AdminPanel';
 import DetailProduct from '../pages/DetailProduct';
 import CartProducts from '../pages/CartProducts';
 
+import SearchCard from '../pages/SearchCard';
 
 const router = createBrowserRouter([
 	{
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
 			{
 				path: '/admin',
 				element: <Admin />,
+			},
+			{
+				path: '/search',
+				element: <SearchCard />,
 			},
 		],
 	},
