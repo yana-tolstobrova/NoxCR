@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
+use Cloudinary\Configuration\Configuration;
+use Cloudinary\Api\Upload\UploadApi;
 
 class ProductController extends Controller
 {
@@ -29,16 +31,24 @@ class ProductController extends Controller
                 'detail' => 'required',
             ]);
 
+            $imagePath = null;
+
             if ($request->hasFile('image')) {
-                // Upload the image to Cloudinary
                 $uploadedFile = $request->file('image')->getRealPath();
-                $cloudinaryUpload = \Cloudinary\Uploader::upload($uploadedFile);
     
-                // Get the Cloudinary URL of the uploaded image
+                Configuration::instance([
+                    'cloud' => [
+                      'cloud_name' => 'noxcr', 
+                      'api_key' => '711534858381223', 
+                      'api_secret' => 'LqQSOZX4HD8h7T2_1r0q7p0Np3U'],
+                    'url' => [
+                      'secure' => true]]);
+    
+                $uploadApi = new UploadApi();
+    
+                $cloudinaryUpload = $uploadApi->upload($uploadedFile);
+
                 $imagePath = $cloudinaryUpload['secure_url'];
-            } else {
-                // No image was uploaded, set image path to null or any default value
-                $imagePath = null;
             }
 
             $product = Product::create([
