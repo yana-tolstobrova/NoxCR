@@ -35,7 +35,7 @@ return (
               </div>
             </Link>
           </div>
-        // <Card product={product} />
+        {/* <Card product={product} /> */}
         </div>
         ))}
       </div>
