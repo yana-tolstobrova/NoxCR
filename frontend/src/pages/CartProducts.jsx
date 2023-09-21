@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from '../assets/delete-icon.svg';
 import gifIcon from '../assets/gif-icon.svg';
+import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
