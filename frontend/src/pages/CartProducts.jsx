@@ -34,6 +34,14 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0).toLocaleString();
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    sendShippingOrder().then(res => {
+      console.log(res);
+    }).catch(error => console.log(error))
+
+  };
+
   const openModal = () => {
     setShowModal(true);
   };
@@ -123,7 +131,7 @@ function CartProducts() {
               </div>
               <p className=" text-end text-l font-semibold" style={{color:"purple"}}>
               (un estuche de lentes sin coste)</p>
-          <button className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
+          <button onClick= {handleOnSubmit} className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
             Orden de pedido
           </button>
           <Link to="/"  className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
