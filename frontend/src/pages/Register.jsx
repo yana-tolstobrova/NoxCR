@@ -47,35 +47,36 @@ function Register() {
 			}
 		}
 	};
+
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-        <h1 className="text-5xl font-semibold"> Bienvenido !!! </h1>
-        <p className="font-medium text-lg text-gray-500 mt-4">
+    <div className="flex items-start justify-center h-screen">
+      <div className="bg-white px-10 py-10 border-2 border-gray-100">
+        <h4 className="text-3xl font-semibold">Crea tu cuenta</h4>
+        <p className="font-medium text-lg text-gray-500 mt-2">
           {" "}
           Ingrese su información para poder registrarse.
         </p>
         <div className="mt-8">
           <form  onSubmit={handleSubmit} action="#" method="POST">
-            <div>
+            <div className='mt-4'>
               <label className="text-lg font-medium" htmlFor="name">
                 Nombre
               </label>
               <input
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                 placeholder="Ingrese su nombre"
                 name="name"
                 type="text"
                 id="name"
               />
-               {nameError && <p>{nameError}</p>}
+               {nameError && <p className="text-sm text-red-600">{nameError}</p>}
             </div>
-            <div>
+            <div className='mt-4'>
               <label className="text-lg font-medium" htmlFor="email">
                 Correo
               </label>
               <input
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                 placeholder="Ingrese su correo"
                 name="email"
                 type="email"
@@ -83,12 +84,12 @@ function Register() {
               />
                {emailError && <p className="text-sm text-red-600">{emailError}</p>}
             </div>
-            <div>
+            <div className='mt-4'>
               <label className="text-lg font-medium" htmlFor="password">
                 Contraseña
               </label>
               <input
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                 placeholder="Ingrese su contraseña"
                 type="password"
                 name="password"
@@ -96,27 +97,31 @@ function Register() {
               />
               {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
             </div>
-            <div>
+            <div className='mt-4'>
               <label className="text-lg font-medium" htmlFor="cpassword">
                 Confirmar la contraseña
               </label>
               <input
-                className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                 placeholder="Ingrese su contraseña"
                 type="password"
                 name="cpassword"
                 id="cpassword"
               />
+              {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
             </div>
             <div className="mt-8 flex flex-col gap-y-4">
               <button
-                className="active:scale-[.98] active:duration-75 transition-all hoover:scale-[1.01] ease-in-out py-3 rounded-xl bg-blue-500 text-white text-lg font-bold"
+                className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                 type="submit"
               >
-                Ingresar
+                Crear cuenta
               </button>
             </div>
-            <a href="/login">Login</a>
+            <div className='mt-4 flex items-center justify-center'>
+              <p className='text-lg font-medium'>¿Ya tienes cuenta?</p>
+              <a  className='ml-4' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
+            </div>
           </form>
         </div>
       </div>

@@ -38,7 +38,7 @@ class AuthController extends Controller {
 
         if (!$user || !Hash::check($data['password'], $user->password)) {
             return response()->json([
-                'message' => 'Email or password is incorrect!'
+                'message' => 'El correo electrónico o la contraseña son incorrectos.'
             ], 401);
         }
 
@@ -48,7 +48,7 @@ class AuthController extends Controller {
 
         return response()->json([
             'user' => new UserResource($user),
-            'message' => 'User succesfully logged In!'
+            'message' => 'Usuario conectado correctamente!'
         ])->withCookie($cookie);
     }
 
@@ -59,7 +59,7 @@ class AuthController extends Controller {
         $cookie = cookie()->forget('token');
 
         return response()->json([
-            'message' => 'Logged out successfully!'
+            'message' => 'Se ha desconectado correctamente!'
         ])->withCookie($cookie);
     }
 

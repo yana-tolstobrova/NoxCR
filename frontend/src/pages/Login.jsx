@@ -3,9 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
 
+
+
 function Login() {
   const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
+  const [emailError, setEmailError] = React.useState('');
+	const [passwordError, setPasswordError] = React.useState('');
   const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -26,58 +30,78 @@ function Login() {
 			if (error.response.status === 401) {
 				setError(error.response.data.message);
 			}
+      if (error.response.data.errors.email) {
+        setEmailError(error.response.data.errors.email[0]);
+      } else {
+        setEmailError('');
+      }
+      if (error.response.data.errors.password) {
+        setPasswordError(error.response.data.errors.password[0]);
+      } else {
+        setPasswordError('');
+      }
+
 		}
 	};
   return (
     <>
-        <div className="flex items-center justify-center h-screen">
-          <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-            <h1 className="text-5xl font-semibold"> Bienvenido Nuevamente</h1>
-            <p className="font-medium text-lg text-gray-500 mt-4">
+        <div className="flex items-start justify-center h-screen">
+          <div className="bg-white px-10 py-20 border-2 border-gray-100">
+            <h2 className="text-5xl font-semibold">Accede a Nox CR</h2>
+            <p className="font-medium text-lg text-gray-500 mt-2">
               {" "}
               Por favor ingrese sus datos
             </p>
+            <div>{error}</div>
             <div className="mt-8">
               <form onSubmit={handleSubmit} method="POST" action="#">
-                <div>
+                <div className='mt-4'>
                   <label className="text-lg font-medium" htmlFor="email">
                     Correo
                   </label>
                   <input
-                    className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                     placeholder="Ingrese su correo"
                     type="email"
                     name="email"
                     id="email"
                   />
+                  {emailError && <p className="text-sm text-red-600">{emailError}</p>}
                 </div>
-                <div>
+                <div className='mt-4'>
                   <label className="text-lg font-medium" htmlFor="password">
                     Contraseña
                   </label>
                   <input
-                    className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                     placeholder="Ingrese su contraseña"
                     type="password"
                     name="password"
                     ide="password"
                   />
+                  {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
                 </div>
                 <div className="mt-8 flex flex-col gap-y-4">
                   <button
-                    className="active:scale-[.98] active:duration-75 transition-all hoover:scale-[1.01] ease-in-out py-3 rounded-xl bg-blue-500 text-white text-lg font-bold"
+                    className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                     type="submit"
                   >
-                    Entrar
+                   Iniciar sesión
                   </button>
                 </div>
-                <a href="/register">Registro</a>
+                <div className='mt-4 flex items-center justify-center'>
+                  <p className='text-lg font-medium'>¿Eres nuevo?</p>
+                  <a  className='ml-4' href="/register"style={{ color: '#55285A' }}>Registrate</a>
+                </div>
               </form>
 
             </div>
           </div>
         </div>
+       
     </>
+    
+    
   );
 }
 
