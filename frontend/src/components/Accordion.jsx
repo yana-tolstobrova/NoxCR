@@ -16,7 +16,7 @@ function Accordion(props) {
 
   return (
     <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px', ...customStyles }}>
-    <h1 className="text-2xl font-semibold mb-4">Preguntas frecuentes</h1>
+    <h1 className="text-2xl font-semibold mb-4" id="faq">Preguntas frecuentes</h1>
     <div className="bg-white text-black">
       {props.accordionItems.map((item, index) => (
         <div

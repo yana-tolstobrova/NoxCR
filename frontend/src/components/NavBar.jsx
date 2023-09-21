@@ -17,8 +17,8 @@ function NavBar({onLogout}) {
       <nav>
           <TwLink href="#productos">Productos</TwLink> 
           <TwLink href="#cuidados">Cuidados</TwLink> 
-          <TwLink href="#FaQ">FaQ</TwLink> 
-          <TwLink href="#Contacto">Contacto</TwLink> 
+          <TwLink href="#faq">FaQ</TwLink> 
+          <TwLink href="#contacto">Contacto</TwLink> 
       </nav>
       <div className="flex items-center h-11">
           <Search />
