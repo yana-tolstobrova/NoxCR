@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Login from '../pages/Login';
 import Main from '../pages/Main';
-import Dashboard from '../pages/Dashboard';
 import ProtectedLayout from '../utils/ProtectedLayout';
 import GuestLayout from '../utils/GuestLayout';
 import Register from '../pages/Register';
@@ -75,8 +74,8 @@ const router = createBrowserRouter([
 		element: <ProtectedLayout />,
 		children: [
 			{
-				path: '/dashboard',
-				element: <Dashboard />,
+				path: '/',
+				element: <Main />
 			},
 			{
 				path: '/products',

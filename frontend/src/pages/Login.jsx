@@ -1,11 +1,12 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
 
 function Login() {
   const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
+  const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -19,7 +20,7 @@ function Login() {
 			const resp = await axios.post('/login', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				return <Navigate to="/dashboard" />;
+				navigate('/');
 			}
 		} catch (error) {
 			if (error.response.status === 401) {
