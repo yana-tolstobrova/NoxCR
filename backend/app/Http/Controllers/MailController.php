@@ -17,7 +17,7 @@ class MailController extends Controller
      *
      * @return response()
      */
-   
+
     public function orderConfirmation()
     {
      
@@ -26,10 +26,10 @@ class MailController extends Controller
         
         $orderData = [
             'pedido' => 'Tu Orden de compra No. xxxx se ha procesado exitosamente',
-            'producto' => 'Lentillas Natural Zafiro Gris',
-            'cantidad' => "1 par",
-            'precio' => "20$",
-            'total' => "20$ + taxes = 22.50$"
+            'producto' => 'Lentillas Natural de color XXXXXX',
+            'cantidad' => "XX par",
+            'precio' => "XXX ₡",
+            'total' => "XX₡ + taxes = XX,xx ₡"
         ];
          
         //correo de aviso a comprador
@@ -37,12 +37,7 @@ class MailController extends Controller
         //correo de aviso a Admin
         Mail::to($adminMail)->send(new orderConfirmation($orderData));
         
-
         dd("Email is sent successfully.");
     }
-
-
-
-
 
 }

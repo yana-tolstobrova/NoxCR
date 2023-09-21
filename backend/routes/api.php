@@ -18,8 +18,6 @@ use App\Http\Controllers\ProductController;
 */
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::get('send-mail', [MailController::class, 'index']);
 Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
 
 Route::middleware('auth:sanctum')->group(function () {

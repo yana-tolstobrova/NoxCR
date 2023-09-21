@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> NoxCR| Confirmación de compra</title>
+    <title> NoxCR| Orden de Compra</title>
     <!--<link rel="stylesheet" href="backend/resources/css/orderConfirmation.css">-->
 </head>
 
 <body>
 
-
     <h1>Confirmación de orden de compra</h1>
-
-
 
     <p> Tu compra se ha realizado exitosamente!. Estos son los datos de tu transacción:</p>
 
@@ -31,18 +28,16 @@
     </tr>
    </table>
 
-   <h4>Adicionalmente, aprovechamos este correo para recordarte que tu salud 
-    y tu bienestar es lo mas importante para nosotros, por eso hemos incluido 
-    un archivo adjunto con todas las normas de uso, higiene y cuidado para tus lentes noxCR.
-    Por favor, descárgalo y leelo cuidadosamente antes de usar el producto y, si tienes cualquier pregunta, 
-    sugerencia o inquietud, no dudes en contactarnos por cualquiera de 
+   <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
+    y bienestar de tu vista es lo primordial para NoxCR por eso te invitamos 
+    a que antes de recibir tu pedido accedas a este enlace y leas cuidadosamente
+    todas las <a href="http://localhost:3000/#cuidados">normas de uso, higiene y mantenimiento de tus lentes noxCR</a>.
+    
+    Si tienes cualquier pregunta,sugerencia o inquietud, no dudes en contactarnos por cualquiera de 
     nuestras redes sociales, nuestro <a href="http://wa.me/50684993726">wasapp</a> o por correo a noxcrlentes@gmail.com </h4>
 
-
-   
-
-  
      
     <p>Gracias por confiar en NoxCR</p>
+    <img src="" alt="">
 </body>
 </html>
