@@ -10,7 +10,7 @@ import NaturalProductsPage from '../pages/NaturalProductsPage';
 import CrazyProductsPage from '../pages/CrazyProductsPage';
 import ScleraProductsPage from '../pages/ScleraProductsPage';
 import ProductList from '../adminPages/AdminProducts';
-import Admin from '../adminPages/AdminLoginPage';
+import AdminLogin from '../components/AdminLogin';
 import CreateProduct from '../components/CreateProduct';
 import EditProduct from '../components/EditProduct';
 import AdminPanel from '../adminPages/AdminPanel';
@@ -99,7 +99,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/admin',
-				element: <Admin />,
+				element: <AdminLogin />,
 			},
 		],
 	},
