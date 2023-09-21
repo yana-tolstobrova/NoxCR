@@ -3,6 +3,7 @@ import { removeFromCart, incrementQuantity, decrementQuantity,} from "../utils/P
 import { Link } from 'react-router-dom';
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from '../assets/delete-icon.svg';
+import gifIcon from '../assets/gif-icon.svg';
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
@@ -44,7 +45,8 @@ function CartProducts() {
   return (
     <div className="h-screen pt-20">
       <h1 className="mb-10 text-center text-3xl font-bold">Resumen de tu compra</h1>
-      <div className="mx-auto max-w-3xl px-4 space-y-6 xl:px-0">
+      <div className="flex justify-center gap-12">
+      <div className="w-[60%] px-4 space-y-6 xl:px-0">
         {cart.map((item, index) => (
           <div
             key={index}
@@ -67,13 +69,15 @@ function CartProducts() {
               <button
                 className="bg-black text-white px-4 py-2 rounded"
                 onClick={() => handleDecrementQuantity(item)}
+                style={{backgroundColor:'#D7BCD3'}}
               >
                 -
               </button>
               <span className="text-xl font-semibold">{item.quantity}</span>
               <button
-                className="bg-black text-white px-4 py-2 rounded"
+                className="text-white px-4 py-2 rounded"
                 onClick={() => handleIncrementQuantity(item)}
+                style={{backgroundColor:'#D7BCD3'}}
               >
                 +
               </button>
@@ -86,15 +90,17 @@ function CartProducts() {
             </div>
           </div>
         ))}
-        <div className="mt-6 h-full rounded-lg border bg-gray-100 p-6 shadow-md md:w-1/2">
+        </div>
+
+        <div className="h-full rounded-lg border bg-gray-100 p-6 shadow-md w-[30%]">
           <div className="mb-2 flex justify-between">
             <p className="text-gray-700">Subtotal</p>
             <p className="text-gray-700">${total}</p>
           </div>
           <div className="flex justify-between">
             <p className="text-gray-700">Tipo de envío</p>
-            <p className="text-gray-700 text-xl">
-            <span role="button" onClick={openModal} className="cursor-pointer">?</span>
+            <p className="text-l" style={{color:"purple"}}>
+            <span role="button" onClick={openModal} className="cursor-pointer">Más Info.</span>
             </p>
           </div>
           <hr className="my-4" />
@@ -106,7 +112,11 @@ function CartProducts() {
               </p>
             </div>
           </div>
-            <p className="text-lg font-semibold text-black">Regalo especial con tu compra</p>
+          <div className="flex justify-between">
+            <img src={gifIcon} alt="gif icon" className="rounded w-9 h-9"/>
+            <p className="text-lg font-semibold text-black mt-3">
+              Regalo especial con tu compra</p>
+              </div>
           <button className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
             Comprar
           </button>
@@ -114,17 +124,13 @@ function CartProducts() {
             Continuar comprando
           </Link>
         </div>
-      </div>
+        </div>
       <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
     </div>
   );
 }
 
 export default CartProducts;
-
-
-
-
 
 
 
