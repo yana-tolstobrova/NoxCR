@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import image1 from '../assets/img1-carousel-home.webp';
+import image3 from '../assets/img1-carousel-home.webp';
 import image2 from '../assets/img2-carousel-home.webp';
-import image3 from '../assets/img3-carousel-home.webp';
+import image1 from '../assets/img3-carousel-home.webp';
 import image4 from '../assets/img4-carousel-home.webp';
 
 function Carousel() {

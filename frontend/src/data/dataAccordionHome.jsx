@@ -1,4 +1,4 @@
-const accordionItems = [
+const accordionItemsHome = [
     {
         title: '¿Cómo colocar los lentes de contacto?',
         content:
@@ -46,4 +46,4 @@ const accordionItems = [
         },
   ];
   
-  export default accordionItems;
+  export default accordionItemsHome;
