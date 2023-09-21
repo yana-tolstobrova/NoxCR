@@ -66,6 +66,7 @@ function Search() {
         className="flex items-center relative w-48"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        data-testid="search-container" 
       >
         {isInputVisible && (
           <input
@@ -75,6 +76,7 @@ function Search() {
             placeholder="Buscar..."
             // onChange={handleInputChange}
             onKeyDown={onKeyDownHandler}
+            data-testid="search-input"
           />
           )}
           <img
@@ -82,6 +84,7 @@ function Search() {
             alt="icon-search"
             className="cursor-pointer h-5 px-2 absolute right-0"
             onClick={onClickHandler}
+            data-testid="search-icon" 
           />
       </div>
     );

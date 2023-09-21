@@ -114,8 +114,9 @@ function DetailProduct() {
       </div>
       {lightboxOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center m-4"
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center"
           onClick={closeLightbox}
+          style={{margin:'0'}}
         >
           <div className="lightbox-container">
             <img
