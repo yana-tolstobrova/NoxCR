@@ -41,6 +41,7 @@ function Accordion(props) {
         </div>
       ))}
     </div>
+    {props.showDownloadLink && (
     <div className="flex justify-end text-white p-2" style={{ color: 'gray' }}> 
         <a
           href="/ruta-del-archivo.pdf" // Reemplaza con la ruta correcta de tu archivo PDF
@@ -51,6 +52,7 @@ function Accordion(props) {
           <img className="p-1" src={arrow} alt="icono arrow" />
         </a>
       </div>
+      )}
     </div>
   );
 }
