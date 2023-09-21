@@ -5,6 +5,7 @@ import { addToCart } from "../utils/ProductsToCart";
 import Accordion from "../components/Accordion";
 import accordionItemsDetails from '../data/dataAccordionDetails';
 import gifIcon from '../assets/gif-icon.svg';
+import closeButton from '../assets/close.svg';
 
 function DetailProduct() {
   const { id } = useParams();
@@ -113,7 +114,7 @@ function DetailProduct() {
       </div>
       {lightboxOpen && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center"
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center m-4"
           onClick={closeLightbox}
         >
           <div className="lightbox-container">
@@ -126,7 +127,7 @@ function DetailProduct() {
               className="absolute top-4 right-5 text-3xl cursor-pointer text-white"
               onClick={closeLightbox}
             >
-              X
+              <img src={closeButton} alt="close button" className="rounded w-8 h-8 m-3 "/>
             </button>
           </div>
         </div>
