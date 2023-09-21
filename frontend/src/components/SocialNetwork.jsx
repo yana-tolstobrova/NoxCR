@@ -6,6 +6,7 @@ import socialNetwork3 from '../assets/img3-social-network.webp';
 import socialNetwork4 from '../assets/img4-social-network.webp';
 import socialNetwork5 from '../assets/img5-social-network.webp';
 import socialNetwork6 from '../assets/img6-social-network.webp';
+import closeButton from '../assets/close.svg';
 
 function SocialNetwork() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -85,7 +86,7 @@ function SocialNetwork() {
               className="absolute top-4 right-5 text-3xl cursor-pointer text-white"
               onClick={closeLightbox}
             >
-              X
+              <img src={closeButton} alt="close button" className="rounded w-8 h-8 m-3 "/>
             </button>
           </div>
         </div>
