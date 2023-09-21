@@ -41,8 +41,6 @@ function Main() {
       <div className="mb-4">
         <Card limit={visibleCards} />
       </div>
-
-
       <h2 className="text-left mt-8 text-2xl ml-4  font-bold" style={{ marginLeft: '240px' }}>Cuidados</h2>
       <Care />
       <Accordion accordionItems={accordionItemsHome} />
