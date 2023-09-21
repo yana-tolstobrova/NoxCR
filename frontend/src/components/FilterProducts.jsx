@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import scleraCategory from '../assets/eye-category.svg';  
-import naturalCategory from '../assets/natural-image.webp'; 
-import crazyCategory from '../assets/crazy-image.webp'; 
+import scleraCategory from '../assets/imagen-sclera.webp';  
+import naturalCategory from '../assets/imagen-natural.webp'; 
+import crazyCategory from '../assets/crazy-image.svg'; 
 
 function FilterProducts() {
   return (

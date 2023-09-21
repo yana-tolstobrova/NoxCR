@@ -1,19 +1,8 @@
 import React from 'react';
 import imgCare from '../assets/img-care.svg';
+import careData from '../data/dataCareProducts';
 
 function Care() {
-  const careData = [
-    {
-      description: 'Descripción 1 An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.',
-    },
-    {
-      description: 'Descripción 2 An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.',
-    },
-    {
-      description: 'Descripción 3 An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. It is one of many ways you can expose content to users in a progressive manner.',
-    },
-  ];
-
   return (
     <div className="mx-auto max-w-screen-xl px-4">
       <div className="flex justify-center space-x-6 m-10">
