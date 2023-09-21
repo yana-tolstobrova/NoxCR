@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
-import logo from "../assets/Logo.svg"
-import NavBar2 from "./NavBar2";
-import Axios from 'axios';
+import logo from "../assets/Logo.svg";
+import {NavBar} from '../components/NavBar';
+
+
+
 
 export function Header(){
 
