@@ -49,7 +49,7 @@ function DetailProduct() {
             </div>
         <div className="md:w-1/2 space-y-4 md:pl-6">
           <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-xl text-gray-500">Colección: {product.collection} {product.color}</p>
+          <p className="text-xl text-gray-500">Colección: {product.collection} </p>
           <p className="text-lg text-gray-600">{product.detail}</p>
           <div className="flex justify-center">
           <div className="flex items-center space-x-4 pt-6">

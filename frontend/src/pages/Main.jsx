@@ -10,6 +10,7 @@ import SocialNetwork from '../components/SocialNetwork';
 import Footer from '../components/Footer';
 
 
+
 function Main() {
   const [visibleCards, setVisibleCards] = useState(4);
 
@@ -34,6 +35,7 @@ function Main() {
       <h2 className="text-center mb-8 mt-14 text-2xl ml-4 font-bold" >¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
       <SocialNetwork />
       <Footer />
+      
     </div>
   );
 }

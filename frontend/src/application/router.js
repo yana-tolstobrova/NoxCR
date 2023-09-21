@@ -19,6 +19,7 @@ import CartProducts from '../pages/CartProducts';
 import AdminGuestLayout from '../utils/AdminGuestLayout';
 import AdminProtectedLayout from '../utils/AdminProtectedLayout';
 
+import SearchCard from '../pages/SearchCard';
 
 const router = createBrowserRouter([
 	{
@@ -60,6 +61,14 @@ const router = createBrowserRouter([
 			{
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
+			},
+			{
+				path: '/admin',
+				element: <Admin />,
+			},
+			{
+				path: '/search',
+				element: <SearchCard />,
 			},
 		],
 	},
