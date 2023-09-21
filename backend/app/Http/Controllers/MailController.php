@@ -17,24 +17,10 @@ class MailController extends Controller
      *
      * @return response()
      */
-    // public function index()
-    // {
-    //     $mailData = [
-    //         'title' => 'Test Mail',
-    //         'body' => 'This is for testing email using smtp.'
-    //     ];
-         
-    //     Mail::to('sylviall81@gmail.com')->send(new DemoMail($mailData));
-           
-    //     dd("Email is sent successfully.");
-    // }
-
+   
     public function orderConfirmation()
     {
      
-            /*$user = User::findOrFail(1);
-            $userName = $user->name;*/
-
             $userMail = 'sylviall81@gmail.com';
             $adminMail = 'noxcr.mailing@gmail.com';
         
