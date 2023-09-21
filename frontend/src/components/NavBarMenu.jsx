@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import profile from "../assets/profile.svg" 
+import { TwLink } from './TwLink';
+import { Link } from 'react-router-dom';
 
 function NavBarMenu({onLogout}) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -18,16 +20,19 @@ function NavBarMenu({onLogout}) {
           {/* Contenido del menú desplegable */}
           <ul>
             <li>
-            <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={onLogout} href="#">Mi cuenta</a>
+              <Link to="/login">
+                <TwLink>Iniciar sesión</TwLink> 
+              </Link>
             </li>
             <li>
-            <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={onLogout} href="#">Historia de compras</a>
+              <Link to="/register">
+                <TwLink>Crear cuenta</TwLink> 
+              </Link>
             </li>
             <li>
-            <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={onLogout} href="#">Favoritos</a>
-            </li>
-            <li>
-            <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={onLogout} href="#">Logout</a>
+              <Link to="/register">
+                <TwLink onClick={onLogout} href="#">Cerrar sesión</TwLink> 
+              </Link>
             </li>
           </ul>
         </div>
