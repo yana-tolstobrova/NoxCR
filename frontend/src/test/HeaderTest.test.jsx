@@ -1,26 +1,23 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import Logo from '../assets/Logo.svg'
-import '@testing-library/jest-dom/extend-expect';
-import { Header } from '../components/Header';
+// 
 
-describe('Component Header', () => {
-  beforeEach(() => {
-    render(
+import React from 'react';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom'; // Si estás utilizando <Link>
+import { Header } from '../components/Header'; // Importa tu componente Header
+
+describe('Header Component', () => {
+  it('debe renderizar el componente sin errores', () => {
+    // Renderiza el componente dentro de un MemoryRouter si estás utilizando <Link>
+    const { getByAltText } = render(
       <MemoryRouter>
         <Header />
       </MemoryRouter>
     );
+
+    // Asegúrate de que el elemento de imagen (el logo) esté presente
+    const logoElement = getByAltText('Logo');
+    expect(logoElement).toBeInTheDocument();
   });
 
-  test('should render the Logo with alt text "Logo"', () => {
-    const imgElement = screen.getByAltText("Logo");
-    expect(imgElement).toBeInTheDocument();
-  });
-
-  test('should have the correct alt text for the image', () => {
-    const imgElement = screen.getByRole('img', { className: "h-24 w-48" });
-    expect(imgElement).toHaveAttribute('alt', 'Logo');
-  });
+  // Agrega más pruebas según sea necesario
 });
