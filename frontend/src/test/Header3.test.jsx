@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import {jest} from '@jest/globals';
+
 
 
 describe("Header component", () => {
