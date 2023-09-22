@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'purple': '#3C2046',
         'color-icon': '#4CA29C',
+        'icon-accent': '#D7BCD3'
       },
     },
   },

@@ -63,10 +63,6 @@ const router = createBrowserRouter([
 				element: <ScleraProductsPage />,
 			},
 			{
-				path: '/admin',
-				element: <Admin />,
-			},
-			{
 				path: '/search',
 				element: <SearchCard />,
 			},
