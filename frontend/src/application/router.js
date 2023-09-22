@@ -8,13 +8,15 @@ import ProductsPage from '../pages/ProductsPage';
 import NaturalProductsPage from '../pages/NaturalProductsPage';
 import CrazyProductsPage from '../pages/CrazyProductsPage';
 import ScleraProductsPage from '../pages/ScleraProductsPage';
-import ProductList from '../adminPages/Products';
-import Admin from '../adminPages/AdminPage';
-import CreateProduct from '../adminPages/CreateProduct';
-import EditProduct from '../adminPages/EditProduct';
+import ProductList from '../adminPages/AdminProducts';
+import AdminLogin from '../components/AdminLogin';
+import CreateProduct from '../components/CreateProduct';
+import EditProduct from '../components/EditProduct';
 import AdminPanel from '../adminPages/AdminPanel';
 import DetailProduct from '../pages/DetailProduct';
 import CartProducts from '../pages/CartProducts';
+import AdminGuestLayout from '../utils/AdminGuestLayout';
+import AdminProtectedLayout from '../utils/AdminProtectedLayout';
 
 import SearchCard from '../pages/SearchCard';
 
@@ -60,10 +62,6 @@ const router = createBrowserRouter([
 				element: <ScleraProductsPage />,
 			},
 			{
-				path: '/admin',
-				element: <Admin />,
-			},
-			{
 				path: '/search',
 				element: <SearchCard />,
 			},
@@ -97,6 +95,22 @@ const router = createBrowserRouter([
 				path: '/products/sclera',
 				element: <ScleraProductsPage />,
 			},
+		],
+	},
+	{
+		path: '/',
+		element: <AdminGuestLayout />,
+		children: [
+			{
+				path: '/admin',
+				element: <AdminLogin />,
+			},
+		],
+	},
+	{
+		path: '/',
+		element: <AdminProtectedLayout />,
+		children: [
 			{
 				path: '/admin/adminPanel',
 				element: <AdminPanel />,
