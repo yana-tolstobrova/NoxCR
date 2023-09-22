@@ -25,12 +25,9 @@ function Main() {
           <img className="p-2" src={arrow} alt="icono arrow del carrusel" />
         </Link>
       </div>
-      
-      
       <div className="mb-4">
         <Card limit={visibleCards} />
       </div>
-
       <div className="flex justify-between items-center">
         <h2 className="text-left mb-4 mt-4 text-2xl ml-4 font-bold" style={{ marginLeft: '240px' }}>Productos de cuidados</h2>
         <Link to="/products" className="flex items-center text-500 mr-4" style={{ marginRight: '295px' }}>
@@ -39,7 +36,7 @@ function Main() {
         </Link>
       </div>
       <div className="mb-4">
-        <Card limit={visibleCards} />
+        <Card limit={visibleCards} categoryFilter="Crazy" />
       </div>
       <h2 className="text-left mt-8 text-2xl ml-4  font-bold" style={{ marginLeft: '240px' }}id="cuidados">Cuidados</h2>
       <Care />
