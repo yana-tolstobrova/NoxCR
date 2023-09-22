@@ -13,21 +13,21 @@ function ShippingModal({ showModal, handleCloseModal }) {
                   Obtén más información sobre las opciones de envío disponibles comunicandote con nosotros.
                 </p>
               </div>
-              <h2 className="text-xl font-bold text-center mb-6">Precios apróximados</h2>
+              <h2 className="text-xl font-bold text-center mb-6">Precios aproximados</h2>
               <div className="space-y-4">
                 <h2 className="text-xl font-semibold">Envío con UberFlash (Mismo Día)</h2>
                 <ul className="list-disc ml-6">
-                  <li>Precio aprox. El Limón: $35,000</li>
-                  <li>Precio aprox. Puntarenas: $35,000</li>
-                  <li>Precio aprox. El Cartago: $15,000</li>
-                  <li>Precio aprox. San José: $5,000</li>
+                  <li>Precio aprox. El Limón: ₡35,000</li>
+                  <li>Precio aprox. Puntarenas: ₡35,000</li>
+                  <li>Precio aprox. El Cartago: ₡15,000</li>
+                  <li>Precio aprox. Alajuela: ₡5,000</li>
+                  <li>Precio aprox. Puerto Caldera: ₡5,000</li>
+                  <li>Precio aprox. San José: ₡3,500</li>
                 </ul>
                 <h2 className="text-xl font-semibold">Envío con Correos (24-72 Horas)</h2>
                 <ul className="list-disc ml-6">
-                  <li>Precio aprox. El Limón: 6,000</li>
-                  <li>Precio aprox. Puntarenas: $6,000</li>
-                  <li>Precio aprox. El Cartago: $2,500</li>
-                  <li>Precio aprox. San José: $1,000</li>
+                  <li>Precio ₡2,500</li>
+            
                 </ul>
                 <button
                   className="p-3 bg-black rounded-full text-white w-full font-semibold"

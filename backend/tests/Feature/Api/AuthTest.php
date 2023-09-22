@@ -102,7 +102,7 @@ class AuthTest extends TestCase
         ]);
 
         $response -> assertStatus(200);
-        $response -> assertJsonFragment(['message' => 'User succesfully logged In!']);
+        $response -> assertJsonFragment(['message' => 'Usuario conectado correctamente!']);
     }
 
     public function test_failed_login_invalid_password() {
@@ -118,7 +118,7 @@ class AuthTest extends TestCase
         ]);
 
         $response -> assertStatus(401);
-        $response -> assertJsonFragment([ 'message' => 'Email or password is incorrect!']);
+        $response -> assertJsonFragment([ 'message' => 'El correo electrónico o la contraseña son incorrectos.']);
 
     }
 
@@ -167,7 +167,7 @@ class AuthTest extends TestCase
 
         Sanctum::actingAs($user, ['*']);
        $response = $this->postJson('/api/logout');
-       $response -> assertJsonFragment([ 'message' => 'Logged out successfully!']);
+       $response -> assertJsonFragment([ 'message' => 'Se ha desconectado correctamente!']);
         
                
     }
