@@ -26,7 +26,6 @@ export default function AdminProtectedLayout() {
 			}
 		})();
 	}, []);
-
     const handleLogout = async () => {
 		try {
 			const resp = await axios.post('/logout');
