@@ -17,7 +17,6 @@ import DetailProduct from '../pages/DetailProduct';
 import CartProducts from '../pages/CartProducts';
 import AdminGuestLayout from '../utils/AdminGuestLayout';
 import AdminProtectedLayout from '../utils/AdminProtectedLayout';
-
 import SearchCard from '../pages/SearchCard';
 
 const router = createBrowserRouter([
