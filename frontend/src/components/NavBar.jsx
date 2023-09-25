@@ -17,26 +17,16 @@ function NavBar({onLogout}) {
       <nav>
           <TwLink href="#productos">Productos</TwLink> 
           <TwLink href="#cuidados">Cuidados</TwLink> 
-          <TwLink href="#FaQ">FaQ</TwLink> 
-          <TwLink href="#Contacto">Contacto</TwLink> 
+          <TwLink href="#faq">FaQ</TwLink> 
+          <TwLink href="#contacto">Contacto</TwLink> 
       </nav>
       <div className="flex items-center h-11">
           <Search />
-          <Link to="/cart">
+          <Link to="/add-to-cart">
             <img className='px-3 h-5'src={cart} alt="Profile-icon" /> 
           </Link>
           <NavBarMenu />
-          <Link to="/register">
-            {/* <img className='px-3 h-5' src={profile} alt="Profile-icon" />  */}
-          </Link>
-          
       </div>
-
-         {/* <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" href="/login">Login</a>
- 
-        <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" href="/">Home</a> */}
-
-        {/* <a className="text-gray-500 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer" onClick={onLogout} href="#">Logout</a>   */}
     </div>
   )
 }

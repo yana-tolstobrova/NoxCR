@@ -2,11 +2,11 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
 function AdminLogin() {
   const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
-
+  const navigate = useNavigate();
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const { email, password } = e.target.elements;
@@ -19,7 +19,7 @@ function AdminLogin() {
 			const resp = await axios.post('/login', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				return <Navigate to="/admin/adminPanel" />;
+				navigate('/admin/adminPanel');
 			}
 		} catch (error) {
 			if (error.response.status === 401) {
@@ -30,17 +30,17 @@ function AdminLogin() {
   return (
     <>
         <div className="flex items-center justify-center h-screen">
-          <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-            <h1 className="text-5xl font-semibold"> Bienvenido Mary Ann</h1>
+          <div className="bg-white px-10 py-10">
+            <h1 className="text-5xl font-semibold text-purple">Accede a Nox CR</h1>
             <div className="mt-8">
               <form onSubmit={handleSubmit} method="POST" action="#">
                 <div>
                   <label className="text-lg font-medium" htmlFor="email">
-                    Correo
+                    Email
                   </label>
                   <input
-                    className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-                    placeholder="Ingrese su correo"
+                    className="w-full border border-gray-300 bg-white p-3 mt-1 focus:border-black focus:outline-none"
+                    placeholder="Email"
                     type="email"
                     name="email"
                     id="email"
@@ -51,19 +51,19 @@ function AdminLogin() {
                     Contraseña
                   </label>
                   <input
-                    className="w-full border-2 border-gray-100 rounded-xl p-4 mt-1 bg-transparent"
-                    placeholder="Ingrese su contraseña"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
+                    placeholder="Contraseña"
                     type="password"
                     name="password"
-                    ide="password"
+                    id="password"
                   />
                 </div>
                 <div className="mt-8 flex flex-col gap-y-4">
                   <button
-                    className="active:scale-[.98] active:duration-75 transition-all hoover:scale-[1.01] ease-in-out py-3 rounded-xl bg-blue-500 text-white text-lg font-bold"
+                    className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                     type="submit"
                   >
-                    Entrar
+                    Iniciar sesión
                   </button>
                 </div>
               </form>

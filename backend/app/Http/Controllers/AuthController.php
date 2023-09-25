@@ -20,7 +20,7 @@ class AuthController extends Controller {
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-
+        //$user->assignRole('User');
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $cookie = cookie('token', $token, 60 * 24); 

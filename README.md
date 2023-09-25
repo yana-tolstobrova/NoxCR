@@ -11,6 +11,11 @@ NoxCr tiene desde el año 2018 de estar en funcionamiento, ha estado utilizando 
 ## Objetivo del Proyecto
 Una web responsive donde se pueda gestionar usuarios registrados, saber desde que fecha son usuarios y saber cuáles son las ofertas, promociones y regalías que se les hace dependiendo de la antigüedad. En la web los usuarios no registrados podrán ver todo el catalogo de lentillas y accesorios que vende la clienta, para poder acceder al carrito de compras el usuario se ha de registrar y podrá indicar el producto y la cantidad escogida para luego proceder con el pago, indicando con antelación el tipo de envío (inmediato o no) y así poder realizar la compra de los artículos en línea.
 
+### Modelo de datos
+
+<img src="./frontend/src/assets/drawSQL.png" width="900" alt="imagen del modelo de datos de sql"/>
+
+[DrawSql](https://drawsql.app/teams/teams-noxcr/diagrams/noxcr)
 
 ### 🛠 Tecnologías Utilizadas
 <div>
@@ -91,6 +96,23 @@ DB_PASSWORD=contraseña
 `npm start`
 4. El frontend de React ahora está en funcionamiento y se ejecuta en 
 `http://localhost:3000`
+
+###  Recursos Utilizados
+
+Aquí encontrarás una lista de recursos y videos que nos inspiraron y/o que utilizamos en el desarrollo de este proyecto:
+
+- [Login y registro](www.youtube.com/watch?v=bf_3ns1Anwg)
+- [Tailwind](https://tailwindcomponents.com/)
+- [Carrito de compra](https://www.youtube.com/watch?v=tsdzZhVJcRU)
+- [Carrito de compra](https://www.youtube.com/watch?v=rQV9aI3LLnk)
+- [Pasarela de pago por país](https://comunidad.apphive.io/t/pasarelas-de-pago-disponibles-por-pais/4435)
+- [Testing React](https://www.youtube.com/watch?v=bTGil8qPmXo)
+- [Testing Components](https://www.youtube.com/watch?v=FjJu3hcPSCY)
+- [Imágenes más pequeñas](https://squoosh.app/)
+- [Menu acordeon](https://codepen.io/sahdesigndesonhos/pen/xWLxrV)
+- [Enviar Email](https://www.youtube.com/watch?v=6cxODPkoTMU)
+- [Enviar Email](https://www.youtube.com/watch?v=giOjirSYksg)
+
 
 ## Developers
   [<img src="https://avatars.githubusercontent.com/u/126439762?v=4" width=50><br><sub>Yana Tolstobrova</sub>](https://github.com/yana-tolstobrova) | [<img src="https://avatars.githubusercontent.com/u/131767553?v=4" width=150><br><sub>Rosa Pedret</sub>](https://github.com/Rosapedret2) |  [<img src="https://avatars.githubusercontent.com/u/131244871?v=4" width=150><br><sub>Cindy Leiva</sub>](https://github.com/CindyLeiva) | [<img src="https://avatars.githubusercontent.com/u/124004260?v=4" width=115><br><sub>Sylvia Llorente</sub>](https://github.com/Sylviall81)| [<img src="https://avatars.githubusercontent.com/u/107352744?v=4" width=150><br><sub>Mónica Blanco</sub>](https://github.com/mgblanco10)| [<img src="https://avatars.githubusercontent.com/u/131777684?v=4" width=150><br><sub>Zoraida Moreno</sub>](https://github.com/ZoraidaMorenoCadenas) | 

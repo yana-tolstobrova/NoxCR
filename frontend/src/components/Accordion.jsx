@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import arrowCarousel from '../assets/arrow-carousel.svg'
 import arrow from '../assets/arrow.svg'
-import accordionItems from '../data/dataAccordion';
 
-function Accordion() {
+function Accordion(props) {
   const [openItemIndex, setOpenItemIndex] = useState(null);
 
   const toggleItem = (index) => {
@@ -13,12 +12,13 @@ function Accordion() {
       setOpenItemIndex(index);
     }
   };
+  const customStyles = props.customStyles || {};
 
   return (
-    <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px' }}>
-    <h1 className="text-2xl font-semibold mb-4">Preguntas frecuentes</h1>
+    <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px', ...customStyles }}>
+    <h1 className="text-2xl font-semibold mb-4" id="faq">Preguntas frecuentes</h1>
     <div className="bg-white text-black">
-      {accordionItems.map((item, index) => (
+      {props.accordionItems.map((item, index) => (
         <div
           key={index}
           className="border border-gray-300 rounded"
@@ -26,10 +26,7 @@ function Accordion() {
           <div
             className="p-3 cursor-pointer flex justify-between items-center"
             onClick={() => toggleItem(index)}
-            style={{
-              border: '8px solid black',
-              margin: '0', 
-            }}
+
           >
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <span className={`transform transition-transform ${index === openItemIndex ? 'rotate-180' : ''} `}>
@@ -44,6 +41,7 @@ function Accordion() {
         </div>
       ))}
     </div>
+    {props.showDownloadLink && (
     <div className="flex justify-end text-white p-2" style={{ color: 'gray' }}> 
         <a
           href="/ruta-del-archivo.pdf" // Reemplaza con la ruta correcta de tu archivo PDF
@@ -54,6 +52,7 @@ function Accordion() {
           <img className="p-1" src={arrow} alt="icono arrow" />
         </a>
       </div>
+      )}
     </div>
   );
 }

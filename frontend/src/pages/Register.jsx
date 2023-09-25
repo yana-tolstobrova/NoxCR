@@ -24,7 +24,7 @@ function Register() {
 			if (resp.status === 200) {
 				setUser(resp.data.user);
 				// return <Navigate to="/dashboard" />;
-        navigate('/dashboard');
+        navigate('/');
 			}
 		} catch (error) {
 			if (error.response.status === 422) {

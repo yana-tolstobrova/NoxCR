@@ -30,7 +30,7 @@ function NavBarMenu({onLogout}) {
               </Link>
             </li>
             <li>
-              <Link to="/register">
+              <Link to="/">
                 <TwLink onClick={onLogout} href="#">Cerrar sesión</TwLink> 
               </Link>
             </li>

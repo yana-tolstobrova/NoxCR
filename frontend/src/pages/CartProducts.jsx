@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from '../assets/delete-icon.svg';
 import gifIcon from '../assets/gif-icon.svg';
+import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
@@ -34,6 +35,14 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0).toLocaleString();
 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    sendShippingOrder().then(res => {
+      console.log(res);
+    }).catch(error => console.log(error))
+
+  };
+
   const openModal = () => {
     setShowModal(true);
   };
@@ -63,6 +72,9 @@ function CartProducts() {
               </h2>
               <p className="text-lg text-gray-700">
                 Categoría: {item.product.collection}
+              </p>
+              <p className="text-lg" style={{color:'purple'}}>
+                ₡{Math.floor(item.product.price).toLocaleString()}
               </p>
             </div>
             <div className="flex items-center space-x-4 pt-2">
@@ -95,7 +107,7 @@ function CartProducts() {
         <div className="h-full rounded-lg border bg-gray-100 p-6 shadow-md w-[30%]">
           <div className="mb-2 flex justify-between">
             <p className="text-gray-700">Subtotal</p>
-            <p className="text-gray-700">${total}</p>
+            <p className="text-gray-700">₡{total}</p>
           </div>
           <div className="flex justify-between">
             <p className="text-gray-700">Tipo de envío</p>
@@ -108,17 +120,20 @@ function CartProducts() {
             <p className="text-lg font-bold">Total</p>
             <div>
               <p className="mb-1 text-lg font-bold">
-                ${(total)}
+              ₡{(total)}
               </p>
             </div>
           </div>
-          <div className="flex justify-between">
-            <img src={gifIcon} alt="gif icon" className="rounded w-9 h-9"/>
+          <div className="flex justify-between mt-2">
+            <img src={gifIcon} alt="gif icon" className="rounded w-10 h-10 "/>
             <p className="text-lg font-semibold text-black mt-3">
-              Regalo especial con tu compra</p>
+              Regalo especial con tu compra
+              </p>
               </div>
-          <button className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
-            Comprar
+              <p className=" text-end text-l font-semibold" style={{color:"purple"}}>
+              (un estuche de lentes sin coste)</p>
+          <button onClick= {handleOnSubmit} className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
+            Orden de pedido
           </button>
           <Link to="/"  className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
             Continuar comprando

@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../assets/Logo-footer.svg";
 import iconWhathsapp from "../assets/icon-whatsapp.webp";
+import iconTikTok from "../assets/tiktok.svg";
+
 
 function Footer() {
   return (
@@ -47,7 +49,7 @@ function Footer() {
             <div className="flex mt-8 space-x-6 ml-16">
               <a
                 className="text-white"
-                href="#"
+                href="https://www.facebook.com/NOXCRLentes"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -67,7 +69,7 @@ function Footer() {
               </a>
               <a
                 className="text-white"
-                href="#"
+                href="https://www.instagram.com/noxcrlentes"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -87,19 +89,16 @@ function Footer() {
               </a>
               <a
                 className="text-white"
-                href="#"
+                href="https://www.tiktok.com/@noxcrlentesdecontacto"
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="sr-only">Twitter</span>
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
+                <span className="sr-only">TikTok</span>
+                        <img
+              src={iconTikTok}
+              alt="icono TikTok"
+              style={{ height: "35px" }}
+            />
               </a>
               <a
                 className="text-white"
@@ -107,8 +106,7 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="sr-only">GitHub</span>
-                <span className="sr-only"> GitHub </span>
+                <span className="sr-only">Whathsapp</span>
                     <img
               src={iconWhathsapp}
               alt="icono Whathsapp"
@@ -118,9 +116,12 @@ function Footer() {
               </a>
             </div>
             <nav className="flex flex-col mt-4 space-y-4 text-m text-white ml-16">
-              <p className="text-white mt-2">+1 (123) 456-7890</p>
-              <p className="text-white mt-2">ejemplo@correo.com</p>
-              <p className="text-white mt-2">Horario</p>
+              <p className="text-white mt-2">+506 8329 0039</p>
+              <p className="text-white mt-2">noxcrlentes@gmail.com</p>
+              <p className="text-white text-l mt-2">Horario:</p>
+              <p className="text-white ml-6 pl-6" style={{margin:'0'}}>Lunes a Viernes 10 a 12 y de 1 a 9</p>
+              <p className="text-white ml-6 pl-6" style={{margin:'0'}}>Sábados 10 a 12</p>
+              <p className="text-white ml-6 pl-6" style={{margin:'0'}}>Domingos 10 a 12 y 1 a 6</p>
             </nav>
           </div>
         </div>
