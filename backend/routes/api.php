@@ -28,3 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search']);
 
+// Ruta para crear una orden
+Route::post('/orders', [OrderController::class, 'store']);
+// Ruta para crear una línea de pedido
+Route::post('/order-lines', [OrderLineController::class, 'store']);
+
