@@ -106,7 +106,7 @@ function Footer() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="sr-only">Whathsapp</span>
+                <span className="sr-only" id="contacto">Whathsapp</span>
                     <img
               src={iconWhathsapp}
               alt="icono Whathsapp"
