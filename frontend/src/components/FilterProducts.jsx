@@ -11,19 +11,19 @@ function FilterProducts() {
         <div className="w-44 h-44 rounded-full overflow-hidden bg-cover bg-center mb-2">
           <img src={naturalCategory} alt="Natural Products" className="w-full h-full object-cover" />
         </div>
-        <div className="text-center text-lg font-bold">Natural</div>
+        <div className="text-center text-lg font-semibold hover:font-bold">Natural</div>
       </Link>
       <Link to="/products/crazy" className="mx-4 text-center">
         <div className="w-44 h-44 rounded-full overflow-hidden bg-cover bg-center mb-2">
           <img src={crazyCategory} alt="Crazzy Products" className="w-full h-full object-cover" />
         </div>
-        <div className="text-center text-lg font-bold">Crazy</div>
+        <div className="text-center text-lg font-semibold hover:font-bold">Crazy</div>
       </Link>
       <Link to="/products/sclera" className="mx-4 text-center">
         <div className="w-44 h-44 rounded-full overflow-hidden bg-cover bg-center mb-2">
           <img src={scleraCategory} alt="Esclera Products" className="w-full h-full object-cover" />
         </div>
-        <div className="text-center text-lg font-bold">Sclera</div>
+        <div className="text-center text-lg font-semibold hover:font-bold">Sclera</div>
       </Link>
  
     </div>

@@ -53,7 +53,7 @@ function CartProducts() {
 
   return (
     <div className="h-screen pt-20">
-      <h1 className="mb-10 text-center text-3xl font-bold">Resumen de tu compra</h1>
+      <h1 className="mb-10 text-center text-3xl font-bold">Resumen de tu pedido</h1>
       <div className="flex justify-center gap-12">
       <div className="w-[60%] px-4 space-y-6 xl:px-0">
         {cart.map((item, index) => (

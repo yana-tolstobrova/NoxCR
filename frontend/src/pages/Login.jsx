@@ -47,7 +47,7 @@ function Login() {
     <>
         <div className="flex items-start justify-center h-screen">
           <div className="bg-white px-10 py-20 border-2 border-gray-100">
-            <h2 className="text-5xl font-semibold">Accede a Nox CR</h2>
+            <h1 className="text-5xl font-semibold">Accede a Nox CR</h1>
             <p className="font-medium text-lg text-gray-500 mt-2">
               {" "}
               Por favor ingrese sus datos
@@ -91,7 +91,7 @@ function Login() {
                 </div>
                 <div className='mt-4 flex items-center justify-center'>
                   <p className='text-lg font-medium'>¿Eres nuevo?</p>
-                  <a  className='ml-4' href="/register"style={{ color: '#55285A' }}>Registrate</a>
+                  <a  className='ml-4 hover:font-semibold hover:underline' href="/register"style={{ color: '#55285A' }}>Registrate</a>
                 </div>
               </form>
 

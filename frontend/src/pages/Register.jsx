@@ -51,7 +51,7 @@ function Register() {
   return (
     <div className="flex items-start justify-center h-screen">
       <div className="bg-white px-10 py-10 border-2 border-gray-100">
-        <h4 className="text-3xl font-semibold">Crea tu cuenta</h4>
+        <h1 className="text-3xl font-semibold">Crea tu cuenta</h1>
         <p className="font-medium text-lg text-gray-500 mt-2">
           {" "}
           Ingrese su información para poder registrarse.
@@ -120,7 +120,7 @@ function Register() {
             </div>
             <div className='mt-4 flex items-center justify-center'>
               <p className='text-lg font-medium'>¿Ya tienes cuenta?</p>
-              <a  className='ml-4' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
+              <a  className='ml-4 hover:font-semibold hover:underline' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
             </div>
           </form>
         </div>

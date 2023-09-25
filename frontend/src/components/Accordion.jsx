@@ -17,7 +17,7 @@ function Accordion(props) {
   return (
     <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px', ...customStyles }}>
     <h1 className="text-2xl font-semibold mb-4" id="faq">Preguntas frecuentes</h1>
-    <div className="bg-white text-black">
+    <div className="bg-white text-black rounded">
       {props.accordionItems.map((item, index) => (
         <div
           key={index}
@@ -28,13 +28,13 @@ function Accordion(props) {
             onClick={() => toggleItem(index)}
 
           >
-            <h2 className="text-lg font-semibold">{item.title}</h2>
+            <h2 className="text-lg font-medium">{item.title}</h2>
             <span className={`transform transition-transform ${index === openItemIndex ? 'rotate-180' : ''} `}>
                 <img className="p-2" src={arrowCarousel} alt="icono arrow carousel" />
             </span>
           </div>
           {index === openItemIndex && (
-            <div className="p-3 bg-gray-100">
+            <div className="py-8 px-8 bg-gray-100">
               <p>{item.content}</p>
             </div>
           )}
@@ -42,14 +42,14 @@ function Accordion(props) {
       ))}
     </div>
     {props.showDownloadLink && (
-    <div className="flex justify-end text-white p-2" style={{ color: 'gray' }}> 
+    <div className="flex justify-end text-white py-6" style={{ color: '#EBEBEB' }}> 
         <a
           href="/ruta-del-archivo.pdf" // Reemplaza con la ruta correcta de tu archivo PDF
           download="nombre-del-archivo.pdf" // Reemplaza con el nombre deseado para el archivo descargado
-          className="flex items-end text-400"
+          className="flex items-end text-400 hover:font-semibold hover:underline"
         >
           Descargar PDF
-          <img className="p-1" src={arrow} alt="icono arrow" />
+          <img className="px-2" src={arrow} alt="icono arrow" />
         </a>
       </div>
       )}

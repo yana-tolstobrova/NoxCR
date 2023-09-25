@@ -43,7 +43,7 @@ function Care() {
                 className="w-36 h-36 object-cover rounded-full mb-2"
               />
             </div>
-            <p className="text-left text-lg font-500 mb-2">{care.description}</p>
+            <p className="text-left text-base mb-2" style= {{color:"#575757"}}>{care.description}</p>
           </div>
         ))}
       </div>
