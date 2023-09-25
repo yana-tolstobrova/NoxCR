@@ -9,6 +9,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\AuthController;
 use Tests\TestCase;
 
 class FavTest extends TestCase
@@ -30,13 +31,13 @@ class FavTest extends TestCase
         Sanctum::actingAs($user);
         $product = Product::factory()->create([
             'id' => 1,
-            // 'user_id' => $user->id
         ]);
 
         $response = $this->postJson("api/products/favorites/{$product->id}");
 
         $response->assertJsonFragment(['res'=> true])
         ->assertStatus(200);
+        $this->assertTrue($product->isFavorite->contains($user));
 
     }
 }

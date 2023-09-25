@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -162,4 +164,24 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
+
+
+    // Metodos Favorite ---> 1.User can add Favorite Place
+
+    public function isFavorite($id)
+    {
+        $user = Auth::user();
+        Product::find($id);
+
+        return response()->json([
+            'res' => true
+        ], 200);
+
+
+       
+    }
+
+
+
+
 }

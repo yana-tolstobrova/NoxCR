@@ -23,6 +23,8 @@ Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation'
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+
+    Route::post("/products/favorites/{id}", [ProductController::Class, 'isFavorite']);
 });
 
 Route::resource('products', ProductController::class);
