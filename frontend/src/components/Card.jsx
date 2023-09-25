@@ -24,7 +24,7 @@ function Card({ categoryFilter, limit }) {
     <div className="mx-8" style={{ marginLeft: '240px', marginRight: '240px' }}>
       <div className="flex flex-wrap -mx-2">
         {products.map((product) => (
-          <div key={product.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 w-1/4 px-2 mb-4">
+          <div key={product.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 w-1/4 px-2 mb-12">
             <div className="max-w-[222px] h-[350px] rounded overflow-hidden shadow-lg">
               <Link to={`/product/${product.id}`}>
                 <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />
