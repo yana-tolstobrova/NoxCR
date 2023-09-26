@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { removeFromCart, incrementQuantity, decrementQuantity } from "../utils/ProductsToCart";
-import { Link } from 'react-router-dom';
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from "../utils/ProductsToCart";
+import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
-import deleteIcon from '../assets/delete-icon.svg';
-import gifIcon from '../assets/gif-icon.svg';
+import deleteIcon from "../assets/delete-icon.svg";
+import gifIcon from "../assets/gif-icon.svg";
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
-import axios from 'axios'; 
+import axios from "axios";
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
   const [formData, setFormData] = useState({
-    address: '',
-    phone: '',
-    total_amount: '',
+    address: "",
+    phone: "",
+    total_amount: "",
+    // birthdate: "", 
   });
 
   useEffect(() => {
@@ -42,12 +47,14 @@ function CartProducts() {
     const itemTotal = item.product.price * item.quantity;
     return acc + itemTotal;
   }, 0);
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    sendShippingOrder().then(res => {
-      console.log(res);
-    }).catch(error => console.log(error))
+    sendShippingOrder()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
   };
 
   const openModal = () => {
@@ -67,35 +74,65 @@ function CartProducts() {
   };
 
   const handleOrderSubmit = () => {
-  
     axios
       .post("http://localhost:8000/api/orders", formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
       })
       .then((response) => {
-        const orderId = response.data.id;
+        const orderId = response.data.data.id;
         console.log(response);
-        setShowModalOrder(false);
+        handleOrderLinesSubmit(orderId);
       })
       .catch((error) => {
         console.error("Error al crear la orden:", error);
       });
   };
+  
+  const handleOrderLinesSubmit = (orderId) => {
+    cart.forEach((item) => {
+      const orderLineData = {
+        order_id: orderId,
+        product_id: item.product.id,
+        name: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price,
+      };
+      console.log(cart);
+      console.log("orderId:", orderId);
+      console.log("product_id:", item.product.id);
+  
+      axios
+        .post("http://localhost:8000/api/order-lines", orderLineData, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+        .then((orderLineResponse) => {
+          console.log(orderLineResponse);
+        })
+        .catch((error) => {
+          console.error("Error al crear la línea de orden:", error);
+        });
+    });
+  };
+  
 
-  // const handleInputChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+
+
+  
+  
 
   return (
     <div className="h-screen pt-20">
-      <h1 className="mb-10 text-center text-3xl font-bold">Resumen de tu pedido</h1>
+      <h1 className="mb-10 text-center text-3xl font-bold">
+        Resumen de tu pedido
+      </h1>
       <div className="flex justify-center gap-12">
         <div className="w-[60%] px-4 space-y-6 xl:px-0">
           {cart.map((item, index) => (
@@ -115,7 +152,7 @@ function CartProducts() {
                 <p className="text-lg text-gray-700">
                   Categoría: {item.product.collection}
                 </p>
-                <p className="text-lg" style={{ color: 'purple' }}>
+                <p className="text-lg" style={{ color: "purple" }}>
                   ₡{Math.floor(item.product.price).toLocaleString()}
                 </p>
               </div>
@@ -123,7 +160,7 @@ function CartProducts() {
                 <button
                   className="bg-black text-white px-4 py-2 rounded"
                   onClick={() => handleDecrementQuantity(item)}
-                  style={{ backgroundColor: '#D7BCD3' }}
+                  style={{ backgroundColor: "#D7BCD3" }}
                 >
                   -
                 </button>
@@ -131,7 +168,7 @@ function CartProducts() {
                 <button
                   className="text-white px-4 py-2 rounded"
                   onClick={() => handleIncrementQuantity(item)}
-                  style={{ backgroundColor: '#D7BCD3' }}
+                  style={{ backgroundColor: "#D7BCD3" }}
                 >
                   +
                 </button>
@@ -139,7 +176,11 @@ function CartProducts() {
                   className="p-4"
                   onClick={() => handleRemoveFromCart(item)}
                 >
-                  <img src={deleteIcon} alt="Eliminar" className="rounded w-10 h-10" />
+                  <img
+                    src={deleteIcon}
+                    alt="Eliminar"
+                    className="rounded w-10 h-10"
+                  />
                 </button>
               </div>
             </div>
@@ -154,16 +195,20 @@ function CartProducts() {
           <div className="flex justify-between">
             <p className="text-gray-700">Tipo de envío</p>
             <p className="text-l" style={{ color: "purple" }}>
-              <span role="button" onClick={openModal} className="cursor-pointer">Más Info.</span>
+              <span
+                role="button"
+                onClick={openModal}
+                className="cursor-pointer"
+              >
+                Más Info.
+              </span>
             </p>
           </div>
           <hr className="my-4" />
           <div className="flex justify-between">
             <p className="text-lg font-bold">Total</p>
             <div>
-              <p className="mb-1 text-lg font-bold">
-                ₡{(total)}
-              </p>
+              <p className="mb-1 text-lg font-bold">₡{total}</p>
             </div>
           </div>
           <div className="flex justify-between mt-2">
@@ -172,19 +217,42 @@ function CartProducts() {
               Regalo especial con tu compra
             </p>
           </div>
-          <p className=" text-end text-l font-semibold" style={{ color: "purple" }}>
+          <p
+            className=" text-end text-l font-semibold"
+            style={{ color: "purple" }}
+          >
             (un estuche de lentes sin coste)
           </p>
-          <span role="button" onClick={openModalOrder} className="cursor-pointer">Orden</span>
-          <button onClick={handleOnSubmit} className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
+          <span
+            role="button"
+            onClick={openModalOrder}
+            className="cursor-pointer"
+          >
+            Orden
+          </span>
+          <button
+            onClick={handleOnSubmit}
+            className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50"
+          >
             Orden de pedido
           </button>
-          <Link to="/" className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
+          <Link
+            to="/"
+            className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black"
+            style={{ textDecoration: "none" }}
+          >
             Continuar comprando
           </Link>
         </div>
         <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
-        <OrderModal showModal={showModalOrder} handleCloseModal={closeModalOrder}  handleOrderSubmit={handleOrderSubmit} formData={formData} setFormData={setFormData} total={total}/>
+        <OrderModal
+          showModal={showModalOrder}
+          handleCloseModal={closeModalOrder}
+          handleOrderSubmit={handleOrderSubmit}
+          formData={formData}
+          setFormData={setFormData}
+          total={total}
+        />
       </div>
     </div>
   );
