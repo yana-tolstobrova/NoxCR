@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { removeFromCart, incrementQuantity, decrementQuantity,} from "../utils/ProductsToCart";
+import { removeFromCart, incrementQuantity, decrementQuantity } from "../utils/ProductsToCart";
 import { Link } from 'react-router-dom';
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from '../assets/delete-icon.svg';
 import gifIcon from '../assets/gif-icon.svg';
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
+import OrderModal from "../components/OrderModal";
+import axios from 'axios'; 
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showModalOrder, setShowModalOrder] = useState(false);
+  const [formData, setFormData] = useState({
+    address: '',
+    phone: '',
+    birthday:'',
+  });
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -40,7 +48,6 @@ function CartProducts() {
     sendShippingOrder().then(res => {
       console.log(res);
     }).catch(error => console.log(error))
-
   };
 
   const openModal = () => {
@@ -51,57 +58,98 @@ function CartProducts() {
     setShowModal(false);
   };
 
+  const openModalOrder = () => {
+    setShowModalOrder(true);
+  };
+
+  const closeModalOrder = () => {
+    setShowModalOrder(false);
+  };
+
+  const handleOrderSubmit = () => {
+    const orderData = {
+      address: formData.address,
+      phone: formData.phone,
+      birthday: formData.birthday,
+      total_amount: total,
+    };
+  
+    axios
+      .post("http://localhost:8000/api/orders", orderData, {
+        // withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+      })
+      .then((response) => {
+        const orderId = response.data.id;
+        console.log(response);
+        setShowModalOrder(false);
+      })
+      .catch((error) => {
+        console.error("Error al crear la orden:", error);
+      });
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="h-screen pt-20">
       <h1 className="mb-10 text-center text-3xl font-bold">Resumen de tu compra</h1>
       <div className="flex justify-center gap-12">
-      <div className="w-[60%] px-4 space-y-6 xl:px-0">
-        {cart.map((item, index) => (
-          <div
-            key={index}
-            className="flex items-center bg-gray-100 p-4 shadow-md hover:shadow-lg mb-4"
-          >
-            <img
-              src={item.product.image}
-              alt={item.product.name}
-              className="w-24 h-24 rounded-lg mr-4"
-            />
-            <div className="flex-grow mb-8">
-              <h2 className="text-xl font-bold text-gray-900">
-                {item.product.name}
-              </h2>
-              <p className="text-lg text-gray-700">
-                Categoría: {item.product.collection}
-              </p>
-              <p className="text-lg" style={{color:'purple'}}>
-                ₡{Math.floor(item.product.price).toLocaleString()}
-              </p>
+        <div className="w-[60%] px-4 space-y-6 xl:px-0">
+          {cart.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center bg-gray-100 p-4 shadow-md hover:shadow-lg mb-4"
+            >
+              <img
+                src={item.product.image}
+                alt={item.product.name}
+                className="w-24 h-24 rounded-lg mr-4"
+              />
+              <div className="flex-grow mb-8">
+                <h2 className="text-xl font-bold text-gray-900">
+                  {item.product.name}
+                </h2>
+                <p className="text-lg text-gray-700">
+                  Categoría: {item.product.collection}
+                </p>
+                <p className="text-lg" style={{ color: 'purple' }}>
+                  ₡{Math.floor(item.product.price).toLocaleString()}
+                </p>
+              </div>
+              <div className="flex items-center space-x-4 pt-2">
+                <button
+                  className="bg-black text-white px-4 py-2 rounded"
+                  onClick={() => handleDecrementQuantity(item)}
+                  style={{ backgroundColor: '#D7BCD3' }}
+                >
+                  -
+                </button>
+                <span className="text-xl font-semibold">{item.quantity}</span>
+                <button
+                  className="text-white px-4 py-2 rounded"
+                  onClick={() => handleIncrementQuantity(item)}
+                  style={{ backgroundColor: '#D7BCD3' }}
+                >
+                  +
+                </button>
+                <button
+                  className="p-4"
+                  onClick={() => handleRemoveFromCart(item)}
+                >
+                  <img src={deleteIcon} alt="Eliminar" className="rounded w-10 h-10" />
+                </button>
+              </div>
             </div>
-            <div className="flex items-center space-x-4 pt-2">
-              <button
-                className="bg-black text-white px-4 py-2 rounded"
-                onClick={() => handleDecrementQuantity(item)}
-                style={{backgroundColor:'#D7BCD3'}}
-              >
-                -
-              </button>
-              <span className="text-xl font-semibold">{item.quantity}</span>
-              <button
-                className="text-white px-4 py-2 rounded"
-                onClick={() => handleIncrementQuantity(item)}
-                style={{backgroundColor:'#D7BCD3'}}
-              >
-                +
-              </button>
-              <button
-                className="p-4"
-                onClick={() => handleRemoveFromCart(item)}
-              >
-                <img src={deleteIcon} alt="Eliminar" className="rounded w-10 h-10"/>
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
         </div>
 
         <div className="h-full rounded-lg border bg-gray-100 p-6 shadow-md w-[30%]">
@@ -111,8 +159,8 @@ function CartProducts() {
           </div>
           <div className="flex justify-between">
             <p className="text-gray-700">Tipo de envío</p>
-            <p className="text-l" style={{color:"purple"}}>
-            <span role="button" onClick={openModal} className="cursor-pointer">Más Info.</span>
+            <p className="text-l" style={{ color: "purple" }}>
+              <span role="button" onClick={openModal} className="cursor-pointer">Más Info.</span>
             </p>
           </div>
           <hr className="my-4" />
@@ -120,33 +168,34 @@ function CartProducts() {
             <p className="text-lg font-bold">Total</p>
             <div>
               <p className="mb-1 text-lg font-bold">
-              ₡{(total)}
+                ₡{(total)}
               </p>
             </div>
           </div>
           <div className="flex justify-between mt-2">
-            <img src={gifIcon} alt="gif icon" className="rounded w-10 h-10 "/>
+            <img src={gifIcon} alt="gif icon" className="rounded w-10 h-10 " />
             <p className="text-lg font-semibold text-black mt-3">
               Regalo especial con tu compra
-              </p>
-              </div>
-              <p className=" text-end text-l font-semibold" style={{color:"purple"}}>
-              (un estuche de lentes sin coste)</p>
-          <button onClick= {handleOnSubmit} className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
+            </p>
+          </div>
+          <p className=" text-end text-l font-semibold" style={{ color: "purple" }}>
+            (un estuche de lentes sin coste)
+          </p>
+          <span role="button" onClick={openModalOrder} className="cursor-pointer">Orden</span>
+          <button onClick={handleOnSubmit} className="mt-6 w-full rounded-md bg-black py-1.5 font-medium text-blue-50">
             Orden de pedido
           </button>
-          <Link to="/"  className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
+          <Link to="/" className="block mt-4 w-full rounded-md bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
             Continuar comprando
           </Link>
         </div>
-        </div>
-      <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
+        <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
+        <OrderModal showModal={showModalOrder} handleCloseModal={closeModalOrder}  handleOrderSubmit={handleOrderSubmit}/>
+      </div>
     </div>
   );
 }
 
 export default CartProducts;
-
-
 
 
