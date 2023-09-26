@@ -24,8 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
 
-    Route::post("/products/favorites/{id}", [ProductController::Class, 'isFavorite']);
-    Route::get("/products/favorites", [ProductController::Class, 'showFavorite']);
+    Route::post("/products/add-favorite/{id}", [ProductController::Class, 'addFavorite']);
+    Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);
+    Route::get("/products/favorites/", [ProductController::Class, 'showFavorites']);
 });
 
 Route::resource('products', ProductController::class);

@@ -168,7 +168,7 @@ class ProductController extends Controller
 
     // Metodos Favorite ---> 1.User can add Favorite Place
 
-    public function isFavorite($id)
+    public function addFavorite($id)
     {
         $user = Auth::user();
         $product=Product::find($id);
@@ -180,7 +180,7 @@ class ProductController extends Controller
         ], 200);
 
     }
-        public function showFavorite(){
+        public function showFavorites(){
             
             $user = Auth::user();
             
@@ -191,7 +191,7 @@ class ProductController extends Controller
             ], 200);
             }
 
-        public function isNotFavorite($id){
+        public function removeFavorite($id){
             
             $user = Auth::user();
             $product=Product::find($id);
@@ -202,7 +202,7 @@ class ProductController extends Controller
                     //'res' => true
                     'msg' => 'producto eliminado de su lista de favoritos'
                 ], 200);
-                
+
                 }
 
 }

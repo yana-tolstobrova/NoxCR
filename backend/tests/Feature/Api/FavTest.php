@@ -20,7 +20,7 @@ class FavTest extends TestCase
 
      use RefreshDatabase; 
 
-    public function test_auth_user_likes_a_product(): void
+    public function test_auth_user_can_add_favorite(): void
     {
         $this->withoutExceptionHandling();
 
@@ -28,41 +28,41 @@ class FavTest extends TestCase
             'id' => 1
         ]);
 
-        //Sanctum::actingAs($user);
+        Sanctum::actingAs($user);
         $product = Product::factory()->create([
             'id' => 1,
         ]);
 
-        $response = $this->postJson("api/products/favorites/{$product->id}");
+        $response = $this->postJson("api/products/add-favorite/{$product->id}");
 
-        $response->assertJsonFragment(['res'=> true])
-        ->assertStatus(200);
+        $response->assertStatus(200)
+                 ->assertJsonFragment(['res'=> true]);
         $this->assertTrue($product->isFavorite->contains($user));
 
     }
 
-    public function test_auth_user_can_unlike_product(): void
-    {
-        // $this->withoutExceptionHandling();
+     public function test_auth_user_can_remove_favorite(): void
+     {
+         $this->withoutExceptionHandling();
 
-        // $user = User::factory()->create([
-        //     'id' => 1
-        // ]);
+        $user = User::factory()->create([
+            'id' => 1
+        ]);
 
-        // //Sanctum::actingAs($user);
-        // $product = Product::factory()->create([
-        //     'id' => 5,
-        // ]);
+        Sanctum::actingAs($user);
+        $product = Product::factory()->create([
+            'id' => 1,
+        ]);
 
-        // $response = $this->getJson("api/products/favorites");
+        $favorite = $product->isFavorite()->attached($user);
 
-        
-        // $response->assertStatus(201)
-        //         ->assertJsonCount(1)
-        //         ->assertJsonFragment(["product_id: 5"]);
-        // //$this->assertTrue($product->isFavorite->contains($user));
+        $response = $this->postJson("api/products/remove-favorite/{$product->id}");
 
-    }
+        $response->assertJsonFragment(['res'=> true])
+        ->assertStatus(200);
+        $this->assertFalse($product->isFavorite->contains($user));
+
+     }
 
     public function test_auth_user_can_see_favorites_products(): void
     {
@@ -72,7 +72,7 @@ class FavTest extends TestCase
             'id' => 1
         ]);
 
-        //Sanctum::actingAs($user);
+        Sanctum::actingAs($user);
         $product = Product::factory()->create([
             'id' => 5,
         ]);
@@ -80,7 +80,7 @@ class FavTest extends TestCase
         $response = $this->getJson("api/products/favorites");
 
         
-        $response->assertStatus(201)
+        $response->assertStatus(200)
                 ->assertJsonCount(1)
                 ->assertJsonFragment(["product_id: 5"]);
         //$this->assertTrue($product->isFavorite->contains($user));
