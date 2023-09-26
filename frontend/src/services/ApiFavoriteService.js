@@ -12,9 +12,9 @@ axios.interceptors.request.use(function (config) {
 });
 
 export const ApiFavoriteService = () => {
-    const urnAddFav = 'api/register';
-    const urnRemoveFav= 'api/login';
-    const urnGetFavs= 'api/logout';
+    const urnAddFav = '/products/add-favorite/{id}';
+    const urnRemoveFav= '/products/add-favorite/{id}';
+    const urnGetFavs= '/products/favorites/';
 
     const addFavorite = ($id) => {
        const res = axios.post(urnAddFav, $id);

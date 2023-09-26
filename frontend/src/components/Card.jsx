@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { cardsProducts } from '../services/ApiGetProducts';
-import {ApiFavoriteService} from '../services/ApiFavoriteService'
+//import {ApiFavoriteService} from '../services/ApiFavoriteService'
 import { Link } from 'react-router-dom'; 
 import Like from '../assets/heart.svg'
 
-function Card({ categoryFilter, limit }) {
+function Card({ categoryFilter, limit, isUserLoggedIn }) {
   const [products, setProducts] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -23,6 +23,28 @@ function Card({ categoryFilter, limit }) {
     fetchData();
   }, [categoryFilter, limit]);
 
+
+  const handleLikeClick = () => {
+    if (isUserLoggedIn) {
+      // Realizar una solicitud POST al endpoint del backend para agregar a favoritos.
+      axios.post(`/products/add-favorite/${product.id}`)
+        .then(response => {
+          // Manejar la respuesta del servidor, por ejemplo, actualizar el estado.
+          setIsFavorite(true);
+        })
+        .catch(error => {
+          // Manejar errores, si es necesario.
+        });
+    } else {
+      // Redirigir al usuario no registrado a la página de registro.
+      // Aquí puedes usar React Router o cualquier enrutador que estés utilizando.
+    }
+  };
+
+  
+
+
+
   return (
     <div className="mx-8" style={{ marginLeft: '240px', marginRight: '240px' }}>
       <div className="flex flex-wrap -mx-2">
@@ -32,6 +54,7 @@ function Card({ categoryFilter, limit }) {
               <Link to={`/product/${product.id}`}>
                 <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />
                 <Link to={'/register'}><img src={Like} alt='icono favoritos' className='w-6 h-6 ml-2 mt-2'></img></Link>
+                
                 <div className="px-4 py-2 h-[80px]">
                   <div className="text-l mb-2">{product.name}</div>
                   <p className="text-base" style={{ color: 'purple' }}>
