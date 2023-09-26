@@ -186,8 +186,7 @@ class ProductController extends Controller
             
             $userFavorites=$user->isFavorite()->get();
     
-            return response()->json([
-                
+            return response()->json([    
                 $userFavorites
             ], 200);
             }
@@ -200,7 +199,7 @@ class ProductController extends Controller
             $product->isFavorite()->detach($user);
         
                 return response()->json([
-                    //'res' => true
+                    'res' => false,
                     'msg' => 'producto eliminado de su lista de favoritos'
                 ], 200);
 

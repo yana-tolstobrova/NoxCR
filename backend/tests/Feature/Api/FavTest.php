@@ -54,11 +54,11 @@ class FavTest extends TestCase
             'id' => 1,
         ]);
 
-        $favorite = $product->isFavorite()->attached($user);
+        $favorite = $product->isFavorite()->attach($user);
 
         $response = $this->postJson("api/products/remove-favorite/{$product->id}");
 
-        $response->assertJsonFragment(['res'=> true])
+        $response->assertJsonFragment(['res'=> false])
         ->assertStatus(200);
         $this->assertFalse($product->isFavorite->contains($user));
 
@@ -74,15 +74,19 @@ class FavTest extends TestCase
 
         Sanctum::actingAs($user);
         $product = Product::factory()->create([
-            'id' => 5,
+            'name' => "Lente color gris",
         ]);
+
+
+        $product->isFavorite()->attach($user);
 
         $response = $this->getJson("api/products/favorites");
 
         
         $response->assertStatus(200)
                 ->assertJsonCount(1)
-                ->assertJsonFragment(["product_id: 5"]);
+                ->assertJsonFragment(['name'=> "Lente color gris"]);
+                
         //$this->assertTrue($product->isFavorite->contains($user));
 
     }
