@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-function OrderModal({ showModal, handleCloseModal, handleOrderSubmit }) {
-  const [formData, setFormData] = useState({
-    address: "",
-    phone: "",
-    birthday:"",
-  });
+function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, setFormData, total }) {
+  // const [formData, setFormData] = useState({
+  //   address: "",
+  //   phone: "",
+  // });
 
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
+      total_amount:total,
       [e.target.name]: e.target.value,
     });
   };

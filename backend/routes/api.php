@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderLineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +25,12 @@ Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation'
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/orders', [OrderController::class, 'store']);
+    Route::post('/order-lines', [OrderLineController::class, 'store']);
 });
 
 Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search']);
 
-// Ruta para crear una orden y una línea de pedido
-Route::post('/orders', [OrderController::class, 'store']);
-Route::post('/order-lines', [OrderLineController::class, 'store']);
+
 

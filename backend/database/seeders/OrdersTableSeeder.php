@@ -14,19 +14,18 @@ class OrdersTableSeeder extends Seeder
      */
     public function run(): void
     {
-                // Obtener un usuario de ejemplo (cambia esto según tus necesidades)
+            
                 $user = User::find(1);
 
-                // Crear una orden de ejemplo
+        
                 $order = Order::create([
-                    'user_id' => $user->id, // ID del usuario
+                    'user_id' => $user->id, 
                     'address' => 'Dirección de ejemplo',
                     'phone' => '1234567890',
                     'date_ordered' => now(),
-                    'total_amount' => 100, // Total de la orden
+                    'total_amount' => 100, 
                 ]);
         
-                // Puedes crear más órdenes aquí si es necesario.
         
                 $this->command->info('Orders seeded successfully.');
     }

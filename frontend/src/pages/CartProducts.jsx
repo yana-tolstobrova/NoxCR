@@ -15,7 +15,7 @@ function CartProducts() {
   const [formData, setFormData] = useState({
     address: '',
     phone: '',
-    birthday:'',
+    total_amount: '',
   });
 
   useEffect(() => {
@@ -41,8 +41,8 @@ function CartProducts() {
   const total = cart.reduce((acc, item) => {
     const itemTotal = item.product.price * item.quantity;
     return acc + itemTotal;
-  }, 0).toLocaleString();
-
+  }, 0);
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
     sendShippingOrder().then(res => {
@@ -67,16 +67,10 @@ function CartProducts() {
   };
 
   const handleOrderSubmit = () => {
-    const orderData = {
-      address: formData.address,
-      phone: formData.phone,
-      birthday: formData.birthday,
-      total_amount: total,
-    };
   
     axios
-      .post("http://localhost:8000/api/orders", orderData, {
-        // withCredentials: true,
+      .post("http://localhost:8000/api/orders", formData, {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
@@ -92,12 +86,12 @@ function CartProducts() {
       });
   };
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleInputChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   return (
     <div className="h-screen pt-20">
@@ -190,7 +184,7 @@ function CartProducts() {
           </Link>
         </div>
         <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
-        <OrderModal showModal={showModalOrder} handleCloseModal={closeModalOrder}  handleOrderSubmit={handleOrderSubmit}/>
+        <OrderModal showModal={showModalOrder} handleCloseModal={closeModalOrder}  handleOrderSubmit={handleOrderSubmit} formData={formData} setFormData={setFormData} total={total}/>
       </div>
     </div>
   );
