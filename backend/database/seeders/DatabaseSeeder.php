@@ -30,5 +30,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CreateAdminUserSeeder::class,
         ]);
+        $this->call([
+            OrdersTableSeeder::class,
+        ]);
+        $this->call([
+            OrderLinesTableSeeder::class,
+        ]);
     }
 }
