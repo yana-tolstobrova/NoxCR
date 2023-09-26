@@ -86,7 +86,7 @@ function DetailProduct() {
           <div className="flex justify-center">
             <div className="flex items-center space-x-4 pt-6">
               <button
-                className="bg-black text-white px-4 py-2 rounded"
+                className="bg-black text-white px-4 py-2"
                 onClick={() => setQuantity(Math.max(0, quantity - 1))}
                 style={{backgroundColor:'#D7BCD3'}}
               >
@@ -94,7 +94,7 @@ function DetailProduct() {
               </button>
               <span className="text-xl font-semibold">{quantity}</span>
               <button
-                className="bg-black text-white px-4 py-2 rounded"
+                className="bg-black text-white px-4 py-2 "
                 onClick={() => setQuantity(quantity + 1)}
                 style={{backgroundColor:'#D7BCD3'}}
               >
@@ -104,7 +104,7 @@ function DetailProduct() {
           </div>
           <div className="flex justify-center">
             <button
-              className="bg-black text-white px-16 py-2 rounded"
+              className="bg-black text-white px-16 py-2"
               onClick={handleAddToCart}
             >
               Agregar a tu pedido

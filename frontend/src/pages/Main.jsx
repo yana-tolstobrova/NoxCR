@@ -16,7 +16,7 @@ function Main() {
   return (
     <div>
       <Carousel />
-      <h1 className="text-center mb-4 mt-4 text-4xl ml-4 font-bold" >Nuestros lentes de contacto</h1>
+      <h1 className="text-center mb-4 mt-4 text-4xl ml-4 font-bold" style={{ color: "#3C2046" }}>Nuestros lentes de contacto</h1>
       <FilterProducts />
       <div className="flex justify-between items-center">
         <h2 className="text-left mb-4 mt-4 text-2xl ml-4 font-semibold" style={{ marginLeft: '240px', color:"#3D3D3D" }} id="productos">Productos</h2>
@@ -41,7 +41,7 @@ function Main() {
       <h2 className="text-left mt-8 text-2xl ml-4  font-semibold" style={{ marginLeft: '240px', color:"#3D3D3D" }}id="cuidados">Cuidados</h2>
       <Care />
       <Accordion accordionItems={accordionItemsHome} showDownloadLink={true} />
-      <h2 className="text-center mb-8 mt-14 text-2xl ml-4 font-semibold " >¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
+      <h2 className="text-center mb-8 mt-14 text-2xl ml-4 font-semibold" style={{ marginLeft: '240px', color:"#3D3D3D"}}>¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
       <SocialNetwork />
       <Footer />
       

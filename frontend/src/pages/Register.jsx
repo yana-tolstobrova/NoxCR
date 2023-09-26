@@ -51,7 +51,7 @@ function Register() {
   return (
     <div className="flex items-start justify-center h-screen">
       <div className="bg-white px-10 py-10 border-2 border-gray-100">
-        <h1 className="text-3xl font-semibold">Crea tu cuenta</h1>
+        <h1 className="text-3xl font-semibold" style={{ color: "#3C2046" }}>Crea tu cuenta</h1>
         <p className="font-medium text-lg text-gray-500 mt-2">
           {" "}
           Ingrese su información para poder registrarse.
@@ -113,14 +113,14 @@ function Register() {
             <div className="mt-8 flex flex-col gap-y-4">
               <button
                 className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
-                type="submit"
+                // type="submit" onClick={showModal}
               >
                 Crear cuenta
               </button>
             </div>
             <div className='mt-4 flex items-center justify-center'>
               <p className='text-lg font-medium'>¿Ya tienes cuenta?</p>
-              <a  className='ml-4 hover:font-semibold hover:underline' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
+              <a  className='ml-4  hover:font-semibold hover:underline' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
             </div>
           </form>
         </div>

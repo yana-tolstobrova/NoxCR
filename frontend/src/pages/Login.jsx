@@ -47,7 +47,7 @@ function Login() {
     <>
         <div className="flex items-start justify-center h-screen">
           <div className="bg-white px-10 py-20 border-2 border-gray-100">
-            <h1 className="text-5xl font-semibold">Accede a Nox CR</h1>
+            <h1 className="text-5xl font-semibold"style={{ color: "#3C2046" }}>Accede a Nox CR</h1>
             <p className="font-medium text-lg text-gray-500 mt-2">
               {" "}
               Por favor ingrese sus datos
