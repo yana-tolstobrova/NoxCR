@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('address');
             $table->string('phone');
+            $table->date('birthday');
             $table->timestamp('date_ordered');
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
