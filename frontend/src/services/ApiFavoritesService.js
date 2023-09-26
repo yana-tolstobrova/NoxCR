@@ -11,27 +11,27 @@ axios.interceptors.request.use(function (config) {
     return config;
 });
 
-export const ApiFavoriteService = () => {
-    const urnAddFav = '/products/add-favorite/{id}';
-    const urnRemoveFav= '/products/add-favorite/{id}';
+export const ApiFavoritesService = () => {
+    const urnAddFav = '/products/add-favorite';
+    const urnRemoveFav= '/products/remove-favorite';
     const urnGetFavs= '/products/favorites/';
 
     const addFavorite = ($id) => {
-       const res = axios.post(urnAddFav, $id);
+       const res = axios.post(`${urnAddFav}/{$id}`);
          return res;
     }
 
     const removeFavorite = ($id) => {
-        const res = axios.post(urnRemoveFav, $id);
+        const res = axios.post(`${urnRemoveFav}/{$id}`);
         return res;
     }
 
     const getFavorites = () => {
-        const res = axios.post(urnGetFavs);
+        const res = axios.get(urnGetFavs);
         return res;
     }
 
-    // const logout = () => {
+    // const getFavorites = () => {
     //     return axios.get(urnGetFavs)
     // .then((res) => {
     //   return res;
