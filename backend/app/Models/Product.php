@@ -13,6 +13,11 @@ class Product extends Model
 
     protected $fillable = ['name', 'category', 'quantity', 'price', 'collection', 'color', 'image', 'detail'];
 
+    public function photos(): HasMany
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     static function search($query){
       $results = Product::where('name', 'LIKE', "%$query%")
                          ->orWhere('collection', 'LIKE', "%$query%")
