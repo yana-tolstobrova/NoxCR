@@ -166,7 +166,7 @@ class ProductController extends Controller
     }
 
 
-    // Metodos Favorite ---> 1.User can add Favorite Place
+    // Metodos Favorites ---> 1.User can add Favorite Place
 
     public function addFavorite($id)
     {
@@ -184,10 +184,11 @@ class ProductController extends Controller
             
             $user = Auth::user();
             
-            $user->isFavorite()->get();
+            $userFavorites=$user->isFavorite()->get();
     
             return response()->json([
-                // 'res' => true
+                
+                $userFavorites
             ], 200);
             }
 
