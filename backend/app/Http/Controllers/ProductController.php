@@ -187,7 +187,7 @@ class ProductController extends Controller
             $user->isFavorite()->get();
     
             return response()->json([
-                'res' => true
+                // 'res' => true
             ], 200);
             }
 
