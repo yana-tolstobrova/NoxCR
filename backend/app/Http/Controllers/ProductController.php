@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Photo;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
 
+Configuration::instance([
+    'cloud' => [
+      'cloud_name' =>  env('CLOUDINARY_CLOUD_NAME'), 
+      'api_key' => env('CLOUDINARY_API_KEY'), 
+      'api_secret' => env('CLOUDINARY_API_SECRET'),],
+    'url' => [
+      'secure' => true]]);
+
 class ProductController extends Controller
 {
+    
     public function index()
     {
         $products = Product::all();
@@ -27,30 +37,23 @@ class ProductController extends Controller
                 'price' => 'required|numeric|min:0',
                 'collection' => 'nullable',
                 'color' => 'nullable',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
                 'detail' => 'required',
             ]);
 
             $imagePath = null;
+            $imageId = null;
 
             if ($request->hasFile('image')) {
                 $uploadedFile = $request->file('image')->getRealPath();
-    
-                Configuration::instance([
-                    'cloud' => [
-                      'cloud_name' => 'noxcr', 
-                      'api_key' => '711534858381223', 
-                      'api_secret' => 'LqQSOZX4HD8h7T2_1r0q7p0Np3U'],
-                    'url' => [
-                      'secure' => true]]);
     
                 $uploadApi = new UploadApi();
     
                 $cloudinaryUpload = $uploadApi->upload($uploadedFile);
 
                 $imagePath = $cloudinaryUpload['secure_url'];
+                $imageId = $cloudinaryUpload['public_id'];
             }
-
             $product = Product::create([
                 'name' => $request->input('name'),
                 'category' => $request->input('category'),
@@ -60,6 +63,11 @@ class ProductController extends Controller
                 'color' => $request->input('color'),
                 'image' => $imagePath,
                 'detail' => $request->input('detail'),
+            ]);
+            $photo = Photo::create([
+                'url' => $imagePath,
+                'public_id' => $imageId,
+                'product_id' => $product->id,
             ]);
 
             return response()->json(['success' => true, 'message' => '¡Producto agregado exitosamente!']);
@@ -141,7 +149,16 @@ class ProductController extends Controller
             if ($product->image) {
                 Storage::delete('public/' . $product->image);
             }
+            if ($product->photo) {
+                $publicId = $product->photo->public_id;
+      
+                $uploadApi = new UploadApi();
+                $uploadApi()->destroy($publicId);
+    
 
+                $product->photo->delete();
+            }
+    
             $product->delete();
 
             return response()->json(['success' => true, 'message' => '¡Producto eliminado exitosamente!']);
