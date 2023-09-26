@@ -166,7 +166,7 @@ class ProductController extends Controller
     }
 
 
-    // Metodos Favorites ---> 1.User can add Favorite Place
+    // Metodos Favorites ---> 2.User can add Favorite Place
 
     public function addFavorite($id)
     {
@@ -176,10 +176,13 @@ class ProductController extends Controller
         $product->isFavorite()->attach($user);
 
         return response()->json([
-            'res' => true
+            'res' => true,
+            'msg' => 'el producto se ha añadido a tu lista de favoritos'
         ], 200);
 
     }
+
+     // Metodos Favorites ---> 2.User puede ver todos sus favoritos
         public function showFavorites(){
             
             $user = Auth::user();
@@ -191,6 +194,8 @@ class ProductController extends Controller
             ], 200);
             }
 
+
+ // Metodos Favorites ---> 2.Usuario puede desmarcar/retirar un favorito de la lista     
         public function removeFavorite($id){
             
             $user = Auth::user();
@@ -200,7 +205,7 @@ class ProductController extends Controller
         
                 return response()->json([
                     'res' => false,
-                    'msg' => 'producto eliminado de su lista de favoritos'
+                    'msg' => 'el producto se ha retirado de tu lista de favoritos'
                 ], 200);
 
                 }

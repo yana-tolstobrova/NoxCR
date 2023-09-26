@@ -36,7 +36,8 @@ class FavTest extends TestCase
         $response = $this->postJson("api/products/add-favorite/{$product->id}");
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['res'=> true]);
+                 ->assertJsonFragment(['res'=> true,
+                'msg' => 'el producto se ha añadido a tu lista de favoritos']);
         $this->assertTrue($product->isFavorite->contains($user));
 
     }
@@ -58,7 +59,8 @@ class FavTest extends TestCase
 
         $response = $this->postJson("api/products/remove-favorite/{$product->id}");
 
-        $response->assertJsonFragment(['res'=> false])
+        $response->assertJsonFragment(['res'=> false,
+        'msg' => 'el producto se ha retirado de tu lista de favoritos'])
         ->assertStatus(200);
         $this->assertFalse($product->isFavorite->contains($user));
 
