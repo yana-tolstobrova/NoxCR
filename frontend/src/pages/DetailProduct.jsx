@@ -133,7 +133,6 @@ function DetailProduct() {
           </div>
         </div>
       )}
-      <h4 className="text-3xl font-semibold p-2">Saber más</h4>
        <Accordion accordionItems={accordionItemsDetails}   customStyles={{ backgroundColor: 'white',  padding:'0px'}}  showDownloadLink={false} />
     </div>
   );

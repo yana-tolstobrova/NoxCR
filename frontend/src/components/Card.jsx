@@ -30,7 +30,7 @@ function Card({ categoryFilter, limit }) {
                 <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />
                 <div className="px-4 py-2 h-[80px]">
                   <div className="text-l mb-2">{product.name}</div>
-                  <p className="text-base" style={{ color: 'purple' }}>
+                  <p className="text-base font-semibold" style={{ color: '#7C3973' }}>
                     ${product.price}
                   </p>
                 </div>
