@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { cardsProducts } from '../services/ApiGetProducts';
 import { Link } from 'react-router-dom'; 
+import Like from '../assets/heart.svg'
 
 function Card({ categoryFilter, limit }) {
   const [products, setProducts] = useState([]);
@@ -28,6 +29,7 @@ function Card({ categoryFilter, limit }) {
             <div className="max-w-[222px] h-[350px] rounded overflow-hidden shadow-lg">
               <Link to={`/product/${product.id}`}>
                 <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />
+                <Link to={'/register'}><img src={Like} alt='icono favoritos' className='w-6 h-6'></img></Link>
                 <div className="px-4 py-2 h-[80px]">
                   <div className="text-l mb-2">{product.name}</div>
                   <p className="text-base" style={{ color: 'purple' }}>
