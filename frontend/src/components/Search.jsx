@@ -72,8 +72,8 @@ function Search() {
           <input
             ref={inputRef}
             type="text"
-            className="border rounded-lg py-2 pr-7 pl-2 w-48"
-            placeholder="Buscar..."
+            className="border rounded-sm py-2 pr-7 pl-2 w-48"
+            placeholder="Buscar producto..."
             // onChange={handleInputChange}
             onKeyDown={onKeyDownHandler}
             data-testid="search-input"
