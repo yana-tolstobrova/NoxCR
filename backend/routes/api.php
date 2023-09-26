@@ -25,8 +25,10 @@ Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation'
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
-    Route::post('/orders', [OrderController::class, 'store']);
+    Route::resource('/orders', OrderController::class);
+    Route::get('/orders/{id}/details', [OrderController::class, 'showOrderDetails']);
     Route::post('/order-lines', [OrderLineController::class, 'store']);
+
 });
 
 Route::resource('products', ProductController::class);

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\OrderLine;
+use App\Models\Order;
 
 class OrderLineController extends Controller
 {
     public function store(Request $request)
     {
+        $user = Auth::user();
         try {
             $request->validate([
                 'order_id' => 'required|integer|exists:orders,id',
@@ -19,11 +22,12 @@ class OrderLineController extends Controller
             ]);
 
             $orderLine = OrderLine::create([
-                'order_id' => $request->input('order_id'),
-                'product_id' => $request->input('product_id'),
-                'name' => $request->input('name'),
-                'quantity' => $request->input('quantity'),
-                'price' => $request->input('price'),
+                // 'user_id'=> $user->id,
+                'order_id' => $request->order_id,
+                'product_id' => $request->product_id,
+                'name' => $request->name,
+                'quantity' => $request->quantity,
+                'price' => $request->price,
             ]);
 
             return response()->json(['success' => true, 'message' => '¡Línea de orden creada exitosamente!']);

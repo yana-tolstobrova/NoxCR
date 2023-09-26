@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { removeFromCart, incrementQuantity, decrementQuantity } from "../utils/ProductsToCart";
-import { Link } from 'react-router-dom';
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+} from "../utils/ProductsToCart";
+import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
-import deleteIcon from '../assets/delete-icon.svg';
-import gifIcon from '../assets/gif-icon.svg';
+import deleteIcon from "../assets/delete-icon.svg";
+import gifIcon from "../assets/gif-icon.svg";
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
-import axios from 'axios'; 
+import axios from "axios";
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
   const [formData, setFormData] = useState({
-    address: '',
-    phone: '',
-    total_amount: '',
+    address: "",
+    phone: "",
+    total_amount: "",
+    // birthdate: "", 
   });
 
   useEffect(() => {
@@ -42,12 +47,14 @@ function CartProducts() {
     const itemTotal = item.product.price * item.quantity;
     return acc + itemTotal;
   }, 0);
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    sendShippingOrder().then(res => {
-      console.log(res);
-    }).catch(error => console.log(error))
+    sendShippingOrder()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
   };
 
   const openModal = () => {
@@ -67,31 +74,59 @@ function CartProducts() {
   };
 
   const handleOrderSubmit = () => {
-  
     axios
       .post("http://localhost:8000/api/orders", formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
       })
       .then((response) => {
-        const orderId = response.data.id;
+        const orderId = response.data.data.id;
         console.log(response);
-        setShowModalOrder(false);
+        handleOrderLinesSubmit(orderId);
       })
       .catch((error) => {
         console.error("Error al crear la orden:", error);
       });
   };
+  
+  const handleOrderLinesSubmit = (orderId) => {
+    cart.forEach((item) => {
+      const orderLineData = {
+        order_id: orderId,
+        product_id: item.product.id,
+        name: item.product.name,
+        quantity: item.quantity,
+        price: item.product.price,
+      };
+      console.log(cart);
+      console.log("orderId:", orderId);
+      console.log("product_id:", item.product.id);
+  
+      axios
+        .post("http://localhost:8000/api/order-lines", orderLineData, {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+        .then((orderLineResponse) => {
+          console.log(orderLineResponse);
+        })
+        .catch((error) => {
+          console.error("Error al crear la línea de orden:", error);
+        });
+    });
+  };
+  
 
-  // const handleInputChange = (e) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+
+
+  
+  
 
   return (
     <div className="h-screen pt-20">
@@ -139,7 +174,11 @@ function CartProducts() {
                   className="p-4"
                   onClick={() => handleRemoveFromCart(item)}
                 >
-                  <img src={deleteIcon} alt="Eliminar" className="rounded w-10 h-10" />
+                  <img
+                    src={deleteIcon}
+                    alt="Eliminar"
+                    className="rounded w-10 h-10"
+                  />
                 </button>
               </div>
             </div>
@@ -154,7 +193,13 @@ function CartProducts() {
           <div className="flex justify-between">
             <p className="text-gray-700">Tipo de envío</p>
             <p className="text-l hover:underline" style={{ color: "#3C2046" }}>
-              <span role="button" onClick={openModal} className="cursor-pointer">Más info.</span>
+              <span
+                role="button"
+                onClick={openModal}
+                className="cursor-pointer"
+              >
+                Más info.
+              </span>
             </p>
           </div>
           <div className="flex justify-between mt-2">
@@ -184,7 +229,14 @@ function CartProducts() {
           </Link>
         </div>
         <ShippingModal showModal={showModal} handleCloseModal={closeModal} />
-        <OrderModal showModal={showModalOrder} handleCloseModal={closeModalOrder}  handleOrderSubmit={handleOrderSubmit} formData={formData} setFormData={setFormData} total={total}/>
+        <OrderModal
+          showModal={showModalOrder}
+          handleCloseModal={closeModalOrder}
+          handleOrderSubmit={handleOrderSubmit}
+          formData={formData}
+          setFormData={setFormData}
+          total={total}
+        />
       </div>
     </div>
   );
