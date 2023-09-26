@@ -1,8 +1,8 @@
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import React, { useState} from "react";
-import Modal from '../components/Modal';
+import { useNavigate } from 'react-router-dom';
+import Modal from '../components/ModalSuccess';
 
 function Register() {
   const { setUser } = useAuth();
@@ -10,7 +10,8 @@ function Register() {
 	const [emailError, setEmailError] = React.useState('');
 	const [passwordError, setPasswordError] = React.useState('');
   const [showModal, setShowModal] = useState(false);
-  // const navigate = useNavigate();
+
+  const navigate = useNavigate()
 
   const openModal = () => {
     setShowModal(true);
@@ -18,6 +19,7 @@ function Register() {
 
   const closeModal = () => {
     setShowModal(false);
+    navigate('/');
   };
 
   const handleSubmit = async (e) => {
@@ -33,8 +35,7 @@ function Register() {
 			const resp = await axios.post('/register', body);
 			if (resp.status === 200) {
 				setUser(resp.data.user);
-				// return <Navigate to="/dashboard" />;
-        openModal();// navigate('/');
+        openModal();
 			}
 		} catch (error) {
 			if (error.response.status === 422) {
@@ -123,7 +124,7 @@ function Register() {
             <div className="mt-8 flex flex-col gap-y-4">
               <button
                 className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
-                type="submit" onClick={openModal}
+                type="submit" 
               >
                 Crear cuenta
               </button>
@@ -135,7 +136,7 @@ function Register() {
           </form>
         </div>
       </div>
-      <Modal showModal={showModal} handleCloseModal={closeModal} />
+      <Modal showModal={showModal} text='Aceptar' title='Usuario creado exitosamente' handleCloseModal={closeModal} />
     </div>
   );
 }
