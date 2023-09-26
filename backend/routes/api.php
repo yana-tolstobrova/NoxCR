@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
 
     Route::post("/products/favorites/{id}", [ProductController::Class, 'isFavorite']);
+    Route::get("/products/favorites", [ProductController::Class, 'showFavorite']);
 });
 
 Route::resource('products', ProductController::class);

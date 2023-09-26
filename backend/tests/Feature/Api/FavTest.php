@@ -28,7 +28,7 @@ class FavTest extends TestCase
             'id' => 1
         ]);
 
-        Sanctum::actingAs($user);
+        //Sanctum::actingAs($user);
         $product = Product::factory()->create([
             'id' => 1,
         ]);
@@ -40,4 +40,52 @@ class FavTest extends TestCase
         $this->assertTrue($product->isFavorite->contains($user));
 
     }
+
+    public function test_auth_user_can_unlike_product(): void
+    {
+        // $this->withoutExceptionHandling();
+
+        // $user = User::factory()->create([
+        //     'id' => 1
+        // ]);
+
+        // //Sanctum::actingAs($user);
+        // $product = Product::factory()->create([
+        //     'id' => 5,
+        // ]);
+
+        // $response = $this->getJson("api/products/favorites");
+
+        
+        // $response->assertStatus(201)
+        //         ->assertJsonCount(1)
+        //         ->assertJsonFragment(["product_id: 5"]);
+        // //$this->assertTrue($product->isFavorite->contains($user));
+
+    }
+
+    public function test_auth_user_can_see_favorites_products(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create([
+            'id' => 1
+        ]);
+
+        //Sanctum::actingAs($user);
+        $product = Product::factory()->create([
+            'id' => 5,
+        ]);
+
+        $response = $this->getJson("api/products/favorites");
+
+        
+        $response->assertStatus(201)
+                ->assertJsonCount(1)
+                ->assertJsonFragment(["product_id: 5"]);
+        //$this->assertTrue($product->isFavorite->contains($user));
+
+    }
+
+
 }

@@ -171,17 +171,38 @@ class ProductController extends Controller
     public function isFavorite($id)
     {
         $user = Auth::user();
-        Product::find($id);
+        $product=Product::find($id);
+
+        $product->isFavorite()->attach($user);
 
         return response()->json([
             'res' => true
         ], 200);
 
-
-       
     }
+        public function showFavorite(){
+            
+            $user = Auth::user();
+            
+            $user->isFavorite()->get();
+    
+            return response()->json([
+                'res' => true
+            ], 200);
+            }
 
-
-
+        public function isNotFavorite($id){
+            
+            $user = Auth::user();
+            $product=Product::find($id);
+    
+            $product->isFavorite()->detach($user);
+        
+                return response()->json([
+                    //'res' => true
+                    'msg' => 'producto eliminado de su lista de favoritos'
+                ], 200);
+                
+                }
 
 }
