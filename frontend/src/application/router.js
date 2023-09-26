@@ -17,7 +17,8 @@ import DetailProduct from '../pages/DetailProduct';
 import CartProducts from '../pages/CartProducts';
 import AdminGuestLayout from '../utils/AdminGuestLayout';
 import AdminProtectedLayout from '../utils/AdminProtectedLayout';
-import SearchCard from '../pages/SearchCard';
+
+import CardsSearch from '../pages/CardsSearch';
 
 const router = createBrowserRouter([
 	{
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/search',
-				element: <SearchCard />,
+				element: <CardsSearch />,
 			},
 		],
 	},
