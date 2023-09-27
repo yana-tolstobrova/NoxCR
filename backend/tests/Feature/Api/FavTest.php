@@ -89,7 +89,6 @@ class FavTest extends TestCase
                 ->assertJsonCount(1)
                 ->assertJsonFragment(['name'=> "Lente color gris"]);
                 
-        //$this->assertTrue($product->isFavorite->contains($user));
 
     }
 
