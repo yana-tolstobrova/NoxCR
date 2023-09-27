@@ -27,7 +27,8 @@ class RegisterRequest extends FormRequest {
                 'string',
                 Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),
                 'confirmed',
-            ]
+            ],
+            'subscription' => 'boolean',
         ];
     }
 }
