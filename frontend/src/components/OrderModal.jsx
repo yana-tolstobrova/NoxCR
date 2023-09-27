@@ -23,13 +23,24 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
   return (
     showModal && (
       <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
-        <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
+        <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
-              <h1 className="mb-4 text-3xl font-extrabold">Ingresa tus datos para la orden</h1>
+              <h1 className="mb-4 text-3xl font-extrabold text-gray-800">Ingresa tus datos para la orden</h1>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="address">Dirección:</label>
+                  <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                  <input
+                    type="date"
+                    id="birthdate"
+                    name="birthdate"
+                    max={minBirthdate}
+                    required
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="address">Dirección de envio:</label>
                   <input
                     type="text"
                     id="address"
@@ -37,7 +48,7 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
                 <div className="mb-4">
@@ -49,23 +60,12 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="birthdate">Fecha de nacimiento:</label>
-                  <input
-                    type="date"
-                    id="birthdate"
-                    name="birthdate"
-                    max={minBirthdate}
-                    required
-                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="p-3 bg-black rounded-full text-white w-full mt-4 font-semibold"
+                  className="p-3 bg-black text-white w-full font-semibold"
                 >
                   Confirmar
                 </button>
