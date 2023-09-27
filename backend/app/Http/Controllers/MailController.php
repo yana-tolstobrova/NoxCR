@@ -9,6 +9,7 @@ use App\Mail\orderConfirmation;
 use App\Models\User;
 use Symfony\Component\Mime\Part\TextPart;
 use Symfony\Component\Mime\Part\File;
+use App\Models\Order;
   
 class MailController extends Controller
 {
@@ -16,11 +17,14 @@ class MailController extends Controller
      * Write code on Method
      *
      * @return response()
+     * 
+     * 
      */
 
-    public function orderConfirmation()
+    public function orderConfirmation(Order $order)
     {
-     
+      $order= 
+
             $userMail = 'sylviall81@gmail.com';
             $adminMail = 'noxcr.mailing@gmail.com';
         

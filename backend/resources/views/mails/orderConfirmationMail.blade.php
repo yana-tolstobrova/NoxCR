@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<img src="backend/resources/views/mails/orderConfirmationMail.blade.php" alt="Logo NoxCR en blanco y negro">
+<img src="" alt="Logo NoxCR en blanco y negro">
     <h1>Confirmación de orden de compra</h1>
 
     <p> Resumen de pedido:</p>

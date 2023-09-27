@@ -32,6 +32,9 @@ class OrderController extends Controller
                 'total_amount' => $request->total_amount,
             ]);
 
+            Mail::to($request->user())->send(new orderConfirmation($order));
+            Mail::to($request->user())->send(new orderConfirmation($order));
+            
             return response()->json(['success' => true, 'data' => $order]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);

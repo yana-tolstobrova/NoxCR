@@ -34,11 +34,6 @@ class ProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        // //$user = User::factory()->create([
-        //     'id' => 1
-        // ]);
-
-        //Sanctum::actingAs($user);
 
         $product = Product::create([
                 'name' => 'Solución multipropósito',
