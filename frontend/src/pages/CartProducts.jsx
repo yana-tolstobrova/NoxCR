@@ -10,17 +10,20 @@ import deleteIcon from "../assets/delete-icon.svg";
 import gifIcon from "../assets/gif-icon.svg";
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
+import OrderQuestionsModal from "../components/OrderQuestionsModal";
 import axios from "axios";
 
 function CartProducts() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
+  const [showOrderQuestionsModal, setShowOrderQuestionsModal] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState(false);
   const [formData, setFormData] = useState({
     address: "",
     phone: "",
     total_amount: "",
-    // birthdate: "", 
+    // birthdate: "",
   });
 
   useEffect(() => {
@@ -91,7 +94,7 @@ function CartProducts() {
         console.error("Error al crear la orden:", error);
       });
   };
-  
+
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {
       const orderLineData = {
@@ -104,7 +107,7 @@ function CartProducts() {
       console.log(cart);
       console.log("orderId:", orderId);
       console.log("product_id:", item.product.id);
-  
+
       axios
         .post("http://localhost:8000/api/order-lines", orderLineData, {
           withCredentials: true,
@@ -121,23 +124,31 @@ function CartProducts() {
         });
     });
   };
-  
+  const openOrderQuestionsModal = () => {
+    setShowOrderQuestionsModal(true);
+  };
 
+  const closeOrderQuestionsModal = () => {
+    setShowOrderQuestionsModal(false);
+  };
 
-
-  
-  
+  const handleContinueToOrder = () => {
+    closeOrderQuestionsModal();
+    openModalOrder();
+  };
 
   return (
     <div className="h-screen pt-20">
-      <h1 className="mb-10 text-center text-3xl font-bold"style={{ color: "#3C2046" }}>Resumen de tu pedido</h1>
+      <h1
+        className="mb-10 text-center text-3xl font-bold"
+        style={{ color: "#3C2046" }}
+      >
+        Resumen de tu pedido
+      </h1>
       <div className="flex justify-center gap-12">
         <div className="w-[50%] px-4 space-y-6 xl:px-0">
           {cart.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-center bg-gray-100 p-4"
-            >
+            <div key={index} className="flex items-center bg-gray-100 p-4">
               <img
                 src={item.product.image}
                 alt={item.product.name}
@@ -150,23 +161,23 @@ function CartProducts() {
                 <p className="text-lg text-gray-500">
                   Categoría: {item.product.collection}
                 </p>
-                <p className="text-lg" style={{ color: '#3C2046' }}>
+                <p className="text-lg" style={{ color: "#3C2046" }}>
                   ₡{Math.floor(item.product.price).toLocaleString()}
                 </p>
               </div>
               <div className="flex items-center space-x-4 pt-2">
                 <button
-                  className="bg-black text-white px-4 py-2 rounded-sm font-black"
+                  className="bg-black px-4 py-2 rounded-sm font-black"
                   onClick={() => handleDecrementQuantity(item)}
-                  style={{ backgroundColor: '#D7BCD3', color:"#3C2046" }}
+                  style={{ backgroundColor: "#D7BCD3", color: "#3C2046" }}
                 >
                   -
                 </button>
                 <span className="text-xl font-semibold">{item.quantity}</span>
                 <button
-                  className="text-white px-4 py-2 rounded-sm font-black"
+                  className="px-4 py-2 rounded-sm font-black"
                   onClick={() => handleIncrementQuantity(item)}
-                  style={{ backgroundColor: '#D7BCD3', color:"#3C2046" }}
+                  style={{ backgroundColor: "#D7BCD3", color: "#3C2046" }}
                 >
                   +
                 </button>
@@ -208,23 +219,44 @@ function CartProducts() {
               Regalo especial con tu compra
             </p>
           </div>
-          <p className=" text-end text-sm font-medium" style={{ color: "#3C2046" }}>
+          <p
+            className=" text-end text-sm font-medium"
+            style={{ color: "#3C2046" }}
+          >
             (Un estuche de lentes sin coste)
           </p>
           <hr className="my-4" />
           <div className="flex justify-between">
-            <p className="text-lg font-black" style={{ color: "#3C2046" }}>Total</p>
+            <p className="text-lg font-black" style={{ color: "#3C2046" }}>
+              Total
+            </p>
             <div>
-              <p className="mb-1 text-lg font-black"style={{ color: "#3C2046" }}>
-                ₡{(total)}
+              <p
+                className="mb-1 text-lg font-black"
+                style={{ color: "#3C2046" }}
+              >
+                ₡{total}
               </p>
             </div>
           </div>
-          <span role="button" onClick={openModalOrder} className="cursor-pointer">Orden</span>
-          <button onClick={handleOnSubmit} className="mt-6 w-full bg-black py-1.5 font-medium text-white hover:bg-white hover:text-black border-black border py-2 bg-black">
+          <span
+            role="button"
+            onClick={openOrderQuestionsModal}
+            className="cursor-pointer"
+          >
+            Orden
+          </span>
+          <button
+            onClick={handleOnSubmit}
+            className="mt-6 w-full bg-black py-1.5 font-medium text-white hover:bg-white hover:text-black border-black border py-2 bg-black"
+          >
             Confirmar pedido
           </button>
-          <Link to="/" className="block mt-4 w-full bg-white py-1.5 font-medium text-black text-center border border-black" style={{ textDecoration: 'none' }}>
+          <Link
+            to="/"
+            className="block mt-4 w-full bg-white py-1.5 font-medium text-black text-center border border-black"
+            style={{ textDecoration: "none" }}
+          >
             Continuar comprando
           </Link>
         </div>
@@ -237,11 +269,16 @@ function CartProducts() {
           setFormData={setFormData}
           total={total}
         />
+        <OrderQuestionsModal
+          showModal={showOrderQuestionsModal}
+          handleCloseModal={closeOrderQuestionsModal}
+          handleContinueToOrder={handleContinueToOrder}
+          questionsAnswered={questionsAnswered}
+          setQuestionsAnswered={setQuestionsAnswered}
+        />
       </div>
     </div>
   );
 }
 
 export default CartProducts;
-
-

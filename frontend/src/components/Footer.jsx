@@ -101,7 +101,7 @@ function Footer() {
               </a>
               <a
                 className="text-white"
-                href="#"
+                href="https://wa.me/50684993726"
                 target="_blank"
                 rel="noreferrer"
               >

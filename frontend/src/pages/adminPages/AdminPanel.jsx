@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext'; 
-import { cardsProducts } from '../services/ApiGetProducts';
+import { useAuth } from '../../contexts/AuthContext'; 
+import { cardsProducts } from '../../services/ApiGetProducts';
 
 export default function AdminPanel() {
 	const { user } = useAuth();

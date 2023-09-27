@@ -8,17 +8,17 @@ import ProductsPage from '../pages/ProductsPage';
 import NaturalProductsPage from '../pages/NaturalProductsPage';
 import CrazyProductsPage from '../pages/CrazyProductsPage';
 import ScleraProductsPage from '../pages/ScleraProductsPage';
-import ProductList from '../adminPages/AdminProducts';
+import ProductList from '../pages/adminPages/AdminProducts';
 import AdminLogin from '../components/AdminLogin';
 import CreateProduct from '../components/CreateProduct';
 import EditProduct from '../components/EditProduct';
-import AdminPanel from '../adminPages/AdminPanel';
+import AdminPanel from '../pages/adminPages/AdminPanel';
 import DetailProduct from '../pages/DetailProduct';
 import CartProducts from '../pages/CartProducts';
 import AdminGuestLayout from '../utils/AdminGuestLayout';
 import AdminProtectedLayout from '../utils/AdminProtectedLayout';
-
 import CardsSearch from '../pages/CardsSearch';
+import UsersList from '../pages/adminPages/AdminUsers';
 
 const router = createBrowserRouter([
 	{
@@ -118,6 +118,10 @@ const router = createBrowserRouter([
 			{
 				path: '/admin/adminPanel',
 				element: <AdminPanel />,
+			},
+			{
+				path: '/admin/adminUsers',
+				element: <UsersList />,
 			},
 			{
 				path: '/admin/products',

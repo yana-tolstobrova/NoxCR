@@ -47,7 +47,7 @@ export default function AdminProtectedLayout() {
 				<nav>
 					<ul className='pt-20 pb-44'>
 						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={HomeIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/adminPanel'>Panel de Gestión</a></li>
-						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={ListIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/'>Lista de usuarios</a></li>
+						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={ListIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/adminUsers'>Lista de usuarios</a></li>
 						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={DollarIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/'>Transacciones</a></li>
 						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={CircleIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/products'>Productos</a></li>
 					</ul>

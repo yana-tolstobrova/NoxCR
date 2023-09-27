@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AddIcon from '../assets/addIcon.svg';
-import EditIcon from '../assets/editIcon.svg';
-import DeleteIcon from '../assets/deleteIcon.svg';
+import AddIcon from '../../assets/addIcon.svg';
+import EditIcon from '../../assets/editIcon.svg';
+import DeleteIcon from '../../assets/deleteIcon.svg';
 import { useNavigate } from 'react-router-dom';
 
 function ProductList() {

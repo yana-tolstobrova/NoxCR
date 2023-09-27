@@ -10,7 +10,7 @@ function Register() {
 	const [emailError, setEmailError] = React.useState('');
 	const [passwordError, setPasswordError] = React.useState('');
   const [showModal, setShowModal] = useState(false);
-
+  const [subscription, setSubscription] = useState(false);
   const navigate = useNavigate()
 
   const openModal = () => {
@@ -24,15 +24,17 @@ function Register() {
 
   const handleSubmit = async (e) => {
 		e.preventDefault();
-		const { name, email, password, cpassword } = e.target.elements;
+		const { name, email, password, cpassword} = e.target.elements;
 		const body = {
 			name: name.value,
 			email: email.value,
 			password: password.value,
 			password_confirmation: cpassword.value,
-		};
+      subscription: subscription,
+		}; 
+    
 		try {
-			const resp = await axios.post('/register', body);
+			const resp = await axios.post('/register', body); 
 			if (resp.status === 200) {
 				setUser(resp.data.user);
         openModal();
@@ -121,6 +123,19 @@ function Register() {
               />
               {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
             </div>
+              <div className='mt-4'>
+              <input
+                className="mr-2"
+                type="checkbox"
+                name="subscription"
+                id="subscription"
+                checked={subscription}
+                onChange={(e) => setSubscription(e.target.checked)}
+              />
+                <label className="text-sm font-medium" htmlFor="subscription">
+                Quiero recibir las actualizaciones sobre productos y promociones
+                </label>
+            </div>
             <div className="mt-8 flex flex-col gap-y-4">
               <button
                 className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
@@ -142,4 +157,3 @@ function Register() {
 }
 
 export default Register;
-//prueba
