@@ -8,10 +8,10 @@
 </head>
 
 <body>
-
+<img src="backend/resources/views/mails/orderConfirmationMail.blade.php" alt="Logo NoxCR en blanco y negro">
     <h1>Confirmación de orden de compra</h1>
 
-    <p> Tu compra se ha realizado exitosamente!. Estos son los datos de tu transacción:</p>
+    <p> Resumen de pedido:</p>
 
    <table>
     <tr>
@@ -20,7 +20,7 @@
             <li> {{ $orderData['producto'] }}</li>
             <li> {{ $orderData['cantidad'] }}</li>
             <li> {{ $orderData['precio'] }}</li>
-            <li> {{ $orderData['total'] }}</li>
+            <li> Precio Total: {{ $order->price }}</li>
         </ul>
     </tr>
     <tr>

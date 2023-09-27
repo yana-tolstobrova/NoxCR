@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Mail\Mailables\Attachment;
 use Symfony\Component\Mime\Part\TextPart;
 use Symfony\Component\Mime\Part\File;
+use App\Models\Order;
 
   
 class orderConfirmation extends Mailable
@@ -24,11 +25,8 @@ class orderConfirmation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($orderData)
-    {
-        $this->orderData = $orderData;
-        
-    }
+    public function __construct(public Order $order,)
+    { }
   
     /**
      * Get the message envelope.
