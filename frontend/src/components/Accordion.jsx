@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import arrowCarousel from '../assets/arrow-carousel.svg'
 import arrow from '../assets/arrow.svg'
+import pdfCare from '../assets/pdf-docs/cuidados-noxcr.pdf'
 
 function Accordion(props) {
   const [openItemIndex, setOpenItemIndex] = useState(null);
@@ -44,8 +45,9 @@ function Accordion(props) {
     {props.showDownloadLink && (
     <div className="flex justify-end text-white p-2" style={{ color: 'gray' }}> 
         <a
-          href="/ruta-del-archivo.pdf" // Reemplaza con la ruta correcta de tu archivo PDF
-          download="nombre-del-archivo.pdf" // Reemplaza con el nombre deseado para el archivo descargado
+          href={pdfCare}
+          target="_blank" rel="noopener noreferrer"
+          download= "cuidados-noxcr.pdf" 
           className="flex items-end text-400"
         >
           Descargar PDF
