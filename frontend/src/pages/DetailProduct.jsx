@@ -67,36 +67,36 @@ function DetailProduct() {
             />
           </div>
         </div>
-        <div className="md:w-1/2 space-y-4 md:pl-6">
-          <h1 className="text-4xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-xl text-gray-500">Colección: {product.collection} </p>
-          <p className="text-lg text-gray-600">{product.detail}</p>
+        <div className="md:w-1/2 space-y-3 md:pl-6">
+          <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
+          <p className="text-lg text-gray-400">Colección: {product.collection} </p>
+          <p className="text-base text-gray-600">{product.detail}</p>
           <p className="text-2xl font-bold text-gray-800 ">
-            ₡{roundedPrice}
-            <span className="text-xl font-normal text-gray-600">
-              /por lentillas
+           ₡{roundedPrice}
+            <span className="text-base font-normal text-gray-400">
+            /por lentillas
             </span>
           </p>
           <div className="flex mt-2 ">
-            <img src={gifIcon} alt="gif icon" className="rounded w-10 h-10 "/>
-            <p className="text-lg font-semibold text-black mt-3 ml-4">
+            <img src={gifIcon} alt="gif icon" className="rounded w-8 h-6 "/>
+            <p className="text-base font-semibold text-black mt-1 ml-2">
               Regalo especial con tu compra
             </p>
           </div>
           <div className="flex justify-center">
             <div className="flex items-center space-x-4 pt-6">
               <button
-                className="bg-black text-white px-4 py-2"
+                className="px-4 py-2 rounded-sm font-black"
                 onClick={() => setQuantity(Math.max(0, quantity - 1))}
-                style={{backgroundColor:'#D7BCD3'}}
+                style={{backgroundColor:'#D7BCD3', color:"#3C2046"}}
               >
                 -
               </button>
               <span className="text-xl font-semibold">{quantity}</span>
               <button
-                className="bg-black text-white px-4 py-2 "
+                className="px-4 py-2 rounded-sm font-black"
                 onClick={() => setQuantity(quantity + 1)}
-                style={{backgroundColor:'#D7BCD3'}}
+                style={{backgroundColor:'#D7BCD3', color:"#3C2046"}}
               >
                 +
               </button>
@@ -104,7 +104,7 @@ function DetailProduct() {
           </div>
           <div className="flex justify-center">
             <button
-              className="bg-black text-white px-16 py-2"
+              className="bg-black text-white px-16 py-2 hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
               onClick={handleAddToCart}
             >
               Agregar a tu pedido
