@@ -142,30 +142,34 @@ class ProductController extends Controller
     }
 
     public function destroy($id): JsonResponse
-    {
-        try {
-            $product = Product::findOrFail($id);
+{
+    try {
+        $product = Product::findOrFail($id);
 
-            if ($product->image) {
-                Storage::delete('public/' . $product->image);
-            }
-            if ($product->photo) {
-                $publicId = $product->photo->public_id;
-      
-                $uploadApi = new UploadApi();
-                $uploadApi()->destroy($publicId);
-    
-
-                $product->photo->delete();
-            }
-    
-            $product->delete();
-
-            return response()->json(['success' => true, 'message' => '¡Producto eliminado exitosamente!']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        if ($product->image) {
+            Storage::delete('public/' . $product->image);
         }
+        
+        // Check if the product has an associated photo
+        if ($product->photo) {
+            $publicId = $product->photo->public_id;
+            
+
+            // Initialize the Cloudinary API client
+            // $uploadApi = new UploadApi();
+            // $uploadApi->destroy($publicId);
+            Cloudinary::destroy($publicId);
+
+            $product->photo->delete();
+        }
+
+        $product->delete();
+
+        return response()->json(['success' => true, 'message' => '¡Producto eliminado exitosamente!']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
     }
+}
 
     public function search(Request $request)
     {
