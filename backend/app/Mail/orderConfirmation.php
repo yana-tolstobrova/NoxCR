@@ -26,7 +26,9 @@ class orderConfirmation extends Mailable
      * Create a new message instance.
      */
     public function __construct(public Order $order,)
-    { }
+    { 
+        
+    }
   
     /**
      * Get the message envelope.
