@@ -40,7 +40,7 @@ class ProductsTableSeeder extends Seeder
             'price' => 18000,
             'collection' => 'Natural',
             'color' => 'Gris',
-            'image' => 'https://media.istockphoto.com/id/450664975/es/foto/blue-eye-macro-con-mucha-informaci%C3%B3n-aislado-en-blanco.webp?s=612x612&w=is&k=20&c=tFk9Ws50XOFVTEWmmF4qk_c3yNYyjYRTQSMYoAgHeOw=',
+            'image' => 'https://www.realiris.com/wp-content/uploads/2019/03/NLC-03.jpg',
             'detail' => 'Descubre la sofisticación y la versatilidad con nuestros Lentes de Contacto de Silicona en un elegante y atemporal color gris. Estos lentes no solo realzan tus ojos, sino que también te permiten expresar tu estilo con confianza y distinción. Con un diseño de borde delgado, estos lentes se insertan y se retiran de manera sencilla. Son adecuados tanto para usuarios experimentados como para principiantes.',
         ]);
         Product::create([
@@ -142,6 +142,56 @@ class ProductsTableSeeder extends Seeder
             'color' => 'Negro',
             'image' => 'https://m.media-amazon.com/images/I/51i3ecR6SnL.jpg',
             'detail' => 'Bienvenido al mundo de la fantasía y el asombro con nuestros Lentes de Contacto Sclera. Estos lentes extremadamente impactantes y versátiles están diseñados para transformar por completo tu mirada y transportarte a mundos de ensueño y creatividad. A pesar de su apariencia llamativa, nuestros Lentes de Contacto Sclera están fabricados con materiales de alta calidad y son seguros para su uso. La comodidad es una prioridad para que puedas disfrutar de tu transformación sin preocupaciones.Cada diseño está cuidadosamente elaborado para capturar incluso los detalles más pequeños. Los colores y patrones son realistas y cautivadores, lo que garantiza que tu mirada se destaque con fuerza.',
+        ]);
+        Product::create([
+            'name' => 'Solución multiproposito',
+            'category' => 'Lentes de Contacto',
+            'quantity' => 5,
+            'price' => 4000,
+            'collection' => 'Product',
+            'color' => 'Negro',
+            'image' => 'https://farmapalacio.com/wp-content/uploads/2020/06/7506306205079-1-160.jpg',
+            'detail' => 'Las soluciones multipropósito para lentes de contacto son líquidos con dos propósitos: limpian y también desinfectan los lentes. Las soluciones multipropósito para lentes de contacto están diseñadas para limpiar, enjuagar, almacenar y renovar sus lentes de contacto.',
+        ]);
+        Product::create([
+            'name' => 'Kit SOS Cuidados',
+            'category' => 'Lentes de Contacto',
+            'quantity' => 5,
+            'price' => 10000,
+            'collection' => 'Product',
+            'color' => 'Negro',
+            'image' => 'https://www.e-lentillas.com/7098-large_default/menicare-pure--progent-kit-70ml.jpg',
+            'detail' => 'Renu Advanced Kit De Viaje ( Solución Multiproposito Para Lentes De Contacto 60 Ml ) Solución multipropósito Renu Advanced para desinfeccion, cuidado y mantenimiento de los Lentes de Contacto Blandos / Hidrogel de Silicona y Tradicional; Combina 3 desinfectantes , eliminando el 99.9% gérmenes',
+        ]);
+        Product::create([
+            'name' => 'Solución multiprosito',
+            'category' => 'Lentes de Contacto',
+            'quantity' => 5,
+            'price' => 3000,
+            'collection' => 'Product',
+            'color' => 'Negro',
+            'image' => 'https://beta.cruzverde.cl/on/demandware.static/-/Sites-masterCatalog_Chile/default/dw29a3f367/images/large/265441-multiproposito-solucion-120-ml.jpg',
+            'detail' => 'Las soluciones multipropósito para lentes de contacto son líquidos con dos propósitos: limpian y también desinfectan los lentes. Eliminando el 99.9% de gérmenes y provee hasta 20 horas de humectación, manteniendo el confort por más tiempo.',
+        ]);
+        Product::create([
+            'name' => 'Estuche repuesto',
+            'category' => 'Lentes de Contacto',
+            'quantity' => 5,
+            'price' => 2500,
+            'collection' => 'Product',
+            'color' => 'Negro',
+            'image' => 'https://m.media-amazon.com/images/I/61aGTfSHGXL._AC_UY580_.jpg',
+            'detail' => 'El estuche para lentillas sirve para proteger las lentes de contacto de agentes externos que puedan arañarlos, infectarlos y dañarlos. Recuerda que tiene una duración de 3 meses, así que es super importante que siempre tengas estuches.',
+        ]);
+        Product::create([
+            'name' => 'Estuche crazy',
+            'category' => 'Lentes de Contacto',
+            'quantity' => 5,
+            'price' => 5000,
+            'collection' => 'Product',
+            'color' => 'Negro',
+            'image' => 'https://www.lentiamo.cz/img/estuche-portalentillas-3-d/2219-800.jpg',
+            'detail' => 'El estuche para lentillas sirve para proteger las lentes de contacto de agentes externos que puedan arañarlos, infectarlos y dañarlos. Ahora hazlo más divertido con estos estuches divertidos para tú día a día y recuerda que lo mas importante es tener una buena higiene en tus lentes de contacto',
         ]);
 
     }

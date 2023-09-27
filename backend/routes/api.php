@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/orders', OrderController::class);
     Route::get('/orders/{id}/details', [OrderController::class, 'showOrderDetails']);
     Route::post('/order-lines', [OrderLineController::class, 'store']);
+    Route::post('/user-details', [UserDetailsController::class, 'store']);
+    Route::get('/user-details/{userDetail}', [UserDetailsController::class, 'show']);
 
 
     Route::post("/products/add-favorite/{id}", [ProductController::Class, 'addFavorite']);

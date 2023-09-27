@@ -14,7 +14,7 @@ function Card({ categoryFilter, limit, isUserLoggedIn }) {
       const allProducts = await cardsProducts();
 
       if (categoryFilter) {
-        const filteredProducts = allProducts.filter((product) => product.collection === "Crazy");
+        const filteredProducts = allProducts.filter((product) => product.collection === "Product");
         setProducts(filteredProducts.slice(0, limit));
       } else {
         setProducts(allProducts.slice(0, limit));
