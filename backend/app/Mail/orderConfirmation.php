@@ -21,16 +21,18 @@ class orderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public Order $order;
-    public OrderLine $orderLine;
-    public User $user;
+    public $user;
+    public $order;
+     public $orderLine;
   
     /**
      * Create a new message instance.
      */
     public function __construct($order, $orderLine, $user)
     { 
-        
+        $this->order=$order;
+        $this->orderLine=$orderLine;
+        $this->user=$user;
     }
   
     /**
@@ -50,6 +52,36 @@ class orderConfirmation extends Mailable
     {
         return new Content(
             view: 'mails.orderConfirmationMail',
+
+            with:[
+
+                'orderName' => $this->order->name,
+                'orderPrice' => $this->order->price,
+
+                
+               
+                $user = [
+                'name' => 'Sylvia Llorente',
+                'email' => 'sylviall81@gmail.com',
+                'password' => 'SylviaLL2023*',
+                'subscription' => false];
+                
+                $order = ['order_id' => "1",
+                'product_id' => "3",
+                'name' => 'Lentes de Contacto',
+                'quantity' => "2", 
+                'price' => "20.00"];
+                
+                $orderLine = [
+        
+                        'order_id' => "1",
+                        'product_id' => "3",
+                        'name' => "Lente Natural de Cuarzo Jade",
+                        'quantity' => "1",
+                        'price' => "20.00"
+                    
+                    ];
+            ]
         );
     }
   
