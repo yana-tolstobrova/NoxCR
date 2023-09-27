@@ -36,7 +36,7 @@ function Main() {
         </Link>
       </div>
       <div className="mb-4">
-        <Card limit={visibleCards} categoryFilter="Crazy" />
+        <Card limit={visibleCards} categoryFilter="Product" />
       </div>
       <h2 className="text-left mt-8 text-2xl ml-4  font-semibold" style={{ marginLeft: '240px', color:"#3D3D3D" }}id="cuidados">Cuidados</h2>
       <Care />
