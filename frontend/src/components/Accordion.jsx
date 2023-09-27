@@ -16,16 +16,16 @@ function Accordion(props) {
   const customStyles = props.customStyles || {};
 
   return (
-    <div className="bg-black text-white" style={{ padding: '70px 120px 100px 120px', ...customStyles }}>
-    <h1 className="text-2xl font-semibold mb-4" id="faq">Preguntas frecuentes</h1>
-    <div className="bg-white text-black rounded">
+    <div className="bg-black flex flex-col items-center text-white" style={{ padding: '70px 120px 100px 120px', ...customStyles }}>
+    <h1 className="text-2xl pl-28 w-full text-start font-semibold mb-8" id="faq">Preguntas frecuentes</h1>
+    <div className="text-black w-10/12 rounded flex flex-col gap-2">
       {props.accordionItems.map((item, index) => (
         <div
           key={index}
-          className="border border-gray-300 rounded"
+          className="bg-white border border-gray-300 rounded"
         >
           <div
-            className="p-3 cursor-pointer flex justify-between items-center"
+            className="p-2 cursor-pointer flex justify-between items-center"
             onClick={() => toggleItem(index)}
 
           >
@@ -43,7 +43,7 @@ function Accordion(props) {
       ))}
     </div>
     {props.showDownloadLink && (
-    <div className="flex justify-end text-white py-6" style={{ color: '#EBEBEB' }}> 
+    <div className="flex justify-end items-end w-full pr-28 text-white py-6" style={{ color: '#EBEBEB' }}> 
         <a
           href={pdfCare}
           target="_blank" rel="noopener noreferrer"
