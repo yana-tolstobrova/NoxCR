@@ -7,6 +7,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderLineController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user-details', [UserDetailsController::class, 'store']);
     Route::get('/user-details/{userDetail}', [UserDetailsController::class, 'show']);
 
-
     Route::post("/products/add-favorite/{id}", [ProductController::Class, 'addFavorite']);
     Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);
     Route::get("/products/favorites/", [ProductController::Class, 'showFavorites']);
@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search']);
+Route::apiResource('/users', UserController::class);
 
 
 
