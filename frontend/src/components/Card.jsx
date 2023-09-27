@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { cardsProducts } from '../services/ApiGetProducts';
-import {ApiFavoritesService} from '../services/ApiFavoritesService';
+//import {ApiFavoritesService} from '../services/ApiFavoritesService';
 import { Link } from 'react-router-dom'; 
 import Like from '../assets/heart.svg'
 //import {useContext}
