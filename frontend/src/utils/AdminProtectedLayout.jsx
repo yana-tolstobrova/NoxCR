@@ -52,7 +52,7 @@ export default function AdminProtectedLayout() {
 						<li className='flex gap-4 justify-start pb-8 hover:text-color-icon'><img src={CircleIcon} alt='icono de casa' className='pl-5'></img><a href='/admin/products'>Productos</a></li>
 					</ul>
 				</nav>
-				<button onLogout={handleLogout} className="text-base bg-white text-black py-2 w-full hover:bg-black hover:text-white">Cerrar Sesión</button>
+				<button onClick={handleLogout} className="text-base bg-white text-black py-2 w-full hover:bg-black hover:text-white">Cerrar Sesión</button>
 			</div>
 			<main className='align-center w-[80%]'>
 				<Outlet />
