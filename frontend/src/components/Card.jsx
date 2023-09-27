@@ -40,8 +40,8 @@ function Card({ categoryFilter, limit, isUserLoggedIn }) {
                 {/*<Link to={'/register'}><img src={Like} alt='icono favoritos' className='w-6 h-6 ml-2 mt-2'></img></Link>*Favorite Icon work in progress*/}
                 
                 <div className="px-4 py-2 h-[80px]">
-                  <div className="text-l mb-2">{product.name}</div>
-                  <p className="text-base font-semibold" style={{ color: '#7C3973' }}>
+                  <div className="text-base mb-1 text-gray-800">{product.name}</div>
+                  <p className="text-lg font-semibold" style={{ color: '#7C3973' }}>
                     ${product.price}
                   </p>
                 </div>

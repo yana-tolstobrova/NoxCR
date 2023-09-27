@@ -167,7 +167,7 @@ function CartProducts() {
               </div>
               <div className="flex items-center space-x-4 pt-2">
                 <button
-                  className="bg-black text-white px-4 py-2 rounded-sm font-black"
+                  className="bg-black px-4 py-2 rounded-sm font-black"
                   onClick={() => handleDecrementQuantity(item)}
                   style={{ backgroundColor: "#D7BCD3", color: "#3C2046" }}
                 >
@@ -175,7 +175,7 @@ function CartProducts() {
                 </button>
                 <span className="text-xl font-semibold">{item.quantity}</span>
                 <button
-                  className="text-white px-4 py-2 rounded-sm font-black"
+                  className="px-4 py-2 rounded-sm font-black"
                   onClick={() => handleIncrementQuantity(item)}
                   style={{ backgroundColor: "#D7BCD3", color: "#3C2046" }}
                 >
