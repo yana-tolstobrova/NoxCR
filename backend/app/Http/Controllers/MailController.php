@@ -31,31 +31,26 @@ class MailController extends Controller
     {
         $adminMail = 'noxcr.mailing@gmail.com';
 
-        $user = [
-        'name' => 'Sylvia Llorente',
-        'email' => 'sylviall81@gmail.com',
-        'password' => 'SylviaLL2023*',
-        'subscription' => false];
-        
-        $order = ['order_id' => "1",
-        'product_id' => "3",
-        'name' => 'Lentes de Contacto',
-        'quantity' => "2", 
-        'price' => "20.00"];
-        
-        $orderLine = [
+        // $user = [
+        //     'name' => 'Sylvia Suárez',
+        //     'adress'=> 'carretera el limón, 43'
+        // ];
 
-                'order_id' => "1",
-                'product_id' => "3",
-                'name' => "Lente Natural de Cuarzo Jade",
+        $orderData= [
+                'order_id'=> "1",
+                'name' => 'Sylvia Suarez',
+                'adress' => "Carretera el Limón, No. 43",
+                'product_name' => "Lente Natural de Cuarzo Jade",
                 'quantity' => "1",
-                'price' => "20.00"
-            
+                'price' => "20.00",
+                'total_amount' => "40.00"            
             ];
 
             Mail::to('sylviall81@gmail.com')
                     ->cc($adminMail)
-                    ->send(new orderConfirmation());
+                    ->send(new orderConfirmation($orderData));
+
+         dd ("Email is sent successfully.");
         
        
     }

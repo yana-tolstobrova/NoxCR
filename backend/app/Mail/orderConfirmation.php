@@ -15,24 +15,27 @@ use Symfony\Component\Mime\Part\File;
 use App\Models\Order;
 use App\Models\OrderLine;
 use App\Models\User;
+use App\Models\Product;
 
   
 class orderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public $order;
-     public $orderLine;
+    
+    public $orderData;
   
     /**
      * Create a new message instance.
      */
-    public function __construct($order, $orderLine, $user)
+    public function __construct($orderData)
     { 
-        $this->order=$order;
-        $this->orderLine=$orderLine;
-        $this->user=$user;
+
+         
+    $this->orderData=$orderData;
+   
+       
+        
     }
   
     /**
@@ -52,36 +55,6 @@ class orderConfirmation extends Mailable
     {
         return new Content(
             view: 'mails.orderConfirmationMail',
-
-            with:[
-
-                'orderName' => $this->order->name,
-                'orderPrice' => $this->order->price,
-
-                
-               
-                $user = [
-                'name' => 'Sylvia Llorente',
-                'email' => 'sylviall81@gmail.com',
-                'password' => 'SylviaLL2023*',
-                'subscription' => false];
-                
-                $order = ['order_id' => "1",
-                'product_id' => "3",
-                'name' => 'Lentes de Contacto',
-                'quantity' => "2", 
-                'price' => "20.00"];
-                
-                $orderLine = [
-        
-                        'order_id' => "1",
-                        'product_id' => "3",
-                        'name' => "Lente Natural de Cuarzo Jade",
-                        'quantity' => "1",
-                        'price' => "20.00"
-                    
-                    ];
-            ]
         );
     }
   

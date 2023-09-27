@@ -23,39 +23,25 @@ font-family:  'Noto Sans', sans-serif;
 
     <h1>Confirmación de Pedido</h1>
 
-    <p> Resumen del pedido No: {{ $orderLine->order_id }}</p>
-
     <h3>Datos del cliente:</h3>
 
     <ul>
-        <li> Dirección de entrega: {{ $order->adress }}</li>
-        <li> Teléfono: {{ $order->price }}</li>
-    </ul>
+    <li> Nombre: {{$orderData->name}}</li>
+        <li> Dirección de entrega: {{ $orderData->adress }}</li>
+        
+         <li> Nombre del Producto: {{ $orderData->product_name }}</li>
+         <li> Cantidad: {{ $orderData->quantity}}</li>
+         <li> Precio {{ $orderData->price}}</li>     
 
-    
-         <ul>
-         <li> Fecha de pedido: {{ $order->date_ordered }}</li>
-
-         <li> Nombre del Producto: {{ $orderLine->name }}</li>
-         <li> Cantidad: {{ $orderLine->name }}</li>
-         <li> Precio {{ $orderLine->price}}</li>
+         <li> Nombre del Producto: {{ $orderData->product_name }}</li>
+         <li> Cantidad: {{ $orderData->quantity}}</li>
+         <li> Precio {{ $orderData->price}}</li>   
          
-         <li> Precio Total: {{ $order->price }}</li>
-         <li> Precio Total: {{ $order->price }}</li>
-        <li> Precio Total: {{ $order->price }}</li>
-        
-        
-        
-
          
-        <li> Precio Total: {{ $order->total_amount}}</li>
+        <li> Precio Total: {{ $orderData->total_amount}}</li>
         </ul>
 
-        'address', 'phone', 'date_ordered', 'total_amount'
-
-        order-Line: 'order_id', 'product_id', 'name', 'quantity', 'price']
-
-    
+        
    <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
     y bienestar de tu vista es lo primordial para NoxCR!
     Por eso te recomendamos que, antes de recibir tu pedido, hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
@@ -67,6 +53,6 @@ font-family:  'Noto Sans', sans-serif;
 
      
     <p>Gracias por confiar en NoxCR!!</p>
-    <img src="" alt="">
+    
 </body>
 </html>
