@@ -18,7 +18,7 @@ function OrderQuestionsModal({ showModal, handleCloseModal, handleContinueToOrde
                 </ul>
                 <h2 className="text-xl font-bold text-gray-700 mt-8">Para más información comunicate con</h2>
 
-                <TwLink as="anchor" href="#">nosotros</TwLink>
+                <TwLink as="anchor" href="https://wa.me/50684993726">nosotros</TwLink>
                 <button
                   type="button"
                   onClick={handleContinueToOrder} 
