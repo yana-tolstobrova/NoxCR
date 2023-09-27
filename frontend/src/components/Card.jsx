@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { cardsProducts } from '../services/ApiGetProducts';
-import {ApiFavoriteService} from '../services/ApiFavoritesService';
+import {ApiFavoritesService} from '../services/ApiFavoritesService';
 import { Link } from 'react-router-dom'; 
 import Like from '../assets/heart.svg'
+//import {useContext}
 
 function Card({ categoryFilter, limit, isUserLoggedIn }) {
   const [products, setProducts] = useState([]);
@@ -23,26 +24,9 @@ function Card({ categoryFilter, limit, isUserLoggedIn }) {
     fetchData();
   }, [categoryFilter, limit]);
 
-
-  const handleLikeClick = () => {
-    if (isUserLoggedIn) {
-      // Realizar una solicitud POST al endpoint del backend para agregar a favoritos.
-      axios.post(`/products/add-favorite/${product.id}`)
-        .then(response => {
-          // Manejar la respuesta del servidor, por ejemplo, actualizar el estado.
-          setIsFavorite(true);
-        })
-        .catch(error => {
-          // Manejar errores, si es necesario.
-        });
-    } else {
-      // Redirigir al usuario no registrado a la página de registro.
-      // Aquí puedes usar React Router o cualquier enrutador que estés utilizando.
-    }
-  };
-
-  
-
+  // if (!user) {
+	// 	return <Navigate to="/login" />;
+	// }
 
 
   return (

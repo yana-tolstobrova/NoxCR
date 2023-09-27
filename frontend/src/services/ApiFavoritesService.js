@@ -31,6 +31,12 @@ export const ApiFavoritesService = () => {
         return res;
     }
 
+
+    return {
+        addFavorite, removeFavorite, getFavorites
+    }
+
+    
     // const getFavorites = () => {
     //     return axios.get(urnGetFavs)
     // .then((res) => {
@@ -41,8 +47,4 @@ export const ApiFavoritesService = () => {
     //   throw error;
     // });
     // }
-
-    return {
-        addFavorite, removeFavorite, getFavorites
-    }
 }
