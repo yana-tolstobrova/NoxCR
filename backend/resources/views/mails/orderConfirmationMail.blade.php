@@ -26,19 +26,19 @@ font-family:  'Noto Sans', sans-serif;
     <h3>Datos del cliente:</h3>
 
     <ul>
-    <li> Nombre: {{$orderData->name}}</li>
-        <li> Dirección de entrega: {{ $orderData->adress }}</li>
+    <li> Nombre: {{$orderData['name']}}</li>
+        <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
         
-         <li> Nombre del Producto: {{ $orderData->product_name }}</li>
-         <li> Cantidad: {{ $orderData->quantity}}</li>
-         <li> Precio {{ $orderData->price}}</li>     
+         <li> Nombre del Producto: {{ $orderData['product_name'] }}</li>
+         <li> Cantidad: {{ $orderData['quantity']}}</li>
+         <li> Precio {{ $orderData['price']}}</li>     
 
-         <li> Nombre del Producto: {{ $orderData->product_name }}</li>
-         <li> Cantidad: {{ $orderData->quantity}}</li>
-         <li> Precio {{ $orderData->price}}</li>   
+         <li> Nombre del Producto: {{ $orderData['product_name'] }}</li>
+         <li> Cantidad: {{ $orderData['quantity']}}</li>
+         <li> Precio {{ $orderData['price']}}</li>   
          
          
-        <li> Precio Total: {{ $orderData->total_amount}}</li>
+        <li> Precio Total: {{ $orderData['total_amount']}}</li>
         </ul>
 
         
