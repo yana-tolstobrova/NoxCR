@@ -1,4 +1,6 @@
 import React from 'react';
+import verification from "../assets/verification.svg"
+
 
 export default function SuccessModal({ showModal, handleCloseModal, title, text }) {
 
@@ -9,6 +11,13 @@ export default function SuccessModal({ showModal, handleCloseModal, title, text 
         <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
+              <div className="flex items-center justify-center mb-8">
+                <img
+                    src={verification}
+                    alt="check"
+                    className="rounded w-16 h-16"
+                  />
+              </div>
               <div className="mb-8">
                 <h2 className="mb-4 text-xl font-extrabold text-center">{title}</h2>
               </div>
