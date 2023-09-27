@@ -10,6 +10,8 @@ use App\Models\User;
 use Symfony\Component\Mime\Part\TextPart;
 use Symfony\Component\Mime\Part\File;
 use App\Models\Order;
+
+
   
 class MailController extends Controller
 {
@@ -21,16 +23,14 @@ class MailController extends Controller
      * 
      */
 
-    public function orderConfirmation(Order $order)
+    public $user= Auth::user;
+    public $order = Order::find(1);
+     public $orderLine = OrderLine::find(1);
+     
+
+    public function orderConfirmation($order,$orderLine,$user)
     {
       
-        $order = [
-            'pedido' => 'Tu Orden de compra No. xxxx se ha procesado exitosamente',
-            'producto' => 'Lentillas Natural de color XXXXXX',
-            'cantidad' => "XX par",
-            'precio' => "XXX ₡",
-            'total' => "XX₡ + taxes = XX,xx ₡"
-        ];
          
         
         dd("Email is sent successfully.");

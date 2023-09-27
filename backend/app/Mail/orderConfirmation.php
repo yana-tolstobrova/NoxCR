@@ -28,7 +28,7 @@ class orderConfirmation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($order, $orderLine, $user )
+    public function __construct($order, $orderLine, $user)
     { 
         
     }
