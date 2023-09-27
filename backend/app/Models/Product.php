@@ -26,5 +26,11 @@ class Product extends Model
                          ->get();
        return $results;
                             }
+
+      Public function isFavorite()
+      {
+        return $this->belongsToMany(User::class);
+      }
+
 }
 

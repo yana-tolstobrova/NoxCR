@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Photo;
@@ -9,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Cloudinary\Configuration\Configuration;
 use Cloudinary\Api\Upload\UploadApi;
+use Illuminate\Support\Facades\Auth;
 
 Configuration::instance([
     'cloud' => [
@@ -183,4 +185,50 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
+
+
+    // Metodos Favorites ---> 2.User can add Favorite Place
+
+    public function addFavorite($id)
+    {
+        $user = Auth::user();
+        $product=Product::find($id);
+
+        $product->isFavorite()->attach($user);
+
+        return response()->json([
+            'res' => true,
+            'msg' => 'el producto se ha añadido a tu lista de favoritos'
+        ], 200);
+
+    }
+
+     // Metodos Favorites ---> 2.User puede ver todos sus favoritos
+        public function showFavorites(){
+            
+            $user = Auth::user();
+            
+            $userFavorites=$user->isFavorite()->get();
+    
+            return response()->json([    
+                $userFavorites
+            ], 200);
+            }
+
+
+ // Metodos Favorites ---> 2.Usuario puede desmarcar/retirar un favorito de la lista     
+        public function removeFavorite($id){
+            
+            $user = Auth::user();
+            $product=Product::find($id);
+    
+            $product->isFavorite()->detach($user);
+        
+                return response()->json([
+                    'res' => false,
+                    'msg' => 'el producto se ha retirado de tu lista de favoritos'
+                ], 200);
+
+                }
+
 }
