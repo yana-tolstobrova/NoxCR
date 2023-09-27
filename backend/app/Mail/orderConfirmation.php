@@ -13,19 +13,22 @@ use Illuminate\Mail\Mailables\Attachment;
 use Symfony\Component\Mime\Part\TextPart;
 use Symfony\Component\Mime\Part\File;
 use App\Models\Order;
+use App\Models\OrderLine;
+use App\Models\User;
 
   
 class orderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-    public $orderData;
+    public Order $order;
+    public OrderLine $orderLine;
+    public User $user;
   
     /**
      * Create a new message instance.
      */
-    public function __construct(public Order $order,)
+    public function __construct($order, $orderLine, $user )
     { 
         
     }
@@ -36,7 +39,7 @@ class orderConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'NoxCR: Tu compra se ha realizado con éxito!',
+            subject: 'NoxCR: Orden de compra',
         );
     }
   

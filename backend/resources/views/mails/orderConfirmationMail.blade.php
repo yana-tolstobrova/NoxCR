@@ -21,17 +21,39 @@ font-family:  'Noto Sans', sans-serif;
 <body font-family = 'Noto Sans'>
     <img width="150rem" class="logo" src="{{asset('storage/images/Nox.jpg')}}" alt="logo">
 
-    <h1>Confirmación de orden de compra</h1>
+    <h1>Confirmación de Pedido</h1>
 
-    <p> Resumen de pedido:</p>
+    <p> Resumen del pedido No: {{ $orderLine->order_id }}</p>
+
+    <h3>Datos del cliente:</h3>
+
+    <ul>
+        <li> Dirección de entrega: {{ $order->adress }}</li>
+        <li> Teléfono: {{ $order->price }}</li>
+    </ul>
 
     
          <ul>
-         <li> Precio Total: {{ $order->price }}</li>
+         <li> Fecha de pedido: {{ $order->date_ordered }}</li>
+
+         <li> Nombre del Producto: {{ $orderLine->name }}</li>
+         <li> Cantidad: {{ $orderLine->name }}</li>
+         <li> Precio {{ $orderLine->price}}</li>
+         
          <li> Precio Total: {{ $order->price }}</li>
          <li> Precio Total: {{ $order->price }}</li>
         <li> Precio Total: {{ $order->price }}</li>
+        
+        
+        
+
+         
+        <li> Precio Total: {{ $order->total_amount}}</li>
         </ul>
+
+        'address', 'phone', 'date_ordered', 'total_amount'
+
+        order-Line: 'order_id', 'product_id', 'name', 'quantity', 'price']
 
     
    <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
