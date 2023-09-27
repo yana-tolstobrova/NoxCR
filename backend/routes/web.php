@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Mail\orderConfirmation;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ use App\Http\Controllers\MailController;
   
 Route::get('send-mail', [MailController::class, 'index']);
 Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+
+Route::get('/mailable', function () {
+    $order = App\Models\Order::find(1);
+ 
+    return new App\Mail\orderConfirmation($order);
+});
 
 
 

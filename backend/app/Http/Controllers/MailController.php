@@ -23,12 +23,8 @@ class MailController extends Controller
 
     public function orderConfirmation(Order $order)
     {
-      $order= 
-
-            $userMail = 'sylviall81@gmail.com';
-            $adminMail = 'noxcr.mailing@gmail.com';
-        
-        $orderData = [
+      
+        $order = [
             'pedido' => 'Tu Orden de compra No. xxxx se ha procesado exitosamente',
             'producto' => 'Lentillas Natural de color XXXXXX',
             'cantidad' => "XX par",
@@ -36,10 +32,6 @@ class MailController extends Controller
             'total' => "XX₡ + taxes = XX,xx ₡"
         ];
          
-        //correo de aviso a comprador
-        Mail::to($userMail)->send(new orderConfirmation($orderData));
-        //correo de aviso a Admin
-        Mail::to($adminMail)->send(new orderConfirmation($orderData));
         
         dd("Email is sent successfully.");
     }

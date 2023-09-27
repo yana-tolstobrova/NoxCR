@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use Mail;
+use App\Mail\orderConfirmation;
 
 class OrderController extends Controller
 {
@@ -16,7 +18,10 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        
         $user = Auth::user();
+        $adminMail = 'noxcr.mailing@gmail.com';
+
         try {
             $request->validate([
                 'address' => 'required|string|max:255',
@@ -32,8 +37,9 @@ class OrderController extends Controller
                 'total_amount' => $request->total_amount,
             ]);
 
-            Mail::to($request->user())->send(new orderConfirmation($order));
-            Mail::to($request->user())->send(new orderConfirmation($order));
+            Mail::to($request->user())
+                ->cc($adminMail)
+                ->send(new OrderShipped($order));
             
             return response()->json(['success' => true, 'data' => $order]);
         } catch (\Exception $e) {

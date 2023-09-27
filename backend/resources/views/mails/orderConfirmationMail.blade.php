@@ -16,10 +16,6 @@
    <table>
     <tr>
          <ul>
-            <li>{{ $orderData['pedido'] }} </li>
-            <li> {{ $orderData['producto'] }}</li>
-            <li> {{ $orderData['cantidad'] }}</li>
-            <li> {{ $orderData['precio'] }}</li>
             <li> Precio Total: {{ $order->price }}</li>
         </ul>
     </tr>
@@ -30,8 +26,10 @@
 
    <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
     y bienestar de tu vista es lo primordial para NoxCR por eso te invitamos 
-    a que antes de recibir tu pedido accedas a este enlace y leas cuidadosamente
-    todas las <a href="http://localhost:3000/#cuidados">normas de uso, higiene y mantenimiento de tus lentes noxCR</a>.
+    a que antes de recibir tu pedido hagas 
+    click AQUI para descargar accedas a este enlace y leas cuidadosamente
+    todas las <a href="/public/storage/uploads/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
+          download= "cuidados-noxcr.pdf" >normas de uso, higiene y mantenimiento de tus lentes noxCR</a>.
     
     Si tienes cualquier pregunta,sugerencia o inquietud, no dudes en contactarnos por cualquiera de 
     nuestras redes sociales, nuestro <a href="http://wa.me/50684993726">wasapp</a> o por correo a noxcrlentes@gmail.com </h4>
