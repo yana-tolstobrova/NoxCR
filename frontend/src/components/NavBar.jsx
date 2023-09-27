@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext'; 
 import { TwLink } from './TwLink';
-import profile from "../assets/profile.svg" 
 import cart from "../assets/cart.svg"
 import Search from './Search';
 import NavBarMenu from './NavBarMenu';
 
 function NavBar({onLogout}) {
-  const { user, setUser } = useAuth();
   const location = useLocation();
   let anchors = null;
 
