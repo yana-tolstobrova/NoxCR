@@ -76,6 +76,30 @@ function OrderModal({
                 la compra
               </p>
               <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                  <label htmlFor="name_complete">Nombre Completo:</label>
+                  <input
+                    type="text"
+                    id="name_complete"
+                    name="name_complete"
+                    // value={formData.address}
+                    // onChange={handleInputChange}
+                    required
+                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="cedula">Cédula:</label>
+                  <input
+                    type="text"
+                    id="cedula"
+                    name="cedula"
+                    // value={formData.address}
+                    // onChange={handleInputChange}
+                    required
+                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                  />
+                </div>
                 <div className="mb-4">
                   <label htmlFor="address">Dirección completa:</label>
                   <input
@@ -114,11 +138,12 @@ function OrderModal({
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
                 </div>
-                <div className="mt-4 mb-4">
-                  <label className="text-m font-medium">
+                <div className="mt-4 mb-6">
+                  <label className="text-m font-medium ">
                     Opciones de Envío:
                   </label>
-                  <div>
+                  <div className="flex m-4">
+                    <div>
                     <input
                       type="checkbox"
                       name="shipping-type"
@@ -129,7 +154,7 @@ function OrderModal({
                     />
                     <label
                       htmlFor="shipping-UberFlash"
-                      className="text-sm font-medium ml-2"
+                      className="text-m font-medium ml-2 mr-6"
                     >
                       UberFlash
                     </label>
@@ -145,11 +170,12 @@ function OrderModal({
                     />
                     <label
                       htmlFor="shipping-Correo"
-                      className="text-sm font-medium ml-2"
+                      className="text-m font-medium ml-2"
                     >
                       Correo Convencional
                     </label>
                   </div>
+                </div>
                 </div>
 
                 <button
