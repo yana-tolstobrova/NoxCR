@@ -20,6 +20,8 @@ class UserDetailsController extends Controller
 
         try {
             $request->validate([
+                'name_complete'=> 'required|string|max:255',
+                'cedula'=> 'required|string|max:255',
                 'address' => 'required|string|max:255',
                 'birth_date' => 'required|date', 
                 'phone' => 'required|string|max:20',
@@ -27,6 +29,8 @@ class UserDetailsController extends Controller
 
             $userDetails = UserDetails::create([
                 'user_id' => $user->id,
+                'name_complete'=> $request->name_complete,
+                'cedula'=> $request->cedula,
                 'address' => $request->address,
                 'birth_date' => $request->birth_date, 
                 'phone' => $request->phone,
