@@ -24,9 +24,9 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search']]);
+        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show']]);
           } 
-          
+
     public function index()
     {
         $products = Product::all();
