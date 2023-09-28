@@ -1,11 +1,8 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { Outlet } from 'react-router-dom';
 import { Header } from '../components/Header'; 
 
 function GuestLayout() {
-    const { user } = useAuth();
-
   return (
     <>
         <Header />
