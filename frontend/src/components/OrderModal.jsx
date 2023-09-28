@@ -71,6 +71,30 @@ function OrderModal({
             <div className="m-6 my-20 max-w-[400px] mx-auto">
               <h1 className="mb-4 text-3xl font-extrabold text-gray-800">Ingresa tus datos para la confirmar la orden</h1>
               <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                  <label htmlFor="name_complete">Nombre Completo:</label>
+                  <input
+                    type="text"
+                    id="name_complete"
+                    name="name_complete"
+                    // value={formData.address}
+                    // onChange={handleInputChange}
+                    required
+                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="cedula">Cédula:</label>
+                  <input
+                    type="text"
+                    id="cedula"
+                    name="cedula"
+                    // value={formData.address}
+                    // onChange={handleInputChange}
+                    required
+                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                  />
+                </div>
                 <div className="mb-4">
                   <label className="text-lg font-normal" htmlFor="birthdate">Fecha de nacimiento:</label>
                   <input

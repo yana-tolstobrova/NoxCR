@@ -6,7 +6,7 @@ import iconFacebook from "../assets/facebook.svg"
 import iconInstagram from"../assets/instagram.svg"
 function Footer() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-black" id="contacto">
       <div className="max-w-screen-xl px-4 py-14 mx-auto sm:px-6 lg:px-8">
         <div
           className="flex justify-between items-center" /*"grid grid-cols-1 lg:grid-cols-3"*/

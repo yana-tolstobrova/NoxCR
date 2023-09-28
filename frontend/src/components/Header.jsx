@@ -4,7 +4,7 @@ import NavBar from "./NavBar";
 import logo from "../assets/Logo.svg"
 // import NavBar from "./NavBar2";
 
-export function Header(){
+export function Header() {
 
  return (
     <header className="flex h-36 items-center px-10"> 

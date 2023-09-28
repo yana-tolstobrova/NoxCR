@@ -1,10 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
 import Logo from '../assets/LogoWhite.svg'
 
 function AdminGuestLayout() {
-    const { user } = useAuth();
   return (
     <>
     	<div className='flex'>

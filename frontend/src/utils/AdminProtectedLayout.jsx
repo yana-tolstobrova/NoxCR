@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate, Outlet, useNavigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
@@ -9,29 +9,18 @@ import ListIcon from '../assets/listIcon.svg'
 import DollarIcon from '../assets/dollarIcon.svg'
 
 export default function AdminProtectedLayout() {
-	const { user, setUser } = useAuth();
+	const { user } = useAuth();
 	const navigate = useNavigate();
-	useEffect(() => {
-		(async () => {
-			try {
-				const resp = await axios.get('/user');
-				if (resp.status === 200) {
-					setUser(resp.data.data);
-				}
-			} catch (error) {
-				if (error.response.status === 401) {
-					localStorage.removeItem('user');
-					navigate('/admin');
-				}
-			}
-		})();
-	}, []);
+	if (!user) {
+		return <Navigate to="/admin" />;
+	}
     const handleLogout = async () => {
 		try {
 			const resp = await axios.post('/logout');
 			if (resp.status === 200) {
 				localStorage.removeItem('user');
 				navigate('/admin');
+				console.log(resp.data)
 			}
 		} catch (error) {
 			console.log(error);

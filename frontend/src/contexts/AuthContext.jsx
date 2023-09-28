@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import axios from '../services/axios';
+
 const AuthContent = createContext({
 	user: null,
 	setUser: () => {},
@@ -13,7 +14,6 @@ export const AuthProvider = ({ children }) => {
 		JSON.parse(localStorage.getItem('user')) || null
 	);
 
-	
 	const setUser = (user) => {
 		if (user) {
 			localStorage.setItem('user', JSON.stringify(user));
