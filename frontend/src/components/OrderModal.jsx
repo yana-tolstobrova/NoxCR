@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createUserDetails } from '../services/ApiPostUserDetails'
 
-
 function OrderModal({
   showModal,
   handleCloseModal,
@@ -23,6 +22,7 @@ function OrderModal({
     .split("T")[0];
 
   const handleInputChange = (e) => {
+    console.log(`Input name: ${e.target.name}, Input value: ${e.target.value}`);
     setFormData({
       ...formData,
       total_amount: total,
@@ -58,6 +58,7 @@ function OrderModal({
       });
   
       handleOrderSubmit();
+   
   
       handleCloseModal();
     } catch (error) {
@@ -99,7 +100,6 @@ function OrderModal({
                     className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
-<<<<<<< HEAD
                 <div className="mb-4">
                   <label htmlFor="address">Dirección:</label>
                   <input
@@ -125,50 +125,26 @@ function OrderModal({
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
                 </div>
-                <div className="mb-4">
-                  <label htmlFor="birthdate">Fecha de nacimiento:</label>
-=======
+               
+                  
                 <div className="mb-2">
-                  <label className="text-sm font-normal" htmlFor="birthdate">Fecha de nacimiento</label>
->>>>>>> main
+                  <label className="text-m font-normal" htmlFor="birthdate">Fecha de nacimiento:</label>
                   <input
                     type="date"
-                    id="birthdate"
-                    name="birthdate"
+                    id="birth_date"
+                    name="birth_date"
                     max={minBirthdate}
-                    required
-                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
-                  />
-                </div>
-                <div className="mb-2">
-                  <label className="text-sm font-normal" htmlFor="phone">Teléfono</label>
-                  <input
-                    placeholder="Ingrese su teléfono"
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
+                    value={formData.birth_date}
                     onChange={handleInputChange}
                     required
                     className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
-                <div className="mb-2">
-                  <label className="text-sm font-normal" htmlFor="address">Dirección</label>
-                  <input
-                    placeholder="Ingrese su dirección"
-                    type="text"
-                    id="address"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
-                  />
-                </div>
+             
+          
                 <div className="mt-2 mb-2">
-                  <label className="text-sm font-medium text-gray-500 ">
-                    Seleccione una opción de envio
+                  <label className="text-m ">
+                    Seleccione una opción de envio:
                   </label>
                   <div className="py-2">
                     <input
