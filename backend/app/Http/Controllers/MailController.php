@@ -11,7 +11,7 @@ use Symfony\Component\Mime\Part\TextPart;
 use Symfony\Component\Mime\Part\File;
 use App\Models\Order;
 use App\Models\OrderLine;
-
+use illuminate\Support\Facades\Auth;
 
   
 class MailController extends Controller
@@ -29,10 +29,15 @@ class MailController extends Controller
 
     public function orderConfirmation()
     {
+
+        $user = Auth::user();
+
+
         $adminMail = 'noxcr.mailing@gmail.com';
 
+        
 
-        $orderData= [
+       $orderData= [
                 'order_id'=> "1",
                 'name' => 'Sylvia Suarez',
                 'adress' => "Carretera el Limón, No. 43",

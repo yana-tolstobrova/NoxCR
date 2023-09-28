@@ -21,7 +21,7 @@ use App\Http\Controllers\UserController;
 */
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+Route::get('send-order', [MailController::class, 'orderConfirmation']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);
     Route::get("/products/favorites/", [ProductController::Class, 'showFavorites']);
 
-    //Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+    // Route::get('send-order', [MailController::class, 'orderConfirmation']);
 });
 
 

@@ -41,10 +41,17 @@ font-family:  'Noto Sans', sans-serif;
         <li> Precio Total: {{ $orderData['total_amount']}}</li>
         </ul>
 
+
+    <h4>Recuerda que previo a la aceptacion de tu pedido, has confirmado:    </h4>
+    <ul>
+        <li>✅Ser Mayor de edad</li>
+        <li>✅Conocer los cuidados, precauciones y medidas de limpieza de tus lentes de contacto</li>
+        <li>✅Tener la solución multipropósito para desinfectarlos adecuadamente?</li>
+          
+    </ul>
         
-   <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
-    y bienestar de tu vista es lo primordial para NoxCR!
-    Por eso te recomendamos que, antes de recibir tu pedido, hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
+   <h4> Adicionalmente, aprovechamos este correo para recordarte que la salud 
+    y bienestar de tu vista es lo primordial para NoxCR!  Por eso te recomendamos que, antes de recibir tu pedido, hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
           download= "cuidados-noxcr.pdf"> click AQUI </a>  para que descargar y leer cuidadosamente
     todas las normas de uso, higiene y mantenimiento de tus lentes de contacto noxCR.
     
