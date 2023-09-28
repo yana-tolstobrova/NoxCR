@@ -9,11 +9,11 @@ import ListIcon from '../assets/listIcon.svg'
 import DollarIcon from '../assets/dollarIcon.svg'
 
 export default function AdminProtectedLayout() {
-	const { user } = useAuth();
+	const { user, hasRole } = useAuth();
 	const navigate = useNavigate();
-	if (!user) {
-		return <Navigate to="/admin" />;
-	}
+	 if (!user || !hasRole('Admin')) {
+	 	return <Navigate to="/admin" />;
+	 }
     const handleLogout = async () => {
 		try {
 			const resp = await axios.post('/logout');

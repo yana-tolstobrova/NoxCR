@@ -22,7 +22,11 @@ Configuration::instance([
 
 class ProductController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('checkUserRole', ['except' => ['index', 'search']]);
+          } 
+          
     public function index()
     {
         $products = Product::all();

@@ -3,11 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import NavBarMenu from '../components/NavBarMenu';
 
-
-
 export default function DefaultLayout() {
-	const { user } = useAuth();
-	if (!user) {
+	const { user, hasRole } = useAuth();
+	if (!user || !hasRole('User')) {
 		return <Navigate to="/login" />;
 	}
 	return (

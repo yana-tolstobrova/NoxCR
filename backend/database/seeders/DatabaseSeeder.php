@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
         ]);
         $this->call([
+            RoleAndPermissionSeeder::class,
+        ]);
+        $this->call([
             CreateAdminUserSeeder::class,
         ]);
         $this->call([
