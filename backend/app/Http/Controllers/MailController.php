@@ -21,23 +21,26 @@ class MailController extends Controller
     public function orderConfirmation()
     {
      
-            $userMail = 'sylviall81@gmail.com';
-            $adminMail = 'noxcr.mailing@gmail.com';
+    
+        $adminMail = 'noxcr.mailing@gmail.com';
+
         
-        $orderData = [
-            'pedido' => 'Tu Orden de compra No. xxxx se ha procesado exitosamente',
-            'producto' => 'Lentillas Natural de color XXXXXX',
-            'cantidad' => "XX par",
-            'precio' => "XXX ₡",
-            'total' => "XX₡ + taxes = XX,xx ₡"
-        ];
-         
-        //correo de aviso a comprador
-        Mail::to($userMail)->send(new orderConfirmation($orderData));
-        //correo de aviso a Admin
-        Mail::to($adminMail)->send(new orderConfirmation($orderData));
-        
-        dd("Email is sent successfully.");
+
+       $orderData= [
+                'order_id'=> "1",
+                'name' => 'Sylvia Suarez',
+                'adress' => "Carretera el Limón, No. 43",
+                'product_name' => "Lente Natural de Cuarzo Jade",
+                'quantity' => "1",
+                'price' => "20.00",
+                'total_amount' => "40.00"            
+            ];
+
+            Mail::to('sylviall81@gmail.com')
+                    ->cc($adminMail)
+                    ->send(new orderConfirmation($orderData));
+
+         dd ("Email is sent successfully.");
     }
 
 }
