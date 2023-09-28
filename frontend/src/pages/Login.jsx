@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from '../services/axios';
 import { useAuth } from '../contexts/AuthContext';
 
-
-
 function Login() {
   const { setUser, csrfToken } = useAuth();
 	const [error, setError] = React.useState(null);
