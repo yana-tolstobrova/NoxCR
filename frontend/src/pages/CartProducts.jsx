@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  removeFromCart,
-  incrementQuantity,
-  decrementQuantity,
-} from "../utils/ProductsToCart";
+import { removeFromCart, incrementQuantity, decrementQuantity,} from "../utils/ProductsToCart";
 import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from "../assets/delete-icon.svg";
@@ -11,9 +7,10 @@ import gifIcon from "../assets/gif-icon.svg";
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
-import axios from "axios";
+import { createOrder } from '../services/ApiPostOrders';
+import { createOrderLine } from '../services/ApiPostOrderLines';
 
-function CartProducts() {
+function CartProducts() { 
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
@@ -22,8 +19,9 @@ function CartProducts() {
   const [formData, setFormData] = useState({
     address: "",
     phone: "",
+    birth_date: "",
     total_amount: "",
-    // birthdate: "",
+    shipping_type: "",
   });
 
   useEffect(() => {
@@ -52,14 +50,13 @@ function CartProducts() {
   }, 0);
 
   const handleOnSubmit = (e) => {
-    e.preventDefault();
     sendShippingOrder()
       .then((res) => {
         console.log(res);
       })
       .catch((error) => console.log(error));
   };
-
+  
   const openModal = () => {
     setShowModal(true);
   };
@@ -76,23 +73,14 @@ function CartProducts() {
     setShowModalOrder(false);
   };
 
-  const handleOrderSubmit = () => {
-    axios
-      .post("http://localhost:8000/api/orders", formData, {
-        withCredentials: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-      .then((response) => {
-        const orderId = response.data.data.id;
-        console.log(response);
-        handleOrderLinesSubmit(orderId);
-      })
-      .catch((error) => {
-        console.error("Error al crear la orden:", error);
-      });
+  const handleOrderSubmit = async () => {
+    try {
+      const orderId = await createOrder(formData);
+      console.log('Order created with ID:', orderId);
+      handleOrderLinesSubmit(orderId);
+    } catch (error) {
+      console.error('Error handling order submit:', error);
+    }
   };
 
   const handleOrderLinesSubmit = (orderId) => {
@@ -104,26 +92,17 @@ function CartProducts() {
         quantity: item.quantity,
         price: item.product.price,
       };
-      console.log(cart);
-      console.log("orderId:", orderId);
-      console.log("product_id:", item.product.id);
-
-      axios
-        .post("http://localhost:8000/api/order-lines", orderLineData, {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        })
+  
+      createOrderLine(orderLineData)
         .then((orderLineResponse) => {
           console.log(orderLineResponse);
         })
         .catch((error) => {
-          console.error("Error al crear la línea de orden:", error);
+          console.error('Error al crear la línea de orden:', error);
         });
     });
   };
+
   const openOrderQuestionsModal = () => {
     setShowOrderQuestionsModal(true);
   };
@@ -137,6 +116,11 @@ function CartProducts() {
     openModalOrder();
   };
 
+  const handleConfirmOrder = () => {
+    openOrderQuestionsModal(); 
+    handleOnSubmit(); 
+  };
+  
   return (
     <div className="h-screen pt-20">
       <h1
@@ -239,15 +223,8 @@ function CartProducts() {
               </p>
             </div>
           </div>
-          <span
-            role="button"
-            onClick={openOrderQuestionsModal}
-            className="cursor-pointer"
-          >
-            Orden
-          </span>
           <button
-            onClick={handleOnSubmit}
+            onClick={handleConfirmOrder}
             className="mt-6 w-full bg-black py-1.5 font-medium text-white hover:bg-white hover:text-black border-black border py-2 bg-black"
           >
             Confirmar pedido

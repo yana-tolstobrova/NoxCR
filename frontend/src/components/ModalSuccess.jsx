@@ -7,7 +7,7 @@ export default function SuccessModal({ showModal, handleCloseModal, title, text 
 
   return (
     showModal && (
-      <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+      <div data-testid="success-modal" className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
         <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">

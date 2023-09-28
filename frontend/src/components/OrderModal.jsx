@@ -1,8 +1,23 @@
 import React, { useState } from "react";
+import { createUserDetails } from '../services/ApiPostUserDetails'
 
-function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, setFormData, total }) {
+function OrderModal({
+  showModal,
+  handleCloseModal,
+  handleOrderSubmit,
+  formData,
+  setFormData,
+  total,
+}) {
+  const [isUberFlashSelected, setIsUberFlashSelected] = useState(false);
+  const [isCorreoSelected, setIsCorreoSelected] = useState(false);
+
   const currentDate = new Date();
-  const minBirthdate = new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate())
+  const minBirthdate = new Date(
+    currentDate.getFullYear() - 18,
+    currentDate.getMonth(),
+    currentDate.getDate()
+  )
     .toISOString()
     .split("T")[0];
 
@@ -14,10 +29,37 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleOptionChange = (option) => {
+    if (option === "uberflash") {
+      setIsUberFlashSelected(!isUberFlashSelected);
+      setIsCorreoSelected(false);
+    } else if (option === "correo") {
+      setIsCorreoSelected(!isCorreoSelected);
+      setIsUberFlashSelected(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleOrderSubmit(formData);
-    handleCloseModal();
+    formData.shipping_type = isUberFlashSelected ? 'uberflash' : isCorreoSelected ? 'correo' : '';
+  
+    try {
+      await createUserDetails(formData);
+  
+      setFormData({
+        address: '',
+        phone: '',
+        birth_date: '',
+        total_amount: '',
+        shipping_type: '',
+      });
+  
+      handleOrderSubmit();
+  
+      handleCloseModal();
+    } catch (error) {
+      console.error('Error al enviar los datos del usuario:', error);
+    }
   };
 
   return (
@@ -26,10 +68,16 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
         <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
-              <h1 className="mb-4 text-3xl font-extrabold">Ingresa tus datos para la orden</h1>
+              <h1 className="mb-2 text-3xl font-bold text-center">
+                Ingresa tus datos para completar la orden
+              </h1>
+              <p className="mb-4 text-xl text-center">
+                Recuerda que es necesario ser mayor de edad para poder realizar
+                la compra
+              </p>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="address">Dirección:</label>
+                  <label htmlFor="address">Dirección completa:</label>
                   <input
                     type="text"
                     id="address"
@@ -38,6 +86,7 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
                     onChange={handleInputChange}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    placeholder="Provincia, cantón y distrito"
                   />
                 </div>
                 <div className="mb-4">
@@ -53,16 +102,56 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="birthdate">Fecha de nacimiento:</label>
+                  <label htmlFor="birth_date">Fecha de nacimiento:</label>
                   <input
                     type="date"
-                    id="birthdate"
-                    name="birthdate"
-                    max={minBirthdate}
+                    id="birth_date"
+                    name="birth_date"
+                    max={minBirthdate} 
+                    value={formData.birth_date} 
+                    onChange={handleInputChange} 
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
                 </div>
+                <div className="mt-4 mb-4">
+                  <label className="text-m font-medium">
+                    Opciones de Envío:
+                  </label>
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="shipping-type"
+                      id="shipping-UberFlash"
+                      value={formData.shipping_type}
+                      checked={isUberFlashSelected}
+                      onChange={() => handleOptionChange("uberflash")}
+                    />
+                    <label
+                      htmlFor="shipping-UberFlash"
+                      className="text-sm font-medium ml-2"
+                    >
+                      UberFlash
+                    </label>
+                  </div>
+
+                  <div>
+                    <input
+                      type="checkbox"
+                      name="shipping-type"
+                      id="shipping-Correo"
+                      checked={isCorreoSelected}
+                      onChange={() => handleOptionChange("correo")}
+                    />
+                    <label
+                      htmlFor="shipping-Correo"
+                      className="text-sm font-medium ml-2"
+                    >
+                      Correo Convencional
+                    </label>
+                  </div>
+                </div>
+
                 <button
                   type="submit"
                   className="p-3 bg-black rounded-full text-white w-full mt-4 font-semibold"
@@ -79,5 +168,3 @@ function OrderModal({ showModal, handleCloseModal, handleOrderSubmit, formData, 
 }
 
 export default OrderModal;
-
-
