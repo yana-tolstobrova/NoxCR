@@ -44,7 +44,7 @@ function NavBarMenu() {
   return (
     <div className="relative inline-block text-left">
       {/* Código SVG del ícono de usuario */}
-      <img className='px-3 h-5' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='cursor-pointer px-3 h-5' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
       {/* Menú desplegable (se muestra u oculta según el estado de isDropdownOpen) */}
       {isDropdownOpen && (
         <div className="absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg z-10" ref={dropdownRef} onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
