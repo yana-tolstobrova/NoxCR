@@ -11,6 +11,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\AuthController;
 use Tests\TestCase;
+use Spatie\Permission\Models\Role;
 
 class FavTest extends TestCase
 {
@@ -19,6 +20,15 @@ class FavTest extends TestCase
      */
 
      use RefreshDatabase; 
+
+     public function setUp(): void
+    {
+        parent::setUp();
+
+        // Ejecuta el Seeder de roles y permisos antes de cada prueba.
+        $this->seed(RolesAndPermissionsSeeder::class);
+    }
+
 
     public function test_auth_user_can_add_favorite(): void
     {

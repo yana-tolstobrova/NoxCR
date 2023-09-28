@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
+use Spatie\Permission\Models\Role;
 
 
 class AuthTest extends TestCase
@@ -19,14 +20,17 @@ class AuthTest extends TestCase
 
      use RefreshDatabase;
 
+
     public function test_user_can_register(): void
     {
 
+       
         $response = $this->postJson('api/register', [
             'name' => 'Elena',
             'email'=>'ele@mail.com',
             'password' => 'Elena1998*',
-            'password_confirmation' => 'Elena1998*'
+            'password_confirmation' => 'Elena1998*',
+            'subscription' => true
         ]);
 
         $response->assertStatus(200);
@@ -36,6 +40,7 @@ class AuthTest extends TestCase
                 'id',
                 'name',
                 'email',
+                'subscription',
                 'created_at',
                 'updated_at'
             ],
@@ -73,8 +78,12 @@ class AuthTest extends TestCase
 
     public function test_the_email_is_unique(): void
     {
+
+     
+
         $user = User::factory()->create([
-            'password' => Hash::make('Abcdefg1999*')
+            'password' => Hash::make('Abcdefg1999*'),
+            'email_verified_at' => now()
 
         ]);
 
