@@ -21,7 +21,7 @@ class AuthController extends Controller {
             'password' => Hash::make($data['password']),
             'subscription' => $data['subscription'],
         ]);
-        //$user->assignRole('User');
+        $user->assignRole('User');
         $token = $user->createToken('auth_token')->plainTextToken;
 
         $cookie = cookie('token', $token, 60 * 24); 
@@ -56,7 +56,7 @@ class AuthController extends Controller {
 
     
     public function logout(Request $request) {
-        
+
         $request->user()->currentAccessToken()->delete();
 
         $cookie = cookie()->forget('token');

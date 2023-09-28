@@ -1,18 +1,16 @@
 import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import NavBarMenu from '../components/NavBarMenu';
-
-
+import { Header } from '../components/Header'; 
 
 export default function DefaultLayout() {
-	const { user } = useAuth();
-	if (!user) {
+	const { user, hasRole } = useAuth();
+	if (!user || !hasRole('User')) {
 		return <Navigate to="/login" />;
 	}
 	return (
 		<>
-			<NavBarMenu />
+			<Header />
 			<main>
                 <Outlet />
 			</main>

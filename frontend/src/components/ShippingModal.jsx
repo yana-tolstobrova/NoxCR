@@ -9,13 +9,13 @@ function ShippingModal({ showModal, handleCloseModal }) {
             <div className="m-6 my-20 max-w-[400px] mx-auto">
               <div className="mb-8">
                 <h1 className="mb-4 text-3xl font-extrabold text-gray-800">Envío no incluido</h1>
-                <p className="text-gray-500">
+                <p className="text-gray-500 text-base">
                   Obtén más información sobre las opciones de envío disponibles comunicandote con nosotros.
                 </p>
               </div>
               <h2 className="text-base font-medium text-left mb-2 text-gray-800">Precios aproximados</h2>
               <div className="space-y-4">
-                <h2 className="text-xl font-medium text-gray-700">Envío con UberFlash (Mismo día)</h2>
+                <h2 className="text-lg font-medium text-gray-700">Envío con UberFlash (Mismo día)</h2>
                 <ul className="list-disc ml-6 text-base text-gray-600">
                   <li>Precio aprox. El Limón: ₡35,000</li>
                   <li>Precio aprox. Puntarenas: ₡35,000</li>
@@ -24,13 +24,13 @@ function ShippingModal({ showModal, handleCloseModal }) {
                   <li>Precio aprox. Puerto Caldera: ₡5,000</li>
                   <li>Precio aprox. San José: ₡3,500</li>
                 </ul>
-                <h2 className="text-xl font-medium text-gray-700">Envío con Correos (24-72 horas)</h2>
+                <h2 className="text-lg font-medium text-gray-700">Envío con Correos (24-72 horas)</h2>
                 <ul className="list-disc ml-6 text-base text-gray-600">
                   <li>Precio ₡2,500</li>
             
                 </ul>
                 <button
-                  className="p-3 bg-black text-white w-full font-semibold"
+                  className="p-3 bg-black text-white w-full font-semibold hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                   onClick={handleCloseModal}
                 >
                   Cerrar
