@@ -38,13 +38,14 @@ function SocialNetwork() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-1 lg:px-32 lg:pt-24 mt-[-100px] mb-10">
+    <div data-testid="social-network-component" className="container mx-auto px-4 py-1 lg:px-32 lg:pt-24 mt-[-100px] mb-10">
       <div className="-m-1 flex flex-wrap ">
         <div className="flex w-1/2">
           {largeImages.map((image, index) => (
             <div key={index} className={`w-${index === 0 ? '1/2' : 'full'} md:p-1`}>
               <img
                 alt="gallery"
+                data-testid={`gallery-image-${index}`}
                 className="block h-[420px] h-full w-full rounded-lg object-cover object-center cursor-pointer"
                 src={image}
                 onClick={() => openLightbox(image, imageTexts[index])} 
@@ -70,6 +71,7 @@ function SocialNetwork() {
         <div
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center"
           onClick={closeLightbox}
+          data-testid="lightbox"
         >
           <div className="lightbox-container">
             <img
@@ -85,6 +87,7 @@ function SocialNetwork() {
             <button
               className="absolute top-4 right-5 text-3xl cursor-pointer text-white"
               onClick={closeLightbox}
+              data-testid="close-button"
             >
               <img src={closeButton} alt="close button" className="rounded w-8 h-8 m-3 "/>
             </button>

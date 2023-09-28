@@ -24,6 +24,7 @@ class OrdersTableSeeder extends Seeder
                     'phone' => '1234567890',
                     'date_ordered' => now(),
                     'total_amount' => 100, 
+                    'shipping_type' => 'correos'
                 ]);
         
         

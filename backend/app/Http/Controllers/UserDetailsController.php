@@ -21,15 +21,15 @@ class UserDetailsController extends Controller
         try {
             $request->validate([
                 'address' => 'required|string|max:255',
-                'phone' => 'required|string|max:20',
                 'birth_date' => 'required|date', 
+                'phone' => 'required|string|max:20',
             ]);
 
             $userDetails = UserDetails::create([
                 'user_id' => $user->id,
                 'address' => $request->address,
-                'phone' => $request->phone,
                 'birth_date' => $request->birth_date, 
+                'phone' => $request->phone,
             ]);
 
             return response()->json(['success' => true, 'data' => $userDetails]);

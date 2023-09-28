@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->timestamp('date_ordered');
             $table->decimal('total_amount', 10, 2);
+            $table->string('shipping_type');
             $table->timestamps();
         });
     }
