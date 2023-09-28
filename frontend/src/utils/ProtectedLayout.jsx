@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import NavBarMenu from '../components/NavBarMenu';
+import { Header } from '../components/Header'; 
 
 export default function DefaultLayout() {
 	const { user, hasRole } = useAuth();
@@ -10,7 +10,7 @@ export default function DefaultLayout() {
 	}
 	return (
 		<>
-			<NavBarMenu />
+			<Header />
 			<main>
                 <Outlet />
 			</main>
