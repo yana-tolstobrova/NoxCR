@@ -32,24 +32,24 @@ function Footer() {
 
           <div className="w-max h-max" /*"lg:col-span-1"*/>
             <nav className="text-white text-center">
-              <ul className="flex flex-col gap-4 justify-center">
+              <ul className="flex flex-col gap-2 justify-center">
                 <li className="p-2">
-                  <a className="hover:font-semibold hover:underline" href="#">
+                  <a className="hover:font-semibold hover:underline text-center" href="#">
                     Productos
                   </a>
                 </li>
                 <li className="p-2">
-                  <a className="hover:font-semibold hover:underline" href="#">
+                  <a className="hover:font-semibold hover:underline text-center" href="#">
                     Cuidados
                   </a>
                 </li>
                 <li className="p-2">
-                  <a className="hover:font-semibold hover:underline" href="#">
+                  <a className="hover:font-semibold hover:underline text-center" href="#">
                     Contacto
                   </a>
                 </li>
                 <li className="p-2">
-                  <a className="hover:font-semibold hover:underline" href="#">
+                  <a className="hover:font-semibold hover:underline text-center" href="#">
                     FAQ
                   </a>
                 </li>
