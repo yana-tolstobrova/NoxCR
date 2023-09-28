@@ -76,7 +76,6 @@ function CartProducts() {
   const handleOrderSubmit = async () => {
     try {
       const orderId = await createOrder(formData);
-      console.log('Order created with ID:', orderId);
       handleOrderLinesSubmit(orderId);
     } catch (error) {
       console.error('Error handling order submit:', error);
