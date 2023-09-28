@@ -72,31 +72,33 @@ function OrderModal({
               <h1 className="mb-4 text-3xl font-extrabold text-gray-800">Ingresa tus datos para la confirmar la orden</h1>
               <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                  <label htmlFor="name_complete">Nombre Completo:</label>
+                  <label className="text-lg font-normal" htmlFor="name_complete">Nombre Completo</label>
                   <input
+                   placeholder="Nombre y apellido"
                     type="text"
                     id="name_complete"
                     name="name_complete"
                     // value={formData.address}
                     // onChange={handleInputChange}
                     required
-                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="cedula">Cédula:</label>
+                  <label className="text-lg font-normal" htmlFor="cedula">Cédula</label>
                   <input
+                    placeholder="Número de cédula"
                     type="text"
                     id="cedula"
                     name="cedula"
                     // value={formData.address}
                     // onChange={handleInputChange}
                     required
-                    className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="text-lg font-normal" htmlFor="birthdate">Fecha de nacimiento:</label>
+                  <label className="text-lg font-normal" htmlFor="birthdate">Fecha de nacimiento</label>
                   <input
                     type="date"
                     id="birthdate"
@@ -107,7 +109,7 @@ function OrderModal({
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="text-lg font-normal" htmlFor="phone">Teléfono:</label>
+                  <label className="text-lg font-normal" htmlFor="phone">Teléfono</label>
                   <input
                     placeholder="Ingrese su teléfono"
                     type="text"
@@ -120,7 +122,7 @@ function OrderModal({
                   />
                 </div>
                 <div className="mb-4">
-                  <label className="text-lg font-normal" htmlFor="address">Dirección:</label>
+                  <label className="text-lg font-normal" htmlFor="address">Dirección</label>
                   <input
                     placeholder="Ingrese su dirección"
                     type="text"
@@ -132,7 +134,7 @@ function OrderModal({
                     className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
                   />
                 </div>
-                <div className="mt-6 mb-4">
+                <div className="mt-4 mb-4">
                   <label className="text-base font-medium text-gray-500 ">
                     Seleccione una opción de envio
                   </label>
