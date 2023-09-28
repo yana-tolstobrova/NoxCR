@@ -36,7 +36,7 @@ class orderConfirmation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'NoxCR: Tu compra se ha realizado con éxito!',
+            subject: 'NoxCR: Confirmación de Pedido',
         );
     }
   

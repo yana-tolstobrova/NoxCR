@@ -4,40 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> NoxCR| Orden de Compra</title>
-    <!--<link rel="stylesheet" href="backend/resources/css/orderConfirmation.css">-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap" rel="stylesheet">
+<style>
+
+body {
+
+font-family:  'Noto Sans', sans-serif;
+
+}
+
+</style>
 </head>
 
 <body>
+    <img width="150rem" class="logo" src="{{'Nox.jpg'}}" alt="logo">
 
-    <h1>Confirmación de orden de compra</h1>
+    <h1>Confirmación de Pedido</h1>
 
-    <p> Tu compra se ha realizado exitosamente!. Estos son los datos de tu transacción:</p>
+    <h3>Datos del cliente:</h3>
 
-   <table>
-    <tr>
-         <ul>
-            <li>{{ $orderData['pedido'] }} </li>
-            <li> {{ $orderData['producto'] }}</li>
-            <li> {{ $orderData['cantidad'] }}</li>
-            <li> {{ $orderData['precio'] }}</li>
-            <li> {{ $orderData['total'] }}</li>
+    <ul>
+    <li> Nombre: {{$orderData['name']}}</li>
+        <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
+        
+         <li> Nombre del Producto: {{ $orderData['product_name'] }}</li>
+         <li> Cantidad: {{ $orderData['quantity']}}</li>
+         <li> Precio {{ $orderData['price']}}</li>     
+
+         <li> Nombre del Producto: {{ $orderData['product_name'] }}</li>
+         <li> Cantidad: {{ $orderData['quantity']}}</li>
+         <li> Precio {{ $orderData['price']}}</li>   
+         
+         
+        <li> Precio Total: {{ $orderData['total_amount']}}</li>
         </ul>
-    </tr>
-    <tr>
-        <img class="foto-producto" src="https://scontent.fbcn14-1.fna.fbcdn.net/v/t39.30808-6/308644573_462528075899212_471812872364256153_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=813123&_nc_ohc=3Ieg4ICX-LsAX9WhEoJ&_nc_ht=scontent.fbcn14-1.fna&oh=00_AfCvy5yGrAjqnx5H1hH34BlfLFZ2orqGeRjIL7ZC7kEAQg&oe=650940C4" alt="">
-    </tr>
-   </table>
 
-   <h4>Adicionalmente, aprovechamos este correo para recordarte que la salud 
-    y bienestar de tu vista es lo primordial para NoxCR por eso te invitamos 
-    a que antes de recibir tu pedido accedas a este enlace y leas cuidadosamente
-    todas las <a href="http://localhost:3000/#cuidados">normas de uso, higiene y mantenimiento de tus lentes noxCR</a>.
+
+    <h4>Recuerda que previo a la aceptacion de tu pedido, has confirmado:    </h4>
+    <ul>
+        <li>✅Ser Mayor de edad</li>
+        <li>✅Conocer los cuidados, precauciones y medidas de limpieza de tus lentes de contacto</li>
+        <li>✅Tener la solución multipropósito para desinfectarlos adecuadamente</li>
+          
+    </ul>
+        
+   <h4> Adicionalmente, aprovechamos este correo para recordarte que la salud 
+    y bienestar de tu vista es lo primordial para NoxCR!  Por eso te recomendamos que, antes de recibir tu pedido, hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
+          download= "cuidados-noxcr.pdf"> click AQUI </a>  para que descargar y leer cuidadosamente
+    todas las normas de uso, higiene y mantenimiento de tus lentes de contacto noxCR.
     
     Si tienes cualquier pregunta,sugerencia o inquietud, no dudes en contactarnos por cualquiera de 
-    nuestras redes sociales, nuestro <a href="http://wa.me/50684993726">wasapp</a> o por correo a noxcrlentes@gmail.com </h4>
+    nuestras redes sociales, nuestro <a href="http://wa.me/50684993726" target="_blank">wasapp</a> o por correo a noxcrlentes@gmail.com </h4>
 
      
-    <p>Gracias por confiar en NoxCR</p>
-    <img src="" alt="">
+    <p>Gracias por confiar en NoxCR!!</p>
+    
 </body>
 </html>
