@@ -49,13 +49,13 @@ describe('OrderQuestionsModal', () => {
     expect(screen.getByText('¿Conoces los cuidados, precauciones y limpieza de tus lentes de contacto?')).toBeInTheDocument();
     expect(screen.getByText('¿Cuentas con la solución multipropósito para desinfectarlos adecuadamente?')).toBeInTheDocument();
 
-    // Verificamos si el botón "Continuar" se encuentra en el documento
-    expect(screen.getByText('Continuar')).toBeInTheDocument();
+    // Verificamos si el botón "Aceptar" se encuentra en el documento
+    expect(screen.getByText('Aceptar')).toBeInTheDocument();
   });
 
-  it('calls handleContinueToOrder when "Continuar" button is clicked', () => {
+  it('calls handleContinueToOrder when "Aceptar" button is clicked', () => {
     // Simulamos hacer clic en el botón "Continuar"
-    fireEvent.click(screen.getByText('Continuar'));
+    fireEvent.click(screen.getByText('Aceptar'));
 
     // Verificamos si la función handleContinueToOrder fue llamada
     expect(handleContinueToOrder).toHaveBeenCalled();
