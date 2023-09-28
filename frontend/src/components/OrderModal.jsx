@@ -65,16 +65,10 @@ function OrderModal({
   return (
     showModal && (
       <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
-        <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
+        <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
-              <h1 className="mb-2 text-3xl font-bold text-center">
-                Ingresa tus datos para completar la orden
-              </h1>
-              <p className="mb-4 text-xl text-center">
-                Recuerda que es necesario ser mayor de edad para poder realizar
-                la compra
-              </p>
+              <h1 className="mb-4 text-3xl font-extrabold">Ingresa tus datos para la orden</h1>
               <form onSubmit={handleSubmit}>
               <div className="mb-4">
                   <label htmlFor="name_complete">Nombre Completo:</label>
@@ -101,7 +95,7 @@ function OrderModal({
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="address">Dirección completa:</label>
+                  <label htmlFor="address">Dirección:</label>
                   <input
                     type="text"
                     id="address"
@@ -110,7 +104,6 @@ function OrderModal({
                     onChange={handleInputChange}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
-                    placeholder="Provincia, cantón y distrito"
                   />
                 </div>
                 <div className="mb-4">
@@ -126,14 +119,12 @@ function OrderModal({
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="birth_date">Fecha de nacimiento:</label>
+                  <label htmlFor="birthdate">Fecha de nacimiento:</label>
                   <input
                     type="date"
-                    id="birth_date"
-                    name="birth_date"
-                    max={minBirthdate} 
-                    value={formData.birth_date} 
-                    onChange={handleInputChange} 
+                    id="birthdate"
+                    name="birthdate"
+                    max={minBirthdate}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
@@ -180,7 +171,7 @@ function OrderModal({
 
                 <button
                   type="submit"
-                  className="p-3 bg-black rounded-full text-white w-full mt-4 font-semibold"
+                  className="p-3 bg-black text-white w-full font-semibold"
                 >
                   Confirmar
                 </button>
