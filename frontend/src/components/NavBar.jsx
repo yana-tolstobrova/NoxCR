@@ -5,7 +5,7 @@ import cart from "../assets/cart.svg"
 import Search from './Search';
 import NavBarMenu from './NavBarMenu';
 
-function NavBar({onLogout}) {
+function NavBar() {
   const location = useLocation();
   let anchors = null;
 
