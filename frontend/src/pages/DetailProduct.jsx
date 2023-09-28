@@ -62,8 +62,8 @@ function DetailProduct() {
             <img
               src={product.image}
               alt={product.name}
-              className="absolute inset-0 object-cover rounded-sm"
-              style={{marginTop:'-140px'}}
+              className="absolute inset-0 object-cover rounded-sm max-w-[550px] max-h-[450px]"
+              style={{marginTop:'-100px'}}
             />
           </div>
         </div>
