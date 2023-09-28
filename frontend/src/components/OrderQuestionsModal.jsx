@@ -9,7 +9,7 @@ function OrderQuestionsModal({ showModal, handleCloseModal, handleContinueToOrde
         <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
-              <h1 className="mb-6 text-3xl text-left font-extrabold text-gray-800">Preguntas importantes antes de la compra</h1>
+              <h1 className="mb-4 text-3xl text-left font-extrabold text-gray-800">Preguntas importantes antes de la compra</h1>
 
               <ul className="ml-2 text-base text-gray-700">
                   <li className='mb-4'>¿Ya has usado Lentes de contacto anteriormente?</li>
@@ -23,7 +23,7 @@ function OrderQuestionsModal({ showModal, handleCloseModal, handleContinueToOrde
                   <button
                     type="button"
                     onClick={handleContinueToOrder} 
-                    className="p-3 mt-4 mb-4 bg-black text-white w-full font-semibold hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
+                    className="p-2 mt-2 mb-2 bg-black text-white w-full font-semibold hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                   >
                     Aceptar
                   </button>
