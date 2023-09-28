@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext'; 
 import { cardsProducts } from '../../services/ApiGetProducts';
 
 export default function AdminPanel() {
-	const { user } = useAuth();
 	const [products, setProducts]= useState();
 
 	useEffect(() => {

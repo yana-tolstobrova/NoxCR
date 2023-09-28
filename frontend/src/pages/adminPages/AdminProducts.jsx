@@ -14,7 +14,8 @@ function ProductList() {
     useEffect(() => {
         axios.get('http://localhost:8000/api/products',)
         .then((response) => {
-            const productsData = response.data; 
+            const productsData = response.data.slice().reverse();
+
             setProducts(productsData);
         })
         .catch((error) => {
@@ -52,7 +53,6 @@ function ProductList() {
       const indexOfLastProduct = currentPage * productsPerPage;
       const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
       const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-    
       const totalPages = Math.ceil(products.length / productsPerPage);
       const pageNumbers = [];
       for (let i = 1; i <= totalPages; i++) {
@@ -61,16 +61,15 @@ function ProductList() {
     return (
         <div className='py-10 px-10 h-full'>
             <div className='flex items-center justify-between mb-6'>
-                 <h1 className='font-bold text-2xl text-purple'>Productos</h1>
+                <h1 className='font-bold text-2xl text-purple'>Productos</h1>
                 <div className='flex items-center gap-2'>
                     <a href="/admin/createProduct"><img src={AddIcon} alt='icono añadir' className='cursor-pointer'></img></a>
                     <span>Añadir nuevo producto</span>
                 </div>
             </div>
-           <p className='text-lg mb-6'>Lista de productos</p>
             <table className='w-full'>
                 <thead>
-                    <tr className="text-left">
+                    <tr className="text-left h-12">
                         <th></th>
                         <th>Productos</th>
                         <th>Categoría</th>
@@ -78,7 +77,6 @@ function ProductList() {
                         <th>Precio</th>
                         <th>Colección</th>
                         <th>Color</th>
-                        {/* <th>Descripción</th> */}
                         <th></th>
                     </tr>
                 </thead>
@@ -88,11 +86,10 @@ function ProductList() {
                             <td className='pl-2'>{indexOfFirstProduct + index + 1}</td>                            
                             <td>{product.name}</td>
                             <td>{product.category}</td>
-                            <td className="text-center">{product.quantity}</td>
+                            <td>{product.quantity}</td>
                             <td>₡{product.price}</td>
                             <td>{product.collection}</td>
                             <td>{product.color}</td>
-                            {/* <td className='w-28'>{product.detail}</td>  */}
                             <td>
                                 <div className='flex items-center justify-end pr-2'>
                                     <a onClick={() => navigate(`/admin/editProduct/${product.id}`)}><img src={EditIcon} alt='icono de boligrafo' className='cursor-pointer'></img></a>

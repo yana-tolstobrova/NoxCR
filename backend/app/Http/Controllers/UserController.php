@@ -26,6 +26,7 @@ class UserController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'subscription' => $user->subscription,
+                'created_at' => $user->created_at,
             ];
     
             $usersInfo[] = $userInfo;
