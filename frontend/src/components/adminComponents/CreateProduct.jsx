@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../../components/ModalSuccess';
+import verification from '../../assets/verification.svg';
 
 function CreateProduct() {
     const navigate = useNavigate();
@@ -12,7 +14,16 @@ function CreateProduct() {
     const [color, setColor] = useState('');
     const [image, setImage] = useState(null);
     const [detail, setDetail] = useState(''); 
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+      };
     
+    const closeModal = () => {
+        setShowModal(false);
+        navigate('/admin/products');
+        };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,7 +46,7 @@ function CreateProduct() {
           })
             .then((response) => {
                 if (response.status === 200) {
-                    navigate('/admin/products');
+                    openModal();
                 } else {
                     console.error('Failed to create product.');
                 }
@@ -166,6 +177,7 @@ function CreateProduct() {
                     ></textarea>
                 </div>
                 <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full">Añadir Producto</button>
+                <Modal showModal={showModal} close={closeModal} image={verification} text='Aceptar' title='Se ha agregado correctamente' handleCloseModal={closeModal} />
                 <button type='button' onClick={handleCancel} className="bg-white border border-black text-black py-2 w-full">Cancelar</button>
             </form>
             </div>

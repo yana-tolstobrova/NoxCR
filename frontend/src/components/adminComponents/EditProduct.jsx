@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {editProduct} from '../../services/ApiEditProduct'
-import { fetchProductDetails } from '../../services/ApiGetProductDetails'
+import { fetchProductDetails } from '../../services/ApiGetProductDetails';
+import Modal from '../../components/ModalSuccess';
+import verification from '../../assets/verification.svg';
 
 function EditProduct() {
     const navigate = useNavigate();
@@ -14,6 +16,17 @@ function EditProduct() {
     const [color, setColor] = useState('');
     const [image, setImage] = useState(null);
     const [detail, setDetail] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+      };
+    
+    const closeModal = () => {
+        setShowModal(false);
+        navigate('/admin/products');
+      };
+
     useEffect(() => {
         const fetchDetails = async () => {
           try {
@@ -60,7 +73,7 @@ function EditProduct() {
         setCollection(response.collection);
         setColor(response.color);
         setDetail(response.detail);
-        navigate('/admin/products');
+        openModal();
       } catch (error) {
         console.error('Error:', error);
       }
@@ -178,6 +191,7 @@ function EditProduct() {
                     ></textarea>
                 </div>
                 <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full">Guardar Cambios</button>
+                <Modal showModal={showModal} close={closeModal} image={verification} text='Aceptar' title='Se ha editado correctamente' handleCloseModal={closeModal} />
                 <button type='button' onClick={handleCancel} className="bg-white border border-black text-black py-2 w-full">Cancelar</button>
             </form>
             </div>

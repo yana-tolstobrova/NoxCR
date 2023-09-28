@@ -4,13 +4,26 @@ import AddIcon from '../../assets/addIcon.svg';
 import EditIcon from '../../assets/editIcon.svg';
 import DeleteIcon from '../../assets/deleteIcon.svg';
 import { useNavigate } from 'react-router-dom';
-
+import Modal from '../../components/ModalSuccess';
+import warning from '../../assets/warning.svg';
 function ProductList() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8;
-  
+    const [showModal, setShowModal] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState(null); 
+
+    const openModal = (productId) => {
+        setShowModal(true);
+        setSelectedProductId(productId); 
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+        setSelectedProductId(null);
+    };
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/products',)
         .then((response) => {
@@ -34,6 +47,7 @@ function ProductList() {
               })
             .then((response) => {
                 if (response.status === 200) {
+                    closeModal();
                     setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
                 } else {
                     console.error('Failed to delete product.');
@@ -46,6 +60,7 @@ function ProductList() {
             console.error('Error deleting product:', error);
         }
     };
+
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
@@ -93,15 +108,15 @@ function ProductList() {
                             <td>
                                 <div className='flex items-center justify-end pr-2'>
                                     <a onClick={() => navigate(`/admin/editProduct/${product.id}`)}><img src={EditIcon} alt='icono de boligrafo' className='cursor-pointer'></img></a>
-                                    <a onClick={() => deleteProduct(product.id)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer'></img></a>
+                                    <a onClick={() => openModal(product.id)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer'></img></a>
                                 </div>
-
                             </td>
                         </tr>
                         
                     ))}
                 </tbody>
             </table>
+            <Modal showModal={showModal} close={closeModal} image={warning} text='Aceptar' title='¿Estás seguro que quieres eliminar?' handleCloseModal={() => deleteProduct(selectedProductId)} />
             <div className='text-center mt-4'>
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                 Anterior

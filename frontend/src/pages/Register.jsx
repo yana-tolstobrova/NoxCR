@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext';
 import React, { useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import Modal from '../components/ModalSuccess';
+import verification from "../assets/verification.svg"
 
 function Register() {
   const { setUser } = useAuth();
@@ -151,7 +152,7 @@ function Register() {
           </form>
         </div>
       </div>
-      <Modal showModal={showModal} text='Aceptar' title='Usuario creado exitosamente' handleCloseModal={closeModal} />
+      <Modal showModal={showModal} close={closeModal} image={verification} text='Aceptar' title='Usuario creado exitosamente' handleCloseModal={closeModal} />
     </div>
   );
 }
