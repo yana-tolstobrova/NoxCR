@@ -34,11 +34,13 @@ class FavTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $user = User::factory()->create([
+        $userRole = User::factory()->create([
             'id' => 1
         ]);
 
-        Sanctum::actingAs($user);
+        
+
+        Sanctum::actingAs($userRole);
         $product = Product::factory()->create([
             'id' => 1,
         ]);
@@ -48,7 +50,7 @@ class FavTest extends TestCase
         $response->assertStatus(200)
                  ->assertJsonFragment(['res'=> true,
                 'msg' => 'el producto se ha añadido a tu lista de favoritos']);
-        $this->assertTrue($product->isFavorite->contains($user));
+        $this->assertTrue($product->isFavorite->contains($userRole));
 
     }
 
@@ -56,11 +58,13 @@ class FavTest extends TestCase
      {
          $this->withoutExceptionHandling();
 
-        $user = User::factory()->create([
-            'id' => 1
-        ]);
+        // $user = User::factory()->create([
+        //     'id' => 1
+        // ]);
 
-        Sanctum::actingAs($user);
+        $userRole = Role::create(['name' => 'User']);
+
+        Sanctum::actingAs($userRole);
         $product = Product::factory()->create([
             'id' => 1,
         ]);
