@@ -10,8 +10,9 @@ export default function AdminPanel() {
 		const fetchData = async () => {
 		  const allProducts = await cardsProducts();
 		  setProducts(allProducts);
+		  console.log(allProducts)
 		};
-	console.log(products)
+	
 		fetchData();
 	  }, []);
 

@@ -46,10 +46,6 @@ const router = createBrowserRouter([
 				element: <DetailProduct />,
 			},
 			{
-				path: '/add-to-cart',
-				element: <CartProducts />,
-			},
-			{
 				path: '/products/natural',
 				element: <NaturalProductsPage />,
 			},
@@ -72,32 +68,8 @@ const router = createBrowserRouter([
 		element: <ProtectedLayout />,
 		children: [
 			{
-				path: '/',
-				element: <Main />
-			},
-			{
-				path: '/products',
-				element: <ProductsPage />,
-			},
-			{
 				path: '/add-to-cart',
 				element: <CartProducts />,
-			},
-			{
-				path: '/product/:id',
-				element: <DetailProduct />,
-			},
-			{
-				path: '/products/natural',
-				element: <NaturalProductsPage />,
-			},
-			{
-				path: '/products/crazy',
-				element: <CrazyProductsPage />,
-			},
-			{
-				path: '/products/sclera',
-				element: <ScleraProductsPage />,
 			},
 		],
 	},
