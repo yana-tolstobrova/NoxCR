@@ -36,8 +36,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);
     Route::get("/products/favorites/", [ProductController::Class, 'showFavorites']);
 
-    Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+    //Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
 });
+
+
 
 Route::resource('products', ProductController::class);
 Route::get('/search', [ProductController::class, 'search']);

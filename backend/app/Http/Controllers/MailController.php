@@ -31,10 +31,6 @@ class MailController extends Controller
     {
         $adminMail = 'noxcr.mailing@gmail.com';
 
-        // $user = [
-        //     'name' => 'Sylvia Suárez',
-        //     'adress'=> 'carretera el limón, 43'
-        // ];
 
         $orderData= [
                 'order_id'=> "1",

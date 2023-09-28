@@ -18,8 +18,8 @@ font-family:  'Noto Sans', sans-serif;
 </style>
 </head>
 
-<body font-family = 'Noto Sans'>
-    <img width="150rem" class="logo" src="{{asset('storage/images/Nox.jpg')}}" alt="logo">
+<body>
+    <img width="150rem" class="logo" src="{{'Nox.jpg'}}" alt="logo">
 
     <h1>Confirmación de Pedido</h1>
 
