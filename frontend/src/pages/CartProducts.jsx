@@ -17,11 +17,13 @@ function CartProducts() {
   const [showOrderQuestionsModal, setShowOrderQuestionsModal] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(false);
   const [formData, setFormData] = useState({
-    address: "",
-    phone: "",
-    birth_date: "",
-    total_amount: "",
-    shipping_type: "",
+    name_complete: '',
+    cedula: '',
+    address: '',
+    phone: '',
+    birth_date: '',
+    total_amount: '',
+    shipping_type: '',
   });
 
   useEffect(() => {

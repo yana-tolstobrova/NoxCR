@@ -47,6 +47,8 @@ function OrderModal({
       await createUserDetails(formData);
   
       setFormData({
+        name_complete: '',
+        cedula: '',
         address: '',
         phone: '',
         birth_date: '',
@@ -76,8 +78,8 @@ function OrderModal({
                     type="text"
                     id="name_complete"
                     name="name_complete"
-                    // value={formData.address}
-                    // onChange={handleInputChange}
+                    value={formData.name_complete}
+                    onChange={handleInputChange}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
@@ -88,8 +90,8 @@ function OrderModal({
                     type="text"
                     id="cedula"
                     name="cedula"
-                    // value={formData.address}
-                    // onChange={handleInputChange}
+                    value={formData.cedula}
+                    onChange={handleInputChange}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
@@ -104,6 +106,7 @@ function OrderModal({
                     onChange={handleInputChange}
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
+                    placeholder="Ciudad, cantón y distrito"
                   />
                 </div>
                 <div className="mb-4">
