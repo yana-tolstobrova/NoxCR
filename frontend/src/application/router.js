@@ -19,6 +19,7 @@ import AdminGuestLayout from '../utils/AdminGuestLayout';
 import AdminProtectedLayout from '../utils/AdminProtectedLayout';
 import CardsSearch from '../pages/CardsSearch';
 import UsersList from '../pages/adminPages/AdminUsers';
+import OrdersList from '../pages/adminPages/AdminOrders';
 
 const router = createBrowserRouter([
 	{
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
 			{
 				path: '/admin/adminUsers',
 				element: <UsersList />,
+			},
+			{
+				path: '/admin/adminOrders',
+				element: <OrdersList />,
 			},
 			{
 				path: '/admin/products',

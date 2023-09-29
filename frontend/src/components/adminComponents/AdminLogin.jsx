@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
 import axios from '../../services/axios';
 import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';

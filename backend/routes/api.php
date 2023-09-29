@@ -29,8 +29,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/orders', OrderController::class);
     Route::get('/orders/{id}/details', [OrderController::class, 'showOrderDetails']);
     Route::post('/order-lines', [OrderLineController::class, 'store']);
+    Route::get('/order-lines', [OrderLineController::class, 'index']);
+    Route::get('/order-lines/{id}', [OrderLineController::class, 'show', 'index']);
     Route::post('/user-details', [UserDetailsController::class, 'store']);
     Route::get('/user-details/{userDetail}', [UserDetailsController::class, 'show']);
+    Route::get('/user-details', [UserDetailsController::class, 'index']);
     Route::apiResource('/users', UserController::class);
     Route::post("/products/add-favorite/{id}", [ProductController::Class, 'addFavorite']);
     Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);

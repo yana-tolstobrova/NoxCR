@@ -9,6 +9,30 @@ use App\Models\Order;
 
 class OrderLineController extends Controller
 {
+    public function index()
+    {
+        $orderLines = OrderLine::all();
+        $orderLinesInfo = [];
+    
+        foreach ($orderLines as $orderLine) {
+            $orderLineInfo = [
+                'id' => $orderLine->id,
+                'order_id' => $orderLine->order_id,
+                'name' => $orderLine->name,
+                'quantity' => $orderLine->quantity,
+                'price' => $orderLine->price,
+            ];
+    
+            $orderLinesInfo[] = $orderLineInfo;
+        }
+    
+        return response()->json(['order-lines' => $orderLinesInfo]);
+    }
+    public function show()
+    {
+        $orderLines = OrderLine::all();
+        return response()->json($orderLines);
+    }
     public function store(Request $request)
     {
         $user = Auth::user();

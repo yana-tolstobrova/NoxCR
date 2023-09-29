@@ -9,6 +9,26 @@ use App\Models\UserDetails;
 
 class UserDetailsController extends Controller
 {
+    public function index()
+    {
+        $userDetails = UserDetails::all();
+        $userDetailsInfo = [];
+    
+        foreach ($userDetails as $userDetail) {
+            $userDetailInfo = [
+                'user_id' => $userDetail->user_id,
+                'name_complete'=> $userDetail->name_complete,
+                'cedula'=> $userDetail->cedula,
+                'address' => $userDetail->address,
+                'birth_date' => $userDetail->birth_date, 
+                'phone' => $userDetail->phone,
+            ];
+    
+            $userDetailsInfo[] = $userDetailInfo;
+        }
+    
+        return response()->json(['user-details' => $userDetailsInfo]);
+    }
     public function show()
     {
         $userDetails = UserDetails::all();

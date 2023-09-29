@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { getUsers, getUserDetails } from '../../services/ApiUsers';
 
 function UsersList() {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 8;
 
   useEffect(() => {
-    axios
-      .get('http://localhost:8000/api/users', {
-        withCredentials: true,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((response) => {
-        const usersData = response.data.users;
+    getUsers()
+      .then((usersData) => {
         setUsers(usersData);
       })
       .catch((error) => {
         console.error('Error fetching users:', error);
       });
+
+      const fetchUserDetails = async () => {
+        try {
+          getUserDetails()
+          .then((userDetailsData) => {
+            setUserDetails(userDetailsData);
+          })
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+        }
+      };
+  
+      fetchUserDetails();
   }, []);
 
   const getCurrentUsers = () => {
@@ -51,6 +55,8 @@ function UsersList() {
             <th>Nombre</th>
             <th>Email</th>
             <th>Suscripción</th>
+            <th>Fecha de nacimiento</th>
+            <th>Teléfono</th>
             <th>Fecha de registro</th>
           </tr>
         </thead>
@@ -58,9 +64,14 @@ function UsersList() {
           {getCurrentUsers().map((user, index) => (
             <tr key={user.id} className="bg-slate-100 h-16">
               <td className="pl-2">{index + 1}</td>
-              <td>{user.name}</td>
+              <td>{userDetails.find((detail) => detail.user_id === user.id)?.name_complete || user.name}</td>
               <td>{user.email}</td>
               <td>{user.subscription ? 'Si' : 'No'}</td>
+              
+              <td> {userDetails.find((detail) => detail.user_id === user.id)?.birth_date ?
+                new Date(userDetails.find((detail) => detail.user_id === user.id)?.birth_date).toLocaleDateString('es-ES') : '-'}
+              </td>
+              <td className="pr-2">{userDetails.find((detail) => detail.user_id === user.id)?.phone || '-'}</td>
               <td>{new Date(user.created_at).toLocaleDateString('en-GB')}</td>
             </tr>
           ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { cardsProducts } from '../../services/ApiGetProducts';
+import { cardsProducts } from '../../services/ApiProducts';
 
 export default function AdminPanel() {
 	const [products, setProducts]= useState();
@@ -26,7 +26,7 @@ export default function AdminPanel() {
 					<span>Septiembre 2023</span>
 				</div>
 				<div className='shadow-xl w-1/3 py-4 px-6'>
-					<span className='text-color-icon text-3xl font-bold'>120</span>
+					<span className='text-color-icon text-3xl font-bold'>₡120000</span>
 					<p className='font-medium mt-2'>Beneficio de mes </p>
 					<span className='text-slate-600'>Septiembre 2023</span>
 				</div>
@@ -42,7 +42,7 @@ export default function AdminPanel() {
 					<div className="px-4 py-2 h-20">
 						<div className="text-l mb-2">{product.name}</div>
 						<p className="text-base text-purple">
-						${product.price}
+						₡{product.price}
 						</p>
 					</div>
 					</div>

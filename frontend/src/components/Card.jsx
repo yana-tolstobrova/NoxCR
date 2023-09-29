@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { cardsProducts } from '../services/ApiGetProducts';
+import { cardsProducts } from '../services/ApiProducts';
 //import {ApiFavoritesService} from '../services/ApiFavoritesService';
 import { Link } from 'react-router-dom'; 
 //import Like from '../assets/heart.svg'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {editProduct} from '../../services/ApiEditProduct'
+import {editProduct} from '../../services/ApiProducts'
 import { fetchProductDetails } from '../../services/ApiGetProductDetails';
 import Modal from '../../components/ModalSuccess';
 import verification from '../../assets/verification.svg';
@@ -186,6 +186,7 @@ function EditProduct() {
                         placeholder='Escribe aquí una breve descripción del producto...'
                         className="mb-3 w-full border border-gray-300 bg-white p-2 mt-1 focus:border-black focus:outline-none"
                         name='detail'
+                        rows='3'
                         value={detail}
                         onChange={(e) => setDetail(e.target.value)}
                     ></textarea>

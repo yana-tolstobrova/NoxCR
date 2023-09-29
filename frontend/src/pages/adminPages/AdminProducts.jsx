@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import AddIcon from '../../assets/addIcon.svg';
 import EditIcon from '../../assets/editIcon.svg';
 import DeleteIcon from '../../assets/deleteIcon.svg';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/ModalSuccess';
 import warning from '../../assets/warning.svg';
+import { reverseProducts, deleteProduct } from '../../services/ApiProducts'; 
+
 function ProductList() {
     const navigate = useNavigate();
     const [products, setProducts] = useState([]);
@@ -25,42 +26,29 @@ function ProductList() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/products',)
-        .then((response) => {
-            const productsData = response.data.slice().reverse();
-
+        reverseProducts()
+          .then((productsData) => {
             setProducts(productsData);
-        })
-        .catch((error) => {
+          })
+          .catch((error) => {
             console.error('Error fetching products:', error);
-        });
-    }, []);
+          });
+      }, []);
 
-    const deleteProduct = (id) => {
-        try {
-            axios.delete(`http://localhost:8000/api/products/${id}`, {
-                withCredentials: true,
-                headers: {
-                  "Accept": "application/json",
-                  "Content-Type": "application/json",
-                },
-              })
-            .then((response) => {
-                if (response.status === 200) {
-                    closeModal();
-                    setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
-                } else {
-                    console.error('Failed to delete product.');
-                }
-            })
-            .catch((error) => {
-                console.error('Error deleting product:', error);
-            });
-        } catch (error) {
+      const handleDeleteProduct = (id) => {
+        deleteProduct(id)
+          .then((success) => {
+            if (success) {
+              closeModal();
+              setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+            } else {
+              console.error('Failed to delete product.');
+            }
+          })
+          .catch((error) => {
             console.error('Error deleting product:', error);
-        }
-    };
-
+          });
+      };
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
       };
@@ -116,7 +104,7 @@ function ProductList() {
                     ))}
                 </tbody>
             </table>
-            <Modal showModal={showModal} close={closeModal} image={warning} text='Aceptar' title='¿Estás seguro que quieres eliminar?' handleCloseModal={() => deleteProduct(selectedProductId)} />
+            <Modal showModal={showModal} close={closeModal} image={warning} text='Aceptar' title='¿Estás seguro que quieres eliminar?' handleCloseModal={() => handleDeleteProduct(selectedProductId)} />
             <div className='text-center mt-4'>
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                 Anterior

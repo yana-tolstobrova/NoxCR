@@ -8,6 +8,27 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Order::all();
+        $ordersInfo = [];
+    
+        foreach ($orders as $order) {
+            $orderInfo = [
+                'id' => $order->id,
+                'user_id' => $order->user_id,
+                'total_amount' => $order->total_amount,
+                'shipping_type' => $order->shipping_type,
+                'created_at' => $order->created_at,
+                'address' => $order->address,
+                'phone' => $order->phone,
+            ];
+    
+            $ordersInfo[] = $orderInfo;
+        }
+    
+        return response()->json(['orders' => $ordersInfo]);
+    }
     public function show()
     {
         $orders = Order::all();
