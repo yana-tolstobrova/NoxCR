@@ -28,15 +28,9 @@ font-family:  'Noto Sans', sans-serif;
     <ul>
     <li> Nombre: {{$orderData['name']}}</li>
         <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
-        
-         <li>  {{ $orderData['product_name'] }}</li>
-         <li> Cantidad: {{ $orderData['quantity']}}</li>
-         <li> Precio {{ $orderData['price']}}</li>     
+           
+         <li> Productos: {{ $orderData['products'] }}</li>
 
-         <li> Nombre del Producto: {{ $orderData['product_name'] }}</li>
-         <li> Cantidad: {{ $orderData['quantity']}}</li>
-         <li> Precio {{ $orderData['price']}}</li>   
-         
          
         <li> Precio Total: {{ $orderData['total_amount']}}</li>
         </ul>

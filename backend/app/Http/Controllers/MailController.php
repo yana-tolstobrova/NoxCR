@@ -42,13 +42,22 @@ class MailController extends Controller
 
     $user = Auth::user();
 
+    $itemList = "";
+    foreach ($request->cart as $item)
+    {
+        
+        //itemlist .= $item->product->name . " ";
+        //itemlist .= $item->quantity . " ";
+        //itemlist .= $item->product->price . " ";
+        //itemlist .= "</br>";
+    }
+
+        
        $orderData= [
                 'order_id'=> $request->order_id, 
                 'name' => $request->name, 
                 'adress' => $request->adress,
-                'product_name' => "",
-                'quantity' => "",
-                'price' => "",
+                'products' => $itemList,
                 'total_amount' => $request->total_amount,          
             ];
 
