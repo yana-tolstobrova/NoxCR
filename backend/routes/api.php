@@ -21,7 +21,7 @@ use App\Http\Controllers\UserDetailsController;
 */
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+//Route::post('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('products/{id}', [ProductController::Class, 'edit', 'update']);
     Route::put('products/{id}', [ProductController::Class, 'update']);
     Route::post('products', [ProductController::Class, 'store']);
+    Route::post('send-confirmation-email', [MailController::class, 'sendConfirmationEmail']);
 });
 Route::get('products', [ProductController::Class, 'index']);
 Route::get('products/{id}', [ProductController::Class, 'show']);
