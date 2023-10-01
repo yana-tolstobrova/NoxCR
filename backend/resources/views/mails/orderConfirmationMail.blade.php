@@ -23,16 +23,23 @@ font-family:  'Noto Sans', sans-serif;
 
     <h1>Confirmación de Pedido</h1>
 
-    <h3>Datos del cliente:</h3>
+    <h3>Bienvenido al resumen de su pedido No.: {{$orderData['order_id']}}</h3>
 
+    <h3>Datos del cliente:</h3>
     <ul>
     <li> Nombre: {{$orderData['name']}}</li>
-        <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
-           
-         <li> Productos: {{ $orderData['products'] }}</li>
+    <li> Documento de Identificación: {{$orderData['cedula']}}</li>
+    <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
+
+    <h3>Detalle del pedido: </h3>
+   
+    <li>Tipo de envio: {{ $orderData['shipping_type'] }}</li>
+        
+    <li> Productos: {{ $orderData['products'] }}</li>
+    <li> Productos: {{ $orderData['data'] }}</li>
 
          
-        <li> Precio Total: {{ $orderData['total_amount']}}</li>
+    <li> Precio Total: {{ $orderData['total_amount']}}</li>
         </ul>
 
 
