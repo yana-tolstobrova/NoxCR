@@ -48,6 +48,7 @@ class orderConfirmation extends Mailable
     {
         return new Content(
             view: 'mails.orderConfirmationMail',
+        
         );
     }
   

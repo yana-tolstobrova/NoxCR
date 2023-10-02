@@ -24,15 +24,10 @@ class MailController extends Controller
        
         $adminMail = 'noxcr.mailing@gmail.com';
 
-    //     order_id: orderId,
-    //   name: formData.name_complete,
-    //   cedula: formData.cedula,
-    //   address: formData.address,
-    //   total_amount: formData.total_amount,
-    //   shipping_type:formData.shipping_type,
-    //   cart: cart
 
     $user = Auth::user();
+
+    //Validar Data
 
     $itemList = "";
     // foreach ($request->cart as $item)
@@ -53,14 +48,14 @@ class MailController extends Controller
                 'products' => $itemList,
                 'total_amount' => $request->total_amount, 
                 'shipping_type' => $request->shipping_type,
-                'data'=>$request->cart         
+                'data' => $request->cart
+                      
             ];
 
             Mail::to($user->email)
                     ->cc($adminMail)
                     ->send(new orderConfirmation($orderData));
 
-         dd ("Email is sent successfully.");
     }
 
 }

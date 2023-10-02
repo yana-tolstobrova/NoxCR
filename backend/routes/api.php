@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('products/{id}', [ProductController::Class, 'edit', 'update']);
     Route::put('products/{id}', [ProductController::Class, 'update']);
     Route::post('products', [ProductController::Class, 'store']);
-    Route::post('send-confirmation-email', [MailController::class, 'sendConfirmationEmail']);
+    Route::post('/send-confirmation-email', [MailController::class, 'sendConfirmationEmail']);
 });
 Route::get('products', [ProductController::Class, 'index']);
 Route::get('products/{id}', [ProductController::Class, 'show']);
