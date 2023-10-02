@@ -95,6 +95,7 @@ function CartProducts() {
     try {
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
+      sendOrderEmail(formData);
 
       localStorage.removeItem("cart");
       setCart([]);
@@ -104,6 +105,21 @@ function CartProducts() {
       console.error('Error handling order submit:', error);
     }
   };
+
+  const sendOrderEmail = (formData) => {
+
+    const emailData = {
+      order_id: formData.orderId,
+      name: formData.name_complete,
+      cedula: formData.cedula,
+      address: formData.address,
+      total_amount: formData.total_amount,
+      shipping_type:formData.shipping_type,
+      cart: cart
+    };
+
+    sendShippingOrder(emailData); 
+  }
 
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {
