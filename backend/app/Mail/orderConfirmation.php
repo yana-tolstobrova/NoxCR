@@ -26,6 +26,7 @@ class orderConfirmation extends Mailable
      */
     public function __construct($orderData)
     {
+   
         $this->orderData = $orderData;
         
     }

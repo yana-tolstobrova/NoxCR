@@ -21,7 +21,7 @@ use App\Http\Controllers\UserDetailsController;
 */
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-//Route::post('send-orderConfirmation', [MailController::class, 'orderConfirmation']);
+Route::post('send-confirmation-email', [MailController::class, 'orderConfirmation']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
