@@ -235,4 +235,22 @@ class ProductController extends Controller
 
                 }
 
+                public function purchase(Request $request, $id)
+{
+    try {
+        $product = Product::findOrFail($id);
+        $quantityPurchased = $request->input('quantityPurchased');
+
+        if ($product->quantity < $quantityPurchased) {
+            return response()->json(['error' => 'No hay suficiente stock disponible.'], 400);
+        }
+
+        $product->decrement('quantity', $quantityPurchased);
+
+        return response()->json(['message' => 'Compra exitosa.']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+}
+
 }
