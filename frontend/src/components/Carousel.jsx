@@ -48,20 +48,6 @@ function Carousel() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 mx-6 mb-4 flex justify-center">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            onClick={() => goToSlide(index)}
-            className={`mx-1 h-2 w-2 flex-initial cursor-pointer border-0 border-y-4 border-solid border-transparent ${
-              currentSlide === index ? 'bg-white' : 'bg-gray-300'
-            }`}
-            aria-label={`Slide ${index + 1}`}
-          ></button>
-        ))}
-      </div>
-
       <button
         className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white bg-opacity-50 px-2 py-1 rounded-full text-gray-700"
         onClick={prevSlide}
