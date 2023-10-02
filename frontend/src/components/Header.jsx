@@ -11,7 +11,7 @@ export function Header() {
     <header className="flex h-36 items-center px-10 md:bg-transparent bg-black"> 
         <Link to="/">
             <img className="h-24 w-48 md:block hidden" src={logo} alt="Logo" /> 
-            <img className="h-12 w-24 ml-44 md:hidden" src={whiteLogo} alt="Logo" />
+            <img className="h-12 w-24  md:hidden" src={whiteLogo} alt="Logo" />
         </Link>
         <NavBar />
     </header>

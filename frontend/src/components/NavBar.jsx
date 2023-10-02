@@ -5,12 +5,15 @@ import cart from "../assets/cart.svg"
 import whiteCart from '../assets/whiteCart.svg'
 import Search from './Search';
 import NavBarMenu from './NavBarMenu';
+import menuBurger from '../assets/menuBurger.svg';
 
 
 function NavBar() {
   const location = useLocation();
   let anchors = null;
   const cartCount = 3;
+  
+ 
   // const [cartCount, setCartCount] = useState(0); 
 
   // const addToCart = () => {
@@ -30,6 +33,7 @@ function NavBar() {
   
   return (
     <div className="flex w-full justify-between items-center">
+      <img className='px-3 h-5' src= {menuBurger} alt="Menú hambuerguesa" />
       <nav className= 'hidden md:block'>{anchors}</nav>
       <div className="flex items-center h-11">
           <Search />
