@@ -35,9 +35,23 @@ font-family:  'Noto Sans', sans-serif;
     <h3>Detalle del pedido: </h3>
    
     <li>Tipo de envio: {{ $orderData['shipping_type'] }}</li>
+
+    <?php
+    foreach (json_decode($orderData['products']) as $item)
+    {?>
+        <li>{{$item->product->name}}</li>
+<?php
+
         
-    <li> Productos: {{ $orderData['products'] }}</li>
-    <li> Productos: {{ $orderData['data'] }}</li>
+        // $itemList .= $item->product->name . " ";
+        // $itemList .= $item->quantity . " ";
+        // $itemList .= $item->product->price . " ";
+        // $itemList .= "</br>";
+    }
+    ?>
+        
+    <!-- <li> Productos: {{ ($orderData['products']) }}</li>
+    <li> Productos: {{ $orderData['data'] }}</li> -->
 
          
     <li> Precio Total: {{ $orderData['total_amount']}}</li>

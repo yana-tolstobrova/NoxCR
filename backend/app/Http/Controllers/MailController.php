@@ -31,14 +31,14 @@ class MailController extends Controller
 
     $itemList = "";
 
-    foreach (json_decode($request->products) as $item)
-    {
+    // foreach (json_decode($request->products) as $item)
+    // {
         
-        $itemList .= $item->product->name . " ";
-        $itemList .= $item->quantity . " ";
-        $itemList .= $item->product->price . " ";
-        $itemList .= "</br>";
-    }
+    //     $itemList .= $item->product->name . " ";
+    //     $itemList .= $item->quantity . " ";
+    //     $itemList .= $item->product->price . " ";
+    //     $itemList .= "</br>";
+    // }
 
         
        $orderData= [
@@ -46,7 +46,7 @@ class MailController extends Controller
                 'name' => $request->name, 
                 'cedula' => $request->cedula,
                 'address' => $request->address,
-                'products' => $itemList,
+                'products' => $request->products,
                 'total_amount' => $request->total_amount, 
                 'shipping_type' => $request->shipping_type,
                 'data' => $request->cart
