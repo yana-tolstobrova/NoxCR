@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import searchService from '../services/searchService'; // Importa el servicio de búsqueda
 import search from '../assets/search.svg';
+import whiteSearch from '../assets/whiteSearch.svg';
 
 function Search() {
     const [isInputVisible, setInputVisible] = useState(false);
