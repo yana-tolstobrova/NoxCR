@@ -30,14 +30,15 @@ class MailController extends Controller
     //Validar Data
 
     $itemList = "";
-    // foreach ($request->cart as $item)
-    // {
+
+    foreach (json_decode($request->products) as $item)
+    {
         
-    //     itemlist .= $item->product->name . " ";
-    //     itemlist .= $item->quantity . " ";
-    //     itemlist .= $item->product->price . " ";
-    //     itemlist .= "</br>";
-    // }
+        $itemList .= $item->product->name . " ";
+        $itemList .= $item->quantity . " ";
+        $itemList .= $item->product->price . " ";
+        $itemList .= "</br>";
+    }
 
         
        $orderData= [

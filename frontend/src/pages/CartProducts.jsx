@@ -108,7 +108,7 @@ function CartProducts() {
   };
 
   const sendOrderEmail = (formData) => {
-
+    console.log("cart",cart);
     const emailData = {
       order_id: formData.orderId,
       name: formData.name_complete,
@@ -116,7 +116,7 @@ function CartProducts() {
       address: formData.address,
       total_amount: formData.total_amount,
       shipping_type:formData.shipping_type,
-      products: "lentillas",
+      products: JSON.stringify(cart),
       data: "lista productos"
     };
  console.log("email-data:",emailData)
