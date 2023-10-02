@@ -63,16 +63,15 @@ function Register() {
 	};
 
   return (
-    <div className="flex items-start justify-center">
-      <div className="bg-white px-10 py-8 mb-4 border-2 border-gray-100">
-        <h1 className="text-3xl font-semibold" style={{ color: "#3C2046" }}>Crea tu cuenta</h1>
+    <div className="flex items-center justify-center mt-24 md:mt-0">
+      <div className="bg-white px-10 py-6 border-2 border-gray-100">
+        <h1 className="text-5xl font-semibold text-center" style={{ color: "#3C2046" }}>Crea tu cuenta</h1>
         <p className="font-medium text-lg text-gray-500 mt-2">
-          {" "}
           Ingrese su información para poder registrarse.
         </p>
-        <div className="mt-8">
+        <div className="mt-4">
           <form  onSubmit={handleSubmit} action="#" method="POST">
-            <div className='mt-4'>
+            <div className='mt-2'>
               <label className="text-lg font-medium" htmlFor="name">
                 Nombre
               </label>
@@ -85,7 +84,7 @@ function Register() {
               />
                {nameError && <p className="text-sm text-red-600">{nameError}</p>}
             </div>
-            <div className='mt-4'>
+            <div className='mt-2'>
               <label className="text-lg font-medium" htmlFor="email">
                 Correo
               </label>
@@ -98,7 +97,7 @@ function Register() {
               />
                {emailError && <p className="text-sm text-red-600">{emailError}</p>}
             </div>
-            <div className='mt-4'>
+            <div className='mt-2'>
               <label className="text-lg font-medium" htmlFor="password">
                 Contraseña
               </label>
@@ -111,7 +110,7 @@ function Register() {
               />
               {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
             </div>
-            <div className='mt-4'>
+            <div className='mt-2'>
               <label className="text-lg font-medium" htmlFor="cpassword">
                 Confirmar la contraseña
               </label>
@@ -124,7 +123,7 @@ function Register() {
               />
               {passwordError && <p className="text-sm text-red-600">{passwordError}</p>}
             </div>
-              <div className='mt-4'>
+              <div className='mt-2'>
               <input
                 className="mr-2"
                 type="checkbox"
@@ -133,11 +132,11 @@ function Register() {
                 checked={subscription}
                 onChange={(e) => setSubscription(e.target.checked)}
               />
-                <label className="text-sm font-medium" htmlFor="subscription">
-                Quiero recibir las actualizaciones sobre productos y promociones
+                <label className="text-md font-medium" htmlFor="subscription">
+                Quiero recibir las actualizaciones de productos y promociones
                 </label>
             </div>
-            <div className="mt-8 flex flex-col gap-y-4">
+            <div className="mt-4 flex flex-col gap-y-4">
               <button
                 className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                 type="submit" 
@@ -146,8 +145,8 @@ function Register() {
               </button>
             </div>
             <div className='mt-4 flex items-center justify-center'>
-              <p className='text-lg font-medium'>¿Ya tienes cuenta?</p>
-              <a  className='ml-4  hover:font-semibold hover:underline' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
+              <p className='text-lg md:text-xl font-medium'>¿Ya tienes cuenta?</p>
+              <a  className='ml-4  hover:font-semibold hover:underline text-lg md:text-xl' href="/login"style={{ color: '#55285A' }}>Iniciar sesión</a>
             </div>
           </form>
         </div>
