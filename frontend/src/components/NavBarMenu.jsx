@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import profile from '../assets/profile.svg';
+import whiteProfile from '../assets/whiteProfile.svg';
 import { TwLink } from './TwLink';
 import { useAuth } from '../contexts/AuthContext'; 
 import { logoutService } from '../services/ApiAuthService';
@@ -44,7 +45,9 @@ function NavBarMenu() {
   return (
     <div className="relative inline-block text-left">
       {/* Código SVG del ícono de usuario */}
-      <img className='px-3 h-5' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-5 md:block hidden' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-5 md:hidden' src={whiteProfile} alt="Profile-icon" onClick={toggleDropdown} /> 
+
       {/* Menú desplegable (se muestra u oculta según el estado de isDropdownOpen) */}
       {isDropdownOpen && (
         <div className="absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg z-10" ref={dropdownRef} onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>

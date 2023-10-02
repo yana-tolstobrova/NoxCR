@@ -24,3 +24,14 @@ select:-webkit-autofill:focus {
 }
 
 /* https://www.flaticon.es/resultados?word=ojo */
+
+.card-box:hover .card-menu
+{
+width:100%;
+opacity: 1;
+left: 0;
+transition: all 0.2s ease-in-out;  
+}
+img.img-favorite{
+  fill: none;
+}
