@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import searchService from '../services/searchService'; // Importa el servicio de búsqueda
 import search from '../assets/search.svg';
+import whiteSearch from '../assets/whiteSearch.svg';
 
 function Search() {
     const [isInputVisible, setInputVisible] = useState(false);
@@ -82,7 +83,14 @@ function Search() {
           <img
             src={search}
             alt="icon-search"
-            className="cursor-pointer h-5 px-2 absolute right-0"
+            className="cursor-pointer h-5 px-2 absolute right-0 md:block hidden"
+            onClick={onClickHandler}
+            data-testid="search-icon" 
+          />
+          <img
+            src={whiteSearch}
+            alt="icon-search"
+            className="cursor-pointer h-5 px-2 absolute right-0 md:hidden"
             onClick={onClickHandler}
             data-testid="search-icon" 
           />
