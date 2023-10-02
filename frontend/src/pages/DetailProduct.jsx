@@ -37,10 +37,10 @@ function DetailProduct() {
 
   const handleAddToCart = () => {
     const totalPrice = roundedPrice * quantity;
-  
+    
     // Obtén el carrito actual desde el almacenamiento local
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
+  console.log(cart)
     const existingCartItem = cart.find(item => item.product.id === product.id);
   
     if (existingCartItem) {
