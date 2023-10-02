@@ -35,18 +35,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user-details/{userDetail}', [UserDetailsController::class, 'show']);
     Route::get('/user-details', [UserDetailsController::class, 'index']);
     Route::apiResource('/users', UserController::class);
-    Route::post("/products/add-favorite/{id}", [ProductController::Class, 'addFavorite']);
-    Route::post("/products/remove-favorite/{id}", [ProductController::Class, 'removeFavorite']);
-    Route::get("/products/favorites/", [ProductController::Class, 'showFavorites']);
-    Route::delete('products/{id}', [ProductController::Class, 'destroy', 'update']);
-    Route::get('products/{id}', [ProductController::Class, 'edit', 'update']);
-    Route::put('products/{id}', [ProductController::Class, 'update']);
-    Route::post('products', [ProductController::Class, 'store']);
+    Route::post("/products/add-favorite/{id}", [ProductController::class, 'addFavorite']);
+    Route::post("/products/remove-favorite/{id}", [ProductController::class, 'removeFavorite']);
+    Route::get("/products/favorites/", [ProductController::class, 'showFavorites']);
+    Route::delete('products/{id}', [ProductController::class, 'destroy', 'update']);
+    Route::get('products/{id}', [ProductController::class, 'edit', 'update']);
+    Route::put('products/{id}', [ProductController::class, 'update']);
+    Route::post('products', [ProductController::class, 'store']);
 });
-Route::get('products', [ProductController::Class, 'index']);
-Route::get('products/{id}', [ProductController::Class, 'show']);
+Route::get('products', [ProductController::class, 'index']);
+Route::get('products/{id}', [ProductController::class, 'show']);
 Route::get('/search', [ProductController::class, 'search']);
 
 
+Route::put('products/{id}', [ProductController::class, 'editQuantity']);
 
 
