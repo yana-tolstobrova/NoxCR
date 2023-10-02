@@ -1,11 +1,10 @@
 import axios from 'axios';
 
-const API_ORDERS_URL = 'http://localhost:8000/api/orders';
-const API_ORDER_LINES_URL = 'http://localhost:8000/api/order-lines';
+const API_URL = process.env.REACT_APP_API_URL
 
 export const getOrders = () => {
     return axios
-      .get(API_ORDERS_URL, {
+      .get(`${API_URL}/orders`, {
           withCredentials: true,
           headers: {
             Accept: 'application/json',
@@ -21,7 +20,7 @@ export const getOrders = () => {
 
   export const getOrderLines = () => {
     return axios
-      .get(API_ORDER_LINES_URL, {
+      .get(`${API_URL}/order_lines`, {
           withCredentials: true,
           headers: {
             Accept: 'application/json',

@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL
+
 export const cardsProducts = () => {
   return axios
-    .get('http://localhost:8000/api/products')
+    .get(`${API_URL}/products`)
     .then((response) => {
       const products = response.data;
       return products;

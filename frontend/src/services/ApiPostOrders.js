@@ -1,9 +1,9 @@
-// services/orderService.js
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL
 
 export const createOrder = async (formData) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/orders', formData, {
+    const response = await axios.post(`${API_URL}/api/orders`, formData, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',

@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL
+
 export const fetchProductDetails = (id) => {
   return axios
-    .get(`http://localhost:8000/api/products/${id}`, {
+    .get(`${API_URL}/products/${id}`, {
       withCredentials: true,
       headers: {
         "Accept": "application/json",

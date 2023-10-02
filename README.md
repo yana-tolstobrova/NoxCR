@@ -17,6 +17,22 @@ Una web responsive donde se pueda gestionar usuarios registrados, saber desde qu
 
 [DrawSql](https://drawsql.app/teams/teams-noxcr/diagrams/noxcr)
 
+### Figma
+#### Maqueta y propuesta al cliente
+[Wireframe](./frontend//src/assets/propuesta-figma.png)
+
+### Atomic Desing
+[Atomos](./frontend/src/assets/atomos.png)
+[Moleculas](./frontend/src/assets/moleculas.png)
+[Organismos](./frontend/src/assets/organismos.png)
+
+### Final Desing
+[Desktop](./frontend/src/assets/desktop.png)
+[Mobile](./frontend/src/assets/mobile.png)
+[Administrador](./frontend/src/assets/admin.png)
+
+
+
 ### 🛠 Tecnologías Utilizadas
 <div>
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>

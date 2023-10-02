@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const API_USERS_URL = 'http://localhost:8000/api/users';
-const API_USER_DETAILS_URL = 'http://localhost:8000/api/user-details';
+// const API_USERS_URL = 'http://localhost:8000/api/users';
+// const API_USER_DETAILS_URL = 'http://localhost:8000/api/user-details';
+
+const API_URL = process.env.REACT_APP_API_URL
 
 export const getUsers = () => {
   return axios
-    .get(API_USERS_URL, {
+    .get(`${API_URL}/users`, {
         withCredentials: true,
         headers: {
           Accept: 'application/json',
@@ -21,7 +23,7 @@ export const getUsers = () => {
 
 export const getUserDetails = () => {
     return axios
-      .get(API_USER_DETAILS_URL, {
+      .get(`${API_URL}/user-details`, {
         withCredentials: true,
         headers: {
           Accept: 'application/json',

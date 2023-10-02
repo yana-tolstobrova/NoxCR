@@ -11,4 +11,3 @@ export const logoutService = () => {
         throw error
       });
   };
-  // Prueba de push

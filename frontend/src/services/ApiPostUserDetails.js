@@ -1,11 +1,10 @@
-// api.js
-
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL
 
 export const createUserDetails = async (formData) => {
   try {
     const response = await axios.post(
-      'http://localhost:8000/api/user-details',
+      `${API_URL}/user-details`,
       formData,
       {
         withCredentials: true,
