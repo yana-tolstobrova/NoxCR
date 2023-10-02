@@ -46,6 +46,7 @@ function OrderModal({
   
     try {
       await createUserDetails(formData);
+      handleOrderSubmit();
   
       setFormData({
         name_complete: '',
@@ -57,7 +58,7 @@ function OrderModal({
         shipping_type: '',
       });
   
-      handleOrderSubmit();
+      
    
   
       handleCloseModal();

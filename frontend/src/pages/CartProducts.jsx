@@ -67,13 +67,13 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0);
 
-  const handleOnSubmit = (e) => {
-    sendShippingOrder()
-      .then((res) => {
-        console.log("Resultado del envío de la orden:", res);
-      })
-      .catch((error) => console.log("Error en el envío de la orden:", error));
-  };
+  // const handleOnSubmit = (e) => {
+  //   sendShippingOrder()
+  //     .then((res) => {
+  //       console.log("Resultado del envío de la orden:", res);
+  //     })
+  //     .catch((error) => console.log("Error en el envío de la orden:", error));
+  // };
   
   const openModal = () => {
     setShowModal(true);
@@ -95,6 +95,7 @@ function CartProducts() {
     try {
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
+      console.log("sylvia",formData);
       sendOrderEmail(formData);
 
       localStorage.removeItem("cart");
@@ -115,9 +116,10 @@ function CartProducts() {
       address: formData.address,
       total_amount: formData.total_amount,
       shipping_type:formData.shipping_type,
-      cart: cart
+      products: "lentillas",
+      data: "lista productos"
     };
-
+ console.log("email-data:",emailData)
     sendShippingOrder(emailData); 
   }
 
@@ -156,8 +158,16 @@ function CartProducts() {
 
   const handleConfirmOrder = () => {
     openOrderQuestionsModal(); 
-    handleOnSubmit(); 
+    // handleOnSubmit(); 
   };
+
+  // const handleOnSubmit = (e) => {
+  //   sendShippingOrder()
+  //     .then((res) => {
+  //       console.log("Resultado del envío de la orden:", res);
+  //     })
+  //     .catch((error) => console.log("Error en el envío de la orden:", error));
+  // };
   
   return (
     <div className="h-screen pt-20">
