@@ -30,7 +30,7 @@ font-family:  'Noto Sans', sans-serif;
     <ul>
     <li> Nombre: {{$orderData['name']}}</li>
     <li> Documento de Identificación: {{$orderData['cedula']}}</li>
-    <li> Dirección de entrega: {{ $orderData['adress'] }}</li>
+    <li> Dirección de entrega: {{ $orderData['address'] }}</li>
 
     <h3>Detalle del pedido: </h3>
    

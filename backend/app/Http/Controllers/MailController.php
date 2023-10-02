@@ -44,7 +44,7 @@ class MailController extends Controller
                 'order_id'=> $request->order_id, 
                 'name' => $request->name, 
                 'cedula' => $request->cedula,
-                'adress' => $request->adress,
+                'address' => $request->address,
                 'products' => $itemList,
                 'total_amount' => $request->total_amount, 
                 'shipping_type' => $request->shipping_type,
