@@ -63,8 +63,8 @@ function Register() {
 	};
 
   return (
-    <div className="flex items-start justify-center h-screen">
-      <div className="bg-white px-10 py-10 border-2 border-gray-100">
+    <div className="flex items-start justify-center">
+      <div className="bg-white px-10 py-8 mb-4 border-2 border-gray-100">
         <h1 className="text-3xl font-semibold" style={{ color: "#3C2046" }}>Crea tu cuenta</h1>
         <p className="font-medium text-lg text-gray-500 mt-2">
           {" "}

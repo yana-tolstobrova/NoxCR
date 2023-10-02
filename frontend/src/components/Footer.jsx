@@ -11,7 +11,7 @@ function Footer() {
         <div
           className="flex justify-between items-start w-[80%] py-14 mx-auto" /*"grid grid-cols-1 lg:grid-cols-3"*/
         >
-            <div className="w-[25%]" /*"lg:col-span-1"*/>
+            <div className="w-[30%]" /*"lg:col-span-1"*/>
               <img
                 src={logo}
                 className="sm:h-9"
