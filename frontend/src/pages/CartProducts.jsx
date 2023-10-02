@@ -51,13 +51,13 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0);
 
-  const handleOnSubmit = (e) => {
-    sendShippingOrder()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((error) => console.log(error));
-  };
+  // const handleOnSubmit = (e) => {
+  //   sendShippingOrder()
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
   
   const openModal = () => {
     setShowModal(true);
@@ -136,7 +136,7 @@ function CartProducts() {
 
   const handleConfirmOrder = () => {
     openOrderQuestionsModal(); 
-    handleOnSubmit(); 
+    //handleOnSubmit(); 
   };
   
   return (
