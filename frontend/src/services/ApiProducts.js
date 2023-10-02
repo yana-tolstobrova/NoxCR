@@ -76,3 +76,19 @@ export const reverseProducts = () => {
       return [];
     });
 };
+
+export const editProductQuantity = async (productId, newQuantity) => {
+  try {
+    const response = await axios.put(`${API_URL}/products/${productId}`, newQuantity, { withCredentials: true });
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      console.error('Error al editar la cantidad del producto:', response.data);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error al editar la cantidad del producto:', error);
+    return null;
+  }
+};

@@ -13,6 +13,7 @@ import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
 import { createOrder } from '../services/ApiPostOrders';
 import { createOrderLine } from '../services/ApiPostOrderLines';
+import { editProductQuantity } from '../services/ApiProducts';
 
 function CartProducts() { 
   const [cart, setCart] = useState([]);
@@ -93,14 +94,26 @@ function CartProducts() {
 
   const handleOrderSubmit = async () => {
     try {
+      const editProductPromises = cart.map(async (item) => {
+        const newQuantity = item.product.quantity - item.quantity;
+        console.log(' que es item.product', item.product.quantity)
+        console.log(' lo que compra', item.quantity)
+        console.log('cuantos quedan', newQuantity)
+        console.log(' id del producto', item.product.id )
+        await editProductQuantity(item.product.id, { quantity: newQuantity });
+      });
+  
+      await Promise.all(editProductPromises);
+  
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
       console.log("sylvia",formData);
       sendOrderEmail(formData);
 
+  
       localStorage.removeItem("cart");
       setCart([]);
-      
+  
       console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
     } catch (error) {
       console.error('Error handling order submit:', error);
