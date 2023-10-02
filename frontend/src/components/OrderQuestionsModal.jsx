@@ -16,14 +16,14 @@ function OrderQuestionsModal({ showModal, handleCloseModal, handleContinueToOrde
                   <li className='mb-4'>¿Conoces los cuidados, precauciones y limpieza de tus lentes de contacto?</li>
                   <li className='mb-4'>¿Cuentas con la solución multipropósito para desinfectarlos adecuadamente?</li>
                 </ul>
-                <h2 className="text-lg font-semibold text-gray-700 mt-10">Para más información comunicate con</h2>
+                <h2 className="text-lg font-semibold text-gray-700 mt-10 ">Para más información comunicate con nosotros a traves de nuestro</h2>
 
-                <TwLink as="anchor" href="https://wa.me/50684993726" className="text-lg font-semibold hover:font-semibold hover:underline" target="_blank">nosotros</TwLink>
+                <TwLink as="anchor" href="https://wa.me/50684993726" className="text-xl font-semibold hover:font-semibold hover:underline flex justify-center mt-2" target="_blank">WhatsApp</TwLink>
                 <div className='text-center'>
                   <button
                     type="button"
                     onClick={handleContinueToOrder} 
-                    className="p-2 mt-2 mb-2 bg-black text-white w-full font-semibold hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
+                    className="p-2 mt-6 mb-2 bg-black text-white w-full font-semibold hover:bg-white hover:text-black border-black border py-2 bg-black text-white"
                   >
                     Aceptar
                   </button>
