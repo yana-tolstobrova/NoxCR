@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { removeFromCart, incrementQuantity, decrementQuantity,} from "../utils/ProductsToCart";
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity
+} from "../utils/ProductsToCart";
 import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from "../assets/delete-icon.svg";
@@ -34,16 +38,28 @@ function CartProducts() {
   const handleRemoveFromCart = (itemToRemove) => {
     const updatedCart = removeFromCart(cart, itemToRemove);
     setCart(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    console.log("Carrito actualizado después de eliminar:", updatedCart);
   };
 
   const handleIncrementQuantity = (itemToIncrement) => {
     const updatedCart = incrementQuantity(cart, itemToIncrement);
     setCart(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    console.log("Carrito actualizado después de incrementar:", updatedCart);
   };
 
   const handleDecrementQuantity = (itemToDecrement) => {
     const updatedCart = decrementQuantity(cart, itemToDecrement);
     setCart(updatedCart);
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    console.log("Carrito actualizado después de decrementar:", updatedCart);
   };
 
   const total = cart.reduce((acc, item) => {
@@ -54,9 +70,9 @@ function CartProducts() {
   const handleOnSubmit = (e) => {
     sendShippingOrder()
       .then((res) => {
-        console.log(res);
+        console.log("Resultado del envío de la orden:", res);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("Error en el envío de la orden:", error));
   };
   
   const openModal = () => {
@@ -79,6 +95,11 @@ function CartProducts() {
     try {
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
+
+      localStorage.removeItem("cart");
+      setCart([]);
+      
+      console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
     } catch (error) {
       console.error('Error handling order submit:', error);
     }
@@ -96,7 +117,7 @@ function CartProducts() {
   
       createOrderLine(orderLineData)
         .then((orderLineResponse) => {
-          console.log(orderLineResponse);
+          console.log("Respuesta de la creación de línea de orden:", orderLineResponse);
         })
         .catch((error) => {
           console.error('Error al crear la línea de orden:', error);
@@ -260,3 +281,4 @@ function CartProducts() {
 }
 
 export default CartProducts;
+

@@ -72,10 +72,11 @@ function OrderModal({
         <div className="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-sm bg-white">
           <div className="w-full">
             <div className="m-6 my-18 max-w-[400px] mx-auto">
-              <h1 className="mb-2 text-2xl font-extrabold text-gray-800">Ingresa tus datos para la confirmar la orden</h1>
+              <h1 className="text-2xl font-extrabold text-gray-800 text-center mb-2">Datos para confirmar la orden</h1>
+              <h2 className="text-m font-semibold text-gray-700 mb-2">Para realizar esta compra es necesario que seas mayor de edad</h2>
               <form onSubmit={handleSubmit}>
               <div className="mb-2">
-                  <label className="text-sm font-normal" htmlFor="name_complete">Nombre completo</label>
+                  <label className="text-m font-normal" htmlFor="name_complete">Nombre completo</label>
                   <input
                    placeholder="Nombre y apellido"
                     type="text"
@@ -84,11 +85,11 @@ function OrderModal({
                     value={formData.name_complete}
                     onChange={handleInputChange}
                     required
-                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
+                    className="w-full border border-gray-300 p-3 focus:border-black focus:outline-none"
                   />
                 </div>
                 <div className="mb-2">
-                  <label className="text-sm font-normal" htmlFor="cedula">Cédula</label>
+                  <label className="text-m font-normal" htmlFor="cedula">Cédula</label>
                   <input
                     placeholder="Número de cédula"
                     type="text"
@@ -97,11 +98,11 @@ function OrderModal({
                     value={formData.cedula}
                     onChange={handleInputChange}
                     required
-                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
+                    className="w-full border border-gray-300 p-3 focus:border-black focus:outline-none"
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="address">Dirección:</label>
+                  <label className="text-m font-normal" htmlFor="address">Dirección</label>
                   <input
                     type="text"
                     id="address"
@@ -114,13 +115,14 @@ function OrderModal({
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="phone">Teléfono:</label>
+                  <label className="text-m font-normal" htmlFor="phone">Teléfono</label>
                   <input
                     type="text"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
+                    placeholder="Teléfono"
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
@@ -137,12 +139,12 @@ function OrderModal({
                     value={formData.birth_date}
                     onChange={handleInputChange}
                     required
-                    className="w-full border border-gray-300 p-3 mt-1 focus:border-black focus:outline-none"
+                    className="w-full border border-gray-300 p-3 focus:border-black focus:outline-none"
                   />
                 </div>
              
           
-                <div className="mt-2 mb-2">
+                <div className="mb-2">
                   <label className="text-m ">
                     Seleccione una opción de envio:
                   </label>

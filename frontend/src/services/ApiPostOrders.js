@@ -3,7 +3,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 export const createOrder = async (formData) => {
   try {
-    const response = await axios.post(`${API_URL}/api/orders`, formData, {
+    const response = await axios.post(`${API_URL}/orders`, formData, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
