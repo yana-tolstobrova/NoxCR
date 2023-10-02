@@ -37,7 +37,7 @@ font-family:  'Noto Sans', sans-serif;
         
    <h4> Desde NoxCR queremos reiterarte que tu salud visual es nuestra prioridad!
    Por eso te recomendamos que -antes de recibir tu pedido- hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
-          download= "cuidados-noxcr.pdf"> click AQUI </a>  para que descargar y leer cuidadosamente
+          download= "cuidados-noxcr.pdf"> click AQUI </a>  para descargar y leer cuidadosamente
     todas las normas de uso, higiene y mantenimiento de tus lentes de contacto noxCR.
 
     <h4>Detalle de pedido: </h4>
