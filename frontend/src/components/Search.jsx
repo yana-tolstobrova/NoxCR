@@ -83,7 +83,14 @@ function Search() {
           <img
             src={search}
             alt="icon-search"
-            className="cursor-pointer h-5 px-2 absolute right-0"
+            className="cursor-pointer h-5 px-2 absolute right-0 md:block hidden"
+            onClick={onClickHandler}
+            data-testid="search-icon" 
+          />
+          <img
+            src={whiteSearch}
+            alt="icon-search"
+            className="cursor-pointer h-5 px-2 absolute right-0 md:hidden"
             onClick={onClickHandler}
             data-testid="search-icon" 
           />

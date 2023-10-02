@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import profile from '../assets/profile.svg';
-import whiteProfile from '../assets/whiteProfile';
+import whiteProfile from '../assets/whiteProfile.svg';
 import { TwLink } from './TwLink';
 import { useAuth } from '../contexts/AuthContext'; 
 import { logoutService } from '../services/ApiAuthService';

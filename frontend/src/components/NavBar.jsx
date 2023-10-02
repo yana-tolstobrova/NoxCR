@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { TwLink } from './TwLink';
 import cart from "../assets/cart.svg"
+import whiteCart from '../assets/whiteCart.svg'
 import Search from './Search';
 import NavBarMenu from './NavBarMenu';
 
@@ -33,7 +34,8 @@ function NavBar() {
       <div className="flex items-center h-11">
           <Search />
           <Link to="/add-to-cart" className="relative" /*onClick={addToCart}*/>
-            <img className='px-3 h-5 'src={cart} alt="Profile-icon" />
+            <img className='px-3 h-5 md:block hidden'src={cart} alt="Profile-icon" />
+            <img className='px-3 h-5 md:hidden'src={whiteCart} alt="Profile-icon" />
             {cartCount > 0 && (
             <div className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-xs">
               {cartCount}
