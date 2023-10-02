@@ -56,7 +56,7 @@ function NavBarMenu() {
             {user ? ( // Si el usuario ha iniciado sesión
               <>
                 <li className="py-2 flex justify-center">
-                  <TwLink to="/mi-cuenta">Mi cuenta</TwLink>
+                  <TwLink to="/userProfile">Mi cuenta</TwLink>
                 </li>
                 <li className="py-2 flex justify-center">
                   <TwLink to="/favoritos">Favoritos</TwLink>
