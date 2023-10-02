@@ -5,6 +5,8 @@ import cart from "../assets/cart.svg"
 import whiteCart from '../assets/whiteCart.svg'
 import Search from './Search';
 import NavBarMenu from './NavBarMenu';
+import whiteLogo from "../assets/whiteLogo.svg"
+
 import menuBurger from '../assets/menuBurger.svg';
 
 
@@ -33,7 +35,10 @@ function NavBar() {
   
   return (
     <div className="flex w-full justify-between items-center">
-      <img className='px-3 h-5' src= {menuBurger} alt="Menú hambuerguesa" />
+       <img className='px-3 h-5' src= {menuBurger} alt="Menú hambuerguesa" />
+       <Link to="/">
+            <img className="h-12 w-24 md:hidden" src={whiteLogo} alt="Logo" />
+        </Link>
       <nav className= 'hidden md:block'>{anchors}</nav>
       <div className="flex items-center h-11">
           <Search />
@@ -46,6 +51,7 @@ function NavBar() {
             </div>
           )}
           </Link>
+          
           <NavBarMenu />
       </div>
     </div>
