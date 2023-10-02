@@ -21,15 +21,7 @@ class MailController extends Controller
 
     public function sendConfirmationEmail(Request $request)
     {
-        // $order = Order::create([
-        //     'user_id'=> $user->id,
-        //     'address' => $request->address, 
-        //     'phone' => $request->phone,
-        //     'date_ordered' => now(),
-        //     'total_amount' => $request->total_amount,
-        //     'shipping_type' => $request->shipping_type,
-        // ]);
-    
+       
         $adminMail = 'noxcr.mailing@gmail.com';
 
     //     order_id: orderId,
