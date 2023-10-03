@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { cardsProducts, getPhotos } from '../services/ApiProducts';
 import { Link } from 'react-router-dom'; 
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 import '../index.css';
 
@@ -10,6 +12,8 @@ function Card({ categoryFilter, limit}) {
   const [quantity, setQuantity] = useState(1);
   const [cartCount, setCartCount] = useState(0);
 	const [photos, setPhotos]= useState();
+	const { user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,12 +42,14 @@ function Card({ categoryFilter, limit}) {
     return 'No hay ningun foto del producto';
 };
 
-  const handleAddToCart = (e, product) => { 
-
+const handleAddToCart = (e, product) => { 
+  if (!user) {
+    navigate('/login');
+  } else {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  
+
     const existingCartItem = cart.find(item => item.product.id === product.id);
-  
+
     if (existingCartItem) {
       existingCartItem.quantity += 1;
     } else {
@@ -52,7 +58,9 @@ function Card({ categoryFilter, limit}) {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
-  };
+  }
+};
+    
 
   return (
     <div className="mx-8" style={{ marginLeft: '150px', marginRight: '100px' }}>
