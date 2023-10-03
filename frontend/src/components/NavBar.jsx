@@ -19,16 +19,16 @@ function NavBar() {
   if (location.pathname === '/') {
     anchors = (
       <>
-        <TwLink as="anchor" href="/#productos">
+        <TwLink className='text-white md:text-violet-900 p-3' as="anchor" href="/#productos">
           Productos
         </TwLink>
-        <TwLink as="anchor" href="/#cuidados">
+        <TwLink className='text-white md:text-violet-900 p-3' as="anchor" href="/#cuidados">
           Cuidados
         </TwLink>
-        <TwLink as="anchor" href="/#faq">
+        <TwLink className='text-white md:text-violet-900 p-3' as="anchor" href="/#faq">
           FaQ
         </TwLink>
-        <TwLink as="anchor" href="/#contacto">
+        <TwLink className='text-white md:text-violet-900 p-3' as="anchor" href="/#contacto">
           Contacto
         </TwLink>
       </>
