@@ -47,7 +47,7 @@ img.img-favorite{
 
 .drop-area {
   border: 2px dashed #ccc;
-  padding: 20px 20px 0px 20px;
+  padding: 40px 20px 20px 20px;
   cursor: pointer;
 }
 
@@ -61,5 +61,5 @@ img.img-favorite{
   height: 100%;
 }
 span.link{
-  color:blueviolet
+  color:blue
 }

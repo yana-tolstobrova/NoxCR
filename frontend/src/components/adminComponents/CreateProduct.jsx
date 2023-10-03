@@ -5,9 +5,10 @@ import Modal from '../../components/ModalSuccess';
 import verification from '../../assets/verification.svg';
 import "../../index.css";
 import DeleteIcon from '../../assets/deleteIcon.svg';
+import Select from 'react-select';
 
 const fileTypes = ["image/jpeg", "image/png", "image/gif"];
-
+  
 function CreateProduct() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -15,11 +16,28 @@ function CreateProduct() {
     const [quantity, setQuantity] = useState(0);
     const [price, setPrice] = useState(0);
     const [collection, setCollection] = useState('');
-    const [color, setColor] = useState('');
     const [detail, setDetail] = useState(''); 
     const [showModal, setShowModal] = useState(false);
     const [images, setImages] = useState([]);
+    const [selectedColors, setSelectedColors] = useState([]);
 
+    const colorOptions = [
+        { value: 'Red', label: 'Rojo' },
+        { value: 'Orange', label: 'Naranja' },
+        { value: 'Yellow', label: 'Amarillo' },
+        { value: 'Sky-Blue', label: 'Azul-Celeste' },
+        { value: 'Green', label: 'Verde' },
+        { value: 'Pink', label: 'Rosa' },
+        { value: 'Black', label: 'Negro' },
+        { value: 'Purple', label: 'Morado' },
+        { value: 'Grey', label: 'Gris' },
+        { value: 'White', label: 'Blanco' },
+        { value: 'Naruto', label: 'Naruto' },
+        { value: 'Honey', label: 'Miel' },
+        { value: 'Lilac', label: 'Lila' },
+        { value: 'Blue', label: 'Azul' },
+        { value: 'UV-Glow', label: 'Brillan en luz negra' },
+      ];
     const handleDrop = (e) => {
       e.preventDefault();
       const newFiles = e.dataTransfer.files;
@@ -75,9 +93,10 @@ function CreateProduct() {
         formData.append('quantity', quantity);
         formData.append('price', price);
         formData.append('collection', collection);
-        formData.append('color', color);
         formData.append('detail', detail);
-
+        const selectedColorValues = selectedColors.map((color) => color.label);
+        formData.append('colors', JSON.stringify(selectedColorValues));
+        console.log(selectedColorValues)
         for (let i = 0; i < images.length; i++) {
             formData.append(`images[${i}]`, images[i]);
         }
@@ -103,7 +122,10 @@ function CreateProduct() {
     const handleCancel = () => {
         navigate('/admin/products');
     };
-
+    const handleColorChange = (selectedOptions) => {
+        setSelectedColors(selectedOptions);
+        console.log(selectedOptions)
+      };
     return (
         <div className='py-10 px-10 h-full'>
             <h1 className='font-bold text-2xl text-purple mb-8'>Añadir producto nuevo</h1>
@@ -178,33 +200,20 @@ function CreateProduct() {
                 </div>
                 <div>
                     <label className="text-lg font-medium">Color:</label>
-                    <select
-                        className="w-full border border-gray-300 bg-white p-2 mt-1 mb-3 focus:border-black focus:outline-none"
-                        name='color'
-                        value={color}
-                        onChange={(e) => setColor(e.target.value)}
-                        placeholder='Selecciona un color'
-                    >
-                        <option value=''>Selecciona un color</option>
-                        <option value='Red'>Rojo</option>
-                        <option value='Orange'>Naranja</option>
-                        <option value='Yellow'>Amarillo</option>
-                        <option value='Blue'>Azul-Celeste</option>
-                        <option value='Green'>Verde</option>
-                        <option value='Pink'>Rosa</option>
-                        <option value='Black'>Negro</option>
-                        <option value='Purple'>Morado</option>
-                        <option value='Grey'>Gris</option>
-                        <option value='White'>Blanco</option>
-                        <option value='Naruto'>Naruto</option>
-                        <option value='UV Glow'>Brillan en luz negra</option>
-                    </select>
+                    <Select
+                    className="mb-3 mt-1 focus:border-black focus:outline-none"
+                    isMulti
+                    value={selectedColors}
+                    onChange={handleColorChange}
+                    options={colorOptions}
+                    placeholder='Selecciona uno o más colores'
+                    />
                 </div>
-                <label className="text-lg font-medium">Imagen:</label>
-                <div className="App">
+                <label className="text-lg font-medium ">Imagen:</label>
+                <div className="App mt-1">
                     <div className="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
-                        <p>Drop files here</p>
-                        <label htmlFor='file'>or click <span className="link">here</span> to select file</label>    
+                        <p>Drag & drop los archivos aquí</p>
+                        <label htmlFor='file'>o haz clic <span className="link cursor-pointer">aquí</span> para seleccionar unos</label>    
                         <input
                         id='file'
                         className='transparent'

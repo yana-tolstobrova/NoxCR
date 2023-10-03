@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Photo;
+use App\Models\Color;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Cloudinary\Configuration\Configuration;
@@ -24,7 +25,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto']]);
+        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors']]);
           } 
 
     public function index()
@@ -37,7 +38,18 @@ class ProductController extends Controller
         $photos = Photo::all();
         return response()->json($photos);
     }
+    public function getColor()
+    {
+        $colors = Color::all();
+        return response()->json($colors);
+    }
+    public function showColors($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $colors = $product->colors; 
 
+        return response()->json($colors);
+    }
     public function store(Request $request): JsonResponse
 {
     try {
@@ -47,7 +59,7 @@ class ProductController extends Controller
             'quantity' => 'required|integer|min:0',
             'price' => 'required|numeric|min:0',
             'collection' => 'nullable',
-            'color' => 'nullable',
+            'colors' => 'nullable',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'detail' => 'required',
         ]);
@@ -58,9 +70,15 @@ class ProductController extends Controller
             'quantity' => $request->input('quantity'),
             'price' => $request->input('price'),
             'collection' => $request->input('collection'),
-            'color' => $request->input('color'),
             'detail' => $request->input('detail'),
         ]);
+        $selectedColorValues = json_decode($request->input('colors'));
+        $colorIds = [];
+        foreach ($selectedColorValues as $colorValue) {
+            $color = Color::firstOrCreate(['name' => $colorValue]);
+            $colorIds[] = $color->id;
+        }
+        $product->colors()->sync($colorIds);
 
         $imageUrls = [];
 
@@ -151,17 +169,6 @@ class ProductController extends Controller
             ]);
 
             $imagePath = $product->image;
-
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('public/images', $imageName);
-                $imagePath = 'images/' . $imageName;
-
-                if ($product->image) {
-                    Storage::delete('public/' . $product->image);
-                }
-            }
 
             $product->update([
                 'name' => $request->input('name'),

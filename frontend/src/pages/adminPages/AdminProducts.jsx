@@ -5,7 +5,8 @@ import DeleteIcon from '../../assets/deleteIcon.svg';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/ModalSuccess';
 import warning from '../../assets/warning.svg';
-import { reverseProducts, deleteProduct } from '../../services/ApiProducts'; 
+import { reverseProducts, deleteProduct, getColorsForProduct } from '../../services/ApiProducts'; 
+import axios from 'axios';
 
 function ProductList() {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function ProductList() {
     const productsPerPage = 8;
     const [showModal, setShowModal] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState(null); 
+    const [productColors, setProductColors] = useState({});
 
     const openModal = (productId) => {
         setShowModal(true);
@@ -24,17 +26,37 @@ function ProductList() {
         setShowModal(false);
         setSelectedProductId(null);
     };
-
+    const fetchColorsForProducts = (productsData) => {
+        const productColorData = {};
+              const colorPromises = productsData.map((product) => {
+          return getColorsForProduct(product.id)
+            .then((colorsData) => {
+              productColorData[product.id] = colorsData;
+            })
+            .catch((error) => {
+              console.error('Error fetching colors:', error);
+            });
+        });
+              Promise.all(colorPromises)
+          .then(() => {
+            setProductColors({ ...productColorData });
+          })
+          .catch((error) => {
+            console.error('Error fetching colors:', error);
+          });
+      };
     useEffect(() => {
         reverseProducts()
           .then((productsData) => {
             setProducts(productsData);
+            fetchColorsForProducts(productsData);
           })
           .catch((error) => {
             console.error('Error fetching products:', error);
           });
       }, []);
-
+      
+      
       const handleDeleteProduct = (id) => {
         deleteProduct(id)
           .then((success) => {
@@ -92,7 +114,13 @@ function ProductList() {
                             <td>{product.quantity}</td>
                             <td>₡{product.price}</td>
                             <td>{product.collection}</td>
-                            <td>{product.color}</td>
+                            <td>
+                                {productColors[product.id] ? (
+                                productColors[product.id].map((color) => (
+                                    <span key={color.id} >{color.name} </span>
+                                ))
+                                ) : ''}
+                            </td>
                             <td>
                                 <div className='flex items-center justify-end pr-2'>
                                     <a onClick={() => navigate(`/admin/editProduct/${product.id}`)}><img src={EditIcon} alt='icono de boligrafo' className='cursor-pointer'></img></a>
