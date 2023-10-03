@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->string('collection')->nullable(); 
             $table->string('color')->nullable();
-            $table->string('image');
             $table->text('detail');
             $table->timestamps();
         });

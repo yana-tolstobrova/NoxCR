@@ -3,6 +3,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/ModalSuccess';
 import verification from '../../assets/verification.svg';
+import "../../index.css";
+import DeleteIcon from '../../assets/deleteIcon.svg';
+
+const fileTypes = ["image/jpeg", "image/png", "image/gif"];
 
 function CreateProduct() {
     const navigate = useNavigate();
@@ -12,10 +16,48 @@ function CreateProduct() {
     const [price, setPrice] = useState(0);
     const [collection, setCollection] = useState('');
     const [color, setColor] = useState('');
-    const [image, setImage] = useState(null);
     const [detail, setDetail] = useState(''); 
     const [showModal, setShowModal] = useState(false);
+    const [images, setImages] = useState([]);
 
+    const handleDrop = (e) => {
+      e.preventDefault();
+      const newFiles = e.dataTransfer.files;
+      processFiles(newFiles);
+    };
+  
+    const handleDragOver = (e) => {
+      e.preventDefault();
+    };
+  
+    const handleFileInputChange = (e) => {
+      const newFiles = e.target.files;
+      processFiles(newFiles);
+    };
+  
+    const processFiles = (newFiles) => {
+        const updatedImages = [...images];
+    
+        for (let i = 0; i < newFiles.length; i++) {
+          if (fileTypes.includes(newFiles[i].type)) {
+            const reader = new FileReader();
+    
+            reader.onload = (e) => {
+              updatedImages.push(newFiles[i]);
+              setImages(updatedImages);
+            };
+    
+            reader.readAsDataURL(newFiles[i]);
+          }
+        }
+      };
+    
+      const removeImage = (index) => {
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
+      };
+    
     const openModal = () => {
         setShowModal(true);
       };
@@ -34,9 +76,12 @@ function CreateProduct() {
         formData.append('price', price);
         formData.append('collection', collection);
         formData.append('color', color);
-        formData.append('image', image); 
         formData.append('detail', detail);
 
+        for (let i = 0; i < images.length; i++) {
+            formData.append(`images[${i}]`, images[i]);
+        }
+        console.log(formData)
         axios.post('http://localhost:8000/api/products', formData, {
             withCredentials: true,
             headers: {
@@ -77,14 +122,14 @@ function CreateProduct() {
                         required
                     />
                 </div>
-                <div>
+                <div >
                     <label className="text-lg font-medium">Categoría:</label>
                     <select
                         className="mb-3 w-full border border-gray-300 bg-white p-2 mt-1 focus:border-black focus:outline-none"
                         name='category'
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        required
+                        
                     >
                         <option value=''>Selecciona una categoría</option>
                         <option value='Lentes de contacto'>Lentes de contacto</option>
@@ -154,16 +199,41 @@ function CreateProduct() {
                         <option value='UV Glow'>Brillan en luz negra</option>
                     </select>
                 </div>
-                <div>
-                    <label className="text-lg font-medium">Imagen:</label>
-                    <input
-                        className="mb-3 w-full bg-white py-2 mt-1 focus:border-black focus:outline-none"
+                <label className="text-lg font-medium">Imagen:</label>
+                <div className="App">
+                    <div className="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
+                        <p>Drop files here</p>
+                        <label htmlFor='file'>or click <span className="link">here</span> to select file</label>    
+                        <input
+                        id='file'
+                        className='transparent'
                         type="file"
-                        id="fileInput"
                         accept="image/*"
-                        onChange={(e) => setImage(e.target.files[0])}  
-                        required/>  
-                </div>
+                        multiple
+                        onChange={handleFileInputChange}
+                        required
+                    />
+                    </div>
+
+                    {images.length > 0 ? (
+                                <div>
+                                    {images.map((image, index) => (
+                                        <div key={index} className="image-preview">
+                                            <div className='relative'>
+                                                <img
+                                                    src={URL.createObjectURL(image)}
+                                                    alt={`Image ${index + 1}`}
+                                                    style={{ maxWidth: "100px", maxHeight: "100px" }}
+                                                />
+                                                <button onClick={() => removeImage(index)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer absolute top-0 right-0'></img></button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <br />
+                            )}
+                    </div>
                 <div>
                     <label className="text-lg font-medium">Descripción:</label>
                     <textarea

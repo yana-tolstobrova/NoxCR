@@ -15,7 +15,18 @@ export const cardsProducts = () => {
     });
 };
 
-
+export const getPhotos = () => {
+  return axios
+    .get(`${API_URL}/photos`)
+    .then((response) => {
+      const photos = response.data;
+      return photos;
+    })
+    .catch((error) => {
+      console.error('Error fetching cards:', error);
+      return [];
+    });
+};
 //   export const createProduct = (formData) => axios.post(`http://localhost:8000/api/products`, formData, {
 //     withCredentials: true,
 //     headers: {

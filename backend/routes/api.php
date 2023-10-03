@@ -47,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 Route::get('/search', [ProductController::class, 'search']);
-
+Route::get('/photos', [ProductController::class, 'getPhoto']);
 
 Route::put('products/{id}', [ProductController::class, 'editQuantity']);
 

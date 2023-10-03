@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    protected $fillable = ['name', 'category', 'quantity', 'price', 'collection', 'color', 'image', 'detail'];
+    protected $fillable = ['name', 'category', 'quantity', 'price', 'collection', 'color', 'detail'];
 
     public function photos(): HasMany
     {

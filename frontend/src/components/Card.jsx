@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { cardsProducts } from '../services/ApiProducts';
+import { cardsProducts, getPhotos } from '../services/ApiProducts';
 import { Link } from 'react-router-dom'; 
 
 import '../index.css';
@@ -9,20 +9,34 @@ function Card({ categoryFilter, limit}) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [cartCount, setCartCount] = useState(0);
+	const [photos, setPhotos]= useState();
 
   useEffect(() => {
     const fetchData = async () => {
       const allProducts = await cardsProducts();
       if (categoryFilter) {
-        const filteredProducts = allProducts.filter((product) => product.collection === "Product");
+        const filteredProducts = allProducts.filter((product) => product.category === "Productos de cuidado");
         setProducts(filteredProducts.slice(0, limit));
       } else {
         setProducts(allProducts.slice(0, limit));
       }
     };
+    const fetchPhotos = async () => {
+			const allPhotos = await getPhotos();
+			setPhotos(allPhotos);
+		  };
+	
+		fetchPhotos();
 
     fetchData();
   }, [categoryFilter, limit]);
+  const getProductPhoto = (productId) => {
+    const productPhotos = photos.filter((photo) => photo.product_id === productId);
+    if (productPhotos.length > 0) {
+        return productPhotos[0].url; 
+    }
+    return 'No hay ningun foto del producto';
+};
 
   const handleAddToCart = (e, product) => { 
 
@@ -54,7 +68,7 @@ function Card({ categoryFilter, limit}) {
                 <button onClick={(e) => handleAddToCart(e, product)} className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white w-full">Añadir al carrito</button>
               </div>
               <Link to={`/product/${product.id}`}>
-              <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />  
+              <img className="w-[222px] h-[260px] object-cover" src={getProductPhoto(product.id)} alt={product.name} />  
               <div className="px-4 py-2 h-[80px]">
                 <div className="text-base mb-1 text-gray-800">{product.name}</div>
                 <p className="text-lg font-semibold" style={{ color: '#7C3973' }}>
