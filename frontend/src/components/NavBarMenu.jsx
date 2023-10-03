@@ -45,8 +45,8 @@ function NavBarMenu() {
   return (
     <div className="relative inline-block text-left">
       {/* Código SVG del ícono de usuario */}
-      <img className='px-3 h-5 md:block hidden' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
-      <img className='px-3 h-5 md:hidden' src={whiteProfile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-7 md:block hidden' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-7 md:hidden' src={whiteProfile} alt="Profile-icon" onClick={toggleDropdown} /> 
 
       {/* Menú desplegable (se muestra u oculta según el estado de isDropdownOpen) */}
       {isDropdownOpen && (
