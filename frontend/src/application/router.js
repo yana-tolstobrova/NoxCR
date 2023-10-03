@@ -21,6 +21,7 @@ import CardsSearch from '../pages/CardsSearch';
 import UsersList from '../pages/adminPages/AdminUsers';
 import OrdersList from '../pages/adminPages/AdminOrders';
 import UserProfilePage from '../pages/UserProfile';
+import FavoritesPage from '../pages/FavoritesPage';
 
 const router = createBrowserRouter([
 	{
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
 			{
 				path: '/userProfile',
 				element: <UserProfilePage />,
+			},
+			{
+				path: '/favoritos',
+				element: <FavoritesPage />,
 			},
 		],
 	},

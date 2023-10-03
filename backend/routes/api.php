@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/users', UserController::class);
     Route::post("/products/add-favorite/{id}", [ProductController::class, 'addFavorite']);
     Route::post("/products/remove-favorite/{id}", [ProductController::class, 'removeFavorite']);
-    Route::get("/products/favorites/", [ProductController::class, 'showFavorites']);
+    Route::get("/products/favorites", [ProductController::class, 'showFavorites']);
     Route::delete('products/{id}', [ProductController::class, 'destroy', 'update']);
     Route::get('products/{id}', [ProductController::class, 'edit', 'update']);
     Route::put('products/{id}', [ProductController::class, 'update']);
