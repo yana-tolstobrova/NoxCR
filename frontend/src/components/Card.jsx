@@ -40,6 +40,25 @@ function Card({ categoryFilter, limit}) {
     setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
   };
 
+
+  const handleToggleFavorites = async (productId) => {
+    try {
+      if (isFavorite) {
+        // Si ya es favorito, elimínalo de la lista
+        await removeFavorite(productId);
+      } else {
+        // Si no es favorito, agrégalo a la lista
+        await addFavorite(productId);
+      }
+  
+      // Cambia el estado de isFavorite
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Error al manejar favoritos:", error);
+    }
+  };
+  
+
   return (
     <div className="mx-8" style={{ marginLeft: '240px', marginRight: '240px' }}>
     <div className="flex flex-wrap -mx-2">
@@ -47,7 +66,7 @@ function Card({ categoryFilter, limit}) {
         <div key={product.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 w-1/4 px-2 mb-12">
           <div className="max-w-[222px] h-[350px] rounded overflow-hidden shadow-lg relative card-box">
               <div className="rounded bg-transparent w-full h-[260px] absolute left-[-100%] z-2 card-menu opacity-0 flex flex-col">
-                <svg alt='icono favoritos' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className='w-12 p-2 fill-white hover:fill-black cursor-pointer'>
+                <svg alt='icono favoritos' onClick={() => handleToggleFavorites(product.id)}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={`w-12 p-2 fill-${isFavorite ? 'black' : 'white'} hover:fill-${isFavorite ? 'white' : 'black'} cursor-pointer`} {/*className='w-12 p-2 fill-white hover:fill-black cursor-pointer'*/}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                 </svg>
                 <Link to={`/product/${product.id}`} className='h-[75%]'></Link>

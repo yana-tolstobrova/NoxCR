@@ -40,14 +40,14 @@ export const getFavorites = () => {
 
   export const addFavorite = (id) => {
     return axios
-      .post(`${API_URL}/${urnRemoveFav}/:id`, {
+      .post(`${API_URL}/${urnAddFav}/:id`, {
           withCredentials: true,
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
         })
-      .then((response) => response.data['product successfully added'])
+      .then((response) => response.data['product successfully added to Favorite List'])
       .catch((error) => {
         console.error('Error adding product to Favorite List:', error);
         return [];
