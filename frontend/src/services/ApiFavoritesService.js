@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+const API_URL = process.env.REACT_APP_API_URL
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {withCredentials: true});
@@ -15,6 +16,9 @@ export const FavoritesService = () => {
     const urnAddFav = '/products/add-favorite';
     const urnRemoveFav= '/products/remove-favorite';
     const urnGetFavs= '/products/favorites/';
+
+
+    
 
     const addFavorite = ($id) => {
        const res = axios.post(`${urnAddFav}/{$id}`);
