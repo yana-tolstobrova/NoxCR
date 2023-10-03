@@ -2,6 +2,16 @@ import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL
 
+// axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {withCredentials: true});
+
+// axios.interceptors.request.use(function (config) {
+//       const token = localStorage.getItem('auth_token');
+//       config.headers.Authorization = token ? `Bearer ${token}` : '';
+//       return config;
+//   });
+
+
+const token = localStorage.getItem('auth_token');
 const urnAddFav = 'products/add-favorite';
 const urnRemoveFav= 'products/remove-favorite';
 const urnGetFavs= 'products/favorites/';
@@ -11,8 +21,9 @@ export const getFavorites = () => {
       .get(`${API_URL}/${urnGetFavs}`, {
           withCredentials: true,
           headers: {
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
         })
       .then((response) => response.data.orders)
@@ -24,11 +35,12 @@ export const getFavorites = () => {
 
   export const removeFavorite = (id) => {
     return axios
-      .post(`${API_URL}/${urnRemoveFav}/:id`, {
+      .post(`${API_URL}/${urnRemoveFav}/${id}`, {
           withCredentials: true,
           headers: {
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
         })
       .then((response) => response.data['product successfully removed'])
@@ -40,11 +52,12 @@ export const getFavorites = () => {
 
   export const addFavorite = (id) => {
     return axios
-      .post(`${API_URL}/${urnAddFav}/:id`, {
+      .post(`${API_URL}/${urnAddFav}/${id}`, {
           withCredentials: true,
           headers: {
-            Accept: 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           },
         })
       .then((response) => response.data['product successfully added to Favorite List'])

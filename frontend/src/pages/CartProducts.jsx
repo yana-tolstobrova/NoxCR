@@ -68,13 +68,7 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0);
 
-  // const handleOnSubmit = (e) => {
-  //   sendShippingOrder()
-  //     .then((res) => {
-  //       console.log("Resultado del envío de la orden:", res);
-  //     })
-  //     .catch((error) => console.log("Error en el envío de la orden:", error));
-  // };
+  
   
   const openModal = () => {
     setShowModal(true);
@@ -103,7 +97,7 @@ function CartProducts() {
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
-          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado par reponer.`);
+          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado para reponer.`);
         }
       });
 
@@ -113,7 +107,6 @@ function CartProducts() {
   
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
-      console.log("sylvia",formData);
       sendOrderEmail(formData);
 
   
@@ -138,7 +131,7 @@ function CartProducts() {
       products: JSON.stringify(cart),
       data: "lista productos"
     };
- console.log("email-data:",emailData)
+    
     sendShippingOrder(emailData); 
   }
 
@@ -177,16 +170,9 @@ function CartProducts() {
 
   const handleConfirmOrder = () => {
     openOrderQuestionsModal(); 
-    // handleOnSubmit(); 
+   
   };
 
-  // const handleOnSubmit = (e) => {
-  //   sendShippingOrder()
-  //     .then((res) => {
-  //       console.log("Resultado del envío de la orden:", res);
-  //     })
-  //     .catch((error) => console.log("Error en el envío de la orden:", error));
-  // };
   
   return (
     <div className="h-screen pt-20">
