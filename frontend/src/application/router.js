@@ -77,6 +77,10 @@ const router = createBrowserRouter([
 				path: '/userProfile',
 				element: <UserProfilePage />,
 			},
+			{
+				path: '/favorites',
+				element: <FavoritesPage />,
+			},
 		],
 	},
 	{

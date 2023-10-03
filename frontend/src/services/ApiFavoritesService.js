@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
     return config;
 });
 
-export const ApiFavoritesService = () => {
+export const FavoritesService = () => {
     const urnAddFav = '/products/add-favorite';
     const urnRemoveFav= '/products/remove-favorite';
     const urnGetFavs= '/products/favorites/';
