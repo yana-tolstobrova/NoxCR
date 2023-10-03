@@ -13,6 +13,7 @@ import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
 import { createOrder } from '../services/ApiPostOrders';
 import { createOrderLine } from '../services/ApiPostOrderLines';
+import { editProductQuantity } from '../services/ApiProducts';
 
 
 function CartProducts() { 
@@ -68,13 +69,13 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0);
 
-  const handleOnSubmit = (e) => {
-    sendShippingOrder()
-      .then((res) => {
-        console.log("Resultado del envío de la orden:", res);
-      })
-      .catch((error) => console.log("Error en el envío de la orden:", error));
-  };
+  // const handleOnSubmit = (e) => {
+  //   sendShippingOrder()
+  //     .then((res) => {
+  //       console.log("Resultado del envío de la orden:", res);
+  //     })
+  //     .catch((error) => console.log("Error en el envío de la orden:", error));
+  // };
   
   const openModal = () => {
     setShowModal(true);
@@ -94,17 +95,53 @@ function CartProducts() {
 
   const handleOrderSubmit = async () => {
     try {
+      const editProductPromises = cart.map(async (item) => {
+        const newQuantity = item.product.quantity - item.quantity;
+        console.log(' que es item.product', item.product.quantity)
+        console.log(' lo que compra', item.quantity)
+        console.log('cuantos quedan', newQuantity)
+        console.log(' id del producto', item.product.id )
+        await editProductQuantity(item.product.id, { quantity: newQuantity });
+
+        if (newQuantity <= 0) {
+          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado par reponer.`);
+        }
+      });
+
+      
+  
+      await Promise.all(editProductPromises);
+  
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
+      console.log("sylvia",formData);
+      sendOrderEmail(formData);
 
+  
       localStorage.removeItem("cart");
       setCart([]);
-      
+  
       console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
     } catch (error) {
       console.error('Error handling order submit:', error);
     }
   };
+
+  const sendOrderEmail = (formData) => {
+
+    const emailData = {
+      order_id: formData.orderId,
+      name: formData.name_complete,
+      cedula: formData.cedula,
+      address: formData.address,
+      total_amount: formData.total_amount,
+      shipping_type:formData.shipping_type,
+      products: "lentillas",
+      data: "lista productos"
+    };
+ console.log("email-data:",emailData)
+    sendShippingOrder(emailData); 
+  }
 
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {
@@ -141,8 +178,16 @@ function CartProducts() {
 
   const handleConfirmOrder = () => {
     openOrderQuestionsModal(); 
-    handleOnSubmit(); 
+    // handleOnSubmit(); 
   };
+
+  // const handleOnSubmit = (e) => {
+  //   sendShippingOrder()
+  //     .then((res) => {
+  //       console.log("Resultado del envío de la orden:", res);
+  //     })
+  //     .catch((error) => console.log("Error en el envío de la orden:", error));
+  // };
   
   
   return (

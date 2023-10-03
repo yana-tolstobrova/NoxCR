@@ -26,6 +26,7 @@ class orderConfirmation extends Mailable
      */
     public function __construct($orderData)
     {
+   
         $this->orderData = $orderData;
         
     }
@@ -47,6 +48,7 @@ class orderConfirmation extends Mailable
     {
         return new Content(
             view: 'mails.orderConfirmationMail',
+        
         );
     }
   

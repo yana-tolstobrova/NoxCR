@@ -92,7 +92,7 @@ function OrdersList() {
                 onClick={() => toggleRowAccordion(orderId)}
               >
                 <td className="pl-2">{order.id}</td>
-                <td>{new Date(order.created_at).toLocaleDateString('en-GB')}</td>
+                <td>{new Date(order.created_at).toLocaleString('en-GB')}</td>
                 <td>{order.shipping_type}</td>
                 <td>{order.address}</td>
                 <td>₡{order.total_amount}</td>
@@ -120,7 +120,7 @@ function OrdersList() {
                             <td>{id+1}</td>
                             <td>{filteredOrderLine.name}</td>
                             <td>{filteredOrderLine.quantity}</td>
-                            <td>{filteredOrderLine.price}</td>
+                            <td>₡{filteredOrderLine.price}</td>
                         </tr>
                         ))}
                       </tbody>

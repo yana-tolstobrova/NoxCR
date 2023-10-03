@@ -24,7 +24,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show']]);
+        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity']]);
           } 
 
     public function index()
@@ -101,6 +101,32 @@ class ProductController extends Controller
             return response()->json(['error' => 'El producto no se encontró.'], 404);
         }
     }
+
+    public function editQuantity(Request $request, $id): JsonResponse
+    {
+        try {
+            $product = Product::findOrFail($id);
+
+            $request->validate([
+                'quantity' => 'required|integer|min:0',
+            ]);
+
+            $newQuantity = $request->input('quantity');
+    
+            if ($newQuantity < 0) {
+                return response()->json(['error' => 'La nueva cantidad debe ser mayor o igual a cero.'], 400);
+            }
+
+            $product->quantity = $newQuantity;
+            $product->save();
+
+            return response()->json(['success' => true, 'message' => '¡Cantidad del producto actualizada exitosamente!']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
+    }
+    
+
     public function update(Request $request, $id): JsonResponse
     {
         try {

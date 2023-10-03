@@ -20,7 +20,7 @@ export const getOrders = () => {
 
   export const getOrderLines = () => {
     return axios
-      .get(`${API_URL}/order_lines`, {
+      .get(`${API_URL}/order-lines`, {
           withCredentials: true,
           headers: {
             Accept: 'application/json',
