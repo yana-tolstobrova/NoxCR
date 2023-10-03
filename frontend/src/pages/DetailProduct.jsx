@@ -109,7 +109,6 @@ function DetailProduct() {
         </div>
         <div className="md:w-1/2 space-y-3 md:pl-16">
           <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-lg text-gray-400">Colección: {product.collection} </p>
           <p className="text-base text-gray-600">{product.detail}</p>
           <p className="text-2xl font-bold text-gray-800 ">
            ₡{roundedPrice}

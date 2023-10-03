@@ -183,6 +183,7 @@ function CreateProduct() {
                         name='color'
                         value={color}
                         onChange={(e) => setColor(e.target.value)}
+                        placeholder='Selecciona un color'
                     >
                         <option value=''>Selecciona un color</option>
                         <option value='Red'>Rojo</option>
