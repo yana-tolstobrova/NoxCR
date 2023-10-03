@@ -13,7 +13,7 @@ import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
 import { createOrder } from '../services/ApiPostOrders';
 import { createOrderLine } from '../services/ApiPostOrderLines';
-import { editProductQuantity } from '../services/ApiProducts';
+import { editProductQuantity, getPhotos } from '../services/ApiProducts';
 
 function CartProducts() { 
   const [cart, setCart] = useState([]);
@@ -21,6 +21,8 @@ function CartProducts() {
   const [showModalOrder, setShowModalOrder] = useState(false);
   const [showOrderQuestionsModal, setShowOrderQuestionsModal] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(false);
+  const [photos, setPhotos]= useState();
+
   const [formData, setFormData] = useState({
     name_complete: '',
     cedula: '',
@@ -34,8 +36,23 @@ function CartProducts() {
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(cartItems);
+    const fetchPhotos = async () => {
+			const allPhotos = await getPhotos();
+			setPhotos(allPhotos);
+		  };
+	
+		fetchPhotos();
   }, []);
-
+  const getProductPhoto = (productId) => {
+    if (photos) {
+      const productPhotos = photos.filter((photo) => photo.product_id === productId);
+      if (productPhotos.length > 0) {
+        return productPhotos[0].url;
+      }
+    }
+    return 'No hay ninguna foto del producto';
+  };
+  
   const handleRemoveFromCart = (itemToRemove) => {
     const updatedCart = removeFromCart(cart, itemToRemove);
     setCart(updatedCart);
@@ -201,7 +218,7 @@ function CartProducts() {
           {cart.map((item, index) => (
             <div key={index} className="flex items-center bg-gray-100 p-4">
               <img
-                src={item.product.image}
+                src={getProductPhoto(item.product.id)}
                 alt={item.product.name}
                 className="w-24 h-24 rounded-sm mr-4"
               />
