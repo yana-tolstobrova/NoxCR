@@ -6,7 +6,7 @@ import crazyCategory from '../assets/crazy-image.svg';
 
 function FilterProducts() {
   return (
-    <div className="flex mt-8 mb-6 ml-6 md:mt-4 2xl:mt-10 justify-center">
+    <div className="flex mt-8 mb-6 ml-6 md:mt-2 2xl:mt-16 justify-center">
       <Link to="/products/natural" className="mx-0 text-center sm:mx-4">
         <div className="w-64 h-64 mt-12 mb-12 md:w-40 md:h-40 2xl:w-96 2xl:h-96 object-cover rounded-full">
           <img src={naturalCategory} alt="Natural Products" className="w-full h-full object-cover" />

@@ -4,7 +4,7 @@ import careData from '../data/dataCareProducts';
 function Care() {
   return (
     <div data-testid="care-component" className="mx-auto px-2">
-      <div className="flex flex-col my-12 md:flex-row justify-center space-x-6 m-10 2xl:mx-32">
+      <div className="flex flex-col my-12 md:flex-row justify-center space-x-6 m-10 2xl:mx-32 2xl:mb-24">
         {careData.map((care, index) => (
           <div key={index} className="bg-white pt-2 rounded-lg md:w-1/3 mx-4 md:mx-0 2xl:mx-2" data-testid={`care-item-${index}`}>
             <div className="flex justify-center mb-4">
