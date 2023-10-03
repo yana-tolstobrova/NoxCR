@@ -11,18 +11,13 @@ function FavoritesPage() {
 
 
 
-
-  
   return (
 
     <div>
         
-        
-        <h1>FAVORITOS</h1>
+        <h1>Mis favoritos</h1>
 
         <Card limit={favoriteProducts} />
-        
-        
         
         </div>
   )
