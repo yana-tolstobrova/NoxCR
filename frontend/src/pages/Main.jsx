@@ -44,7 +44,7 @@ function Main() {
       <Care />
      
       <Accordion accordionItems={accordionItemsHome} showDownloadLink={true} />
-      <h2 className="text-center mb-8 mt-14 text-2xl ml-4 font-semibold" style={{ color:"#3D3D3D"}}>¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
+      <h2 className="text-center mb-10 mt-16 text-2xl ml-4 font-semibold md:text-3xl md:mb-0" style={{ color:"#3D3D3D"}}>¡Echa un vistazo a cómo lucen los productos en nuestros clientes!</h2>
       <SocialNetwork />
       <Footer />
       
