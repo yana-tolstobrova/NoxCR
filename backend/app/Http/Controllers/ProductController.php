@@ -211,8 +211,7 @@ class ProductController extends Controller
 
         $products = Product::where(function ($query) use ($searchTerm) {
             $query->where('name', 'LIKE', "%$searchTerm%")
-                ->orWhere('collection', 'LIKE', "%$searchTerm%")
-                ->orWhere('color', 'LIKE', "%$searchTerm%");
+                ->orWhere('collection', 'LIKE', "%$searchTerm%");
         })->get();
 
         return response()->json($products);
