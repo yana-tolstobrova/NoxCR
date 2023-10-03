@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL
-//const urnAddFav = '/products/add-favorite';
 
+const urnAddFav = 'products/add-favorite';
 const urnRemoveFav= 'products/remove-favorite';
 const urnGetFavs= 'products/favorites/';
 
@@ -22,7 +22,7 @@ export const getFavorites = () => {
       });
   };
 
-  export const removeFavorites = (id) => {
+  export const removeFavorite = (id) => {
     return axios
       .post(`${API_URL}/${urnRemoveFav}/:id`, {
           withCredentials: true,
@@ -31,9 +31,25 @@ export const getFavorites = () => {
             'Content-Type': 'application/json',
           },
         })
-      .then((response) => response.data['product removed'])
+      .then((response) => response.data['product successfully removed'])
       .catch((error) => {
-        console.error('Error removing favorite:', error);
+        console.error('Error removing product from favorite list:', error);
+        return [];
+      });
+  };
+
+  export const addFavorite = (id) => {
+    return axios
+      .post(`${API_URL}/${urnRemoveFav}/:id`, {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+      .then((response) => response.data['product successfully added'])
+      .catch((error) => {
+        console.error('Error adding product to Favorite List:', error);
         return [];
       });
   };
@@ -56,7 +72,7 @@ export const getFavorites = () => {
 //     return config;
 // });
 
-// export const FavoritesService = () => {
+// export const Favgit addoritesService = () => {
 //     const urnAddFav = '/products/add-favorite';
 //     const urnRemoveFav= '/products/remove-favorite';
 //     const urnGetFavs= '/products/favorites/';
