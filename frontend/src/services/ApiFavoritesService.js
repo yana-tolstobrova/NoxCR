@@ -1,54 +1,98 @@
 import axios from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL
+//const urnAddFav = '/products/add-favorite';
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.defaults.headers.post['Accept'] = 'application/json';
-axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {withCredentials: true});
+const urnRemoveFav= 'products/remove-favorite';
+const urnGetFavs= 'products/favorites/';
 
-axios.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('auth_token');
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
-    return config;
-});
+export const getFavorites = () => {
+    return axios
+      .get(`${API_URL}/${urnGetFavs}`, {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+      .then((response) => response.data.orders)
+      .catch((error) => {
+        console.error('Error fetching favorites list:', error);
+        return [];
+      });
+  };
 
-export const FavoritesService = () => {
-    const urnAddFav = '/products/add-favorite';
-    const urnRemoveFav= '/products/remove-favorite';
-    const urnGetFavs= '/products/favorites/';
+  export const removeFavorites = (id) => {
+    return axios
+      .post(`${API_URL}/${urnRemoveFav}/:id`, {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+      .then((response) => response.data['product removed'])
+      .catch((error) => {
+        console.error('Error removing favorite:', error);
+        return [];
+      });
+  };
+
+
+
+
+
+
+
+
+
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.headers.post['Accept'] = 'application/json';
+// axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie', {withCredentials: true});
+
+// axios.interceptors.request.use(function (config) {
+//     const token = localStorage.getItem('auth_token');
+//     config.headers.Authorization = token ? `Bearer ${token}` : '';
+//     return config;
+// });
+
+// export const FavoritesService = () => {
+//     const urnAddFav = '/products/add-favorite';
+//     const urnRemoveFav= '/products/remove-favorite';
+//     const urnGetFavs= '/products/favorites/';
 
 
     
 
-    const addFavorite = ($id) => {
-       const res = axios.post(`${urnAddFav}/{$id}`);
-         return res;
-    }
+//     const addFavorite = ($id) => {
+//        const res = axios.post(`${urnAddFav}/{$id}`);
+//          return res;
+//     }
 
-    const removeFavorite = ($id) => {
-        const res = axios.post(`${urnRemoveFav}/{$id}`);
-        return res;
-    }
+//     const removeFavorite = ($id) => {
+//         const res = axios.post(`${urnRemoveFav}/{$id}`);
+//         return res;
+//     }
 
-    const getFavorites = () => {
-        const res = axios.get(urnGetFavs);
-        return res;
-    }
+//     const getFavorites = () => {
+//         const res = axios.get(urnGetFavs);
+//         return res;
+//     }
 
 
-    return {
-        addFavorite, removeFavorite, getFavorites
-    }
+//     return {
+//         addFavorite, removeFavorite, getFavorites
+//     }
 
     
-    // const getFavorites = () => {
-    //     return axios.get(urnGetFavs)
-    // .then((res) => {
-    //   return res;
-    // })
-    // .catch((error) => {
-    //   console.error('Error: no fue posible acceder a la lista de favoritos:', error);
-    //   throw error;
-    // });
-    // }
-}
+//     // const getFavorites = () => {
+//     //     return axios.get(urnGetFavs)
+//     // .then((res) => {
+//     //   return res;
+//     // })
+//     // .catch((error) => {
+//     //   console.error('Error: no fue posible acceder a la lista de favoritos:', error);
+//     //   throw error;
+//     // });
+//     // }
+// }

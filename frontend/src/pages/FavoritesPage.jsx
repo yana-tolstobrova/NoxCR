@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
-import { FavoritesService} from "../services/ApiFavoritesService";
+import {getFavorites} from "../services/ApiFavoritesService";
 
 
 function FavoritesPage() {
 
+    const [favoriteProducts, setFavoriteProducts] = useState(4);
 
 
 
@@ -18,6 +19,8 @@ function FavoritesPage() {
         
         
         <h1>FAVORITOS</h1>
+
+        <Card limit={favoriteProducts} />
         
         
         
