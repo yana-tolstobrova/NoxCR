@@ -77,8 +77,6 @@ export const reverseProducts = () => {
     });
 };
 
-<<<<<<< HEAD
-=======
 export const editProductQuantity = async (productId, newQuantity) => {
   try {
     const response = await axios.put(`${API_URL}/products/${productId}`, newQuantity, { withCredentials: true });
@@ -94,4 +92,3 @@ export const editProductQuantity = async (productId, newQuantity) => {
     return null;
   }
 };
->>>>>>> main
