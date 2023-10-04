@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {getFavorites} from "../services/ApiFavoritesService";
+import {fetchFavorites} from "../services/ApiFavoritesService";
 import { Link } from "react-router-dom";
 
 
@@ -9,7 +9,7 @@ function FavoritesPage() {
   const [favorites, setFavorites]= useState([]);
 
 	useEffect(() => {
-		getFavorites()
+		fetchFavorites()
       .then((data) => {
         setFavorites([data]);
         console.log(favorites)

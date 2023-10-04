@@ -16,22 +16,38 @@ const urnAddFav = 'products/add-favorite';
 const urnRemoveFav= 'products/remove-favorite';
 const urnGetFavs= 'products/favorites/';
 
-export const getFavorites = () => {
-    return axios
-      .get(`${API_URL}/${urnGetFavs}`, {
-          withCredentials: true,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-        })
-      .then((response) => response.data.orders)
-      .catch((error) => {
-        console.error('Error fetching favorites list:', error);
-        return [];
-      });
-  };
+// export const getFavorites = () => {
+//     return axios
+//       .get(`${API_URL}/${urnGetFavs}`, {
+//           withCredentials: true,
+//           headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json',
+//             'Authorization': `Bearer ${token}`
+//           },
+//         })
+//       .then((response) => response.data.orders)
+//       .catch((error) => {
+//         console.error('Error fetching favorites list:', error);
+//         return [];
+//       });
+//   };
+
+
+export const fetchFavorites = () => {
+  return axios
+    .get(`${API_URL}/products/favorites`)
+    .then((response) => {
+      const favoriteProducts = response.data;
+      return favoriteProducts;
+    })
+    .catch((error) => {
+      console.error('Error fetching favorites products:', error);
+      return [];
+    });
+};
+
+
 
   export const removeFavorite = (id) => {
     return axios
