@@ -10,8 +10,6 @@ const API_URL = process.env.REACT_APP_API_URL
 //       return config;
 //   });
 
-
-const token = localStorage.getItem('auth_token');
 const urnAddFav = 'products/add-favorite';
 const urnRemoveFav= 'products/remove-favorite';
 const urnGetFavs= 'products/favorites/';
@@ -36,7 +34,8 @@ const urnGetFavs= 'products/favorites/';
 
 export const fetchFavorites = () => {
   return axios
-    .get(`${API_URL}/products/favorites`)
+    .get(`${API_URL}/products/favorites`,
+    { withCredentials: true  })
     .then((response) => {
       const favoriteProducts = response.data;
       return favoriteProducts;
@@ -47,41 +46,34 @@ export const fetchFavorites = () => {
     });
 };
 
-
-
   export const removeFavorite = (id) => {
     return axios
-      .post(`${API_URL}/${urnRemoveFav}/${id}`, {
-          withCredentials: true,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
+      .post(`${API_URL}/products/remove-favorite/${id}`, {}, {
+          withCredentials: true
         })
       .then((response) => response.data['product successfully removed'])
       .catch((error) => {
         console.error('Error removing product from favorite list:', error);
         return [];
       });
-  };
+   };
 
-  export const addFavorite = (id) => {
-    return axios
-      .post(`${API_URL}/${urnAddFav}/${id}`, {
-          withCredentials: true,
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-        })
-      .then((response) => response.data['product successfully added to Favorite List'])
-      .catch((error) => {
-        console.error('Error adding product to Favorite List:', error);
-        return [];
-      });
-  };
+   export const addFavorite = (id) => {
+  //   return axios
+  //     .post(`${API_URL}/${urnAddFav}/${id}`, {
+  //         withCredentials: true,
+  //         headers: {
+  //           'Accept': 'application/json',
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${token}`
+  //         },
+  //       })
+  //     .then((response) => response.data['product successfully added to Favorite List'])
+  //     .catch((error) => {
+  //       console.error('Error adding product to Favorite List:', error);
+  //       return [];
+  //     });
+   };
 
 
 
