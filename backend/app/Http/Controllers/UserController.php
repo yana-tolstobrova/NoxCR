@@ -32,7 +32,45 @@ class UserController extends Controller
             $usersInfo[] = $userInfo;
         }
     
-        return response()->json(['users' => $usersInfo]);
-    }
+            return response()->json(['users' => $usersInfo]);
+        }
+        public function show($id)
+        {
+            $user = User::findOrFail($id);
+
+            return response()->json(['user' => $user], 200);
+        }
+
+        public function edit($id)
+        {
+            $user = User::findOrFail($id);
+
+            return response()->json(['user' => $user], 200);
+        }
+
+        public function update(Request $request, $id)
+        {
+            $user = User::findOrFail($id);
+
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,' . $id,
+                'password' => 'nullable',
+            ]);
+
+            $input = $request->except('roles');
+
+            $user->update($input);
+
+            return response()->json(['message' => 'User updated successfully'], 200);
+        }
+
+        public function destroy($id)
+        {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            return response()->json(['message' => 'User deleted successfully'], 200);
+        }
 
  }
