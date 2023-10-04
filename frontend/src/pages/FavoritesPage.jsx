@@ -41,8 +41,6 @@ const handleRemoveFavorite = (id) => {
   return (
     <div>
 
-      <h1>Mis Favoritos</h1>
-
       {favorites.length === 0 ? (
         <p className="not-query">
          "No results found"
