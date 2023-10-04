@@ -230,7 +230,7 @@ function CartProducts() {
                 <p className="text-lg" style={{ color: "#3C2046" }}>
                   {item.product.quantity <= 3
                     ? "Pocas Unidades en Stock"
-                    : `Cantidad: ${item.quantity}`}
+                    : " "}
                 </p>
                 <p className="text-lg" style={{ color: "#3C2046" }}>
                   ₡{Math.floor(item.product.price).toLocaleString()}
