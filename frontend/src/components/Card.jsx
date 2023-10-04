@@ -104,7 +104,7 @@ function Card({ categoryFilter, limit}) {
               <div className="px-4 py-2 h-[80px]">
                 <div className="text-base mb-1 text-gray-800">{product.name}</div>
                 <p className="text-lg font-semibold" style={{ color: '#7C3973' }}>
-                  ${product.price}
+                  ₡{product.price}
                 </p>
               </div>
             </Link>
