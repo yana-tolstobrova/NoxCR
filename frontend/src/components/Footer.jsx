@@ -217,13 +217,15 @@ function Footer() {
               />
             </div>
             <p className="w-full mt-4 text-lg hidden md:block md:w-[60%] md:text-sm 2xl:text-2xl" style={{ color: "#A2A2A2" }}>
-              Nox.Cr es una tienda virtual costarricense muy querida por
-              artistas de maquillaje, drags, cosplayers y modelos, quien dio sus
-              inicios un Octubre del 2018. Desde estilos
-              naturales para el día a día o si deseas uno más fantasioso para tu
-              cosplay, halloween o presentación teatral, tenemos lo que estás
-              buscando y estaremos encantados de asesorarte.
-            </p>
+              Nox.Cr es una tienda virtual costarricense 
+              muy querida por artistas de maquillaje, drags, 
+              cosplayers y modelos, quien dio sus inicios un 
+              Octubre del 2018.Desde estilos naturales a fantasiosos; tenemos lo que estás buscando y estaremos encantados de asesorarte. </p>
+
+              
+
+
+            
           </div>
 
 
