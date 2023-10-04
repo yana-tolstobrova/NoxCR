@@ -1,6 +1,7 @@
 import React from 'react';
 import cancel from "../assets/cancel.svg"
 
+
 export default function SuccessModal({ showModal, handleCloseModal, close, image, title, text }) {
 
 
