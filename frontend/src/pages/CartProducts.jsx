@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   removeFromCart,
   incrementQuantity,
-  decrementQuantity
+  decrementQuantity, 
 } from "../utils/ProductsToCart";
 import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
@@ -14,6 +14,7 @@ import OrderQuestionsModal from "../components/OrderQuestionsModal";
 import { createOrder } from '../services/ApiPostOrders';
 import { createOrderLine } from '../services/ApiPostOrderLines';
 import { editProductQuantity, getPhotos } from '../services/ApiProducts';
+
 
 function CartProducts() { 
   const [cart, setCart] = useState([]);
@@ -204,6 +205,7 @@ function CartProducts() {
   //     })
   //     .catch((error) => console.log("Error en el envío de la orden:", error));
   // };
+  
   
   return (
     <div className="h-screen pt-20">
