@@ -26,7 +26,7 @@ function Accordion(props) {
 
   return (
     <div className="bg-black flex flex-col items-center text-white pt-8 2xl:pt-14 2xl:pb-16" style={{ ...customStyles }}>
-      <h1 className="text-4xl pl-8 w-full text-start font-semibold mb-8 md:pl-20 md:text-3xl 2xl:text-6xl 2xl:mb-20 2xl:pl-44" id="faq">Preguntas frecuentes</h1>
+      <h1 className="text-4xl pl-8 w-full text-start font-semibold mb-8 md:pl-20 md:text-2xl 2xl:text-4xl 2xl:mb-20 2xl:pl-44" id="faq">Preguntas frecuentes</h1>
       <div className="text-black w-10/12 rounded flex flex-col gap-2">
         {props.accordionItems.map((item, index) => (
           <div
@@ -37,12 +37,12 @@ function Accordion(props) {
               className="p-2 cursor-pointer flex justify-between items-center"
               onClick={() => toggleItem(index)}
             >
-              <h2 className="text-3xl md:text-xl 2xl:text-5xl font-medium w-3/4">{item.title}</h2>
-              <img id="eye-image" className="w-16 h-16 md:w-12 md:h-12 2xl:w-24 2xl:h-24" src={openItemIndex === index ? eyeOpen : eyeClose} alt="ojo de apertura" />
+              <h2 className="text-3xl md:text-base 2xl:text-3xl font-medium w-3/4">{item.title}</h2>
+              <img id="eye-image" className="w-16 h-16 md:w-10 md:h-10 2xl:w-18 2xl:h-18" src={openItemIndex === index ? eyeOpen : eyeClose} alt="ojo de apertura" />
             </div>
             {index === openItemIndex && (
               <div className="py-10 px-8 bg-gray-100 md:py-6 2xl:py-16 2xl:px-24">
-                <p className="text-3xl md:text-xl 2xl:text-5xl 2xl:leading-relaxed" >{item.content}</p>
+                <p className="text-3xl md:text-base 2xl:text-3xl 2xl:leading-relaxed" >{item.content}</p>
               </div>
             )}
           </div>
@@ -55,7 +55,7 @@ function Accordion(props) {
             target="_blank"
             rel="noopener noreferrer"
             download="cuidados-noxcr.pdf"
-            className="flex items-end text-400 text-2xl md:text-lg 2xl:text-4xl"
+            className="flex items-end text-400 text-2xl md:text-base 2xl:text-2xl"
           >
             Descargar PDF
             <img className="px-2" src={arrow} alt="icono arrow" />
