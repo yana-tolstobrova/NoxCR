@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   removeFromCart,
   incrementQuantity,
-  decrementQuantity
+  decrementQuantity,
 } from "../utils/ProductsToCart";
 import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
@@ -11,48 +11,54 @@ import gifIcon from "../assets/gif-icon.svg";
 import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
-import { createOrder } from '../services/ApiPostOrders';
-import { createOrderLine } from '../services/ApiPostOrderLines';
-import { editProductQuantity, getPhotos } from '../services/ApiProducts';
+import { createOrder } from "../services/ApiPostOrders";
+import { createOrderLine } from "../services/ApiPostOrderLines";
+import { editProductQuantity, getPhotos } from "../services/ApiProducts";
+import ModalSuccess from "../components/ModalSuccess";
+import verificationNegative from "../assets/verification-negative.svg";
 
-function CartProducts() { 
+function CartProducts() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
   const [showOrderQuestionsModal, setShowOrderQuestionsModal] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(false);
-  const [photos, setPhotos]= useState();
+  const [photos, setPhotos] = useState();
+  const [showProductOutOfStockModal, setShowProductOutOfStockModal] =
+    useState(false);
 
   const [formData, setFormData] = useState({
-    name_complete: '',
-    cedula: '',
-    address: '',
-    phone: '',
-    birth_date: '',
-    total_amount: '',
-    shipping_type: '',
+    name_complete: "",
+    cedula: "",
+    address: "",
+    phone: "",
+    birth_date: "",
+    total_amount: "",
+    shipping_type: "",
   });
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(cartItems);
     const fetchPhotos = async () => {
-			const allPhotos = await getPhotos();
-			setPhotos(allPhotos);
-		  };
-	
-		fetchPhotos();
+      const allPhotos = await getPhotos();
+      setPhotos(allPhotos);
+    };
+
+    fetchPhotos();
   }, []);
   const getProductPhoto = (productId) => {
     if (photos) {
-      const productPhotos = photos.filter((photo) => photo.product_id === productId);
+      const productPhotos = photos.filter(
+        (photo) => photo.product_id === productId
+      );
       if (productPhotos.length > 0) {
         return productPhotos[0].url;
       }
     }
-    return 'No hay ninguna foto del producto';
+    return "No hay ninguna foto del producto";
   };
-  
+
   const handleRemoveFromCart = (itemToRemove) => {
     const updatedCart = removeFromCart(cart, itemToRemove);
     setCart(updatedCart);
@@ -85,14 +91,6 @@ function CartProducts() {
     return acc + itemTotal;
   }, 0);
 
-  // const handleOnSubmit = (e) => {
-  //   sendShippingOrder()
-  //     .then((res) => {
-  //       console.log("Resultado del envío de la orden:", res);
-  //     })
-  //     .catch((error) => console.log("Error en el envío de la orden:", error));
-  // };
-  
   const openModal = () => {
     setShowModal(true);
   };
@@ -113,51 +111,48 @@ function CartProducts() {
     try {
       const editProductPromises = cart.map(async (item) => {
         const newQuantity = item.product.quantity - item.quantity;
-        console.log(' que es item.product', item.product.quantity)
-        console.log(' lo que compra', item.quantity)
-        console.log('cuantos quedan', newQuantity)
-        console.log(' id del producto', item.product.id )
+        console.log(" que es item.product", item.product.quantity);
+        console.log(" lo que compra", item.quantity);
+        console.log("cuantos quedan", newQuantity);
+        console.log(" id del producto", item.product.id);
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
-          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado par reponer.`);
+          setShowProductOutOfStockModal(true);
         }
       });
 
-      
-  
       await Promise.all(editProductPromises);
-  
+
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
-      console.log("sylvia",formData);
+      console.log("sylvia", formData);
       sendOrderEmail(formData);
 
-  
       localStorage.removeItem("cart");
       setCart([]);
-  
+
       console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
     } catch (error) {
-      console.error('Error handling order submit:', error);
+      console.error("Error handling order submit:", error);
     }
   };
 
   const sendOrderEmail = (formData) => {
-    console.log("cart",cart);
+    console.log("cart", cart);
     const emailData = {
       order_id: formData.orderId,
       name: formData.name_complete,
       cedula: formData.cedula,
       address: formData.address,
       total_amount: formData.total_amount,
-      shipping_type:formData.shipping_type,
+      shipping_type: formData.shipping_type,
       products: JSON.stringify(cart),
-      data: "lista productos"
+      data: "lista productos",
     };
- console.log("email-data:",emailData)
-    sendShippingOrder(emailData); 
-  }
+    console.log("email-data:", emailData);
+    sendShippingOrder(emailData);
+  };
 
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {
@@ -168,13 +163,16 @@ function CartProducts() {
         quantity: item.quantity,
         price: item.product.price,
       };
-  
+
       createOrderLine(orderLineData)
         .then((orderLineResponse) => {
-          console.log("Respuesta de la creación de línea de orden:", orderLineResponse);
+          console.log(
+            "Respuesta de la creación de línea de orden:",
+            orderLineResponse
+          );
         })
         .catch((error) => {
-          console.error('Error al crear la línea de orden:', error);
+          console.error("Error al crear la línea de orden:", error);
         });
     });
   };
@@ -193,8 +191,8 @@ function CartProducts() {
   };
 
   const handleConfirmOrder = () => {
-    openOrderQuestionsModal(); 
-    // handleOnSubmit(); 
+    openOrderQuestionsModal();
+    // handleOnSubmit();
   };
 
   // const handleOnSubmit = (e) => {
@@ -204,7 +202,7 @@ function CartProducts() {
   //     })
   //     .catch((error) => console.log("Error en el envío de la orden:", error));
   // };
-  
+
   return (
     <div className="h-screen pt-20">
       <h1
@@ -228,6 +226,11 @@ function CartProducts() {
                 </h2>
                 <p className="text-lg text-gray-500">
                   Categoría: {item.product.collection}
+                </p>
+                <p className="text-lg" style={{ color: "#3C2046" }}>
+                  {item.product.quantity <= 3
+                    ? "Pocas Unidades en Stock"
+                    : " "}
                 </p>
                 <p className="text-lg" style={{ color: "#3C2046" }}>
                   ₡{Math.floor(item.product.price).toLocaleString()}
@@ -337,10 +340,17 @@ function CartProducts() {
           questionsAnswered={questionsAnswered}
           setQuestionsAnswered={setQuestionsAnswered}
         />
+        <ModalSuccess
+          showModal={showProductOutOfStockModal}
+          handleCloseModal={() => setShowProductOutOfStockModal(false)}
+          close={() => setShowProductOutOfStockModal(false)}
+          image={verificationNegative}
+          title={`Producto agotado`}
+          text={`Comunícate con nosotros y te diremos el tiempo estimado para reponerlo.`}
+        />
       </div>
     </div>
   );
 }
 
 export default CartProducts;
-
