@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { fetchFavorites, removeFavorite} from '../services/ApiFavoritesService';
 import { Link } from "react-router-dom";
-// // import { addFavorite } from '../services/ApiFavoritesService';
-
-
-
 
 
 
 function FavoritesPage() {
 
 const [favorites, setFavorites]= useState([]);
-// const [favoriteCard, setFavoriteCard]= useState(true);
-
-
 
  
 useEffect(() => {
@@ -45,17 +37,11 @@ const handleRemoveFavorite = (id) => {
     
   })
 };
-
-
-
-
-
-
 	
   return (
     <div>
 
-      <h1>FavoritesPage</h1>
+      <h1>Mis Favoritos</h1>
 
       {favorites.length === 0 ? (
         <p className="not-query">
