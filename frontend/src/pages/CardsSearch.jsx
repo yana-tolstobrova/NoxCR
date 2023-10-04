@@ -42,7 +42,7 @@ const CardsSearch = () => {
                     <div className="px-4 py-2 h-[80px]">
                       <div className="text-l mb-2">{product.name}</div>
                       <p className="text-orange-700 text-base" style={{ color: 'purple' }}>
-                        ${product.price}
+                      ₡{product.price}
                       </p>
                     </div>
                   </Link>
