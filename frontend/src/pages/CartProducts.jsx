@@ -40,6 +40,8 @@ function CartProducts() {
     const updatedCart = removeFromCart(cart, itemToRemove);
     setCart(updatedCart);
 
+    const cartTotal = updatedCart.reduce((acc,item) => acc + item.quantity, 0);
+    localStorage.setItem("cartTotal", cartTotal.toString());
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
     console.log("Carrito actualizado después de eliminar:", updatedCart);
@@ -92,37 +94,62 @@ function CartProducts() {
     setShowModalOrder(false);
   };
 
+  // const handleOrderSubmit = async () => {
+  //   try {
+  //     const editProductPromises = cart.map(async (item) => {
+  //       const newQuantity = item.product.quantity - item.quantity;
+  //       console.log(' que es item.product', item.product.quantity)
+  //       console.log(' lo que compra', item.quantity)
+  //       console.log('cuantos quedan', newQuantity)
+  //       console.log(' id del producto', item.product.id )
+  //       await editProductQuantity(item.product.id, { quantity: newQuantity });
+
+  //       if (newQuantity <= 0) {
+  //         alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado par reponer.`);
+  //       }
+  //     });
+  
+  //     await Promise.all(editProductPromises);
+  
+  //     const orderId = await createOrder(formData);
+  //     handleOrderLinesSubmit(orderId);
+  //     console.log("sylvia",formData);
+  //     sendOrderEmail(formData);
+
+  
+  //     localStorage.removeItem("cart");
+  //     setCart([]);
+  
+  //     console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
+  //   } catch (error) {
+  //     console.error('Error handling order submit:', error);
+  //   }
+  // };
+
   const handleOrderSubmit = async () => {
     try {
       const editProductPromises = cart.map(async (item) => {
         const newQuantity = item.product.quantity - item.quantity;
-        console.log(' que es item.product', item.product.quantity)
-        console.log(' lo que compra', item.quantity)
-        console.log('cuantos quedan', newQuantity)
-        console.log(' id del producto', item.product.id )
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
-        if (newQuantity <= 0) {
-          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado par reponer.`);
-        }
+        // if (newQuantity <= 0) {
+        //   setShowProductOutOfStockModal(true);
+        // }
       });
 
-      
-  
       await Promise.all(editProductPromises);
-  
+
       const orderId = await createOrder(formData);
       handleOrderLinesSubmit(orderId);
-      console.log("sylvia",formData);
+      console.log("sylvia", formData);
       sendOrderEmail(formData);
 
-  
       localStorage.removeItem("cart");
       setCart([]);
-  
+
       console.log("Carrito después de eliminar en handleOrderSubmit:", cart);
     } catch (error) {
-      console.error('Error handling order submit:', error);
+      console.error("Error handling order submit:", error);
     }
   };
 
