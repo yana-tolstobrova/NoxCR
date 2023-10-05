@@ -27,6 +27,14 @@ export const getPhotos = () => {
       return [];
     });
 };
+export const deletePhoto = (photoId) => {
+  return axios.delete(`${API_URL}/photos/${photoId}`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error deleting photo:', error);
+      throw error;
+    });
+};
 export const getColorsForProduct = (productId) => {
   return axios.get(`${API_URL}/products/${productId}/colors`)
     .then((response) => response.data)

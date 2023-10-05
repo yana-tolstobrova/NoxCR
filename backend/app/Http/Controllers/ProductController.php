@@ -25,7 +25,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors']]);
+        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors', 'deletePhoto']]);
           } 
 
     public function index()
@@ -60,7 +60,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'collection' => 'nullable',
             'colors' => 'nullable',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            //'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'detail' => 'required',
         ]);
 
@@ -208,7 +208,7 @@ class ProductController extends Controller
             foreach ($request->file('images') as $imageFile) {
                 $uploadedFile = $imageFile->getRealPath();
 
-                $uploadApi = new UploadApi();
+                $uploadApi = new UploadApi(); // Assuming you have an UploadApi class
 
                 $cloudinaryUpload = $uploadApi->upload($uploadedFile);
 
@@ -222,6 +222,7 @@ class ProductController extends Controller
                 $imageUrls[] = $imagePath;
             }
         }
+
         $product->update([
             'name' => $request->input('name'),
             'category' => $request->input('category'),
@@ -229,11 +230,15 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'collection' => $request->input('collection'),
             'detail' => $request->input('detail'),
-        ]);
+        ]);        
 
         $product->colors()->sync($colorIds);
 
-        return response()->json(['success' => true, 'message' => '¡Producto actualizado exitosamente!', 'image_urls' => $imageUrls]);
+        return response()->json([
+            'success' => true,
+            'message' => '¡Producto actualizado exitosamente!',
+            'image_urls' => $imageUrls,
+        ]);
     } catch (\Exception $e) {
         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
     }
@@ -255,7 +260,18 @@ class ProductController extends Controller
         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
     }
 }
+public function deletePhoto($id): JsonResponse
+{
+    try {
+        $photo = Photo::findOrFail($id);
 
+        $photo->delete();
+
+        return response()->json(['success' => true, 'message' => '¡Imagen eliminada exitosamente!']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+    }
+}
     public function search(Request $request)
     {
         $searchTerm = $request->input('term');

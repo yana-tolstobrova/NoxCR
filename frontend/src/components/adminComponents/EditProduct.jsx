@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {editProduct} from '../../services/ApiProducts'
+import { editProduct } from '../../services/ApiProducts'
 import { fetchProductDetails } from '../../services/ApiGetProductDetails';
 import Modal from '../../components/ModalSuccess';
 import verification from '../../assets/verification.svg';
 import "../../index.css";
 import DeleteIcon from '../../assets/deleteIcon.svg';
 import Select from 'react-select';
-import { getColorsForProduct } from '../../services/ApiProducts'; 
+import { getColorsForProduct, getPhotos, deletePhoto } from '../../services/ApiProducts'; 
+import axios from 'axios';
 
 const fileTypes = ["image/jpeg", "image/png", "image/gif"];
 
@@ -16,30 +17,32 @@ function EditProduct() {
     const { id } = useParams();
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
-    const [quantity, setQuantity] = useState();
-    const [price, setPrice] = useState();
+    const [quantity, setQuantity] = useState(0);
+    const [price, setPrice] = useState(0);
     const [collection, setCollection] = useState('');
     const [detail, setDetail] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [images, setImages] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [error, setError] = useState('');
-  
+    const [photos, setPhotos]= useState();
+    const [filteredImages, setFilteredImages] = useState([]);
+
     const colorOptions = [
-        { value: 'Red', label: 'Rojo' },
-        { value: 'Orange', label: 'Naranja' },
         { value: 'Yellow', label: 'Amarillo' },
-        { value: 'Sky-Blue', label: 'Azul-Celeste' },
-        { value: 'Green', label: 'Verde' },
-        { value: 'Pink', label: 'Rosa' },
-        { value: 'Black', label: 'Negro' },
-        { value: 'Purple', label: 'Morado' },
-        { value: 'Grey', label: 'Gris' },
-        { value: 'White', label: 'Blanco' },
-        { value: 'Naruto', label: 'Naruto' },
-        { value: 'Honey', label: 'Miel' },
-        { value: 'Lilac', label: 'Lila' },
         { value: 'Blue', label: 'Azul' },
+        { value: 'Sky-Blue', label: 'Azul-Celeste' },
+        { value: 'White', label: 'Blanco' },
+        { value: 'Grey', label: 'Gris' },
+        { value: 'Lilac', label: 'Lila' },
+        { value: 'Honey', label: 'Miel' },
+        { value: 'Purple', label: 'Morado' },
+        { value: 'Orange', label: 'Naranja' },
+        { value: 'Black', label: 'Negro' },
+        { value: 'Red', label: 'Rojo' },
+        { value: 'Pink', label: 'Rosa' },
+        { value: 'Green', label: 'Verde' },
+        { value: 'Naruto', label: 'Naruto' },
         { value: 'UV-Glow', label: 'Brillan en luz negra' },
     ];
   
@@ -55,31 +58,33 @@ function EditProduct() {
   
     const handleFileInputChange = (e) => {
       const newFiles = e.target.files;
-      processFiles(newFiles);
+      
+      processFiles(newFiles);console.log(newFiles)
     };
   
     const processFiles = (newFiles) => {
       const updatedImages = [...images];
-  
+      
       for (let i = 0; i < newFiles.length; i++) {
         if (fileTypes.includes(newFiles[i].type)) {
           const reader = new FileReader();
-  
+          console.log(updatedImages)
           reader.onload = (e) => {
             updatedImages.push(newFiles[i]);
             setImages(updatedImages);
+            console.log(images)
           };
   
           reader.readAsDataURL(newFiles[i]);
         }
       }
     };
-  
-    const removeImage = (index) => {
-      const updatedImages = [...images];
-      updatedImages.splice(index, 1);
-      setImages(updatedImages);
-    };
+    console.log(images.length)
+    // const removeImage = (index) => {
+    //   const updatedImages = [...images];
+    //   updatedImages.splice(index, 1);
+    //   setImages(updatedImages);
+    // };
   
     const openModal = () => {
       setShowModal(true);
@@ -104,6 +109,13 @@ function EditProduct() {
           setDetail(product.detail);
           setSelectedColors(optionColor);
           console.log('initial colors:', optionColor) 
+		  const allPhotos = await getPhotos();
+		  setPhotos(allPhotos);
+          const filteredProductImages = allPhotos.filter((photo) => photo.product_id == id);
+          setFilteredImages(filteredProductImages);
+          console.log(allPhotos[0].product_id)
+          console.log(id)
+          console.log(filteredProductImages)
         } catch (error) {
           console.error('Error fetching product details:', error);
         }
@@ -112,6 +124,18 @@ function EditProduct() {
       fetchDetails();
     }, [id]);
 
+    const handleDeletePhoto = async (photoId) => {
+        try {
+          await deletePhoto(photoId);
+          console.log('deleted')
+
+        setFilteredImages((prevFilteredImages) => prevFilteredImages.filter((image) => image.id !== photoId));
+
+        } catch (error) {
+          console.error('Error deleting photo:', error);
+        }
+      };
+      
     const handleColorChange = (selectedOptions) => {
         setSelectedColors(selectedOptions);
         console.log('selected colors:',selectedOptions)
@@ -119,17 +143,12 @@ function EditProduct() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-  
       if (name.trim() === '' || category.trim() === '' || detail.trim() === '') {
         setError('El nombre, la cantidad, y la descripción del producto son obligatorios');
         return;
       }
       if (quantity <= 0) {
         setError('La cantidad debe ser mayor que cero');
-        return;
-      }
-      if (images.length === 0) {
-        setError('Selecciona al menos un archivo antes de enviar');
         return;
       }
       setError('');
@@ -143,18 +162,25 @@ function EditProduct() {
       formData.append('detail', detail);
       const selectedColorValues = selectedColors.map((color) => color.value);
       formData.append('colors', JSON.stringify(selectedColorValues));
-      console.log(name, category, quantity, price, collection, detail, selectedColorValues)
+      for (let i = 0; i < images.length; i++) {
+      formData.append(`images[${i}]`, images[i]);
+      
+    } console.log(images)
+      console.log(name, category, quantity, price, collection, detail, selectedColorValues, images)
+      console.log(id)
       try {
         const response = await editProduct(id, formData);
-        setName(response.name);
-        setCategory(response.category);
-        setQuantity(response.quantity);
-        setPrice(response.price);
-        setCollection(response.collection);
-        setSelectedColors(response.colors); 
-        setDetail(response.detail);
-        openModal();
-        console.log(response)
+       console.log(response)
+        // setName(response.name);
+        // setCategory(response.category);
+        // setQuantity(response.quantity);
+        // setPrice(response.price);
+        // setCollection(response.collection);
+        // setSelectedColors(response.colors); 
+        // setDetail(response.detail);
+        // setImages(response.images)
+         openModal();
+        // console.log(response)
       } catch (error) {
         console.error('Error:', error)};
     };
@@ -163,14 +189,14 @@ function EditProduct() {
       navigate('/admin/products');
     };
 
-  
+
     return (
         <div className='py-10 px-10 h-full'>
             <h1 className='font-bold text-2xl text-purple mb-8'>Editar producto</h1>
             <div className='h-10 py-2'>{error && <div className="text-red-500 font-xs">{error}</div>}</div>
             <div className="w-2/4 m-auto">
             <p className='font-medium text-xl text-purple mb-4'>Edita el producto</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <div>
                     <label className="text-lg font-medium">Producto:</label>
                     <input
@@ -241,7 +267,7 @@ function EditProduct() {
                     placeholder='Selecciona uno o más colores'
                     />
                 </div>
-                <label className="text-lg font-medium ">Imagen:</label>
+                 <label className="text-lg font-medium ">Imagen:</label>
                 <div className="App mt-1">
                     <div className="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
                         <p>Drag & drop los archivos aquí</p>
@@ -255,18 +281,16 @@ function EditProduct() {
                         onChange={handleFileInputChange}
                     />
                     </div>
-
-                    {images.length > 0 ? (
+                    {filteredImages.length > 0 ? (
                                 <div>
-                                    {images.map((image, index) => (
-                                        <div key={index} className="image-preview">
+                                    {filteredImages.map((image, id) => (
+                                        <div key={id} className="image-preview">
                                             <div className='relative'>
                                                 <img
-                                                    src={URL.createObjectURL(image)}
-                                                    alt={`Image ${index + 1}`}
+                                                    src={image.url}
                                                     style={{ maxWidth: "100px", maxHeight: "100px" }}
                                                 />
-                                                <button onClick={() => removeImage(index)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer absolute top-0 right-0'></img></button>
+                                                <button type="button" onClick={() => handleDeletePhoto(image.id)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer absolute top-0 right-0'></img></button>
                                             </div>
                                         </div>
                                     ))}
@@ -274,7 +298,8 @@ function EditProduct() {
                             ) : (
                                 <br />
                             )}
-                                </div>
+                                </div> 
+                    
                 <div>
                     <label className="text-lg font-medium">Descripción:</label>
                     <textarea

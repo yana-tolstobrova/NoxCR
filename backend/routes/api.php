@@ -40,8 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("products/remove-favorite/{id}", [ProductController::class, 'removeFavorite']);
     Route::get("/products/favorites", [ProductController::class, 'showFavorites']);
     
-    Route::delete('products/{id}', [ProductController::class, 'destroy', 'update']);
-    Route::get('products/{id}', [ProductController::class, 'edit', 'update']);
+    Route::delete('products/{id}', [ProductController::class, 'destroy']);
+    Route::get('products/{id}', [ProductController::class, 'edit']);
     Route::put('products/{id}', [ProductController::class, 'update']);
     Route::post('products', [ProductController::class, 'store']);
     Route::post('/send-confirmation-email', [MailController::class, 'sendConfirmationEmail']);
@@ -52,7 +52,7 @@ Route::get('/search', [ProductController::class, 'search']);
 Route::get('/photos', [ProductController::class, 'getPhoto']);
 Route::get('colors', [ProductController::class, 'getColor']);
 Route::get('products/{id}/colors', [ProductController::class, 'showColors']);
-
+Route::delete('/photos/{id}', [ProductController::class, 'deletePhoto']);
 
 Route::put('products/change-quantity/{id}', [ProductController::class, 'editQuantity']);
 

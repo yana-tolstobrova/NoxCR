@@ -24,20 +24,20 @@ function CreateProduct() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const colorOptions = [
-        { value: 'Red', label: 'Rojo' },
-        { value: 'Orange', label: 'Naranja' },
         { value: 'Yellow', label: 'Amarillo' },
-        { value: 'Sky-Blue', label: 'Azul-Celeste' },
-        { value: 'Green', label: 'Verde' },
-        { value: 'Pink', label: 'Rosa' },
-        { value: 'Black', label: 'Negro' },
-        { value: 'Purple', label: 'Morado' },
-        { value: 'Grey', label: 'Gris' },
-        { value: 'White', label: 'Blanco' },
-        { value: 'Naruto', label: 'Naruto' },
-        { value: 'Honey', label: 'Miel' },
-        { value: 'Lilac', label: 'Lila' },
         { value: 'Blue', label: 'Azul' },
+        { value: 'Sky-Blue', label: 'Azul-Celeste' },
+        { value: 'White', label: 'Blanco' },
+        { value: 'Grey', label: 'Gris' },
+        { value: 'Lilac', label: 'Lila' },
+        { value: 'Honey', label: 'Miel' },
+        { value: 'Purple', label: 'Morado' },
+        { value: 'Orange', label: 'Naranja' },
+        { value: 'Black', label: 'Negro' },
+        { value: 'Red', label: 'Rojo' },
+        { value: 'Pink', label: 'Rosa' },
+        { value: 'Green', label: 'Verde' },
+        { value: 'Naruto', label: 'Naruto' },
         { value: 'UV-Glow', label: 'Brillan en luz negra' },
       ];
     const handleDrop = (e) => {
@@ -116,6 +116,9 @@ function CreateProduct() {
         for (let i = 0; i < images.length; i++) {
             formData.append(`images[${i}]`, images[i]);
         }
+        console.log(images)
+        console.log(name, category, quantity, price, collection, detail, selectedColorValues, images)
+
         axios.post('http://localhost:8000/api/products', formData, {
             withCredentials: true,
             headers: {

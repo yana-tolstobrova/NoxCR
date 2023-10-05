@@ -29,19 +29,15 @@ useEffect(() => {
 
 }, []);
 
-
-
 const getProductPhoto = (productId) => {
-  const productPhotos = photos.filter((photo) => photo.product_id === productId);
-  if (productPhotos.length > 0) {
-      return productPhotos[0].url; 
+  if (photos) {
+    const productPhotos = photos.filter((photo) => photo.product_id === productId);
+    if (productPhotos.length > 0) {
+      return productPhotos[0].url;
+    }
   }
-  return 'No hay ningun foto del producto';
+  return 'No hay ninguna foto del producto';
 };
-
-
-
-
 
 const handleRemoveFavorite = (id) => {
   console.log(id);
@@ -84,7 +80,7 @@ const handleRemoveFavorite = (id) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                 </svg>
                   <Link to={`/product/${product.id}`}>
-                    <img className="w-[222px] h-[260px] object-cover" src={product.image} alt={product.name} />
+                    <img className="w-[222px] h-[260px] object-cover" src={getProductPhoto(product.id)} alt={product.name} />
                     <div className="px-4 py-2 h-[80px]">
                       <div className="text-l mb-2">{product.name}</div>
                       <p className="text-orange-700 text-base" style={{ color: 'purple' }}>
