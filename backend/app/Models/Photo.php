@@ -11,7 +11,7 @@ class Photo extends Model
 
     protected $table = 'photos';
 
-    protected $fillable = ['product_id', 'url', 'public_id'];
+    protected $fillable = ['product_id', 'url'];
 
     public function product(): BelongsTo
     {

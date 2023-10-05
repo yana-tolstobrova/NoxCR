@@ -38,15 +38,15 @@ function SocialNetwork() {
   ];
 
   return (
-    <div data-testid="social-network-component" className="container mx-auto px-4 py-1 lg:px-32 lg:pt-24 mt-[-100px] mb-10">
+    <div data-testid="social-network-component" className="mx-auto px-4 py-1 lg:px-32 lg:pt-16 mb-10 2xl:mb-32 2xl:pt-24">
       <div className="-m-1 flex flex-wrap ">
         <div className="flex w-1/2">
           {largeImages.map((image, index) => (
-            <div key={index} className={`w-${index === 0 ? '1/2' : 'full'} md:p-1`}>
+            <div key={index} className={`w-${index === 0 ? '1/2' : 'full'} md:p-1 2xl:p-4`}>
               <img
                 alt="gallery"
                 data-testid={`gallery-image-${index}`}
-                className="block h-[420px] h-full w-full rounded-lg object-cover object-center cursor-pointer"
+                className="block h-[420px] h-full w-full rounded-lg object-cover object-center cursor-zoom-in"
                 src={image}
                 onClick={() => openLightbox(image, imageTexts[index])} 
               />
@@ -55,7 +55,7 @@ function SocialNetwork() {
         </div>
         <div className="flex w-1/2 flex-wrap">
           {smallImages.map((image, index) => (
-            <div key={index} className="w-1/2 md:p-1">
+            <div key={index} className="w-1/2 md:p-1 2xl:p-4">
               <img
                 alt="gallery"
                 className="block h-[205px] h-full w-full rounded-lg object-cover object-center cursor-zoom-in"
@@ -79,8 +79,6 @@ function SocialNetwork() {
               alt="Lightbox Image"
               className="w-full max-h-full cursor-zoom-in"
             />
-
-
             <div className="text-white font-bold text-2xl absolute bottom-20 left-1/2 transform -translate-x-1/2 text-center bg-gray-100 bg-opacity-25">
               {lightboxText}
             </div> 
@@ -99,3 +97,8 @@ function SocialNetwork() {
 }
 
 export default SocialNetwork;
+
+
+
+
+

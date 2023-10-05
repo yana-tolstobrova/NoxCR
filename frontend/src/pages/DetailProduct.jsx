@@ -6,7 +6,9 @@ import Accordion from "../components/Accordion";
 import accordionItemsDetails from '../data/dataAccordionDetails';
 import gifIcon from '../assets/gif-icon.svg';
 import closeButton from '../assets/close.svg';
-
+import { getPhotos } from '../services/ApiProducts';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 function DetailProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -14,6 +16,7 @@ function DetailProduct() {
   const [cartCount, setCartCount] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState('');
+	const [photos, setPhotos]= useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,10 +28,21 @@ function DetailProduct() {
         setProduct(null);
       }
     };
-
+    const fetchPhotos = async () => {
+			const allPhotos = await getPhotos();
+			setPhotos(allPhotos);
+		  };
+	
+		fetchPhotos();
     fetchData();
   }, [id]);
-
+  const getProductPhoto = (productId) => {
+    const productPhotos = photos.filter((photo) => photo.product_id === productId);
+    if (productPhotos.length > 0) {
+        return productPhotos[0].url; 
+    }
+    return 'No hay ningun foto del producto';
+};
   // const handleAddToCart = () => {
   //   const totalPrice = roundedPrice * quantity;
   //   addToCart(product, quantity);
@@ -78,24 +92,23 @@ function DetailProduct() {
   const roundedPrice = Math.round(product.price).toLocaleString();
 
   return (
-    <div className="p-4 space-y-4 md:w-3/4 md:mx-auto">
-      <div className="flex flex-col md:flex-row items-center">
+    <div className="p-4 space-y-4">
+      <div className="flex flex-col md:flex-row md:w-3/4 md:mx-auto justify-between">
         <div
-          className="md:w-1/2 w-64 h-64 cursor-pointer" 
-          onClick={() => openLightbox(product.image)} 
+          className="cursor-pointer w-1/2" 
         >
-          <div className="relative">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="absolute inset-0 object-cover rounded-sm max-w-[420px] max-h-[320px]"
-              style={{marginTop:'-100px'}}
-            />
-          </div>
+          <Carousel showThumbs={false} dynamicHeight>
+            {photos
+              .filter((photo) => photo.product_id === product.id)
+              .map((photo, index) => (
+                <div key={index} onClick={() => openLightbox(photo.url)} className="flex justify-center">
+                  <img src={photo.url} alt={product.name} className="w-96 h-96 object-cover"/>
+                </div>
+              ))}
+          </Carousel>
         </div>
-        <div className="md:w-1/2 space-y-3 md:pl-6">
+        <div className="md:w-1/2 space-y-3 md:pl-16">
           <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-lg text-gray-400">Colección: {product.collection} </p>
           <p className="text-base text-gray-600">{product.detail}</p>
           <p className="text-2xl font-bold text-gray-800 ">
            ₡{roundedPrice}
@@ -109,8 +122,8 @@ function DetailProduct() {
               Regalo especial con tu compra
             </p>
           </div>
-          <div className="flex justify-center">
-            <div className="flex items-center space-x-4 pt-6">
+          <div className="flex">
+            <div className="flex items-center space-x-4 py-6">
               <button
                 className="px-4 py-2 rounded-sm font-black"
                 onClick={() => setQuantity(Math.max(0, quantity - 1))}

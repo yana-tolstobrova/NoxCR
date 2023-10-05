@@ -11,22 +11,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
-        $this->call([
-            ProductsTableSeeder::class,
-        ]);
-
-
-        //\App\Models\Product::factory(50)->create();
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $this->call([
-            ProductsTableSeeder::class,
-        ]);
+     {
         $this->call([
             PermissionTableSeeder::class,
         ]);
@@ -35,12 +20,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             CreateAdminUserSeeder::class,
-        ]);
-        $this->call([
-            OrdersTableSeeder::class,
-        ]);
-        $this->call([
-            OrderLinesTableSeeder::class,
         ]);
     }
 }

@@ -43,9 +43,9 @@ function Login() {
 	};
   return (
     <>
-        <div className="flex items-start justify-center">
-          <div className="bg-white px-10 py-8 border-2 border-gray-100">
-            <h1 className="text-5xl font-semibold"style={{ color: "#3C2046" }}>Accede a Nox CR</h1>
+        <div className="flex items-start justify-center mt-24">
+          <div className="bg-white px-8 py-8 border-2 border-gray-100">
+            <h1 className="text-3xl text-center font-semibold md:text-5xl"style={{ color: "#3C2046" }}>Accede a Nox CR</h1>
             <p className="font-medium text-lg text-gray-500 mt-2">
               {" "}
               Por favor ingrese sus datos
@@ -88,8 +88,8 @@ function Login() {
                   </button>
                 </div>
                 <div className='mt-4 flex items-center justify-center'>
-                  <p className='text-lg font-medium'>¿Eres nuevo?</p>
-                  <a  className='ml-4 hover:font-semibold hover:underline' href="/register"style={{ color: '#55285A' }}>Registrate</a>
+                  <p className='text-lg md:text-xl font-medium'>¿Eres nuevo?</p>
+                  <a  className='ml-4 hover:font-semibold hover:underline text-lg md:text-xl' href="/register"style={{ color: '#55285A' }}>Registrate</a>
                 </div>
               </form>
 

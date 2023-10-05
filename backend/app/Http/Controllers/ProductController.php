@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Photo;
+use App\Models\Color;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Cloudinary\Configuration\Configuration;
@@ -24,7 +25,7 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites']]);
+        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors']]);
           } 
 
     public function index()
@@ -32,55 +33,79 @@ class ProductController extends Controller
         $products = Product::all();
         return response()->json($products);
     }
-
-    public function store(Request $request): JsonResponse
+    public function getPhoto()
     {
-        try {
-            $request->validate([
-                'name' => 'required',
-                'category' => 'required',
-                'quantity' => 'required|integer|min:0',
-                'price' => 'required|numeric|min:0',
-                'collection' => 'nullable',
-                'color' => 'nullable',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-                'detail' => 'required',
-            ]);
+        $photos = Photo::all();
+        return response()->json($photos);
+    }
+    public function getColor()
+    {
+        $colors = Color::all();
+        return response()->json($colors);
+    }
+    public function showColors($productId)
+    {
+        $product = Product::findOrFail($productId);
+        $colors = $product->colors; 
 
-            $imagePath = null;
-            $imageId = null;
+        return response()->json($colors);
+    }
+    public function store(Request $request): JsonResponse
+{
+    try {
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'collection' => 'nullable',
+            'colors' => 'nullable',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'detail' => 'required',
+        ]);
 
-            if ($request->hasFile('image')) {
-                $uploadedFile = $request->file('image')->getRealPath();
-    
+        $product = Product::create([
+            'name' => $request->input('name'),
+            'category' => $request->input('category'),
+            'quantity' => $request->input('quantity'),
+            'price' => $request->input('price'),
+            'collection' => $request->input('collection'),
+            'detail' => $request->input('detail'),
+        ]);
+        $selectedColorValues = json_decode($request->input('colors'));
+        $colorIds = [];
+        foreach ($selectedColorValues as $colorValue) {
+            $color = Color::firstOrCreate(['name' => $colorValue]);
+            $colorIds[] = $color->id;
+        }
+        $product->colors()->sync($colorIds);
+
+        $imageUrls = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $uploadedFile = $imageFile->getRealPath();
+
                 $uploadApi = new UploadApi();
-    
+
                 $cloudinaryUpload = $uploadApi->upload($uploadedFile);
 
                 $imagePath = $cloudinaryUpload['secure_url'];
-                $imageId = $cloudinaryUpload['public_id'];
-            }
-            $product = Product::create([
-                'name' => $request->input('name'),
-                'category' => $request->input('category'),
-                'quantity' => $request->input('quantity'),
-                'price' => $request->input('price'),
-                'collection' => $request->input('collection'),
-                'color' => $request->input('color'),
-                'image' => $imagePath,
-                'detail' => $request->input('detail'),
-            ]);
-            $photo = Photo::create([
-                'url' => $imagePath,
-                'public_id' => $imageId,
-                'product_id' => $product->id,
-            ]);
 
-            return response()->json(['success' => true, 'message' => '¡Producto agregado exitosamente!']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+                $photo = Photo::create([
+                    'url' => $imagePath, 
+                    'product_id' => $product->id,
+                ]);
+
+                $imageUrls[] = $imagePath;
+            }
         }
+
+        return response()->json(['success' => true, 'message' => '¡Producto agregado exitosamente!', 'image_urls' => $imageUrls]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
     }
+}
 
     public function show($id)
     {
@@ -145,17 +170,6 @@ class ProductController extends Controller
 
             $imagePath = $product->image;
 
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->storeAs('public/images', $imageName);
-                $imagePath = 'images/' . $imageName;
-
-                if ($product->image) {
-                    Storage::delete('public/' . $product->image);
-                }
-            }
-
             $product->update([
                 'name' => $request->input('name'),
                 'category' => $request->input('category'),
@@ -178,19 +192,7 @@ class ProductController extends Controller
     try {
         $product = Product::findOrFail($id);
 
-        if ($product->image) {
-            Storage::delete('public/' . $product->image);
-        }
-        
-        // Check if the product has an associated photo
         if ($product->photo) {
-            $publicId = $product->photo->public_id;
-            
-
-            // Initialize the Cloudinary API client
-            // $uploadApi = new UploadApi();
-            // $uploadApi->destroy($publicId);
-            Cloudinary::destroy($publicId);
 
             $product->photo->delete();
         }
@@ -209,8 +211,7 @@ class ProductController extends Controller
 
         $products = Product::where(function ($query) use ($searchTerm) {
             $query->where('name', 'LIKE', "%$searchTerm%")
-                ->orWhere('collection', 'LIKE', "%$searchTerm%")
-                ->orWhere('color', 'LIKE', "%$searchTerm%");
+                ->orWhere('collection', 'LIKE', "%$searchTerm%");
         })->get();
 
         return response()->json($products);

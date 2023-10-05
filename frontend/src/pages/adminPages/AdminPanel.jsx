@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { cardsProducts } from '../../services/ApiProducts';
+import { cardsProducts, getPhotos } from '../../services/ApiProducts';
 
 export default function AdminPanel() {
 	const [products, setProducts]= useState();
+	const [photos, setPhotos]= useState();
 
 	useEffect(() => {
 		const fetchData = async () => {
 		  const allProducts = await cardsProducts();
 		  setProducts(allProducts);
-		  console.log(allProducts)
 		};
+		const fetchPhotos = async () => {
+			const allPhotos = await getPhotos();
+			setPhotos(allPhotos);
+		  };
 	
+		fetchPhotos();
 		fetchData();
 	  }, []);
+	  const getProductPhoto = (productId) => {
+        const productPhotos = photos.filter((photo) => photo.product_id === productId);
+        if (productPhotos.length > 0) {
+            return productPhotos[0].url; 
+        }
+        return 'No hay ningun foto del producto';
+    };
 
 	return (
 		<>
@@ -38,7 +50,7 @@ export default function AdminPanel() {
 				products.slice(0, 5).map((product) => (
 				<div key={product.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 w-1/4">
 					<div className="w-52 h-89 rounded overflow-hidden shadow-xl">
-					<img className="w-52 h-56 object-cover" src={product.image} alt={product.name} />
+					<img className="w-52 h-56 object-cover" src={getProductPhoto(product.id)} alt={product.name} />
 					<div className="px-4 py-2 h-20">
 						<div className="text-l mb-2">{product.name}</div>
 						<p className="text-base text-purple">

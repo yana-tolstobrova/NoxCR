@@ -22,8 +22,13 @@ select:-webkit-autofill:focus {
    /* cursor: url('../src/assets/buscando.png'),auto; */
    /* cursor: url('../src/assets/ojo.png'),auto; */
 }
-
 /* https://www.flaticon.es/resultados?word=ojo */
+
+@media (max-width: 767px) {
+  body {
+    width: 100vh;
+  }
+}
 
 .card-box:hover .card-menu
 {
@@ -32,6 +37,30 @@ opacity: 1;
 left: 0;
 transition: all 0.2s ease-in-out;  
 }
+
 img.img-favorite{
   fill: none;
+}
+.App {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.drop-area {
+  border: 2px dashed #ccc;
+  padding: 40px 20px 20px 20px;
+  cursor: pointer;
+}
+
+.image-preview {
+  display: inline-block;
+  margin: 10px;
+}
+.transparent{
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+span.link{
+  color:blue
 }

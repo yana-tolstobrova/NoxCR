@@ -27,8 +27,26 @@ export const getPhotos = () => {
       return [];
     });
 };
-
-
+export const getColorsForProduct = (productId) => {
+  return axios.get(`${API_URL}/products/${productId}/colors`)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error('Error fetching colors:', error);
+      throw error;
+    });
+};
+// export const getColors = () => {
+//   return axios
+//     .get(`${API_URL}/colors`)
+//     .then((response) => {
+//       const colors = response.data;
+//       return colors;
+//     })
+//     .catch((error) => {
+//       console.error('Error fetching colors:', error);
+//       return [];
+//     });
+// };
 //   export const createProduct = (formData) => axios.post(`http://localhost:8000/api/products`, formData, {
 //     withCredentials: true,
 //     headers: {

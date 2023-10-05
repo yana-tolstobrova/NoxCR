@@ -3,7 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/ModalSuccess';
 import verification from '../../assets/verification.svg';
+import "../../index.css";
+import DeleteIcon from '../../assets/deleteIcon.svg';
+import Select from 'react-select';
 
+const fileTypes = ["image/jpeg", "image/png", "image/gif"];
+  
 function CreateProduct() {
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -11,11 +16,66 @@ function CreateProduct() {
     const [quantity, setQuantity] = useState(0);
     const [price, setPrice] = useState(0);
     const [collection, setCollection] = useState('');
-    const [color, setColor] = useState('');
-    const [image, setImage] = useState(null);
     const [detail, setDetail] = useState(''); 
     const [showModal, setShowModal] = useState(false);
+    const [images, setImages] = useState([]);
+    const [selectedColors, setSelectedColors] = useState([]);
 
+    const colorOptions = [
+        { value: 'Red', label: 'Rojo' },
+        { value: 'Orange', label: 'Naranja' },
+        { value: 'Yellow', label: 'Amarillo' },
+        { value: 'Sky-Blue', label: 'Azul-Celeste' },
+        { value: 'Green', label: 'Verde' },
+        { value: 'Pink', label: 'Rosa' },
+        { value: 'Black', label: 'Negro' },
+        { value: 'Purple', label: 'Morado' },
+        { value: 'Grey', label: 'Gris' },
+        { value: 'White', label: 'Blanco' },
+        { value: 'Naruto', label: 'Naruto' },
+        { value: 'Honey', label: 'Miel' },
+        { value: 'Lilac', label: 'Lila' },
+        { value: 'Blue', label: 'Azul' },
+        { value: 'UV-Glow', label: 'Brillan en luz negra' },
+      ];
+    const handleDrop = (e) => {
+      e.preventDefault();
+      const newFiles = e.dataTransfer.files;
+      processFiles(newFiles);
+    };
+  
+    const handleDragOver = (e) => {
+      e.preventDefault();
+    };
+  
+    const handleFileInputChange = (e) => {
+      const newFiles = e.target.files;
+      processFiles(newFiles);
+    };
+  
+    const processFiles = (newFiles) => {
+        const updatedImages = [...images];
+    
+        for (let i = 0; i < newFiles.length; i++) {
+          if (fileTypes.includes(newFiles[i].type)) {
+            const reader = new FileReader();
+    
+            reader.onload = (e) => {
+              updatedImages.push(newFiles[i]);
+              setImages(updatedImages);
+            };
+    
+            reader.readAsDataURL(newFiles[i]);
+          }
+        }
+      };
+    
+      const removeImage = (index) => {
+        const updatedImages = [...images];
+        updatedImages.splice(index, 1);
+        setImages(updatedImages);
+      };
+    
     const openModal = () => {
         setShowModal(true);
       };
@@ -33,10 +93,14 @@ function CreateProduct() {
         formData.append('quantity', quantity);
         formData.append('price', price);
         formData.append('collection', collection);
-        formData.append('color', color);
-        formData.append('image', image); 
         formData.append('detail', detail);
-
+        const selectedColorValues = selectedColors.map((color) => color.label);
+        formData.append('colors', JSON.stringify(selectedColorValues));
+        console.log(selectedColorValues)
+        for (let i = 0; i < images.length; i++) {
+            formData.append(`images[${i}]`, images[i]);
+        }
+        console.log(formData)
         axios.post('http://localhost:8000/api/products', formData, {
             withCredentials: true,
             headers: {
@@ -58,7 +122,10 @@ function CreateProduct() {
     const handleCancel = () => {
         navigate('/admin/products');
     };
-
+    const handleColorChange = (selectedOptions) => {
+        setSelectedColors(selectedOptions);
+        console.log(selectedOptions)
+      };
     return (
         <div className='py-10 px-10 h-full'>
             <h1 className='font-bold text-2xl text-purple mb-8'>Añadir producto nuevo</h1>
@@ -77,14 +144,14 @@ function CreateProduct() {
                         required
                     />
                 </div>
-                <div>
+                <div >
                     <label className="text-lg font-medium">Categoría:</label>
                     <select
                         className="mb-3 w-full border border-gray-300 bg-white p-2 mt-1 focus:border-black focus:outline-none"
                         name='category'
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        required
+                        
                     >
                         <option value=''>Selecciona una categoría</option>
                         <option value='Lentes de contacto'>Lentes de contacto</option>
@@ -133,37 +200,50 @@ function CreateProduct() {
                 </div>
                 <div>
                     <label className="text-lg font-medium">Color:</label>
-                    <select
-                        className="w-full border border-gray-300 bg-white p-2 mt-1 mb-3 focus:border-black focus:outline-none"
-                        name='color'
-                        value={color}
-                        onChange={(e) => setColor(e.target.value)}
-                    >
-                        <option value=''>Selecciona un color</option>
-                        <option value='Red'>Rojo</option>
-                        <option value='Orange'>Naranja</option>
-                        <option value='Yellow'>Amarillo</option>
-                        <option value='Blue'>Azul-Celeste</option>
-                        <option value='Green'>Verde</option>
-                        <option value='Pink'>Rosa</option>
-                        <option value='Black'>Negro</option>
-                        <option value='Purple'>Morado</option>
-                        <option value='Grey'>Gris</option>
-                        <option value='White'>Blanco</option>
-                        <option value='Naruto'>Naruto</option>
-                        <option value='UV Glow'>Brillan en luz negra</option>
-                    </select>
+                    <Select
+                    className="mb-3 mt-1 focus:border-black focus:outline-none"
+                    isMulti
+                    value={selectedColors}
+                    onChange={handleColorChange}
+                    options={colorOptions}
+                    placeholder='Selecciona uno o más colores'
+                    />
                 </div>
-                <div>
-                    <label className="text-lg font-medium">Imagen:</label>
-                    <input
-                        className="mb-3 w-full bg-white py-2 mt-1 focus:border-black focus:outline-none"
+                <label className="text-lg font-medium ">Imagen:</label>
+                <div className="App mt-1">
+                    <div className="drop-area" onDrop={handleDrop} onDragOver={handleDragOver}>
+                        <p>Drag & drop los archivos aquí</p>
+                        <label htmlFor='file'>o haz clic <span className="link cursor-pointer">aquí</span> para seleccionar unos</label>    
+                        <input
+                        id='file'
+                        className='transparent'
                         type="file"
-                        id="fileInput"
                         accept="image/*"
-                        onChange={(e) => setImage(e.target.files[0])}  
-                        required/>  
-                </div>
+                        multiple
+                        onChange={handleFileInputChange}
+                        required
+                    />
+                    </div>
+
+                    {images.length > 0 ? (
+                                <div>
+                                    {images.map((image, index) => (
+                                        <div key={index} className="image-preview">
+                                            <div className='relative'>
+                                                <img
+                                                    src={URL.createObjectURL(image)}
+                                                    alt={`Image ${index + 1}`}
+                                                    style={{ maxWidth: "100px", maxHeight: "100px" }}
+                                                />
+                                                <button onClick={() => removeImage(index)}><img src={DeleteIcon} alt='icono de papelera' className='cursor-pointer absolute top-0 right-0'></img></button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <br />
+                            )}
+                    </div>
                 <div>
                     <label className="text-lg font-medium">Descripción:</label>
                     <textarea

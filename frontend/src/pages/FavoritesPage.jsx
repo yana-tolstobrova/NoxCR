@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { fetchFavorites, removeFavorite} from '../services/ApiFavoritesService';
 import { Link } from "react-router-dom";
-
+import { getPhotos } from '../services/ApiProducts';
 
 
 function FavoritesPage() {
 
 const [favorites, setFavorites]= useState([]);
-
+const [photos, setPhotos]= useState();
  
 useEffect(() => {
 
@@ -19,7 +19,27 @@ useEffect(() => {
     console.log(e);
   })
   
+  const fetchPhotos = async () => {
+    const allPhotos = await getPhotos();
+    setPhotos(allPhotos);
+    };
+
+  fetchPhotos();
+
+
 }, []);
+
+
+
+const getProductPhoto = (productId) => {
+  const productPhotos = photos.filter((photo) => photo.product_id === productId);
+  if (productPhotos.length > 0) {
+      return productPhotos[0].url; 
+  }
+  return 'No hay ningun foto del producto';
+};
+
+
 
 
 
