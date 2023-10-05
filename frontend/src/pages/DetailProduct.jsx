@@ -92,12 +92,12 @@ function DetailProduct() {
   const roundedPrice = Math.round(product.price).toLocaleString();
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 m-8">
       <div className="flex flex-col md:flex-row md:w-3/4 md:mx-auto justify-between">
         <div
           className="cursor-pointer w-1/2" 
         >
-          <Carousel showThumbs={false} dynamicHeight>
+          <Carousel showThumbs={false} dynamicHeight className="imgPageDetails">
             {photos
               .filter((photo) => photo.product_id === product.id)
               .map((photo, index) => (
@@ -108,21 +108,21 @@ function DetailProduct() {
           </Carousel>
         </div>
         <div className="md:w-1/2 space-y-3 md:pl-16">
-          <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
-          <p className="text-base text-gray-600">{product.detail}</p>
+          <h1 className="text-2xl font-bold text-gray-800 mt-8">{product.name}</h1>
+          <p className="text-lg text-gray-600">{product.detail}</p>
           <p className="text-2xl font-bold text-gray-800 ">
            ₡{roundedPrice}
-            <span className="text-base font-normal text-gray-400">
+            <span className="text-lg font-normal text-gray-400">
             /por lentillas
             </span>
           </p>
           <div className="flex mt-2 ">
             <img src={gifIcon} alt="gif icon" className="rounded w-8 h-6 "/>
-            <p className="text-base font-semibold text-black mt-1 ml-2">
+            <p className="text-lg font-semibold text-black mt-1 ml-2">
               Regalo especial con tu compra
             </p>
           </div>
-          <div className="flex">
+          <div className="flex justify-center">
             <div className="flex items-center space-x-4 py-6">
               <button
                 className="px-4 py-2 rounded-sm font-black"
