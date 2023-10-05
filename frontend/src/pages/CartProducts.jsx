@@ -45,7 +45,7 @@ function CartProducts() {
     localStorage.setItem("cartCount", updatedCartCount.toString());
   }, [cart]);
 
-  console.log(cartCount)
+  console.log("prueba que hay en el carrito",cartCount)
 
   const [formData, setFormData] = useState({
     name_complete: "",
