@@ -19,7 +19,10 @@ class MailTest extends TestCase
 
     public function test_orderConfirmation_can_be_sent(): void
    {
-       Mail::fake();
+       
+    $this->withExceptionHandling();
+    
+        Mail::fake();
 
        // Assert that no mailables were sent...
        Mail::assertNothingSent();
