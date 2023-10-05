@@ -37,12 +37,12 @@ function Accordion(props) {
               className="p-2 cursor-pointer flex justify-between items-center"
               onClick={() => toggleItem(index)}
             >
-              <h2 className="text-3xl md:text-base 2xl:text-3xl font-medium w-3/4">{item.title}</h2>
+              <h2 className="text-2xl md:text-base 2xl:text-3xl font-medium w-3/4">{item.title}</h2>
               <img id="eye-image" className="w-16 h-16 md:w-10 md:h-10 2xl:w-18 2xl:h-18" src={openItemIndex === index ? eyeOpen : eyeClose} alt="ojo de apertura" />
             </div>
             {index === openItemIndex && (
               <div className="py-10 px-8 bg-gray-100 md:py-6 2xl:py-16 2xl:px-24">
-                <p className="text-3xl md:text-base 2xl:text-3xl 2xl:leading-relaxed" >{item.content}</p>
+                <p className="text-2xl md:text-base 2xl:text-3xl 2xl:leading-relaxed" >{item.content}</p>
               </div>
             )}
           </div>

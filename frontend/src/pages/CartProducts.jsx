@@ -493,6 +493,7 @@ function CartProducts() {
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
+          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado para reponer.`);
           setShowProductOutOfStockModal(true);
         }
       });
@@ -525,9 +526,9 @@ function CartProducts() {
       products: JSON.stringify(cart),
       data: "lista productos",
     };
-    console.log("email-data:", emailData);
-    sendShippingOrder(emailData);
-  };
+    
+    sendShippingOrder(emailData); 
+  }
 
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {

@@ -20,6 +20,8 @@ function CreateProduct() {
     const [showModal, setShowModal] = useState(false);
     const [images, setImages] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
+    const [error, setError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const colorOptions = [
         { value: 'Red', label: 'Rojo' },
@@ -87,6 +89,21 @@ function CreateProduct() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (name.trim() === '' || category.trim() === '' || detail.trim() === '') {
+            setError('El nombre, la cantidad, y la descripción del producto son obligatorios'); 
+            return;
+        }
+        if (quantity<=0) {
+            setError('La cantidad debe ser mayor que cero'); 
+            return;
+        }
+        if (images.length === 0) {
+            setError('Selecciona al menos un archivo antes de enviar'); 
+            return;
+        }
+        setIsSubmitting(true);
+        setError('');
         const formData = new FormData();
         formData.append('name', name);
         formData.append('category', category);
@@ -96,11 +113,9 @@ function CreateProduct() {
         formData.append('detail', detail);
         const selectedColorValues = selectedColors.map((color) => color.label);
         formData.append('colors', JSON.stringify(selectedColorValues));
-        console.log(selectedColorValues)
         for (let i = 0; i < images.length; i++) {
             formData.append(`images[${i}]`, images[i]);
         }
-        console.log(formData)
         axios.post('http://localhost:8000/api/products', formData, {
             withCredentials: true,
             headers: {
@@ -117,6 +132,9 @@ function CreateProduct() {
             })
             .catch((error) => {
                 console.error('Error creating product:', error);
+            })
+            .finally(() => {
+                setIsSubmitting(false);
             });
     };
     const handleCancel = () => {
@@ -128,10 +146,10 @@ function CreateProduct() {
       };
     return (
         <div className='py-10 px-10 h-full'>
-            <h1 className='font-bold text-2xl text-purple mb-8'>Añadir producto nuevo</h1>
+            <h1 className='font-bold text-2xl text-purple mb-6'>Añadir producto nuevo</h1>
+            <div className='h-10 py-2'>{error && <div className="text-red-500 font-xs">{error}</div>}</div>
             <div className="w-2/4 m-auto">
             <form onSubmit={handleSubmit}>
-            <p className='font-medium text-xl text-purple mb-4'>Nuevo producto</p>
                 <div>
                     <label className="text-lg font-medium">Producto:</label>
                     <input
@@ -141,7 +159,6 @@ function CreateProduct() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder='Producto'
-                        required
                     />
                 </div>
                 <div >
@@ -150,8 +167,7 @@ function CreateProduct() {
                         className="mb-3 w-full border border-gray-300 bg-white p-2 mt-1 focus:border-black focus:outline-none"
                         name='category'
                         value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        
+                        onChange={(e) => setCategory(e.target.value)} 
                     >
                         <option value=''>Selecciona una categoría</option>
                         <option value='Lentes de contacto'>Lentes de contacto</option>
@@ -168,7 +184,6 @@ function CreateProduct() {
                         name='quantity'
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
-                        required
                     />
                     </div>
                     <div className='w-1/2 pl-4'>
@@ -179,7 +194,7 @@ function CreateProduct() {
                         name='price'
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                        required
+                        min={0}
                     />
                     </div>
                 </div>
@@ -191,6 +206,7 @@ function CreateProduct() {
                         name='collection'
                         value={collection}
                         onChange={(e) => setCollection(e.target.value)}
+                        disabled={category !== 'Lentes de contacto'}
                     >
                         <option value=''>Selecciona una colección</option>
                         <option value='Natural'>Natural</option>
@@ -221,7 +237,6 @@ function CreateProduct() {
                         accept="image/*"
                         multiple
                         onChange={handleFileInputChange}
-                        required
                     />
                     </div>
 
@@ -252,11 +267,10 @@ function CreateProduct() {
                         name='detail'
                         value={detail}
                         onChange={(e) => setDetail(e.target.value)}
-                        required
                         rows='3'
                     ></textarea>
                 </div>
-                <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full">Añadir Producto</button>
+                <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full" disabled={isSubmitting}>Añadir Producto</button>
                 <Modal showModal={showModal} close={closeModal} image={verification} text='Aceptar' title='Se ha agregado correctamente' handleCloseModal={closeModal} />
                 <button type='button' onClick={handleCancel} className="bg-white border border-black text-black py-2 w-full">Cancelar</button>
             </form>

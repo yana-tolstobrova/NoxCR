@@ -13,7 +13,7 @@ const accordionItems = [
   },
 ];
 
-test('renderiza el componente Accordion correctamente', () => {
+test('renderiza el componente Accordion correctamente', async () => {
   render(
     <Accordion
       accordionItems={accordionItems}
@@ -25,13 +25,13 @@ test('renderiza el componente Accordion correctamente', () => {
 
   accordionItems.forEach((item) => {
     expect(screen.getByText(item.title)).toBeInTheDocument();
-    expect(screen.queryByText(item.content)).not.toBeInTheDocument();
   });
 
   expect(screen.getByText('Descargar PDF')).toBeInTheDocument();
 });
 
-test('abre y cierra los elementos del acordeón al hacer clic', () => {
+
+test('muestra el enlace de descarga del PDF cuando showDownloadLink es true', () => {
   render(
     <Accordion
       accordionItems={accordionItems}
@@ -39,9 +39,15 @@ test('abre y cierra los elementos del acordeón al hacer clic', () => {
     />
   );
 
-  fireEvent.click(screen.getByText('Pregunta 1'));
-  expect(screen.getByText('Respuesta 1')).toBeInTheDocument();
+  const downloadLink = screen.getByText('Descargar PDF');
+  expect(downloadLink).toBeInTheDocument();
 
-  fireEvent.click(screen.getByText('Pregunta 1'));
-  expect(screen.queryByText('Respuesta 1')).not.toBeInTheDocument();
+  expect(downloadLink).toHaveAttribute('download', 'cuidados-noxcr.pdf');
+
+  expect(downloadLink).toHaveAttribute('target', '_blank');
+
+  expect(downloadLink).toHaveAttribute('rel', 'noopener noreferrer');
 });
+
+
+

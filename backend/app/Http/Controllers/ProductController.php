@@ -153,40 +153,65 @@ class ProductController extends Controller
     
 
     public function update(Request $request, $id): JsonResponse
-    {
-        try {
-            $product = Product::findOrFail($id);
+{
+    try {
+        $product = Product::findOrFail($id);
 
-            $request->validate([
-                'name' => 'required',
-                'category' => 'required',
-                'quantity' => 'required|integer|min:0',
-                'price' => 'required|numeric|min:0',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-                'collection' => 'nullable',
-                'color' => 'nullable',
-                'detail' => 'required',
-            ]);
+        $request->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'quantity' => 'required|integer|min:0',
+            'price' => 'required|numeric|min:0',
+            'collection' => 'nullable',
+            'colors' => 'nullable',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'detail' => 'required',
+        ]);
 
-            $imagePath = $product->image;
+        $imageUrls = [];
 
-            $product->update([
-                'name' => $request->input('name'),
-                'category' => $request->input('category'),
-                'quantity' => $request->input('quantity'),
-                'price' => $request->input('price'),
-                'image' => $imagePath,
-                'collection' => $request->input('collection'),
-                'color' => $request->input('color'),
-                'detail' => $request->input('detail'),
-            ]);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $uploadedFile = $imageFile->getRealPath();
 
-            return response()->json(['success' => true, 'message' => '¡Producto actualizado exitosamente!']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+                $uploadApi = new UploadApi();
+
+                $cloudinaryUpload = $uploadApi->upload($uploadedFile);
+
+                $imagePath = $cloudinaryUpload['secure_url'];
+
+                $photo = Photo::create([
+                    'url' => $imagePath, 
+                    'product_id' => $product->id,
+                ]);
+
+                $imageUrls[] = $imagePath;
+            }
         }
-    }
 
+        $selectedColorValues = json_decode($request->input('colors'));
+        $colorIds = [];
+        foreach ($selectedColorValues as $colorValue) {
+            $color = Color::firstOrCreate(['name' => $colorValue]);
+            $colorIds[] = $color->id;
+        }
+
+        $product->update([
+            'name' => $request->input('name'),
+            'category' => $request->input('category'),
+            'quantity' => $request->input('quantity'),
+            'price' => $request->input('price'),
+            'collection' => $request->input('collection'),
+            'detail' => $request->input('detail'),
+        ]);
+
+        $product->colors()->sync($colorIds);
+
+        return response()->json(['success' => true, 'message' => '¡Producto actualizado exitosamente!', 'image_urls' => $imageUrls]);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+    }
+}
     public function destroy($id): JsonResponse
 {
     try {
@@ -241,9 +266,9 @@ class ProductController extends Controller
             
             $userFavorites=$user->isFavorite()->get();
     
-            return response()->json([    
+            return response()->json(
                 $userFavorites
-            ], 200);
+            , 200);
             }
 
 
