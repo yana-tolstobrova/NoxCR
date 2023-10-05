@@ -9,12 +9,10 @@ export function MyCartProvider({ children }) {
   );
 
   useEffect(() => {
-    // Actualiza cartCount cuando cambie en localStorage
     const storedCartCount = parseInt(localStorage.getItem("cartCount")) || 0;
     setCartCount(storedCartCount);
   }, []);
 
-  // Función para actualizar el número total de productos en el carrito
   const updateCartCount = (newCount) => {
     setCartCount(newCount);
     localStorage.setItem("cartCount", newCount.toString());
