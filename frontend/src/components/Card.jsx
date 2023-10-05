@@ -87,27 +87,56 @@ const showCartNotification = () => {
 };
 
 
-   const handleToggleFavorites = async (id, isFavorite) => {
+const handleToggleFavorites = async (id, isFavorite) => {
+  console.log(id, isFavorite);
+  try {
+    await isFavorite ? removeFavorite(id) : addFavorite(id);
 
-    console.log(id,isFavorite)
-
-      try {
-
-        await isFavorite ? removeFavorite(id) : addFavorite(id)
-        //await isFavorite ? (removeFavorite(id) && isFavorite === false) : (addFavorite(id) && isFavorite === true);
-        console.log("segundo", id,isFavorite)
-
-      } catch (error){
-        console.error("Error al manejar favoritos:", error);
-
+    // Actualiza el estado local isFavorite para el producto
+    const updatedProducts = products.map(product => {
+      if (product.id === id) {
+        return {
+          ...product,
+          isFavorite: !isFavorite // Invierte el estado actual
+        };
       }
+      return product;
+    });
+
+    setProducts(updatedProducts);
+  } catch (error) {
+    console.error("Error al manejar favoritos:", error);
+  }
+};
+
+
+
+
+
+  //  const handleToggleFavorites = async (id, isFavorite) => {
+
+  //   console.log(id,isFavorite)
+
+  //     try {
+
+  //       if (isFavorite) {
+  //         await removeFavorite(id);
+  //         isFavorite = false;
+  //       } else {
+  //         await addFavorite(id);
+  //         isFavorite = true;
+  //       }
+
+        
+  //       console.log("segundo", id,isFavorite)
+
+  //     } catch (error){
+  //       console.error("Error al manejar favoritos:", error);
+
+  //     }
 
 
     
-
-   };
-  
-
   return (
     <div className="mx-8 m-8 md:ml-12">
     <div className="flex flex-wrap -mx-2">
