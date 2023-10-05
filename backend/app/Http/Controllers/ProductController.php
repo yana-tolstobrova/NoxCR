@@ -266,9 +266,9 @@ class ProductController extends Controller
             
             $userFavorites=$user->isFavorite()->get();
     
-            return response()->json([    
+            return response()->json(
                 $userFavorites
-            ], 200);
+            , 200);
             }
 
 
