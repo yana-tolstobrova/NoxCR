@@ -28,6 +28,11 @@ select:-webkit-autofill:focus {
   body {
     width: 100vh;
   }
+  .imgPageDetails{
+    position: relative;
+    margin-left: 200px;
+    width: 380px;
+  } 
 }
 
 .card-box:hover .card-menu
