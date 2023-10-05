@@ -7,6 +7,7 @@ import verification from '../../assets/verification.svg';
 import "../../index.css";
 import DeleteIcon from '../../assets/deleteIcon.svg';
 import Select from 'react-select';
+import { getColorsForProduct } from '../../services/ApiProducts'; 
 
 const fileTypes = ["image/jpeg", "image/png", "image/gif"];
 
@@ -15,16 +16,15 @@ function EditProduct() {
     const { id } = useParams();
     const [name, setName] = useState('');
     const [category, setCategory] = useState('');
-    const [quantity, setQuantity] = useState(0);
-    const [price, setPrice] = useState(0);
+    const [quantity, setQuantity] = useState();
+    const [price, setPrice] = useState();
     const [collection, setCollection] = useState('');
-    const [color, setColor] = useState('');
     const [detail, setDetail] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [images, setImages] = useState([]);
     const [selectedColors, setSelectedColors] = useState([]);
     const [error, setError] = useState('');
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  
     const colorOptions = [
         { value: 'Red', label: 'Rojo' },
         { value: 'Orange', label: 'Naranja' },
@@ -41,107 +41,133 @@ function EditProduct() {
         { value: 'Lilac', label: 'Lila' },
         { value: 'Blue', label: 'Azul' },
         { value: 'UV-Glow', label: 'Brillan en luz negra' },
-      ];
-      const handleDrop = (e) => {
-        e.preventDefault();
-        const newFiles = e.dataTransfer.files;
-        processFiles(newFiles);
-      };
-    
-      const handleDragOver = (e) => {
-        e.preventDefault();
-      };
-    
-      const handleFileInputChange = (e) => {
-        const newFiles = e.target.files;
-        processFiles(newFiles);
-      };
-    
-      const processFiles = (newFiles) => {
-          const updatedImages = [...images];
-      
-          for (let i = 0; i < newFiles.length; i++) {
-            if (fileTypes.includes(newFiles[i].type)) {
-              const reader = new FileReader();
-      
-              reader.onload = (e) => {
-                updatedImages.push(newFiles[i]);
-                setImages(updatedImages);
-              };
-      
-              reader.readAsDataURL(newFiles[i]);
-            }
-          }
-        };
-      
-        const removeImage = (index) => {
-          const updatedImages = [...images];
-          updatedImages.splice(index, 1);
-          setImages(updatedImages);
-        };
+    ];
+  
+    const handleDrop = (e) => {
+      e.preventDefault();
+      const newFiles = e.dataTransfer.files;
+      processFiles(newFiles);
+    };
+  
+    const handleDragOver = (e) => {
+      e.preventDefault();
+    };
+  
+    const handleFileInputChange = (e) => {
+      const newFiles = e.target.files;
+      processFiles(newFiles);
+    };
+  
+    const processFiles = (newFiles) => {
+      const updatedImages = [...images];
+  
+      for (let i = 0; i < newFiles.length; i++) {
+        if (fileTypes.includes(newFiles[i].type)) {
+          const reader = new FileReader();
+  
+          reader.onload = (e) => {
+            updatedImages.push(newFiles[i]);
+            setImages(updatedImages);
+          };
+  
+          reader.readAsDataURL(newFiles[i]);
+        }
+      }
+    };
+  
+    const removeImage = (index) => {
+      const updatedImages = [...images];
+      updatedImages.splice(index, 1);
+      setImages(updatedImages);
+    };
+  
     const openModal = () => {
-        setShowModal(true);
-      };
-    
+      setShowModal(true);
+    };
+  
     const closeModal = () => {
-        setShowModal(false);
-        navigate('/admin/products');
-      };
+      setShowModal(false);
+      navigate('/admin/products');
+    };
 
     useEffect(() => {
-        const fetchDetails = async () => {
-          try {
-            const product = await fetchProductDetails(id);
-            setName(product.name);
-            setCategory(product.category);
-            setQuantity(product.quantity);
-            setPrice(product.price);
-            setCollection(product.collection);
-            setColor(product.color);
-            setDetail(product.detail);
-          } catch (error) {
-            console.error('Error fetching product details:', error);
-          }
-        };
-      
-        fetchDetails();
-      }, [id]);
+      const fetchDetails = async () => {
+        try {
+          const product = await fetchProductDetails(id);
+          const colors = await getColorsForProduct(id);
+          const optionColor = colors.map((color) => ({ value: color.name, label: color.name }));
+          setName(product.name);
+          setCategory(product.category);
+          setQuantity(product.quantity);
+          setPrice(product.price);
+          setCollection(product.collection);
+          setDetail(product.detail);
+          setSelectedColors(optionColor);
+          console.log('initial colors:', optionColor) 
+        } catch (error) {
+          console.error('Error fetching product details:', error);
+        }
+      };
+  
+      fetchDetails();
+    }, [id]);
 
+    const handleColorChange = (selectedOptions) => {
+        setSelectedColors(selectedOptions);
+        console.log('selected colors:',selectedOptions)
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-         const formData = new FormData();
-         formData.append('name', name);
-         formData.append('category', category);
-         formData.append('quantity', quantity);
-         formData.append('price', price);
-         formData.append('collection', collection);
-         formData.append('color', color);
-         formData.append('detail', detail);
-    try {
-        const response = await editProduct(id, formData); 
+      e.preventDefault();
+  
+      if (name.trim() === '' || category.trim() === '' || detail.trim() === '') {
+        setError('El nombre, la cantidad, y la descripción del producto son obligatorios');
+        return;
+      }
+      if (quantity <= 0) {
+        setError('La cantidad debe ser mayor que cero');
+        return;
+      }
+      if (images.length === 0) {
+        setError('Selecciona al menos un archivo antes de enviar');
+        return;
+      }
+      setError('');
+  
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('category', category);
+      formData.append('quantity', quantity);
+      formData.append('price', price);
+      formData.append('collection', collection);
+      formData.append('detail', detail);
+      const selectedColorValues = selectedColors.map((color) => color.value);
+      formData.append('colors', JSON.stringify(selectedColorValues));
+      console.log(name, category, quantity, price, collection, detail, selectedColorValues)
+      try {
+        const response = await editProduct(id, formData);
         setName(response.name);
         setCategory(response.category);
         setQuantity(response.quantity);
         setPrice(response.price);
         setCollection(response.collection);
-        setColor(response.color);
+        setSelectedColors(response.colors); 
         setDetail(response.detail);
         openModal();
+        console.log(response)
       } catch (error) {
-        console.error('Error:', error);
-      }
-    };  
-    const handleCancel = () => {
-        navigate('/admin/products');
+        console.error('Error:', error)};
     };
-    const handleColorChange = (selectedOptions) => {
-        setSelectedColors(selectedOptions);
-        console.log(selectedOptions)
-      };
+  
+    const handleCancel = () => {
+      navigate('/admin/products');
+    };
+
+  
     return (
         <div className='py-10 px-10 h-full'>
             <h1 className='font-bold text-2xl text-purple mb-8'>Editar producto</h1>
+            <div className='h-10 py-2'>{error && <div className="text-red-500 font-xs">{error}</div>}</div>
             <div className="w-2/4 m-auto">
             <p className='font-medium text-xl text-purple mb-4'>Edita el producto</p>
             <form onSubmit={handleSubmit}>
@@ -260,7 +286,7 @@ function EditProduct() {
                         onChange={(e) => setDetail(e.target.value)}
                     ></textarea>
                 </div>
-                <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full" disabled={isSubmitting}>Guardar Cambios</button>
+                <button type='submit' className="mb-3 border-black border py-2 bg-black text-white w-full">Guardar Cambios</button>
                 <Modal showModal={showModal} close={closeModal} image={verification} text='Aceptar' title='Se ha editado correctamente' handleCloseModal={closeModal} />
                 <button type='button' onClick={handleCancel} className="bg-white border border-black text-black py-2 w-full">Cancelar</button>
             </form>

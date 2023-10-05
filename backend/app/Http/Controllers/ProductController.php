@@ -168,6 +168,40 @@ class ProductController extends Controller
             'detail' => 'required',
         ]);
 
+        // $imageUrls = [];
+
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $imageFile) {
+        //         $uploadedFile = $imageFile->getRealPath();
+
+        //         $uploadApi = new UploadApi();
+
+        //         $cloudinaryUpload = $uploadApi->upload($uploadedFile);
+
+        //         $imagePath = $cloudinaryUpload['secure_url'];
+
+        //         $photo = Photo::create([
+        //             'url' => $imagePath, 
+        //             'product_id' => $product->id,
+        //         ]);
+
+        //         $imageUrls[] = $imagePath;
+        //     }
+        // }
+
+        // $selectedColorValues = json_decode($request->input('colors'));
+        // $colorIds = [];
+        // foreach ($selectedColorValues as $colorValue) {
+        //     $color = Color::firstOrCreate(['name' => $colorValue]);
+        //     $colorIds[] = $color->id;
+        // }
+        $selectedColorValues = json_decode($request->input('colors'));
+        $colorIds = [];
+        foreach ($selectedColorValues as $colorValue) {
+            $color = Color::firstOrCreate(['name' => $colorValue]);
+            $colorIds[] = $color->id;
+        }
+
         $imageUrls = [];
 
         if ($request->hasFile('images')) {
@@ -188,14 +222,6 @@ class ProductController extends Controller
                 $imageUrls[] = $imagePath;
             }
         }
-
-        $selectedColorValues = json_decode($request->input('colors'));
-        $colorIds = [];
-        foreach ($selectedColorValues as $colorValue) {
-            $color = Color::firstOrCreate(['name' => $colorValue]);
-            $colorIds[] = $color->id;
-        }
-
         $product->update([
             'name' => $request->input('name'),
             'category' => $request->input('category'),

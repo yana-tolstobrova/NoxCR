@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../../components/ModalSuccess';
 import warning from '../../assets/warning.svg';
 import { reverseProducts, deleteProduct, getColorsForProduct } from '../../services/ApiProducts'; 
-import axios from 'axios';
 
 function ProductList() {
     const navigate = useNavigate();

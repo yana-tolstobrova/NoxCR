@@ -36,13 +36,8 @@ function DetailProduct() {
 		fetchPhotos();
     fetchData();
   }, [id]);
-  const getProductPhoto = (productId) => {
-    const productPhotos = photos.filter((photo) => photo.product_id === productId);
-    if (productPhotos.length > 0) {
-        return productPhotos[0].url; 
-    }
-    return 'No hay ningun foto del producto';
-};
+
+
   // const handleAddToCart = () => {
   //   const totalPrice = roundedPrice * quantity;
   //   addToCart(product, quantity);

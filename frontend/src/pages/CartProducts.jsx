@@ -137,7 +137,6 @@ function CartProducts() {
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
-          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado para reponer.`);
           setShowProductOutOfStockModal(true);
         }
       });
