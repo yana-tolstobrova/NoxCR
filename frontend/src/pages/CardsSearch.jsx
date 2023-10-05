@@ -3,11 +3,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import searchService from "../services/searchService";
 import { getPhotos } from '../services/ApiProducts';
 
-// import axios from "axios";
-
-// import { Link } from "react-router-dom";
-// import infoIcon from "../assets/Info.svg";
-
 const CardsSearch = () => {
   const [searchParams] = useSearchParams()
   const [searchResults, setSearchResults] = useState([]);

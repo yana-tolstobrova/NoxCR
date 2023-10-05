@@ -7,7 +7,7 @@ import iconInstagram from "../assets/instagram.svg";
 
 function Footer() {
   return (
-    <footer className="bg-black" id="contacto">
+    <footer className="bg-black" id="contacto" data-testid="footer">
         <div className="w-[90%] py-14 mx-auto flex justify-between">
           <div className="flex flex-column justify-between align-items-start md:flex-col md:justify-start md:w-[500px]">
             <div>
