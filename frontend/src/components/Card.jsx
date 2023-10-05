@@ -156,8 +156,8 @@ const showCartNotification = () => {
                 </svg>
                 </button>
                 
-                <Link to={`/product/${product.id}`} className='h-[75%]'></Link>
-                <button onClick={(e) => handleAddToCart(e, product)} className="hover:bg-white hover:text-black border-black border mb-12 py-4 bg-black text-white w-full text-xl md:py-4 md:mb-8 2xl:py-4 2xl:text-xl 2xl:mb-76">Añadir al carrito</button>
+                <Link to={`/product/${product.id}`} className='h-[40%]'></Link>
+                <button onClick={(e) => handleAddToCart(e, product)} className="hover:bg-white hover:text-black border-black border mb-12 py-4 bg-black text-white w-full text-xl md:py-4 md:mb-8 2xl:py-4 2xl:text-xl">Añadir al carrito</button>
               </div>
   
               <Link to={`/product/${product.id}`}>
