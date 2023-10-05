@@ -44,33 +44,30 @@ function NavBarMenu() {
 
   return (
     <div className="relative inline-block text-left">
-      {/* Código SVG del ícono de usuario */}
-      <img className='px-3 h-5 md:block hidden' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
-      <img className='px-3 h-5 md:hidden' src={whiteProfile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-7 md:block hidden' src={profile} alt="Profile-icon" onClick={toggleDropdown} /> 
+      <img className='px-3 h-7 md:hidden' src={whiteProfile} alt="Profile-icon" onClick={toggleDropdown} /> 
 
-      {/* Menú desplegable (se muestra u oculta según el estado de isDropdownOpen) */}
       {isDropdownOpen && (
         <div className="absolute right-0 mt-2 w-44 bg-white rounded-md shadow-lg z-10" ref={dropdownRef} onMouseEnter={() => setDropdownOpen(true)} onMouseLeave={() => setDropdownOpen(false)}>
-          {/* Contenido del menú desplegable */}
           <ul>
-            {user ? ( // Si el usuario ha iniciado sesión
+            {user ? ( 
               <>
-                <li className="py-2 flex justify-center">
+                <li className="py-2 flex justify-center" style={{ color: '#7C3973' }}>
                   <TwLink to="/userProfile">Mi cuenta</TwLink>
                 </li>
-                <li className="py-2 flex justify-center">
+                <li className="py-2 flex justify-center" style={{ color: '#7C3973' }}>
                   <TwLink to="/favoritos">Favoritos</TwLink>
                 </li>
-                <li className="py-2 flex justify-center">
+                <li className="py-2 flex justify-center" style={{ color: '#7C3973' }}>
                   <TwLink onClick={handleLogout}>Cerrar sesión</TwLink>
                 </li>
               </>
-            ) : ( // Si el usuario no ha iniciado sesión
+            ) : ( 
               <>
-                <li className="py-2 flex justify-center">
+                <li className="py-2 flex justify-center" style={{ color: '#7C3973' }}>
                   <TwLink to="/login">Iniciar sesión</TwLink>
                 </li>
-                <li className="py-2 flex justify-center">
+                <li className="py-2 flex justify-center" style={{ color: '#7C3973' }}>
                   <TwLink to="/register">Crear cuenta</TwLink>
                 </li>
               </>
