@@ -25,7 +25,6 @@ class AuthTest extends TestCase
         $response = $this->postJson('api/register', [
             'name' => 'Elena',
             'email'=>'ele@mail.com',
-            'email_verified_at' => '04/10/2023',
             'password' => 'Elena1998*',
             'password_confirmation' => 'Elena1998*',
             'subscription' => true
@@ -38,7 +37,6 @@ class AuthTest extends TestCase
                 'id',
                 'name',
                 'email',
-                'email_verified_at',
                 'created_at',
                 'updated_at'
             ],

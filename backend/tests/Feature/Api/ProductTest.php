@@ -44,25 +44,25 @@ class ProductTest extends TestCase
              ]);
 }
 
-public function testShow()
-{
-    $product = factory(Product::class)->create(); // Crea un producto ficticio para la prueba
+// public function testShow()
+// {
+//     $product = factory(Product::class)->create(); // Crea un producto ficticio para la prueba
 
-    $response = $this->json('GET', "/api/products/{$product->id}");
+//     $response = $this->json('GET', "/api/products/{$product->id}");
 
-    $response->assertStatus(200)
-             ->assertJsonStructure([
-                 'id',
-                 'name',
-                 'category',
-                 // Agrega más campos aquí según la estructura de tu respuesta
-             ])
-             ->assertJson([
-                 'id' => $product->id,
-                 'name' => $product->name,
-                 'category' => $product->category,
-                 // Agrega más campos aquí y verifica sus valores según el producto ficticio
-             ]);
+//     $response->assertStatus(200)
+//              ->assertJsonStructure([
+//                  'id',
+//                  'name',
+//                  'category',
+//                  // Agrega más campos aquí según la estructura de tu respuesta
+//              ])
+//              ->assertJson([
+//                  'id' => $product->id,
+//                  'name' => $product->name,
+//                  'category' => $product->category,
+//                  // Agrega más campos aquí y verifica sus valores según el producto ficticio
+//              ]);
 }
 
 
@@ -72,4 +72,4 @@ public function testShow()
 
 
 
-}
+

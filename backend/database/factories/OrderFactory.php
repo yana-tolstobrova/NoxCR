@@ -21,8 +21,9 @@ class OrderFactory extends Factory
         return [
             'address' => $faker->address,
              'phone' => $faker->phoneNumber,
+             'date_ordered' => '1980-10-01',
             'total_amount' => $faker->randomFloat(2, 10, 1000),
-            'shipping_type' => $faker->word,
+            'shipping_type' => $faker->word
 
 
             
