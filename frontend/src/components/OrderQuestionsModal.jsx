@@ -10,14 +10,12 @@ function OrderQuestionsModal({ showModal, handleCloseModal, handleContinueToOrde
           <div className="w-full">
             <div className="m-6 my-20 max-w-[400px] mx-auto">
               <h1 className="mb-4 text-3xl text-left font-extrabold text-gray-800">Preguntas importantes antes de la compra</h1>
-
               <ul className="ml-2 text-base text-gray-700">
                   <li className='mb-4'>¿Ya has usado Lentes de contacto anteriormente?</li>
                   <li className='mb-4'>¿Conoces los cuidados, precauciones y limpieza de tus lentes de contacto?</li>
                   <li className='mb-4'>¿Cuentas con la solución multipropósito para desinfectarlos adecuadamente?</li>
                 </ul>
                 <h2 className="text-lg font-semibold text-gray-700 mt-10 ">Para más información comunicate con nosotros a traves de nuestro</h2>
-
                 <TwLink as="anchor" href="https://wa.me/50684993726" className="text-xl font-semibold hover:font-semibold hover:underline flex justify-center mt-2" target="_blank">WhatsApp</TwLink>
                 <div className='text-center'>
                   <button
