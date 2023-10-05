@@ -31,15 +31,6 @@ class MailController extends Controller
 
     $itemList = "";
 
-    // foreach (json_decode($request->products) as $item)
-    // {
-        
-    //     $itemList .= $item->product->name . " ";
-    //     $itemList .= $item->quantity . " ";
-    //     $itemList .= $item->product->price . " ";
-    //     $itemList .= "</br>";
-    // }
-
         
        $orderData= [
                 'order_id'=> $request->order_id, 

@@ -24,8 +24,6 @@ class ProductFactory extends Factory
             'quantity' => rand(1,30),
             'price' => $this->faker->randomFloat(2,16,80),
             'collection' => "Sclera",
-            'color' => 'Negro',
-            'image' => $this->faker->imageUrl(),
             'detail' => 'Bienvenido al mundo de la fantasía y el asombro con nuestros lentes de contacto'
         ];
     }
