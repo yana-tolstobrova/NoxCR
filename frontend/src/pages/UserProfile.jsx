@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from "../contexts/AuthContext";
 import { getOrders, getOrderLines } from '../services/ApiOrders';
+import HistoryEmpty from '../components/HistoryEmpty';
 
 function UserProfilePage() {
 const { user, hasRole } = useAuth();
@@ -38,6 +39,7 @@ useEffect(() => {
         Email: <span>{user.email}</span>
     </div>
     <h2 className="text-center text-2xl font-bold mt-4 text-purple">Historial de los pedidos</h2>
+    <HistoryEmpty />
     <table className="w-[85%] mx-auto mt-4">
         <thead>
           <tr className="text-left h-12">
