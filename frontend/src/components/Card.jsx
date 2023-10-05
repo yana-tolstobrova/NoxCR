@@ -19,6 +19,7 @@ function Card({ categoryFilter, limit}) {
       const allProducts = await cardsProducts();
 
       const allFavorites = user ? await fetchFavorites():[];
+      console.log(allFavorites)
 
       const favProducts= allProducts.map(product => {
         return {
@@ -26,7 +27,7 @@ function Card({ categoryFilter, limit}) {
           isFavorite: allFavorites.some(favorite => favorite.id === product.id)
         }
       })
-      
+      console.log(favProducts);
       
       if (categoryFilter) {
         const filteredProducts = favProducts.filter((product) => product.collection === "Product");
