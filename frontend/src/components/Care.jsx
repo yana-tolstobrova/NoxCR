@@ -11,10 +11,10 @@ function Care() {
               <img
                 src={require(`../assets/${care.img}`)}
                 alt="Imagen de cuidados"
-                className="w-64 h-64 mb-6 md:w-32 md:h-32 2xl:w-96 2xl:h-96 object-cover rounded-full mb-2"
+                className="w-64 h-64 mb-6 md:w-32 md:h-32 2xl:w-64 2xl:h-64 object-cover rounded-full mb-2"
               />
             </div>
-            <p className="text-3xl m-4 text-gray-800 leading-relaxed md:text-base md:leading-6 2xl:m-14 2xl:text-3xl 2xl:leading-relaxed" style={{ color: "#575757" }}>{care.description}</p>
+            <p className="text-3xl m-4 text-gray-800 leading-relaxed md:text-base md:leading-6 2xl:m-14 2xl:text-2xl 2xl:leading-relaxed" style={{ color: "#575757" }}>{care.description}</p>
           </div>
         ))}
       </div>
