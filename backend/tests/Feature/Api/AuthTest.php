@@ -25,8 +25,10 @@ class AuthTest extends TestCase
         $response = $this->postJson('api/register', [
             'name' => 'Elena',
             'email'=>'ele@mail.com',
+            'email_verified_at' => time,
             'password' => 'Elena1998*',
-            'password_confirmation' => 'Elena1998*'
+            'password_confirmation' => 'Elena1998*',
+            'subscription' => true
         ]);
 
         $response->assertStatus(200);
@@ -36,6 +38,7 @@ class AuthTest extends TestCase
                 'id',
                 'name',
                 'email',
+                'email_verified_at',
                 'created_at',
                 'updated_at'
             ],
@@ -48,6 +51,7 @@ class AuthTest extends TestCase
         $response = $this->postJson('api/register',[
             'name' => null,
             'email' => 'zara@gmail.com',
+            'email_verified_at' => time, 
             'password'=> 'Zara123456*',
             'password_confirmation'=> 'Zara123456*'
         ]);
