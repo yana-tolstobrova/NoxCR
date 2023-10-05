@@ -93,12 +93,16 @@ const showCartNotification = () => {
 
       try {
 
-        await isFavorite ? removeFavorite(id) : addFavorite(id);
-      
+        await isFavorite ? removeFavorite(id) : addFavorite(id)
+        //await isFavorite ? (removeFavorite(id) && isFavorite === false) : (addFavorite(id) && isFavorite === true);
+        console.log("segundo", id,isFavorite)
+
       } catch (error){
         console.error("Error al manejar favoritos:", error);
 
       }
+
+
     
 
    };
