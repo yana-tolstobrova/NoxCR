@@ -19,7 +19,7 @@ function NavBar() {
   return (
     <div className="flex w-full justify-between items-center relative">
       <img
-        className="px-3 w-15 h-7 md:hidden"
+        className="pr-3 pl-10 w-15 h-7 md:hidden"
         src={menuBurger}
         alt="Menú hamburguesa"
         onClick={toggleMobileMenu}
