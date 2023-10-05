@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useMyCart } from "../contexts/MyCartContext";
 import {
   removeFromCart,
   incrementQuantity,
@@ -18,6 +19,7 @@ import ModalSuccess from "../components/ModalSuccess";
 import verificationNegative from "../assets/verification-negative.svg";
 
 function CartProducts() {
+  const { cartCount, updateCartCount } = useMyCart();
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModalOrder, setShowModalOrder] = useState(false);
@@ -27,25 +29,17 @@ function CartProducts() {
   const [showProductOutOfStockModal, setShowProductOutOfStockModal] =
     useState(false);
 
-      // Define la función calculateTotalQuantity antes de su primer uso.
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
   const calculateTotalQuantity = (cart) => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const [cartCount, setCartCount] = useState(calculateTotalQuantity(cart));
-
   useEffect(() => {
-    // Calcula la cantidad total de productos en el carrito
-    const updatedCartCount = calculateTotalQuantity(cart);
+    updateCartCount(totalQuantity);
+  }, [totalQuantity, updateCartCount]);
 
-    // Actualiza el estado local
-    setCartCount(updatedCartCount);
-
-    // Guarda la cantidad en localStorage
-    localStorage.setItem("cartCount", updatedCartCount.toString());
-  }, [cart]);
-
-  console.log("prueba que hay en el carrito",cartCount)
+  console.log(calculateTotalQuantity);
 
   const [formData, setFormData] = useState({
     name_complete: "",
@@ -83,7 +77,7 @@ function CartProducts() {
     const updatedCart = removeFromCart(cart, itemToRemove);
     setCart(updatedCart);
 
-    const cartTotal = updatedCart.reduce((acc,item) => acc + item.quantity, 0);
+    const cartTotal = updatedCart.reduce((acc, item) => acc + item.quantity, 0);
     localStorage.setItem("cartTotal", cartTotal.toString());
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
@@ -133,7 +127,7 @@ function CartProducts() {
     try {
       const editProductPromises = cart.map(async (item) => {
         const newQuantity = item.product.quantity - item.quantity;
-      
+
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
@@ -169,9 +163,9 @@ function CartProducts() {
       products: JSON.stringify(cart),
       data: "lista productos",
     };
-    
-    sendShippingOrder(emailData); 
-  }
+
+    sendShippingOrder(emailData);
+  };
 
   const handleOrderLinesSubmit = (orderId) => {
     cart.forEach((item) => {
@@ -213,8 +207,6 @@ function CartProducts() {
     openOrderQuestionsModal();
   };
 
-
-
   return (
     <div className="h-screen pt-20">
       <h1
@@ -240,9 +232,7 @@ function CartProducts() {
                   Categoría: {item.product.collection}
                 </p>
                 <p className="text-lg" style={{ color: "#3C2046" }}>
-                  {item.product.quantity <= 3
-                    ? "Pocas Unidades en Stock"
-                    : " "}
+                  {item.product.quantity <= 3 ? "Pocas Unidades en Stock" : " "}
                 </p>
                 <p className="text-lg" style={{ color: "#3C2046" }}>
                   ₡{Math.floor(item.product.price).toLocaleString()}
@@ -366,4 +356,3 @@ function CartProducts() {
 }
 
 export default CartProducts;
-

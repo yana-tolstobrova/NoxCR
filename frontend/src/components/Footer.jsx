@@ -20,14 +20,7 @@ function Footer() {
             </div>
             <p className="mt-32 text-lg hidden md:block md:w-[50%] md:text-sm 2xl:text-2xl" style={{ color: "#A2A2A2" }}>
             "Nox.Cr es una tienda virtual costarricense muy querida por artistas de maquillaje, drags , cosplayers y modelos, quien dio sus inicios un Octubre del 2018.  </p>
-
-              
-
-
-            
-          </div>
-
-
+     </div>
           <div className="mt-36 mr-32 md:mt-20">
             <nav className="text-white">
               <ul className="mx-auto">
@@ -148,13 +141,8 @@ function Footer() {
                 </li>
               </ul>
             </div>
-            </div>
-         
+            </div>        
         </div>
-
-
-
-
         <div className="bg-white">
           <div
             className="mx-auto py-4 px-5 items-center"

@@ -36,37 +36,31 @@ function DetailProduct() {
 		fetchPhotos();
     fetchData();
   }, [id]);
-
-
-  // const handleAddToCart = () => {
-  //   const totalPrice = roundedPrice * quantity;
-  //   addToCart(product, quantity);
-  //   window.location.href = "/add-to-cart";
-  // };
+  const getProductPhoto = (productId) => {
+    const productPhotos = photos.filter((photo) => photo.product_id === productId);
+    if (productPhotos.length > 0) {
+        return productPhotos[0].url; 
+    }
+    return 'No hay ningun foto del producto';
+};
 
   const handleAddToCart = () => {
     const totalPrice = roundedPrice * quantity;
-    
-    // Obtén el carrito actual desde el almacenamiento local
+
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
   console.log(cart)
     const existingCartItem = cart.find(item => item.product.id === product.id);
   
     if (existingCartItem) {
-      // El producto ya está en el carrito, incrementa la cantidad
       existingCartItem.quantity += quantity;
     } else {
-      // El producto no está en el carrito, agrégalo como una nueva entrada
       cart.push({ product, quantity });
     }
   
-    // Guarda el carrito actualizado en el almacenamiento local
     localStorage.setItem("cart", JSON.stringify(cart));
-  
-    // Actualiza el contador de productos en el carrito
+
     setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
-  
-    // Redirige al usuario a la página del carrito o realiza alguna otra acción que necesites
+
     window.location.href = "/add-to-cart";
   };
 
