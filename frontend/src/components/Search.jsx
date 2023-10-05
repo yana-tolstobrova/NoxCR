@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import searchService from '../services/searchService'; // Importa el servicio de búsqueda
 import search from '../assets/search.svg';
 import whiteSearch from '../assets/whiteSearch.svg';
 
@@ -25,10 +24,6 @@ function Search() {
       }
     };
 
-    // const handleInputChange = (e) => {
-    //     setSearchTerm(e.target.value);
-    // };
-
     const goToSearch = () => {
         const inputValue = inputRef?.current?.value
         if (inputValue && isInputVisible) {
@@ -41,20 +36,6 @@ function Search() {
         toggleInput();
         goToSearch();
     }
-
-    // const handleSearch = async () => {
-    //   try {
-    //     const results = await searchService.searchProducts(searchTerm);
-    //     setSearchResults(results);
-    //   } catch (error) {
-    //     console.error('Error en la solicitud de búsqueda:', error);
-    //   }
-    // };
-
-    // const handleSearch = (e) => {
-    //     e.preventDefault();
-    //     `/search?query=${searchTerm}`;
-    // };
 
     const onKeyDownHandler = (event) => {
         if(event.key === 'Enter'){
@@ -75,7 +56,6 @@ function Search() {
             type="text"
             className="border rounded-sm py-2 pr-7 pl-2 w-48"
             placeholder="Buscar producto..."
-            // onChange={handleInputChange}
             onKeyDown={onKeyDownHandler}
             data-testid="search-input"
           />

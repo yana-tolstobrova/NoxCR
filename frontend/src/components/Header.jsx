@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import logo from "../assets/Logo.svg"
-// import NavBar from "./NavBar2";
 
 export function Header() {
 
