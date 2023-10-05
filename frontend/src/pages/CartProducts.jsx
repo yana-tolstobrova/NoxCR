@@ -45,7 +45,7 @@ function CartProducts() {
     localStorage.setItem("cartCount", updatedCartCount.toString());
   }, [cart]);
 
-  console.log(cartCount)
+  console.log("prueba que hay en el carrito",cartCount)
 
   const [formData, setFormData] = useState({
     name_complete: "",
@@ -137,7 +137,6 @@ function CartProducts() {
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
-          alert(`Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado para reponer.`);
           setShowProductOutOfStockModal(true);
         }
       });

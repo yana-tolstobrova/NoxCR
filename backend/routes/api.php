@@ -54,5 +54,5 @@ Route::get('colors', [ProductController::class, 'getColor']);
 Route::get('products/{id}/colors', [ProductController::class, 'showColors']);
 
 
-Route::put('products/{id}', [ProductController::class, 'editQuantity']);
+Route::put('products/change-quantity/{id}', [ProductController::class, 'editQuantity']);
 

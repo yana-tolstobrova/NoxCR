@@ -70,7 +70,7 @@ export const getProducts = () => {
       return [];
     });
 };
-export const editProduct = (id, formData) => axios.put(`${API_BASE_URL}/${id}`, formData, {
+export const editProduct = (id, formData) => axios.put(`${API_URL}/products/${id}`, formData, {
     withCredentials: true,
     headers: {
       "Accept": "application/json",
@@ -110,7 +110,7 @@ export const reverseProducts = () => {
 
 export const editProductQuantity = async (productId, newQuantity) => {
   try {
-    const response = await axios.put(`${API_URL}/products/${productId}`, newQuantity, { withCredentials: true });
+    const response = await axios.put(`${API_URL}/products/change-quantity/{id}${productId}`, newQuantity, { withCredentials: true });
 
     if (response.status === 200) {
       return response.data;
