@@ -5,7 +5,7 @@ const accordionItemsDetails = [
     },
     {
       title: 'Más información',
-      content: 'Respuesta a la pregunta 2 debo esperar porque esta relacionado con el tiempo de uso y varia según el tipo de lentilla',
+      content: 'A la espera de este texto, entendiendo que esta relacionado con el tiempo de uso y varia según el tipo de lentilla',
     },
   ];
 

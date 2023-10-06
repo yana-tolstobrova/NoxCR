@@ -7,7 +7,7 @@ import { useMyCart } from "../contexts/MyCartContext";
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-function Card({ categoryFilter, limit}) {
+function Card({ categoryFilter, limit, collection }) {
   const [products, setProducts] = useState([]);
   const [isFavorite, setIsFavorite] = useState();
   const [quantity, setQuantity] = useState(1);
@@ -20,35 +20,32 @@ function Card({ categoryFilter, limit}) {
   useEffect(() => {
     const fetchData = async () => {
       const allProducts = await cardsProducts();
-
-      const allFavorites = user ? await fetchFavorites():[];
-      console.log(allFavorites)
-
-      const favProducts= allProducts.map(product => {
-        return {
-          ...product,
-          isFavorite: allFavorites.some(favorite => favorite.id === product.id)
-        }
-      })
-      console.log(favProducts);
+      const allFavorites = user ? await fetchFavorites() : [];
       
-      if (categoryFilter) {
-        const filteredProducts = favProducts.filter((product) => product.category === "Productos de cuidado")      
-        setProducts(filteredProducts.slice(0, limit));
-      } else {
-        setProducts(favProducts.slice(0, limit));
-      }
+      const filteredProducts = allProducts
+        .filter((product) => {
+          return collection ? product.collection === collection : true;
+        })
+        .filter((product) => {
+          return categoryFilter ? product.category === "Productos de cuidado" : true;
+        })
+        .map((product) => ({
+          ...product,
+          isFavorite: allFavorites.some((favorite) => favorite.id === product.id),
+        }));
+      
+      setProducts(filteredProducts.slice(0, limit));
     };
+  
     const fetchPhotos = async () => {
-			const allPhotos = await getPhotos();
-			setPhotos(allPhotos);
-		  };
-	
-		fetchPhotos();
-
+      const allPhotos = await getPhotos();
+      setPhotos(allPhotos);
+    };
+  
+    fetchPhotos();
     fetchData();
-  }, [categoryFilter, limit, user]);
-
+  }, [collection, categoryFilter, limit, user]);
+  
   const getProductPhoto = (productId) => {
     const productPhotos = photos.filter((photo) => photo.product_id === productId);
     if (productPhotos.length > 0) {
@@ -117,6 +114,15 @@ const showCartNotification = () => {
     }
   }
   };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+      // const allProducts = await cardsProducts();
+      // const filteredProducts = allProducts.filter((product) => product.collection === collection);
+      // setProducts(filteredProducts);
+  //   };
+  //   fetchData();
+  // }, [collection]);
   
   return (
     <div className="mx-8 md:mx-12">
