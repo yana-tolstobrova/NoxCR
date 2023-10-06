@@ -84,6 +84,12 @@ Una web responsive donde se pueda gestionar usuarios registrados, saber desde qu
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DigitalOcean_logo.svg/1200px-DigitalOcean_logo.svg.png" alt="digitalocean" width="60" height="40"/>
 </div>
 
+### 🛠 Test realizados en Frontend y Backend 
+<div>
+<img src="https://i0.wp.com/urlanheat.com/wp-content/uploads/2017/02/phpunit.png?fit=500%2C446&ssl=1" alt="PHPUnit" width="60" height="40"/>
+<img src="https://ih1.redbubble.net/image.404020079.1876/st,small,507x507-pad,600x600,f8f8f8.u7.jpg" alt="jest" width="60" height="40"/>
+</div>
+
 ### Instrucciones de Uso
 Para aprovechar al máximo esta versión del proyecto, es fundamental seguir cuidadosamente las instrucciones de instalación tanto para el frontend como para el backend. Antes de continuar, asegúrate de contar con los siguientes requisitos previos:
 
