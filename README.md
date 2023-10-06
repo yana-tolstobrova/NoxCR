@@ -1,6 +1,6 @@
 <div align="center">
 <img src="./frontend/src/assets/logo-equipo.png" alt="Logo de equipo de desarrolladoras" width="90" height="70"/>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6SlW_KVhrgX54SLFp1Rc8C3vsGmdacG8mg&usqp=CAU" alt="Logo NoxCR" width="90" height="70"/>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6SlW_KVhrgX54SLFp1Rc8C3vsGmdacG8mg&usqp=CAU" alt="Logo NoxCR" width="100" height="70"/>
 </div>
 
 # NoxCR
