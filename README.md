@@ -54,7 +54,6 @@ Una web responsive donde se pueda gestionar usuarios registrados, saber desde qu
 <div>
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/>
 <img src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" />  
-<img src="https://miro.medium.com/v2/resize:fit:1400/1*_6ooq0R60ba3UT5c-QVemA.png" alt="taildwindcss" width="70" height="40"/>
 <img src="https://raw.githubusercontent.com/jmnote/z-icons/master/svg/php.svg" alt="php" width="40" height="40"/>
 <img src="https://profilinator.rishav.dev/skills-assets/mysql-original-wordmark.svg" alt="react" width="40" height="40"/>
 <img src="https://profilinator.rishav.dev/skills-assets/laravel-plain-wordmark.svg" alt="Laravel" width="40" height="40"/>
@@ -79,6 +78,9 @@ Una web responsive donde se pueda gestionar usuarios registrados, saber desde qu
 <div>
 <img src="https://miro.medium.com/v2/resize:fit:640/0*r3O0lVqhmhgql4Co.png" alt="Sanctum" width="60" height="40"/>
 <img src="https://spatie.be/images/og-image.jpg" alt="spatie" width="60" height="40"/>
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*_6ooq0R60ba3UT5c-QVemA.png" alt="taildwindcss" width="60" height="40"/>
+<img src="https://antoniofernandez.com/assets/blog/cloudinary.png" alt="cloudinary" width="60" height="40"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DigitalOcean_logo.svg/1200px-DigitalOcean_logo.svg.png" alt="digitalocean" width="60" height="40"/>
 </div>
 
 ### Instrucciones de Uso
