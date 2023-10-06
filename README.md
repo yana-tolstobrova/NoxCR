@@ -17,18 +17,35 @@ Una web responsive donde se pueda gestionar usuarios registrados, saber desde qu
 
 [DrawSql](https://drawsql.app/teams/noxcr-1/diagrams/noxcr-db)
 
-### Figma
+## Figma
+### Foundations 
+[Foundaciones de colores](./frontend//src/assets/foundations-color.png)
+
+[Paleta colores](./frontend//src/assets/palete-color.png)
+
+[Tipografía](./frontend//src/assets/tipografy.png)
+
 #### Maqueta y propuesta al cliente
 [Wireframe](./frontend//src/assets/propuesta-figma.png)
 
+[Propuesta mobile](./frontend//src/assets/propuesta-mobile.png)
+
+[Propuesta desktop](./frontend//src/assets/propuesta-desktop.png)
+
+[Propuesta perfil administrador](./frontend//src/assets/panel-administrador.png)
+
 ### Atomic Design
 [Atomos](./frontend/src/assets/atomos.png)
+
 [Moleculas](./frontend/src/assets/moleculas.png)
+
 [Organismos](./frontend/src/assets/organismos.png)
 
 ### Final Design
 [Desktop](./frontend/src/assets/desktop.png)
+
 [Mobile](./frontend/src/assets/mobile.png)
+
 [Administrador](./frontend/src/assets/admin.png)
 
 
