@@ -8,39 +8,38 @@ import iconInstagram from "../assets/instagram.svg";
 function Footer() {
   return (
     <footer className="bg-black" id="contacto" data-testid="footer">
-        <div className="w-[90%] py-14 mx-auto flex justify-between">
-          <div className="flex flex-column justify-between align-items-start md:flex-col md:justify-start md:w-[500px]">
-            <div>
-              <img
+        <div className="py-16 px-10 xl:px-28 flex md:px-10 flex-col md:flex-row items-center">
+          <div className="md:w-1/3 w-full flex justify-center mb-4">
+            <div className="xl:w-[75%] md:w-full">
+                <img
                 src={logo}
-                className="absolute h-20 md:h-20 2xl:h-32"
-          
+                className="h-16"
                 alt="logo"
               />
-            </div>
-            <p className="mt-32 text-lg hidden md:block md:w-[50%] md:text-sm 2xl:text-2xl" style={{ color: "#A2A2A2" }}>
+            <p className="mt-8 hidden font-light md:block md:text-base text-[#A2A2A2] block ">
             "Nox.Cr es una tienda virtual costarricense muy querida por artistas de maquillaje, drags , cosplayers y modelos, quien dio sus inicios un Octubre del 2018.  </p>
-     </div>
-          <div className="mt-36 mr-32 md:mt-20">
-            <nav className="text-white">
-              <ul className="mx-auto">
+            </div>
+          </div>
+          <div className="w-1/3 flex justify-center hidden md:flex">
+            <nav className="text-[#A2A2A2]">
+              <ul>
                 <li className="pb-4">
-                  <a className="hover:font-semibold hover:underline text-xl md:text-base 2xl:text-2xl " href="#productos">
+                  <a className="hover:text-white text-base" href="#productos">
                     Productos
                   </a>
                 </li>
                 <li className="pb-4">
-                  <a className="hover:font-semibold hover:underline text-center text-xl md:text-base 2xl:text-2xl" href="#cuidados">
+                  <a className="hover:text-white text-center text-base" href="#cuidados">
                     Cuidados
                   </a>
                 </li>
                 <li className="pb-4">
-                  <a className="hover:font-semibold hover:underline text-center text-xl md:text-base 2xl:text-2xl" href="#">
+                  <a className="hover:text-white text-center text-base" href="#">
                     Contacto
                   </a>
                 </li>
                 <li className="pb-4">
-                  <a className="hover:font-semibold hover:underline text-center text-xl md:text-base 2xl:text-2xl" href="#faq">
+                  <a className="hover:text-white text-center text-base" href="#faq">
                     FAQ
                   </a>
                 </li>
@@ -48,10 +47,10 @@ function Footer() {
             </nav>
           </div>
 
-          <div>
-            <div className="flex space-x-6 md:space-x-2 xl:space-x-4">
+          <div className="w-1/3 flex flex-col items-center">
+            <div>
+              <div className="flex space-x-6 md:space-x-2">
               <a
-                className="text-white"
                 href="https://www.facebook.com/NOXCRLentes"
                 target="_blank"
                 rel="noreferrer"
@@ -60,7 +59,7 @@ function Footer() {
                 <img
                   src={iconFacebook}
                   alt="icono Facebook"
-                  className="h-14 md:h-14 2xl:h-16"
+                  className="h-14 md:h-10"
                 />
               </a>
               <a
@@ -73,7 +72,7 @@ function Footer() {
                 <img
                   src={iconInstagram}
                   alt="icono Instagram"
-                  className="h-14 md:h-14 2xl:h-16"
+                  className="h-14 md:h-10"
                 />
               </a>
               <a
@@ -86,7 +85,7 @@ function Footer() {
                 <img
                   src={iconTikTok}
                   alt="icono TikTok"
-                  className="h-14 md:h-14 2xl:h-16"
+                  className="h-14 md:h-10"
                 />
               </a>
               <a
@@ -99,55 +98,55 @@ function Footer() {
                 <img
                   src={iconWhathsapp}
                   alt="icono Whatsapp"
-                  className="h-14 md:h-14 2xl:h-16"
+                  className="h-14 md:h-10"
                 />
               </a>
             </div>
       
 
-            <div className="flex flex-col mt-6 space-y-2 text-m text-white 2xl:mt-8 md:mt-2">
-              <ul className="py-2 flex flex-col gap-2 2xl:gap-4">
+            <div className="flex flex-col mt-6 space-y-2 text-[#A2A2A2]">
+              <ul className="py-2 flex flex-col gap-2">
                 <li>
-                  <p className="font-light text-white text-xl md:text-base 2xl:text-3xl">+506 8329 0039</p>
+                  <a className="font-light text-xl md:text-sm hover:text-white" href="tel:+50683290039">+506 8329 0039</a>
                 </li>
                 <li>
-                  <p className="font-light text-white text-lg md:text-sm  2xl:text-2xl">
-                    noxcrlentes@gmail.com
-                  </p>
+                  <a className="font-light text-xl md:text-sm hover:text-white" href="mailto:noxcrlentes@gmail.com">noxcrlentes@gmail.com</a>
                 </li>
                 <li>
-                  <p className="underline text-white text-xl md:text-base  2xl:text-3xl">Horario:</p>
-                </li>
-                <li>
-                  <p
-                    className="font-light text-lg text-white md:text-sm 2xl:text-2xl"
-                  >
-                    Lunes a Viernes <br /> 10:00 a 12:00 y de 13:00 a 21:00.
-                  </p>
+                  <p className="text-xl xl:text-base text-white">Horario:</p>
                 </li>
                 <li>
                   <p
-                    className="font-light text-lg text-white md:text-sm 2xl:text-2xl"
+                    className="font-light text-lg md:text-sm"
                   >
-                    Sábados <br /> 10:00 a 12:00
+                    Lunes a Viernes: 10:00 - 12:00 y 13:00 - 21:00
                   </p>
                 </li>
                 <li>
                   <p
-                    className="font-light text-lg text-white md:text-sm 2xl:text-2xl"
+                    className="font-light text-lg md:text-sm"
                   >
-                    Domingos <br /> 10:00 a 12:00 y 13:00 a 18:00.
+                    Sábados: 10:00 - 12:00
+                  </p>
+                </li>
+                <li>
+                  <p
+                    className="font-light text-lg md:text-sm"
+                  >
+                    Domingos: 10:00 - 12:00 y 13:00 - 18:00
                   </p>
                 </li>
               </ul>
             </div>
             </div>        
+            </div>
+            
         </div>
         <div className="bg-white">
           <div
-            className="mx-auto py-4 px-5 items-center"
+            className="mx-auto py-2 px-5 items-center"
           >
-            <p className="text-black text-xl text-center 2xl:text-3xl">
+            <p className="text-black text-sm text-center">
               Copyright© Druzi All Rights Reserved. —
               <a
                 href="https://www.instagram.com/noxcrlentes"
