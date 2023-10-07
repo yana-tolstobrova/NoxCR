@@ -11,9 +11,9 @@ import DollarIcon from '../assets/dollarIcon.svg'
 export default function AdminProtectedLayout() {
 	const { user, hasRole } = useAuth();
 	const navigate = useNavigate();
-	 if (!user || !hasRole('Admin')) {
-	 	return <Navigate to="/admin" />;
-	 }
+	//  if (!user || !hasRole('Admin')) {
+	//  	return <Navigate to="/admin" />;
+	//  }
     const handleLogout = async () => {
 		try {
 			const resp = await axios.post('/logout');

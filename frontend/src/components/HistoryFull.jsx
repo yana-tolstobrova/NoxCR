@@ -2,50 +2,61 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from "../contexts/AuthContext";
 import { getOrders, getOrderLines } from '../services/apiOrders/ApiOrders';
 import HistoryEmpty from '../components/HistoryEmpty';
-import Datos from '../components/Datos';
 
 function HistoryFull() {
-const { user, hasRole } = useAuth();
-const [orders, setOrders] = useState([]);
-const [orderLines, setOrderLines] = useState([]);
-const [productPhotoUrls, setProductPhotoUrls] = useState({});
+  const { user, hasRole } = useAuth();
+  const [orders, setOrders] = useState([]);
+  const [orderLines, setOrderLines] = useState([]);
+  const [productPhotoUrls, setProductPhotoUrls] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
-useEffect(() => {
-      getOrders()
+  useEffect(() => {
+    getOrders()
       .then((ordersData) => {
         setOrders(ordersData);
+        setLoading(false); 
       })
       .catch((error) => {
         console.error('Error fetching orders:', error);
+        setLoading(false); 
       });
 
-      const fetchOrderLines = async () => {
-        try {
-            getOrderLines()
-            .then((orderLinesData) => {
-          setOrderLines(orderLinesData);
-         })
-        } catch (error) {
-          console.error('Error fetching order lines:', error);
-        }
-      };
-  
-      fetchOrderLines();
-      getOrders();
+    const fetchOrderLines = async () => {
+      try {
+        getOrderLines()
+          .then((orderLinesData) => {
+            setOrderLines(orderLinesData);
+          })
+      } catch (error) {
+        console.error('Error fetching order lines:', error);
+        setLoading(false); 
+      }
+    };
+
+    fetchOrderLines();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-<table className="w-[85%] mx-auto mt-4">
-        <thead>
-          <tr className="text-left h-12">
-            <th>#</th>
-            <th>Pedido</th>
-            <th>Cantidad de productos</th>
-            <th>Total</th>
-            <th>Tipo de envio</th>
-            <th>Fecha de pedido</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div>
+      {orders.length === 0 ? (
+        <HistoryEmpty />
+      ) : (
+        <table className="w-[65%] mx-auto mt-4">
+          <thead className='border-solid border-b border-black'>
+            <tr className="text-left h-12">
+              <th>#</th>
+              <th>Pedido</th>
+              <th>Cantidad de productos</th>
+              <th>Total</th>
+              <th>Tipo de envío</th>
+              <th>Fecha de pedido</th>
+            </tr>
+          </thead>
+          <tbody>
           {orders
             .filter((order) => order.user_id === user.id)
             .map((filteredOrder, index) => {
@@ -55,7 +66,7 @@ useEffect(() => {
                 return `${line.name} (${line.quantity}) - ₡${line.price}`;
               });                            
               return (
-                <tr key={index}>
+                <tr key={index} className='border-solid border-b-2'>
                   <td>{index+1}</td>
                   <td> 
                     <ul>
@@ -72,6 +83,10 @@ useEffect(() => {
               );
             })}
         </tbody>
-      </table>
-  )}
-  export default HistoryFull;
+        </table>
+      )}
+    </div>
+  );
+}
+
+export default HistoryFull;
