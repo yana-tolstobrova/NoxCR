@@ -1,8 +1,8 @@
 import React,  { useContext } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Header } from '../components/Header'; 
 import { useMyCart } from '../contexts/MyCartContext';
+import { Header } from '../components/Header'; 
 
 export default function DefaultLayout() {
 	const { user, hasRole } = useAuth();

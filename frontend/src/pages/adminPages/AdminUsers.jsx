@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, getUserDetails } from '../../services/ApiUsers';
-import { getOrders, getOrderLines } from '../../services/apiOrders/ApiOrders';
+import { getOrders, getOrderLines } from '../../services/ApiOrders';
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [userDetails, setUserDetails] = useState([]);

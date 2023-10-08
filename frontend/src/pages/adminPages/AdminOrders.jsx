@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getOrders, getOrderLines } from '../../services/apiOrders/ApiOrders';
+import { getOrders, getOrderLines } from '../../services/ApiOrders';
 import { getUserDetails } from '../../services/ApiUsers';
 function OrdersList() {
   const [orders, setOrders] = useState([]);

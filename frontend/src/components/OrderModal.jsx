@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUserDetails } from '../services/apiOrders/ApiPostUserDetails'
+import { createUserDetails } from '../services/ApiPostUserDetails'
 
 function OrderModal({
   showModal,
@@ -57,7 +57,10 @@ function OrderModal({
         total_amount: '',
         shipping_type: '',
       });
-
+  
+      
+   
+  
       handleCloseModal();
     } catch (error) {
       console.error('Error al enviar los datos del usuario:', error);
@@ -124,7 +127,9 @@ function OrderModal({
                     required
                     className="border rounded-lg px-3 py-2 w-full focus:outline-none focus:border-purple-500"
                   />
-                </div>  
+                </div>
+               
+                  
                 <div className="mb-2">
                   <label className="text-m font-normal" htmlFor="birthdate">Fecha de nacimiento:</label>
                   <input
@@ -138,6 +143,8 @@ function OrderModal({
                     className="w-full border border-gray-300 p-3 focus:border-black focus:outline-none"
                   />
                 </div>
+             
+          
                 <div className="mb-2">
                   <label className="text-m ">
                     Seleccione una opción de envio:

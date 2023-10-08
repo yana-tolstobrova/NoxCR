@@ -9,11 +9,11 @@ import { Link } from "react-router-dom";
 import ShippingModal from "../components/ShippingModal";
 import deleteIcon from "../assets/delete-icon.svg";
 import gifIcon from "../assets/gif-icon.svg";
-import { sendShippingOrder } from "../services/apiOrders/ApiSendShippingOrder";
+import { sendShippingOrder } from "../services/ApiSendShippingOrder";
 import OrderModal from "../components/OrderModal";
 import OrderQuestionsModal from "../components/OrderQuestionsModal";
-import { createOrder } from "../services/apiOrders/ApiPostOrders";
-import { createOrderLine } from "../services/apiOrders/ApiPostOrderLines";
+import { createOrder } from "../services/ApiPostOrders";
+import { createOrderLine } from "../services/ApiPostOrderLines";
 import { editProductQuantity, getPhotos } from "../services/ApiProducts";
 import ModalSuccess from "../components/ModalSuccess";
 import verificationNegative from "../assets/verification-negative.svg";
@@ -131,6 +131,9 @@ function CartProducts() {
         await editProductQuantity(item.product.id, { quantity: newQuantity });
 
         if (newQuantity <= 0) {
+          alert(
+            `Producto ${item.product.name} agotado comunicate con nosotros y te diremos tiempo estimado para reponer.`
+          );
           setShowProductOutOfStockModal(true);
         }
       });

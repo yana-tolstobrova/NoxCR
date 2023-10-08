@@ -1,5 +1,5 @@
 import React from 'react';
-import { getOrders, getOrderLines } from '../services/apiOrders/ApiOrders';
+import { getOrders, getOrderLines } from '../services/ApiOrders';
 import iconHistory from '../assets/iconHistory.svg'
 import { Link } from 'react-router-dom'
 

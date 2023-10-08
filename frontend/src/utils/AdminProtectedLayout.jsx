@@ -30,7 +30,7 @@ export default function AdminProtectedLayout() {
 	return (
 		<>
 		
-		<div className='flex h-full min-h-screen'>
+		<body className='flex h-full min-h-screen'>
 			<div className='bg-purple w-[20%] text-white px-4'>
 				<img src={Logo} alt='Logo Nox CR' className='w-3/4 pt-10 pl-2'></img>
 				<nav>
@@ -48,7 +48,7 @@ export default function AdminProtectedLayout() {
 			<main className='align-center w-[80%]'>
 				<Outlet />
 			</main>
-		</div>
+		</body>
 		</>
 	);
 }

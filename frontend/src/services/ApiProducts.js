@@ -67,7 +67,7 @@ export const getColorsForProduct = (productId) => {
 //     console.error('Error creating product:', error);
 // });
 
-const API_BASE_URL = 'http://localhost:8000/api/products';
+const API_BASE_URL = `${API_URL}/products`;
 
 export const getProducts = () => {
   return axios
@@ -92,7 +92,7 @@ export const editProduct = (id, formData) => axios.put(`${API_URL}/products/${id
   
 export const deleteProduct = (id) => {
   return axios
-    .delete(`${API_BASE_URL}/${id}`, {
+    .delete(`${API_URL}/products/${id}`, {
       withCredentials: true,
       headers: {
         Accept: 'application/json',
@@ -108,7 +108,7 @@ export const deleteProduct = (id) => {
 
 export const reverseProducts = () => {
   return axios
-    .get(API_BASE_URL)
+    .get(`${API_URL}/products`)
     .then((response) => response.data.slice().reverse())
     .catch((error) => {
       console.error('Error fetching reversed products:', error);

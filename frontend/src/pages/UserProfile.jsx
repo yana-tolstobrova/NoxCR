@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from "../contexts/AuthContext";
-import { getOrders, getOrderLines } from '../services/apiOrders/ApiOrders';
+import { getOrders, getOrderLines } from '../services/ApiOrders';
 import HistoryEmpty from '../components/HistoryEmpty';
 import HistoryFull from '../components/HistoryFull';
 import Datos from '../components/Datos';
