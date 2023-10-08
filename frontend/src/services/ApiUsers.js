@@ -36,3 +36,19 @@ export const getUserDetails = () => {
         return [];
       });
   };
+
+  export const updateUserDetails = (id, userData) => {
+    return axios
+      .put(`${API_URL}/users/${id}`, userData, {
+        withCredentials: true,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error('Error updating user:', error);
+        return [];
+      });
+  };

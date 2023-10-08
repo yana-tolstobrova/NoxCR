@@ -78,8 +78,8 @@ const handleAddToCart = (e, product) => {
 
 const showCartNotification = () => {
   setCartNotification(
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
-  <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clip-rule="evenodd" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
+  <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clipRule="evenodd" />
 </svg>
 
   );
@@ -114,23 +114,14 @@ const showCartNotification = () => {
     }
   }
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-      // const allProducts = await cardsProducts();
-      // const filteredProducts = allProducts.filter((product) => product.collection === collection);
-      // setProducts(filteredProducts);
-  //   };
-  //   fetchData();
-  // }, [collection]);
   
   return (
-    <div className="mx-8 md:mx-12">
+    <div className="">
       <div className="flex flex-wrap justify-center">
         {products.map((product) => (
-            <div key={product.id} className="w-[260px] md:w-[190px] md:m-0 md:mb-6 lg:w-[262px] 2xl:w-[292px] m-4 px-2 mb-12 flex justify-center">
-              <div className="max-w-[362px] h-[420px] rounded overflow-hidden shadow-lg relative card-box md:max-w-[222px] md:h-[300px] 2xl:max-w-[292px] 2xl:h-[500px]">
-                  <div className="rounded bg-transparent w-full h-[340px] absolute z-2 card-menu opacity-0 flex flex-col md:h-[260px] 2xl:h-[495px]">
+            <div key={product.id} className="max-w-[222px] h-[350px] md:mx-0 lg:w-[262px] md:mb-0 m-4 px-2 xl:mb-12 flex justify-center">
+              <div className="max-w-[362px] h-[420px] rounded overflow-hidden shadow-lg relative card-box md:max-w-[222px] md:h-[300px]">
+                  <div className="rounded bg-transparent w-full h-[340px] absolute z-2 card-menu opacity-0 flex flex-col md:h-[260px]">
                       {cartNotification && (
                         <div className="bg-green-400 rounded-full absolute right-2 top-2">
                           {cartNotification}
@@ -149,13 +140,13 @@ const showCartNotification = () => {
                       </svg>
                       </button>     
                       <Link to={`/product/${product.id}`} className='h-[38%]'></Link>
-                      <button onClick={(e) => handleAddToCart(e, product)} className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white w-full text-lg md:py-2 md:mb-8 2xl:py-2 2xl:text-xl">Añadir al carrito</button>
+                      <button onClick={(e) => handleAddToCart(e, product)} className="hover:bg-white hover:text-black border-black border py-2 bg-black text-white w-full text-lg md:py-2 md:mb-8">Añadir al carrito</button>
                   </div>
                   <Link to={`/product/${product.id}`}>
-                    <img className="w-[262px] h-[260px] text-lg object-cover md:h-[190px] 2xl:w-[530px] 2xl:h-[310px]" src={getProductPhoto(product.id)} alt={product.name} />  
+                    <img className="w-[262px] h-[260px] text-lg object-cover md:h-[190px]" src={getProductPhoto(product.id)} alt={product.name} />  
                     <div className="px-4 py-2 h-[80px]">
-                      <div className="text-2xl mb-1 mt-4 text-gray-800 md:text-lg 2xl:text-2xl 2xl:mt-2 md:mt-0">{product.name}</div>
-                      <p className="text-2xl font-semibold md:text-lg 2xl:text-2xl md:mt-2 mt-4 2xl:mt-8" style={{ color: '#7C3973' }}>
+                      <div className="text-2xl mb-1 mt-4 text-gray-800 md:text-lg md:mt-0">{product.name}</div>
+                      <p className="text-2xl font-semibold md:text-lg md:mt-2 mt-4" style={{ color: '#7C3973' }}>
                       ₡{product.price}
                       </p>
                     </div>

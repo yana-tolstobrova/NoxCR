@@ -25,40 +25,40 @@ function Accordion(props) {
   const customStyles = props.customStyles || {};
 
   return (
-    <div className="bg-black flex flex-col items-center text-white pt-8 2xl:pt-14 2xl:pb-16" style={{ ...customStyles }}>
-      <h1 className="text-4xl pl-8 w-full text-start font-semibold mb-8 md:pl-20 md:text-2xl 2xl:text-4xl 2xl:mb-20 2xl:pl-44" id="faq">Preguntas frecuentes</h1>
-      <div className="text-black w-10/12 rounded flex flex-col gap-2">
+    <div className="bg-black flex flex-col items-center text-white py-16 px-10 xl:px-28 md:px-20" style={{ ...customStyles }}>
+      <h1 className="text-4xl w-full text-start font-bold mb-8 md:text-2xl xl:text-3xl xl:mb-16" id="faq">Preguntas frecuentes</h1>
+      <div className="text-black flex flex-col gap-2 w-full">
         {props.accordionItems.map((item, index) => (
           <div
             key={index}
-            className="bg-white border border-gray-300 rounded"
+            className="bg-white border border-gray-300"
           >
             <div
-              className="p-2 cursor-pointer flex justify-between items-center"
+              className="px-4 py-2 cursor-pointer flex justify-between items-center"
               onClick={() => toggleItem(index)}
             >
-              <h2 className="text-2xl md:text-base 2xl:text-3xl font-medium w-3/4">{item.title}</h2>
-              <img id="eye-image" className="w-16 h-16 md:w-10 md:h-10 2xl:w-18 2xl:h-18" src={openItemIndex === index ? eyeOpen : eyeClose} alt="ojo de apertura" />
+              <h2 className="text-xl font-medium">{item.title}</h2>
+              <img id="eye-image" className="w-16 h-16 md:w-10 md:h-10" src={openItemIndex === index ? eyeOpen : eyeClose} alt="ojo de apertura" />
             </div>
             {index === openItemIndex && (
-              <div className="py-10 px-8 bg-gray-100 md:py-6 2xl:py-16 2xl:px-24">
-                <p className="text-2xl md:text-base 2xl:text-3xl 2xl:leading-relaxed" >{item.content}</p>
+              <div className="py-10 px-8 bg-gray-100 md:py-6 xl:p-10">
+                <p className="text-2xl md:text-base xl:text-xl 2xl:leading-relaxed" >{item.content}</p>
               </div>
             )}
           </div>
         ))}
       </div>
       {props.showDownloadLink && (
-        <div className="flex justify-end items-end w-full pr-28 text-white py-6" style={{ color: '#EBEBEB' }}>
+        <div className="flex justify-end items-center w-full text-white pt-12" style={{ color: '#EBEBEB' }}>
           <a
             href={pdfCare}
             target="_blank"
             rel="noopener noreferrer"
             download="cuidados-noxcr.pdf"
-            className="flex items-end text-400 text-2xl md:text-base 2xl:text-2xl"
+            className="flex items-end text-400 text-2xl md:text-base xl:text-lg"
           >
             Descargar PDF
-            <img className="px-2" src={arrow} alt="icono arrow" />
+            <img className="px-2" src={arrow} alt="icon arrow" />
           </a>
         </div>
       )}

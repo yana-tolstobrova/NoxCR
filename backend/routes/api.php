@@ -34,12 +34,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user-details', [UserDetailsController::class, 'store']);
     Route::get('/user-details/{userDetail}', [UserDetailsController::class, 'show']);
     Route::get('/user-details', [UserDetailsController::class, 'index']);
-    Route::apiResource('/users', UserController::class);
-    
     Route::post("/products/add-favorite/{id}", [ProductController::class, 'addFavorite']);
     Route::post("products/remove-favorite/{id}", [ProductController::class, 'removeFavorite']);
     Route::get("/products/favorites", [ProductController::class, 'showFavorites']);
-    
+    // Route::apiResource('/users', UserController::class);
+    //Route::put('/users/{id}', UserController::class, 'update');
     Route::delete('products/{id}', [ProductController::class, 'destroy']);
     Route::get('products/{id}', [ProductController::class, 'edit']);
     Route::put('products/{id}', [ProductController::class, 'update']);
@@ -53,6 +52,6 @@ Route::get('/photos', [ProductController::class, 'getPhoto']);
 Route::get('colors', [ProductController::class, 'getColor']);
 Route::get('products/{id}/colors', [ProductController::class, 'showColors']);
 Route::delete('/photos/{id}', [ProductController::class, 'deletePhoto']);
-
+Route::apiResource('/users', UserController::class);
 Route::put('products/change-quantity/{id}', [ProductController::class, 'editQuantity']);
 

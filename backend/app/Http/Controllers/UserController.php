@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('checkUserRole');
-          } 
+    // public function __construct()
+    // {
+    //     $this->middleware('checkUserRole');
+    //       } 
 
     public function index(Request $request)
     {  
@@ -34,5 +34,45 @@ class UserController extends Controller
     
         return response()->json(['users' => $usersInfo]);
     }
+    
+    //      public function show($id)
+    //      {
+    //           $user = User::findOrFail($id);
+    //           return response()->json(['user' => $user], 200);
+    //      }
+    
+    //     public function edit($id){
+    //     $user = User::findOrFail($id);
+    
+    //     return response()->json(['user' => $user], 200);
+    // }
+    
+    
+    // public function update(Request $request, $id)
+    // {
+
+    //     $user = User::findOrFail($id);
+    
+    //     $this->validate($request, [
+    //         'name' => 'required',
+    //         'email' => 'required|email|unique:users,email,' . $id,
+    //     ]);
+    
+    //     if (!empty($request->input('password'))) {
+    //         $input['password'] = Hash::make($request->input('password'));
+    //     }
+    
+    //     $user->update($input);
+    
+    //     return response()->json(['message' => 'User updated successfully'], 200);
+    // }
+    
+    //     public function destroy($id)
+    //     {
+    //          $user = User::findOrFail($id);
+    //          $user->delete();
+    
+    //          return response()->json(['message' => 'User deleted successfully'], 200);
+    //     }
 
  }

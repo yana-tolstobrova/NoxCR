@@ -4,15 +4,19 @@ import { getOrders, getOrderLines } from '../services/apiOrders/ApiOrders';
 import HistoryEmpty from '../components/HistoryEmpty';
 import HistoryFull from '../components/HistoryFull';
 import Datos from '../components/Datos';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 function UserProfilePage() {
-const { user, hasRole } = useAuth();
-const [orders, setOrders] = useState([]);
-const [orderLines, setOrderLines] = useState([]);
-const [productPhotoUrls, setProductPhotoUrls] = useState({});
+  const { user, hasRole } = useAuth();
+  const [orders, setOrders] = useState([]);
+  const [orderLines, setOrderLines] = useState([]);
+  const [productPhotoUrls, setProductPhotoUrls] = useState({});
+  const [tabValue, setTabValue] = useState(0);
 
-useEffect(() => {
-      getOrders()
+  useEffect(() => {
+    getOrders()
       .then((ordersData) => {
         setOrders(ordersData);
       })
@@ -20,29 +24,45 @@ useEffect(() => {
         console.error('Error fetching orders:', error);
       });
 
-      const fetchOrderLines = async () => {
-        try {
-            getOrderLines()
-            .then((orderLinesData) => {
-          setOrderLines(orderLinesData);
-         })
-        } catch (error) {
-          console.error('Error fetching order lines:', error);
-        }
-      };
-  
-      fetchOrderLines();
-      getOrders();
+    const fetchOrderLines = async () => {
+      try {
+        getOrderLines()
+          .then((orderLinesData) => {
+            setOrderLines(orderLinesData);
+          })
+      } catch (error) {
+        console.error('Error fetching order lines:', error);
+      }
+    };
+
+    fetchOrderLines();
+    getOrders();
   }, []);
+
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
+  };
+
   return (
     <div>
-    <h1 className="text-center mb-8 mt-4 text-3xl ml-4 font-bold text-purple">Hola, {user.name}! </h1>
-   <Datos />
-    <h2 className="text-center text-2xl font-bold mt-14 text-purple">Historial de los pedidos</h2>
-    <HistoryEmpty />
-    {/* <HistoryFull /> */}
-  </div>
-  )
+      <h1 className="text-center mb-8 mt-4 text-3xl ml-4 font-bold text-purple">Hola, {user.name}! </h1>
+      <Box sx={{ width: '100%' }}>
+        <Tabs
+          value={tabValue}
+          onChange={handleTabChange}
+          centered
+          textColor="secondary"
+          indicatorColor="secondary"
+
+        >
+          <Tab label="Historial de Pedidos" />
+          <Tab label="Datos personales" />
+        </Tabs>
+      </Box>
+      {tabValue === 0 && <HistoryFull />}
+      {tabValue === 1 && <Datos />}
+    </div>
+  );
 }
 
-export default UserProfilePage
+export default UserProfilePage;

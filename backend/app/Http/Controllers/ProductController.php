@@ -23,10 +23,10 @@ Configuration::instance([
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors', 'deletePhoto']]);
-          } 
+    // public function __construct()
+    // {
+    //     $this->middleware('checkUserRole', ['except' => ['index', 'search', 'show', 'editQuantity', 'addFavorite','removeFavorite','showFavorites', 'getPhoto', 'getColor', 'showColors', 'deletePhoto']]);
+    //       } 
 
     public function index()
     {

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function HistoryEmpty() {
   return (
-   <div className=''>
+   <div className='mb-10'>
     <div className='text-center '>
     <div className='w-full flex justify-center my-10'>
         <img className='' src={iconHistory} alt="icono historial" />
@@ -15,9 +15,9 @@ function HistoryEmpty() {
     </div>
     <p className='my-10'>Puedes echarle un vistazo al catalogo y así poder elejir las lentes que mas se amoldan a cada ocasión.</p>
     
-    <Link
+          <Link
             to="/products"
-            className=" mt-8  bg-black py-1.5 px-3 font-medium text-white text-center"
+            className=" mt-8  bg-black py-4 px-6 font-medium text-white text-center hover:text-black hover:bg-white hover:border hover:border-black"
             style={{ textDecoration: "none" }}
           >
             Ver catálogo

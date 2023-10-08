@@ -38,11 +38,11 @@ function SocialNetwork() {
   ];
 
   return (
-    <div data-testid="social-network-component" className="mx-auto px-4 py-1 lg:px-32 lg:pt-16 mb-10 2xl:mb-32 2xl:pt-24">
-      <div className="-m-1 flex flex-wrap ">
+    <div data-testid="social-network-component" className="py-10 px-10 xl:px-28 mb-10 md:px-20 md:py-0">
+      <div className="flex flex-wrap">
         <div className="flex w-1/2">
           {largeImages.map((image, index) => (
-            <div key={index} className={`w-${index === 0 ? '1/2' : 'full'} md:p-1 2xl:p-4`}>
+            <div key={index} className={`w-${index === 0 ? '1/2' : 'full'} md:p-2`}>
               <img
                 alt="gallery"
                 data-testid={`gallery-image-${index}`}
@@ -55,7 +55,7 @@ function SocialNetwork() {
         </div>
         <div className="flex w-1/2 flex-wrap">
           {smallImages.map((image, index) => (
-            <div key={index} className="w-1/2 md:p-1 2xl:p-4">
+            <div key={index} className="w-1/2 md:p-2">
               <img
                 alt="gallery"
                 className="block h-[205px] h-full w-full rounded-lg object-cover object-center cursor-zoom-in"
