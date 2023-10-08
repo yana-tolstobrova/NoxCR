@@ -17,7 +17,7 @@ font-family:  'Noto Sans', sans-serif;
 </head>
 
 <body>
-    <img width="150rem" class="logo" src="{{'Nox.jpg'}}" alt="logo">
+    <!-- <img width="150rem" class="logo" src="{{'Nox.jpg'}}" alt="logo"> -->
 
     <h2>Confirmación de Pedido</h2>
 
