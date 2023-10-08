@@ -6,7 +6,7 @@ const AuthContent = createContext({
 	setUser: () => {},
 	csrfToken: () => {},
 	// can: () => false,
-    // hasRole: () => false,
+    hasRole: () => false,
 });
 
 export const AuthProvider = ({ children }) => {
@@ -27,9 +27,9 @@ export const AuthProvider = ({ children }) => {
     //     return (user?.permissions || []).includes(permission);
     // };
 
-    // const hasRole = (role) => {
-    //     return (user?.roles || []).includes(role);
-    // };
+    const hasRole = (role) => {
+        return (user?.roles || []).includes(role);
+    };
 
 	const csrfToken = async () => {
 		await axios.get('http://localhost:8000/sanctum/csrf-cookie');
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthContent.Provider value={{ user, setUser, csrfToken}}>
+		<AuthContent.Provider value={{ user, setUser, csrfToken, hasRole}}>
 			{children}
 		</AuthContent.Provider>
 	);

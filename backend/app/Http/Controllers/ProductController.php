@@ -60,7 +60,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'collection' => 'nullable',
             'colors' => 'nullable',
-            //'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'detail' => 'required',
         ]);
 
@@ -109,6 +109,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
+        $user = Auth::user();
         try {
             $product = Product::findOrFail($id);
             return response()->json($product);
@@ -118,6 +119,7 @@ class ProductController extends Controller
     }
     public function edit($id): JsonResponse
     {
+        $user = Auth::user();
         try {
             $product = Product::findOrFail($id);
         
@@ -167,34 +169,7 @@ class ProductController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'detail' => 'required',
         ]);
-
-        // $imageUrls = [];
-
-        // if ($request->hasFile('images')) {
-        //     foreach ($request->file('images') as $imageFile) {
-        //         $uploadedFile = $imageFile->getRealPath();
-
-        //         $uploadApi = new UploadApi();
-
-        //         $cloudinaryUpload = $uploadApi->upload($uploadedFile);
-
-        //         $imagePath = $cloudinaryUpload['secure_url'];
-
-        //         $photo = Photo::create([
-        //             'url' => $imagePath, 
-        //             'product_id' => $product->id,
-        //         ]);
-
-        //         $imageUrls[] = $imagePath;
-        //     }
-        // }
-
-        // $selectedColorValues = json_decode($request->input('colors'));
-        // $colorIds = [];
-        // foreach ($selectedColorValues as $colorValue) {
-        //     $color = Color::firstOrCreate(['name' => $colorValue]);
-        //     $colorIds[] = $color->id;
-        // }
+        
         $selectedColorValues = json_decode($request->input('colors'));
         $colorIds = [];
         foreach ($selectedColorValues as $colorValue) {
@@ -208,7 +183,7 @@ class ProductController extends Controller
             foreach ($request->file('images') as $imageFile) {
                 $uploadedFile = $imageFile->getRealPath();
 
-                $uploadApi = new UploadApi(); // Assuming you have an UploadApi class
+                $uploadApi = new UploadApi(); 
 
                 $cloudinaryUpload = $uploadApi->upload($uploadedFile);
 

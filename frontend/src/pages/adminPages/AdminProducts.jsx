@@ -131,7 +131,7 @@ function ProductList() {
                     ))}
                 </tbody>
             </table>
-            <Modal showModal={showModal} close={closeModal} image={warning} text='Aceptar' title='¿Estás seguro que quieres eliminar?' handleCloseModal={() => handleDeleteProduct(selectedProductId)} />
+            <Modal showModal={showModal} close={closeModal} image={warning} text='Aceptar' title='¿Estás seguro que quieres eliminar este producto?' handleCloseModal={() => handleDeleteProduct(selectedProductId)} />
             <div className='text-center mt-4'>
                 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                 Anterior

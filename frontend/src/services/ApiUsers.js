@@ -52,3 +52,23 @@ export const getUserDetails = () => {
         return [];
       });
   };
+
+  
+export const deleteUser = (id) => {
+  return axios
+    .delete(`${API_URL}/users/${id}`, {
+      withCredentials: true,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => 
+    response.status === 200,
+    console.log('passed id', id),
+    localStorage.removeItem('user'))
+    .catch((error) => {
+      console.error('Error deleting user:', error);
+      return false;
+    });
+};

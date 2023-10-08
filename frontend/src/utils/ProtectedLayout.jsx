@@ -19,7 +19,7 @@ export default function DefaultLayout() {
 			} catch (error) {
 				if (error.response.status === 401) {
 					localStorage.removeItem('user');
-					window.location.href = '/';
+					window.location.href = '/login';
 				}
 			}
 		})();
