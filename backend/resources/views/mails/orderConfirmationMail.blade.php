@@ -28,7 +28,7 @@ font-family:  'Noto Sans', sans-serif;
         <li>✅Tener la solución multipropósito para desinfectarlos adecuadamente</li>          
     </ul>
     <h5> Desde NoxCR queremos reiterarte que tu salud visual es nuestra prioridad!<br>
-   Por eso te recomendamos que -antes de recibir tu pedido- hagas <a href="/cuidados-nox.pdf" target="_blank" rel="noopener noreferrer"
+   Por eso te recomendamos que -antes de recibir tu pedido- hagas <a href="http://localhost:3000/static/media/cuidados-noxcr.fb4b768aa36a643c86e0.pdf" target="_blank" rel="noopener noreferrer"
           download= "cuidados-noxcr.pdf"> click AQUI </a>  para descargar y leer cuidadosamente
     todas las normas de uso, higiene y mantenimiento de tus lentes de contacto noxCR.</h5>
     <h4>Datos del cliente:</h4>
