@@ -17,7 +17,7 @@ function HistoryEmpty() {
     
           <Link
             to="/products"
-            className=" mt-8  bg-black py-4 px-6 font-medium text-white text-center hover:text-black hover:bg-white hover:border hover:border-black"
+            className=" mt-8  bg-black py-[0.9em] px-6 font-medium text-white text-center hover:text-black hover:bg-white hover:border hover:border-black"
             style={{ textDecoration: "none" }}
           >
             Ver catálogo

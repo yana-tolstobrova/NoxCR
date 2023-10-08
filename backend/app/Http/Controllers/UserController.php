@@ -10,13 +10,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('checkUserRole');
-    //       } 
+    public function __construct()
+    {
+        $this->middleware('checkUserRole');
+          } 
 
     public function index(Request $request)
     {  
+        $user = Auth::user();
+        if (!$user->hasRole('Admin')) {
+                return response()->json(['error' => 'No tienes permiso para ver todos los usuarios.'], 403);
+        } 
         $users = User::all();
         $usersInfo = [];
     
@@ -67,12 +71,24 @@ class UserController extends Controller
     //     return response()->json(['message' => 'User updated successfully'], 200);
     // }
     
-    //     public function destroy($id)
-    //     {
-    //          $user = User::findOrFail($id);
-    //          $user->delete();
+        public function destroy(Request $request, $id)
+        {
+            $user = Auth::user();
+            
+            if (!$user->hasRole('User')) {
+                    return response()->json(['error' => 'No tienes permiso para eliminar la cuenta.'], 403);
+            }  
+
+            if ((int)$id !== (int)Auth::id()) {
+                return response()->json(['error' => 'No tienes permiso para eliminar esta cuenta.'], 403);
+            }
+            $user = User::findOrFail($id);
+            $user->delete();
+            $request->user()->currentAccessToken()->delete();
+
+            $cookie = cookie()->forget('token');
     
-    //          return response()->json(['message' => 'User deleted successfully'], 200);
-    //     }
+            return response()->json(['message' => 'User deleted successfully'], 200)->withCookie($cookie);
+        }
 
  }

@@ -9,7 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 function UserProfilePage() {
-  const { user, hasRole } = useAuth();
+  const { user, setUser } = useAuth();
   const [orders, setOrders] = useState([]);
   const [orderLines, setOrderLines] = useState([]);
   const [productPhotoUrls, setProductPhotoUrls] = useState({});

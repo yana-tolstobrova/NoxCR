@@ -9,6 +9,7 @@ function HistoryFull() {
   const [orderLines, setOrderLines] = useState([]);
   const [productPhotoUrls, setProductPhotoUrls] = useState([]);
   const [loading, setLoading] = useState(true); 
+  const [userOrders, setUserOrders] = useState([]);
 
   useEffect(() => {
     getOrders()
@@ -35,6 +36,9 @@ function HistoryFull() {
 
     fetchOrderLines();
   }, []);
+  useEffect(() => {
+    setUserOrders(orders.filter((order) => order.user_id === user.id));
+  }, [orders, user]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,7 +46,7 @@ function HistoryFull() {
 
   return (
     <div>
-      {orders.length === 0 ? (
+      {userOrders.length === 0 ? (
         <HistoryEmpty />
       ) : (
         <table className="w-[65%] mx-auto mt-4">
@@ -57,8 +61,7 @@ function HistoryFull() {
             </tr>
           </thead>
           <tbody>
-          {orders
-            .filter((order) => order.user_id === user.id)
+          {userOrders
             .map((filteredOrder, index) => {
               const orderLinesForOrder = orderLines.filter((line) => line.order_id === filteredOrder.id);
               const totalQuantity = orderLinesForOrder.reduce((total, line) => total + line.quantity, 0);
