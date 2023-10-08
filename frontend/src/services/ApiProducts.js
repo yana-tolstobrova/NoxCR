@@ -67,7 +67,7 @@ export const getColorsForProduct = (productId) => {
 //     console.error('Error creating product:', error);
 // });
 
-const API_BASE_URL = 'http://localhost:8000/api/products';
+const API_BASE_URL = 'https://coral-app-c7uu2.ondigitalocean.app/api/products';
 
 export const getProducts = () => {
   return axios

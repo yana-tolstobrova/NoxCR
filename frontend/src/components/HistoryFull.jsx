@@ -43,6 +43,7 @@ function HistoryFull() {
   if (loading) {
     return <div>Loading...</div>;
   }
+  console.log("estoy pasando por aqui")
 
   return (
     <div>
