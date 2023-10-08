@@ -52,5 +52,7 @@ Route::get('products/{id}/colors', [ProductController::class, 'showColors']);
 Route::delete('/photos/{id}', [ProductController::class, 'deletePhoto']);
 Route::put('products/change-quantity/{id}', [ProductController::class, 'editQuantity']);
 Route::get('products/{id}', [ProductController::class, 'edit', 'show']);
-//Route::put('/users/{id}', UserController::class, 'update');
+
+
+Route::put('/users/{id}', [UserController::class, 'update']);
     Route::put('products/{id}', [ProductController::class, 'update']);

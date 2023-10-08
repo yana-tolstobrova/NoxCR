@@ -52,24 +52,28 @@ class UserController extends Controller
     // }
     
     
-    // public function update(Request $request, $id)
-    // {
+    public function update(Request $request, $id)
+    {
 
-    //     $user = User::findOrFail($id);
+        $user = User::findOrFail($id);
     
-    //     $this->validate($request, [
-    //         'name' => 'required',
-    //         'email' => 'required|email|unique:users,email,' . $id,
-    //     ]);
+        $this->validate($request, [
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable', 
+        ]);
     
-    //     if (!empty($request->input('password'))) {
-    //         $input['password'] = Hash::make($request->input('password'));
-    //     }
+        $input = [
+            'email' => $request->input('email'),
+        ];
+        
+        if (!empty($request->input('password'))) {
+            $input['password'] = Hash::make($request->input('password'));
+        }
     
-    //     $user->update($input);
+        $user->update($input);
     
-    //     return response()->json(['message' => 'User updated successfully'], 200);
-    // }
+        return response()->json(['message' => 'User updated successfully'], 200);
+    }
     
         public function destroy(Request $request, $id)
         {
