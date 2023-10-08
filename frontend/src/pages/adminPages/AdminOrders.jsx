@@ -132,7 +132,7 @@ function OrdersList() {
           ))}
         </tbody>
       </table>
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 fixed bottom-6 left-[55%]">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}

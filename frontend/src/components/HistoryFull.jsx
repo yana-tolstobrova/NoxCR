@@ -41,7 +41,7 @@ function HistoryFull() {
   }, [orders, user]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='text-center'>Cargando...</div>;
   }
 
   return (

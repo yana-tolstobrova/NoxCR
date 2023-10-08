@@ -46,6 +46,7 @@ function UserProfilePage() {
   return (
     <div>
       <h1 className="text-center mb-8 mt-4 text-3xl ml-4 font-bold text-purple">Hola, {user.name}! </h1>
+      <h2 className='text-center mb-8 text-lg font-medium'>Te damos la bienvenida a la familia de Noxis! Aquí puedes encontrar tu área personal.</h2>
       <Box sx={{ width: '100%' }}>
         <Tabs
           value={tabValue}

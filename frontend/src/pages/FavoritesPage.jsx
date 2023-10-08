@@ -134,12 +134,13 @@ const showCartNotification = () => {
 
   return (
     <div className="mx-8 md:mx-12">
-      <h2 className="text-left font-semibold text-3xl md:text-2xl 2xl:text-5xl mb-8 mt-12" style={{ color: "#3D3D3D" }} id="cuidados">Favoritos</h2>
+      <h2 className="text-left font-semibold text-3xl mb-8 mt-8" style={{ color: "#3D3D3D" }} id="cuidados">Favoritos</h2>
       {favorites.length === 0 ? (
         <p className="not-query">
-          "Aún sin Favoritos"
+          Aún sin los productos favoritos :(
         </p>
       ) : (
+        
         <div className="card">
           {favorites.length > 0 && (
             <div className="mx-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
