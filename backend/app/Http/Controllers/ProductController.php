@@ -50,7 +50,63 @@ class ProductController extends Controller
 
         return response()->json($colors);
     }
-    public function store(Request $request): JsonResponse
+//     public function store(Request $request): JsonResponse
+// {
+//     try {
+//         $request->validate([
+//             'name' => 'required',
+//             'category' => 'required',
+//             'quantity' => 'required|integer|min:0',
+//             'price' => 'required|numeric|min:0',
+//             'collection' => 'nullable',
+//             'colors' => 'nullable',
+//             // 'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+//             'detail' => 'required',
+//         ]);
+
+//         $product = Product::create([
+//             'name' => $request->input('name'),
+//             'category' => $request->input('category'),
+//             'quantity' => $request->input('quantity'),
+//             'price' => $request->input('price'),
+//             'collection' => $request->input('collection'),
+//             'detail' => $request->input('detail'),
+//         ]);
+//         $selectedColorValues = json_decode($request->input('colors'));
+//         $colorIds = [];
+//         foreach ($selectedColorValues as $colorValue) {
+//             $color = Color::firstOrCreate(['name' => $colorValue]);
+//             $colorIds[] = $color->id;
+//         }
+//         $product->colors()->sync($colorIds);
+
+//         $imageUrls = [];
+
+//         if ($request->hasFile('images')) {
+//             foreach ($request->file('images') as $imageFile) {
+//                 $uploadedFile = $imageFile->getRealPath();
+
+//                 $uploadApi = new UploadApi();
+
+//                 $cloudinaryUpload = $uploadApi->upload($uploadedFile);
+
+//                 $imagePath = $cloudinaryUpload['secure_url'];
+
+//                 $photo = Photo::create([
+//                     'url' => $imagePath, 
+//                     'product_id' => $product->id,
+//                 ]);
+
+//                 $imageUrls[] = $imagePath;
+//             }
+//         }
+
+//         return response()->json(['success' => true, 'message' => '¡Producto agregado exitosamente!', 'image_urls' => $imageUrls]);
+//     } catch (\Exception $e) {
+//         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+//     }
+// }
+public function store(Request $request): JsonResponse
 {
     try {
         $request->validate([
@@ -60,7 +116,6 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'collection' => 'nullable',
             'colors' => 'nullable',
-            //'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'detail' => 'required',
         ]);
 
@@ -72,12 +127,17 @@ class ProductController extends Controller
             'collection' => $request->input('collection'),
             'detail' => $request->input('detail'),
         ]);
+
         $selectedColorValues = json_decode($request->input('colors'));
         $colorIds = [];
-        foreach ($selectedColorValues as $colorValue) {
-            $color = Color::firstOrCreate(['name' => $colorValue]);
-            $colorIds[] = $color->id;
+
+        if ($selectedColorValues !== null) {
+            foreach ($selectedColorValues as $colorValue) {
+                $color = Color::firstOrCreate(['name' => $colorValue]);
+                $colorIds[] = $color->id;
+            }
         }
+
         $product->colors()->sync($colorIds);
 
         $imageUrls = [];
@@ -106,6 +166,7 @@ class ProductController extends Controller
         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
     }
 }
+
 
     public function show($id)
     {
