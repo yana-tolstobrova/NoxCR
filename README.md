@@ -157,7 +157,7 @@ Aquí encontrarás una lista de recursos y videos que nos inspiraron y/o que uti
 
 ### Nuestro Trello
 
-Aquí encontraraás como nos organizamos para la creación de este proyecto:
+Aquí encontrarás como nos organizamos para la creación de este proyecto:
 
 - [Trello](https://trello.com/invite/b/Z5DZkWbm/ATTI474bd075d531181d8106cf2e5e4410dc6D24F45A/noxcr)
 
