@@ -160,7 +160,7 @@ function EditProduct() {
       formData.append('price', price);
       formData.append('collection', collection);
       formData.append('detail', detail);
-      const selectedColorValues = selectedColors.map((color) => color.value);
+      const selectedColorValues = selectedColors.map((color) => color.label);
       formData.append('colors', JSON.stringify(selectedColorValues));
       for (let i = 0; i < images.length; i++) {
       formData.append(`images[${i}]`, images[i]);

@@ -43,7 +43,7 @@ export default function AdminPanel() {
 					<span className='text-slate-600'>Septiembre 2023</span>
 				</div>
 			</div>
-			<h2 className='text-2xl font-bold text-slate-700 pb-6'>Top de ventas</h2>
+			<h2 className='text-2xl font-bold text-slate-700 pb-6'>Novedades</h2>
 
 			<div className="flex gap-4">
 			{products &&

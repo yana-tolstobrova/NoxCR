@@ -27,7 +27,6 @@ class MailController extends Controller
 
     $user = Auth::user();
 
-    //Validar Data
 
     $itemList = "";
 

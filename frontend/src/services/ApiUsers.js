@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-// const API_USERS_URL = 'http://localhost:8000/api/users';
-// const API_USER_DETAILS_URL = 'http://localhost:8000/api/user-details';
-
 const API_URL = process.env.REACT_APP_API_URL
 
 export const getUsers = () => {

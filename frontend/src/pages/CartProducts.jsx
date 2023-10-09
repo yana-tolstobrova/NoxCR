@@ -163,7 +163,7 @@ function CartProducts() {
       products: JSON.stringify(cart),
       data: "lista productos",
     };
-
+    
     sendShippingOrder(emailData);
   };
 
