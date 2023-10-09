@@ -155,6 +155,12 @@ Aquí encontrarás una lista de recursos y videos que nos inspiraron y/o que uti
 - [Enviar Email](https://www.youtube.com/watch?v=6cxODPkoTMU)
 - [Enviar Email](https://www.youtube.com/watch?v=giOjirSYksg)
 
+### Nuestro Trello
+
+Aquí encontraraás como nos organizamos para la creación de este proyecto:
+
+- [Trello](https://trello.com/invite/b/Z5DZkWbm/ATTI474bd075d531181d8106cf2e5e4410dc6D24F45A/noxcr)
+
 
 ## Developers
   [<img src="https://avatars.githubusercontent.com/u/126439762?v=4" width=50><br><sub>Yana Tolstobrova</sub>](https://github.com/yana-tolstobrova) | [<img src="https://avatars.githubusercontent.com/u/131767553?v=4" width=150><br><sub>Rosa Pedret</sub>](https://github.com/Rosapedret2) |  [<img src="https://avatars.githubusercontent.com/u/131244871?v=4" width=150><br><sub>Cindy Leiva</sub>](https://github.com/CindyLeiva) | [<img src="https://avatars.githubusercontent.com/u/124004260?v=4" width=115><br><sub>Sylvia Llorente</sub>](https://github.com/Sylviall81)| [<img src="https://avatars.githubusercontent.com/u/107352744?v=4" width=150><br><sub>Mónica Blanco</sub>](https://github.com/mgblanco10)| [<img src="https://avatars.githubusercontent.com/u/131777684?v=4" width=150><br><sub>Zoraida Moreno</sub>](https://github.com/ZoraidaMorenoCadenas) | 
