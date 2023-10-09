@@ -63,8 +63,8 @@ class ProductTest extends TestCase
 //                  'category' => $product->category,
 //                  // Agrega más campos aquí y verifica sus valores según el producto ficticio
 //              ]);
+// }
 }
-
 
 
 

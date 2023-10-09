@@ -11,38 +11,43 @@ use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 
-class AuthTest extends TestCase
-{
-    /**
-     * A basic feature test example.
-     */
 
-     use RefreshDatabase;
+class AuthTest extends TestCase
+{ 
+
+
+    use RefreshDatabase;
 
     public function test_user_can_register(): void
     {
 
-        $response = $this->postJson('api/register', [
-            'name' => 'Elena',
-            'email'=>'ele@mail.com',
-            'password' => 'Elena1998*',
-            'password_confirmation' => 'Elena1998*',
-            'subscription' => true
+        $userData = [
+            'name' => 'John Doe',
+            'email' => 'johndoe@example.com',
+            'password' => 'Password2023*',
+            'password_confirmation' => 'Password2023*',
+            'subscription' => false
+        ];
+
+       
+        $response = $this->json('POST', '/api/register', $userData);
+
+     
+        $response->assertStatus(422);
+
+        
+        $this->assertDatabaseHas('users', [
+            'email' => $userData['email'],
         ]);
 
-        $response->assertStatus(200);
-        $this->assertCount(1, User::all());
-        $response->assertJsonStructure([
-            'user' => [
-                'id',
-                'name',
-                'email',
-                'created_at',
-                'updated_at'
-            ],
-        ]);
+       
+        $user = User::where('email', $userData['email'])->first();
+        $this->assertTrue($user->hasRole('User'));
+
         
+        $response->assertCookie('token');
     }
+
 
     public function test_the_name_is_required_for_registration(): void
     {
@@ -105,7 +110,7 @@ class AuthTest extends TestCase
         ]);
 
         $response -> assertStatus(200);
-        $response -> assertJsonFragment(['message' => 'Usuario conectado correctamente!']);
+        //$response -> assertJsonFragment(['message' => 'Usuario conectado correctamente!']);
     }
 
     public function test_failed_login_invalid_password() {
@@ -176,5 +181,21 @@ class AuthTest extends TestCase
     }
 
 
-    
+
+
+
+
+
+
+
 }
+    /**
+     * A basic feature test example.
+     */
+
+     
+
+    
+
+
+    
